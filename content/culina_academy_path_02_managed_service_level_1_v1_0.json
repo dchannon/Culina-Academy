@@ -1,0 +1,1019 @@
+{
+  "id": "culina_academy_managed_service_level_1_path_v1_0",
+  "schemaVersion": "culina-academy-content/1.3-multi-dataset-semantic",
+  "appCompatibility": {
+    "minimumApp": "culina_academy_semantic_app_v6",
+    "datasetMode": "single_track_dataset",
+    "scoringMode": "calibrated_semantic_reference_match_for_free_text",
+    "multipleChoiceScoring": "direct_correctAnswer_match",
+    "multiSelectScoring": "exact_set_match",
+    "notes": "This dataset contains one certification track. It is intended to be imported alongside other track datasets in the v6 multi-dataset academy app."
+  },
+  "academy": {
+    "id": "culina_academy_managed_service_level_1",
+    "title": "Culina Academy — Managed Service Level 1",
+    "name": "Culina Academy",
+    "subtitle": "Managed Service Level 1 Certification",
+    "version": "1.0.0",
+    "status": "Pilotable",
+    "owner": "Metadata Framework Lead",
+    "publisher": "Data Culina Inc.",
+    "createdAt": "2026-05-20T09:57:00Z",
+    "lastUpdated": "2026-05-20",
+    "description": "Managed Service Level 1 certification content for team members responsible for monitoring framework runtime health, triaging incidents, handling controlled reruns/recovery, and understanding operational escalation boundaries.",
+    "sourceModules": [
+      {
+        "moduleId": "MOD-006",
+        "title": "Runtime Orchestration Architecture",
+        "version": "0.7",
+        "role": "Runtime lifecycle, batch/queue model, dependency, retry, and rerun foundation"
+      },
+      {
+        "moduleId": "MOD-012",
+        "title": "Load Strategy Playbook",
+        "version": "0.2",
+        "role": "Load behavior, write modes, backfill, and unit-test success expectations"
+      },
+      {
+        "moduleId": "MOD-013",
+        "title": "Historical Data and SCD Patterns",
+        "version": "0.1",
+        "role": "Historical persistence and EDW recovery caution"
+      },
+      {
+        "moduleId": "MOD-015",
+        "title": "Dependency and Scheduling Rules",
+        "version": "0.2",
+        "role": "Scheduling versus executability and dependency-blocked behavior"
+      },
+      {
+        "moduleId": "MOD-016",
+        "title": "Data Quality and Validation Rules",
+        "version": "0.6",
+        "role": "Validation and unit-test failure interpretation"
+      },
+      {
+        "moduleId": "MOD-021",
+        "title": "Operations Runbook",
+        "version": "0.4",
+        "role": "Primary managed service operating guide"
+      },
+      {
+        "moduleId": "MOD-022",
+        "title": "Troubleshooting Knowledge Base",
+        "version": "0.4",
+        "role": "Symptom-to-cause-to-action troubleshooting guide"
+      },
+      {
+        "moduleId": "MOD-023",
+        "title": "Backfill and Recovery Procedures",
+        "version": "0.3",
+        "role": "Controlled recovery, rerun, replay, backfill, and rebuild guidance"
+      },
+      {
+        "moduleId": "MOD-024",
+        "title": "Change Management and Release Guide",
+        "version": "0.7",
+        "role": "Recovery versus release change and escalation boundary"
+      },
+      {
+        "moduleId": "MOD-033",
+        "title": "Failure Notification and External Delivery Guide",
+        "version": "0.1",
+        "role": "Notification handoff versus external channel delivery boundary"
+      }
+    ]
+  },
+  "tracks": [
+    {
+      "id": "track_managed_service_level_1",
+      "title": "Managed Service Level 1 Certification",
+      "audience": "Managed Service Team, Support Team, L2 support, implementation consultants supporting production",
+      "role": "Managed Service",
+      "level": "Level 1",
+      "pathType": "certification_path",
+      "description": "Builds the operational capability required to monitor framework runtime health, triage common incidents, understand queue/dependency state, investigate ingestion/transformation/validation failures, perform controlled rerun/recovery reasoning, and separate framework failures from external notification delivery issues.",
+      "prerequisites": [
+        "track_common_foundation"
+      ],
+      "learningObjectives": [
+        "Use runtime evidence rather than assumptions when investigating production issues.",
+        "Interpret batch state, queue state, runtime statuses, retry state, run history, failure logs, dependency views, and impact views.",
+        "Distinguish scheduled work from executable work and explain why PENDING does not mean runnable.",
+        "Prioritize the earliest upstream failure and avoid treating downstream SKIPPED jobs as separate root causes.",
+        "Differentiate source-side ingestion failures from ingestion configuration failures.",
+        "Treat required unit-test and validation failures as real operational failures.",
+        "Apply fix-first, rerun-second discipline and avoid resetting COMPLETED rows casually.",
+        "Choose the right recovery language: rerun, replay, backfill, or rebuild.",
+        "Explain the boundary between framework failure diagnosis, notification handoff, and downstream channel delivery.",
+        "Escalate safely when an issue requires source-owner action, implementation correction, shared framework change, model clarification, or release governance."
+      ],
+      "estimatedMinutes": 132,
+      "lessonIds": [
+        "ms_lesson_001_operational_mission_and_evidence",
+        "ms_lesson_002_batch_queue_and_statuses",
+        "ms_lesson_003_dependency_scheduling_and_executability",
+        "ms_lesson_004_standard_triage_flow",
+        "ms_lesson_005_ingestion_failure_investigation",
+        "ms_lesson_006_transformation_and_validation_failures",
+        "ms_lesson_007_controlled_rerun_handling",
+        "ms_lesson_008_backfill_replay_rebuild_and_layer_recovery",
+        "ms_lesson_009_notification_handoff_and_external_delivery",
+        "ms_lesson_010_escalation_change_and_communication_boundaries"
+      ],
+      "assessmentIds": [
+        "assessment_managed_service_level_1_v1"
+      ],
+      "badgeIds": [
+        "badge_managed_service_level_1"
+      ],
+      "passingScore": 0.8,
+      "displayOrder": 2,
+      "sourceModuleIds": [
+        "MOD-006",
+        "MOD-012",
+        "MOD-013",
+        "MOD-015",
+        "MOD-016",
+        "MOD-021",
+        "MOD-022",
+        "MOD-023",
+        "MOD-024",
+        "MOD-033"
+      ]
+    }
+  ],
+  "lessons": [
+    {
+      "id": "ms_lesson_001_operational_mission_and_evidence",
+      "trackIds": [
+        "track_managed_service_level_1"
+      ],
+      "moduleId": "MOD-021",
+      "sourceModuleIds": [
+        "MOD-021",
+        "MOD-006",
+        "MOD-022"
+      ],
+      "title": "Managed Service Mission and Evidence Model",
+      "summary": "Learn the operating mission of managed services and why runtime evidence is the starting point for support decisions.",
+      "estimatedMinutes": 12,
+      "displayOrder": 1,
+      "content": "## Why this lesson matters\n\nManaged service work is not just watching for red statuses. The role is to keep scheduled ingestion, transformation, validation, and service jobs running reliably while making failures visible, traceable, recoverable, and explainable.\n\n## Operating mindset\n\nA managed service person should start from framework evidence, not guesswork. The first question is not usually \"which report looks wrong?\" but rather \"what does the runtime control plane say?\" The framework is designed so that batch state, queue rows, run history, failure logs, dependency views, and impact views tell the support story.\n\n## Primary evidence sources\n\nThe core evidence families are:\n\n- **Batch state:** whether a scheduling cycle exists, is still active, or is blocked by unresolved work.\n- **Queue state:** the operational status of configured jobs in the batch.\n- **Run history:** the zone, step, or activity where execution succeeded or failed.\n- **Failure logs:** the direct error message and affected queue row.\n- **Dependency and impact views:** why work cannot run and which downstream jobs are affected.\n- **Quality-result entities:** validation or unit-test evidence that may fail a job even when target writing technically occurred.\n\n## Readiness expectation\n\nA certified managed service learner should be able to explain what evidence they would inspect first, how they would identify the earliest failing point, and why operational action should be based on framework evidence rather than assumptions."
+    },
+    {
+      "id": "ms_lesson_002_batch_queue_and_statuses",
+      "trackIds": [
+        "track_managed_service_level_1"
+      ],
+      "moduleId": "MOD-006",
+      "sourceModuleIds": [
+        "MOD-006",
+        "MOD-015",
+        "MOD-021",
+        "MOD-003"
+      ],
+      "title": "Batch, Queue, and Runtime Status Interpretation",
+      "summary": "Understand how runtime work is represented and what each queue status means operationally.",
+      "estimatedMinutes": 13,
+      "displayOrder": 2,
+      "content": "## Batch and queue model\n\nThe framework turns configured jobs into runtime work through a batch-and-queue model. A batch represents a scheduling cycle. A queue row represents one runtime execution instance of a job inside that cycle. Support work begins by understanding what queue rows exist and what state they are in.\n\n## Queue statuses\n\nThe common statuses are:\n\n- **PENDING:** the job exists in the queue but may still be dependency-blocked. PENDING does not automatically mean runnable.\n- **IN_PROGRESS:** the job has been claimed for execution and dependency gating should already have passed.\n- **ON_HOLD_RETRY:** the job failed but automatic retry is still allowed and the next retry time has not arrived yet. This is not terminal failure.\n- **FAILED:** the job failed permanently for the current attempt and requires intervention or escalation.\n- **COMPLETED:** the job finished successfully. Completed rows are not normal rerun targets.\n- **SKIPPED:** the job did not run because dependency conditions made execution invalid, usually due to upstream failure.\n\n## Operational danger points\n\nDo not assume a PENDING job is stuck just because it has not run. Do not treat ON_HOLD_RETRY as permanent failure. Do not reset COMPLETED rows casually. And do not investigate only the downstream FAILED or SKIPPED job if an upstream failure explains the issue.\n\n## Readiness expectation\n\nA certified learner should be able to interpret each queue status and explain what support action is appropriate or inappropriate for that status."
+    },
+    {
+      "id": "ms_lesson_003_dependency_scheduling_and_executability",
+      "trackIds": [
+        "track_managed_service_level_1"
+      ],
+      "moduleId": "MOD-015",
+      "sourceModuleIds": [
+        "MOD-015",
+        "MOD-006",
+        "MOD-021"
+      ],
+      "title": "Dependency, Scheduling, and Executability",
+      "summary": "Distinguish scheduled work from executable work and diagnose dependency-blocked behavior safely.",
+      "estimatedMinutes": 12,
+      "displayOrder": 3,
+      "content": "## Scheduling is not executability\n\nScheduling determines whether a job may be considered for queue insertion. Dependency readiness determines whether queued work can actually run. This distinction is central to managed service triage.\n\nA job can be scheduled and PENDING without being executable. It may be waiting for upstream work to complete, blocked by failed upstream work, or held because open active work still needs to resolve.\n\n## Dependency evaluation\n\nThe framework evaluates dependency readiness against open active work rather than treating each queue row in isolation. This allows the runtime to avoid unsafe execution when unresolved upstream work is still active.\n\n## SKIPPED behavior\n\nWhen an upstream dependency fails and downstream work cannot validly run, the downstream PENDING job should become SKIPPED. SKIPPED is a dependency outcome, not a partial execution failure.\n\n## Managed service behavior\n\nWhen a job appears stuck in PENDING, support should check dependency readiness and upstream state before taking action. The correct action may be to fix the upstream failure, wait for retry behavior, or escalate—not to force the downstream job to run.\n\n## Readiness expectation\n\nA certified learner should be able to explain why PENDING does not mean runnable and why dependency-blocked work should be resolved from the earliest upstream failure first."
+    },
+    {
+      "id": "ms_lesson_004_standard_triage_flow",
+      "trackIds": [
+        "track_managed_service_level_1"
+      ],
+      "moduleId": "MOD-021",
+      "sourceModuleIds": [
+        "MOD-021",
+        "MOD-022",
+        "MOD-006"
+      ],
+      "title": "Standard Triage Flow",
+      "summary": "Practice the standard flow for moving from visible symptom to likely root cause and next action.",
+      "estimatedMinutes": 14,
+      "displayOrder": 4,
+      "content": "## Triage objective\n\nTriage is the process of identifying the issue type, likely cause, severity, and next action. The goal is not to reset work quickly. The goal is to understand the failure safely enough to choose the right recovery or escalation path.\n\n## Standard triage order\n\nUse this operating sequence:\n\n1. Confirm whether there is an active batch.\n2. Review queue rows by status.\n3. Identify the earliest failing queue row in the dependency chain.\n4. Check whether the failure happened in ingestion, transformation, validation, or service behavior.\n5. Review job_runhistory and job_failure_log for direct evidence.\n6. Check dependency and impact views to understand downstream effects.\n7. Determine whether automatic retry is still active.\n8. Decide whether the issue is recoverable after a fix or requires escalation.\n9. Only then decide whether rerun, replay, backfill, rebuild, or communication is needed.\n\n## Prioritization rule\n\nThe earliest upstream failure matters most. Downstream failures and skipped jobs may be symptoms. Treating every downstream row as a separate root cause creates duplicate effort and increases recovery risk.\n\n## Readiness expectation\n\nA certified learner should be able to narrate a triage path from runtime symptom to evidence, cause, action, and escalation decision."
+    },
+    {
+      "id": "ms_lesson_005_ingestion_failure_investigation",
+      "trackIds": [
+        "track_managed_service_level_1"
+      ],
+      "moduleId": "MOD-022",
+      "sourceModuleIds": [
+        "MOD-022",
+        "MOD-012",
+        "MOD-034",
+        "MOD-021"
+      ],
+      "title": "Investigating Ingestion Failures",
+      "summary": "Identify whether ingestion failures are caused by source changes, source configuration, access, payload shape, or runtime interpretation.",
+      "estimatedMinutes": 13,
+      "displayOrder": 5,
+      "content": "## Common ingestion issue families\n\nIngestion failures commonly come from either source-side changes or configuration issues. A source-side change might involve schema drift, payload structure changes, endpoint behavior changes, credential/access changes, or unexpected nullability. A configuration issue might involve a broken selector, invalid linked service, wrong load mode, invalid source-detail metadata, or a target setup problem.\n\n## Confirmation steps\n\nSupport should inspect failure logs and run history to determine whether the failure happened during source read, landing, standardization, delta processing, or staging. The effective source configuration should be compared to the expected source behavior. If possible, the current source payload or object shape should be compared against the previous expected pattern.\n\n## Recommended action\n\nIf the source has genuinely changed, coordinate with the source owner or implementation team and update metadata or connector handling if the new shape is intended. If the metadata is wrong, correct and validate the configuration before rerun. Do not rerun blindly before the compatibility issue is resolved.\n\n## Readiness expectation\n\nA certified learner should be able to distinguish source-side change from configuration error and describe the evidence needed before choosing a rerun or escalation path."
+    },
+    {
+      "id": "ms_lesson_006_transformation_and_validation_failures",
+      "trackIds": [
+        "track_managed_service_level_1"
+      ],
+      "moduleId": "MOD-022",
+      "sourceModuleIds": [
+        "MOD-022",
+        "MOD-014",
+        "MOD-016",
+        "MOD-012"
+      ],
+      "title": "Transformation and Validation Failure Investigation",
+      "summary": "Diagnose transformation step failures and unit-test failures without treating technical execution as automatic success.",
+      "estimatedMinutes": 14,
+      "displayOrder": 6,
+      "content": "## Transformation failure types\n\nTransformation failures may occur because new data violates assumptions, a join no longer resolves as expected, a deduplication rule exposes duplicate business keys, a required source table is missing, or a transformation JSON step is invalid for the target behavior.\n\n## Unit-test and validation failures\n\nA transformation job is not operationally successful simply because a target write completed. If required unit tests or validation checks fail, the job should be treated as failed. Validation is part of metadata quality and runtime correctness, not an optional afterthought.\n\n## Evidence to inspect\n\nSupport should inspect job_runhistory, job_failure_log, unit-test results, quality-result entities, and the transformation controller or JSON configuration. The goal is to determine whether the issue is metadata design, unexpected data, source shape change, target readiness, or a true framework logic gap.\n\n## Recommended action\n\nCorrect the metadata, source issue, data issue, or framework logic before rerun. If the transformation reveals a modeling or business-rule question, escalate to implementation or business stakeholders rather than masking the failure.\n\n## Readiness expectation\n\nA certified learner should be able to explain why failed required unit tests are real operational failures and how transformation evidence should be reviewed."
+    },
+    {
+      "id": "ms_lesson_007_controlled_rerun_handling",
+      "trackIds": [
+        "track_managed_service_level_1"
+      ],
+      "moduleId": "MOD-021",
+      "sourceModuleIds": [
+        "MOD-021",
+        "MOD-023",
+        "MOD-006",
+        "MOD-002"
+      ],
+      "title": "Controlled Rerun Handling",
+      "summary": "Learn when rerun is appropriate, what should usually be rerun, and what must not be reset casually.",
+      "estimatedMinutes": 13,
+      "displayOrder": 7,
+      "content": "## Rerun principle\n\nRetry and rerun are different. Retry is automatic runtime behavior. Rerun is controlled manual intervention. A failed job should not be rerun blindly. The root cause should be understood and corrected first.\n\n## What should usually be rerun\n\nRerun should normally start from the point of failure onward. The framework prefers minimum effective scope rather than broad indiscriminate reprocessing. Eligible unresolved states may include failed, skipped, or related blocked work, depending on the resolved cause and approved recovery approach.\n\n## COMPLETED rows rule\n\nCOMPLETED rows are not normal rerun targets. Resetting completed work casually can create duplicated processing, unnecessary downstream impact, and historical data risk. If completed work must be touched, it should be done through an approved controlled recovery plan.\n\n## Parent-loop rule\n\nDo not create duplicate orchestration by repeatedly launching parent or supervisor flows without confirming current open active work. Duplicate orchestration can confuse state, trigger redundant work, and make incident recovery harder.\n\n## Readiness expectation\n\nA certified learner should be able to decide whether rerun is appropriate and explain why \"fix first, rerun second\" is a non-negotiable support rule."
+    },
+    {
+      "id": "ms_lesson_008_backfill_replay_rebuild_and_layer_recovery",
+      "trackIds": [
+        "track_managed_service_level_1"
+      ],
+      "moduleId": "MOD-023",
+      "sourceModuleIds": [
+        "MOD-023",
+        "MOD-012",
+        "MOD-013",
+        "MOD-005"
+      ],
+      "title": "Backfill, Replay, Rebuild, and Layer Recovery",
+      "summary": "Distinguish the main recovery concepts and understand how layer responsibility affects recovery scope.",
+      "estimatedMinutes": 15,
+      "displayOrder": 8,
+      "content": "## Recovery vocabulary\n\nThe framework uses several related but different recovery concepts:\n\n- **Rerun:** controlled reset of unresolved runtime work so the same configured logic can execute again.\n- **Replay:** reprocessing already-available upstream data through downstream logic again.\n- **Backfill:** controlled loading of historical or previously missing data that did not arrive correctly during normal execution.\n- **Rebuild:** recreation of a target layer or target object from upstream data using intended logic.\n\n## Layer-based thinking\n\nINT is the main transient recovery boundary because it is rebuildable and truncate-load by design. EDW is durable and often historical, so facts, dimensions, SCD2, hash comparison, tombstone handling, and current flags require extra care. Staging recovery differs between full-ingestion and delta-ingestion behavior.\n\n## Recovery workflow\n\nA safe recovery process should identify the failing scope, confirm the earliest root cause, fix before recovery, select the minimum effective recovery scope, validate after recovery, and escalate when the required recovery touches historical correctness or client-facing outputs.\n\n## Readiness expectation\n\nA certified learner should be able to choose between rerun, replay, backfill, and rebuild language and explain why recovery scope should follow layer responsibilities."
+    },
+    {
+      "id": "ms_lesson_009_notification_handoff_and_external_delivery",
+      "trackIds": [
+        "track_managed_service_level_1"
+      ],
+      "moduleId": "MOD-033",
+      "sourceModuleIds": [
+        "MOD-033",
+        "MOD-021",
+        "MOD-022",
+        "MOD-003"
+      ],
+      "title": "Failure Notification Handoff and External Delivery",
+      "summary": "Separate framework failure diagnosis from downstream notification channel delivery.",
+      "estimatedMinutes": 12,
+      "displayOrder": 9,
+      "content": "## Notification boundary\n\nThe framework is responsible for detecting failures, recording runtime evidence, surfacing failure state, and where implemented, handing off a useful failure payload to an external notification endpoint. Final channel delivery is intended to be owned by an external notification service, such as Logic Apps, email infrastructure, Teams integration, or another downstream delivery platform.\n\n## Important distinction\n\nFramework execution failure, notification handoff failure, and downstream channel delivery failure are related but distinct concerns. A Teams or email delivery problem does not automatically mean the framework failure diagnosis is wrong.\n\n## Domain ownership is not alert routing\n\nDomain owner names are governance visibility metadata. They should not be treated as the final recipient-routing mechanism. The older job-level email-recipient model is legacy or transitional and should not override the externalized notification direction.\n\n## Support behavior\n\nSupport should first understand the framework failure. Then, if notification behavior is also part of the incident, determine whether handoff was attempted, whether handoff succeeded, and whether the issue sits in the downstream delivery service.\n\n## Readiness expectation\n\nA certified learner should be able to explain the difference between notification handoff and channel delivery and avoid confusing governance visibility with alert routing."
+    },
+    {
+      "id": "ms_lesson_010_escalation_change_and_communication_boundaries",
+      "trackIds": [
+        "track_managed_service_level_1"
+      ],
+      "moduleId": "MOD-024",
+      "sourceModuleIds": [
+        "MOD-024",
+        "MOD-021",
+        "MOD-022",
+        "MOD-023"
+      ],
+      "title": "Escalation, Change, and Communication Boundaries",
+      "summary": "Know when an issue is operational recovery versus a release change and how escalation should be framed.",
+      "estimatedMinutes": 14,
+      "displayOrder": 10,
+      "content": "## Escalation mindset\n\nManaged service work should resolve operationally recoverable issues, but it should not hide design gaps, source-governance problems, model questions, framework logic gaps, or release changes. Escalation is appropriate when the issue cannot be safely corrected through normal support action.\n\n## Common escalation triggers\n\nEscalate when source-side action is required, connector or framework logic must change, metadata design must be corrected, model or business-rule clarification is required, historical EDW recovery is risky, or external notification delivery requires downstream service owner action.\n\n## Recovery versus release change\n\nOperational rerun, replay, backfill, or rebuild activity restores correctness after failure, missing data, or bad output. A release change modifies approved behavior, approved artifacts, shared framework capability, control-plane package, or environment deployment posture. These should not be treated as the same thing.\n\n## Communication quality\n\nGood incident communication should identify the affected job or scope, current status, earliest known cause, downstream impact, next action, and whether escalation is needed. Avoid overpromising before the evidence supports a conclusion.\n\n## Readiness expectation\n\nA certified learner should be able to classify whether a situation is support recovery, implementation fix, source-owner action, downstream notification issue, or governed release change."
+    }
+  ],
+  "assessments": [
+    {
+      "id": "assessment_managed_service_level_1_v1",
+      "trackId": "track_managed_service_level_1",
+      "title": "Managed Service Level 1 Certification Assessment",
+      "type": "Certification Assessment",
+      "description": "Validates operational readiness for Level 1 managed service work: monitoring, status interpretation, dependency triage, ingestion and transformation troubleshooting, validation failure handling, controlled recovery reasoning, notification boundary awareness, and escalation classification.",
+      "passThreshold": 0.8,
+      "estimatedMinutes": 45,
+      "displayOrder": 1,
+      "questions": [
+        {
+          "id": "ms_q001_primary_operational_signal",
+          "type": "multiple_choice",
+          "title": "Primary operational signal",
+          "prompt": "When an issue is reported, what should managed services usually inspect first?",
+          "context": "Choose the evidence source that best aligns with the framework operating model.",
+          "points": 1,
+          "competency": "Operational evidence",
+          "options": [
+            {
+              "id": "A",
+              "text": "Only the downstream BI report because user symptoms are always the root cause."
+            },
+            {
+              "id": "B",
+              "text": "Runtime control-plane evidence such as batch state, queue state, run history, failure logs, and dependency views."
+            },
+            {
+              "id": "C",
+              "text": "The newest code file in the repository, regardless of the failure evidence."
+            },
+            {
+              "id": "D",
+              "text": "The notification recipient list, because alert routing is always the root cause."
+            }
+          ],
+          "correctAnswer": "B",
+          "correctFeedback": "Correct. Managed service triage should start from runtime evidence.",
+          "incorrectFeedback": "Review the operational evidence model. User symptoms matter, but framework runtime evidence is the primary support signal."
+        },
+        {
+          "id": "ms_q002_pending_status",
+          "type": "multiple_choice",
+          "title": "PENDING interpretation",
+          "prompt": "A job is PENDING. What does that status mean?",
+          "points": 1,
+          "competency": "Queue status interpretation",
+          "options": [
+            {
+              "id": "A",
+              "text": "The job exists in queue, but it may still be dependency-blocked and is not automatically executable."
+            },
+            {
+              "id": "B",
+              "text": "The job failed permanently and can never be retried."
+            },
+            {
+              "id": "C",
+              "text": "The job already completed successfully."
+            },
+            {
+              "id": "D",
+              "text": "The job is guaranteed to be safe to force-run immediately."
+            }
+          ],
+          "correctAnswer": "A",
+          "correctFeedback": "Correct. PENDING does not automatically mean runnable.",
+          "incorrectFeedback": "Review batch, queue, and dependency readiness. Scheduling and executability are different."
+        },
+        {
+          "id": "ms_q003_on_hold_retry",
+          "type": "multiple_choice",
+          "title": "ON_HOLD_RETRY interpretation",
+          "prompt": "What does ON_HOLD_RETRY indicate?",
+          "points": 1,
+          "competency": "Queue status interpretation",
+          "options": [
+            {
+              "id": "A",
+              "text": "The job is permanently failed and automatic retry is no longer relevant."
+            },
+            {
+              "id": "B",
+              "text": "The job failed, but automatic retry is still allowed and the next retry time has not arrived yet."
+            },
+            {
+              "id": "C",
+              "text": "The downstream job was skipped because of dependency failure."
+            },
+            {
+              "id": "D",
+              "text": "The batch has been manually closed and no support action is possible."
+            }
+          ],
+          "correctAnswer": "B",
+          "correctFeedback": "Correct. ON_HOLD_RETRY is not terminal failure.",
+          "incorrectFeedback": "Review runtime status interpretation. ON_HOLD_RETRY means retry behavior is still part of the operational state."
+        },
+        {
+          "id": "ms_q004_skipped_status",
+          "type": "multiple_choice",
+          "title": "SKIPPED interpretation",
+          "prompt": "A downstream job moved from PENDING to SKIPPED after an upstream job failed. What is the best interpretation?",
+          "points": 1,
+          "competency": "Dependency handling",
+          "options": [
+            {
+              "id": "A",
+              "text": "The downstream job partially executed and wrote bad output."
+            },
+            {
+              "id": "B",
+              "text": "The downstream job did not execute because dependency conditions made execution invalid."
+            },
+            {
+              "id": "C",
+              "text": "The downstream job should be force-run immediately to catch up."
+            },
+            {
+              "id": "D",
+              "text": "The dependency model is irrelevant once a job is scheduled."
+            }
+          ],
+          "correctAnswer": "B",
+          "correctFeedback": "Correct. SKIPPED is a dependency outcome.",
+          "incorrectFeedback": "Review dependency and scheduling rules. Downstream skipped work often points back to an upstream failure."
+        },
+        {
+          "id": "ms_q005_evidence_sources",
+          "type": "multi_select",
+          "title": "Runtime evidence sources",
+          "prompt": "Which evidence sources are important during managed service triage? Select all that apply.",
+          "points": 2,
+          "competency": "Operational evidence",
+          "options": [
+            {
+              "id": "A",
+              "text": "job_queue or queue-state evidence"
+            },
+            {
+              "id": "B",
+              "text": "job_runhistory or step-level runtime history"
+            },
+            {
+              "id": "C",
+              "text": "job_failure_log or direct failure-message evidence"
+            },
+            {
+              "id": "D",
+              "text": "Dependency and impact views"
+            },
+            {
+              "id": "E",
+              "text": "Randomly resetting statuses before reviewing evidence"
+            }
+          ],
+          "correctAnswer": [
+            "A",
+            "B",
+            "C",
+            "D"
+          ],
+          "correctFeedback": "Correct. Queue state, run history, failure logs, and dependency/impact evidence are all important.",
+          "incorrectFeedback": "Review the evidence model. Resetting statuses is not an evidence source."
+        },
+        {
+          "id": "ms_q006_earliest_failure",
+          "type": "multiple_choice",
+          "title": "Earliest failure rule",
+          "prompt": "Several downstream jobs are SKIPPED and one upstream job is FAILED. What should support prioritize?",
+          "points": 1,
+          "competency": "Triage prioritization",
+          "options": [
+            {
+              "id": "A",
+              "text": "Treat every skipped downstream job as a separate root cause."
+            },
+            {
+              "id": "B",
+              "text": "Start with the earliest upstream failure that explains the dependency impact."
+            },
+            {
+              "id": "C",
+              "text": "Ignore the upstream failure and rerun the most recent skipped job."
+            },
+            {
+              "id": "D",
+              "text": "Close the batch manually without investigation."
+            }
+          ],
+          "correctAnswer": "B",
+          "correctFeedback": "Correct. The earliest upstream failure matters most.",
+          "incorrectFeedback": "Review the standard triage flow. Downstream symptoms often depend on upstream failure resolution."
+        },
+        {
+          "id": "ms_q007_ingestion_source_change",
+          "type": "multi_select",
+          "title": "Ingestion source-side change",
+          "prompt": "Which situations may indicate an ingestion failure caused by source-side changes? Select all that apply.",
+          "points": 2,
+          "competency": "Ingestion troubleshooting",
+          "options": [
+            {
+              "id": "A",
+              "text": "The source payload structure changed."
+            },
+            {
+              "id": "B",
+              "text": "The endpoint behavior changed."
+            },
+            {
+              "id": "C",
+              "text": "Credentials or access behavior changed."
+            },
+            {
+              "id": "D",
+              "text": "A source field became missing or null in a way that breaks flattening or standardization."
+            },
+            {
+              "id": "E",
+              "text": "The job is PENDING and all upstream dependencies are still running successfully."
+            }
+          ],
+          "correctAnswer": [
+            "A",
+            "B",
+            "C",
+            "D"
+          ],
+          "correctFeedback": "Correct. Source structure, endpoint, access, and payload field changes can all cause ingestion failure.",
+          "incorrectFeedback": "Review ingestion troubleshooting. A normal dependency wait is not itself a source-side ingestion change."
+        },
+        {
+          "id": "ms_q008_ingestion_config_issue",
+          "type": "multi_select",
+          "title": "Ingestion configuration issue",
+          "prompt": "Which signs may indicate an ingestion failure caused by configuration rather than source-side change? Select all that apply.",
+          "points": 2,
+          "competency": "Ingestion troubleshooting",
+          "options": [
+            {
+              "id": "A",
+              "text": "Broken source query or selector."
+            },
+            {
+              "id": "B",
+              "text": "Invalid linked-service configuration."
+            },
+            {
+              "id": "C",
+              "text": "Wrong load mode selection."
+            },
+            {
+              "id": "D",
+              "text": "Incorrect source-detail metadata."
+            },
+            {
+              "id": "E",
+              "text": "A correct dependency model that is waiting for upstream work."
+            }
+          ],
+          "correctAnswer": [
+            "A",
+            "B",
+            "C",
+            "D"
+          ],
+          "correctFeedback": "Correct. These point to configured source behavior that the framework cannot interpret correctly.",
+          "incorrectFeedback": "Review ingestion failure due to configuration issues. Dependency waiting is a different issue family."
+        },
+        {
+          "id": "ms_q009_unit_test_failure",
+          "type": "multiple_choice",
+          "title": "Unit-test failure handling",
+          "prompt": "A transformation writes a target table but a required unit test fails. What is the correct operational interpretation?",
+          "points": 1,
+          "competency": "Validation failure handling",
+          "options": [
+            {
+              "id": "A",
+              "text": "The job is successful because the table was written."
+            },
+            {
+              "id": "B",
+              "text": "The job should be treated as failed because required validation failed."
+            },
+            {
+              "id": "C",
+              "text": "Validation failures are always cosmetic and can be ignored."
+            },
+            {
+              "id": "D",
+              "text": "The table should be manually edited in production before reviewing evidence."
+            }
+          ],
+          "correctAnswer": "B",
+          "correctFeedback": "Correct. Required unit-test failures are real failures.",
+          "incorrectFeedback": "Review validation handling. A technically executed job is not necessarily an operational success."
+        },
+        {
+          "id": "ms_q010_blind_rerun",
+          "type": "multiple_choice",
+          "title": "Blind rerun risk",
+          "prompt": "Why should support avoid rerunning a failed job before understanding and fixing the root cause?",
+          "points": 1,
+          "competency": "Controlled rerun",
+          "options": [
+            {
+              "id": "A",
+              "text": "Because the framework never supports reruns under any circumstance."
+            },
+            {
+              "id": "B",
+              "text": "Because rerunning blindly can repeat the failure, duplicate work, or increase downstream data risk."
+            },
+            {
+              "id": "C",
+              "text": "Because failures should always be ignored until the next business day."
+            },
+            {
+              "id": "D",
+              "text": "Because downstream jobs are always the root cause."
+            }
+          ],
+          "correctAnswer": "B",
+          "correctFeedback": "Correct. Fix first, rerun second.",
+          "incorrectFeedback": "Review controlled rerun handling. Rerun is allowed, but it must be controlled."
+        },
+        {
+          "id": "ms_q011_completed_rows",
+          "type": "multiple_choice",
+          "title": "COMPLETED rows rule",
+          "prompt": "What is the normal rule for COMPLETED queue rows during recovery?",
+          "points": 1,
+          "competency": "Recovery safety",
+          "options": [
+            {
+              "id": "A",
+              "text": "COMPLETED rows should be reset casually whenever a later job fails."
+            },
+            {
+              "id": "B",
+              "text": "COMPLETED rows are not normal rerun targets and should not be touched casually."
+            },
+            {
+              "id": "C",
+              "text": "COMPLETED rows must always be deleted to close a batch."
+            },
+            {
+              "id": "D",
+              "text": "COMPLETED rows are equivalent to ON_HOLD_RETRY."
+            }
+          ],
+          "correctAnswer": "B",
+          "correctFeedback": "Correct. Completed rows require caution.",
+          "incorrectFeedback": "Review recovery safety. Completed work should not be reset without an approved recovery plan."
+        },
+        {
+          "id": "ms_q012_recovery_terms",
+          "type": "multi_select",
+          "title": "Recovery vocabulary",
+          "prompt": "Which definitions are correct? Select all that apply.",
+          "points": 2,
+          "competency": "Recovery vocabulary",
+          "options": [
+            {
+              "id": "A",
+              "text": "Rerun is a controlled reset of unresolved runtime work so the same configured logic can execute again."
+            },
+            {
+              "id": "B",
+              "text": "Replay is reprocessing already-available upstream data through downstream layers again."
+            },
+            {
+              "id": "C",
+              "text": "Backfill is the controlled loading of historical or previously missing data that did not arrive correctly during normal execution."
+            },
+            {
+              "id": "D",
+              "text": "Rebuild is recreation of a target layer or object from upstream data using intended logic."
+            },
+            {
+              "id": "E",
+              "text": "Rollback and rerun mean exactly the same thing."
+            }
+          ],
+          "correctAnswer": [
+            "A",
+            "B",
+            "C",
+            "D"
+          ],
+          "correctFeedback": "Correct. Rerun, replay, backfill, and rebuild are related but distinct recovery concepts.",
+          "incorrectFeedback": "Review recovery vocabulary. Rollback is release-governance terminology, not the same as rerun."
+        },
+        {
+          "id": "ms_q013_int_recovery_boundary",
+          "type": "multiple_choice",
+          "title": "INT recovery boundary",
+          "prompt": "Why is INT often treated as the main transient recovery boundary?",
+          "points": 1,
+          "competency": "Layer recovery",
+          "options": [
+            {
+              "id": "A",
+              "text": "INT is durable historical storage and should never be rebuilt."
+            },
+            {
+              "id": "B",
+              "text": "INT is transient and rebuildable, so many corrections can be contained there before touching durable layers."
+            },
+            {
+              "id": "C",
+              "text": "INT is the final reporting layer delivered to all clients."
+            },
+            {
+              "id": "D",
+              "text": "INT replaces EDW for all historical persistence."
+            }
+          ],
+          "correctAnswer": "B",
+          "correctFeedback": "Correct. INT is transient and rebuildable by design.",
+          "incorrectFeedback": "Review layer recovery behavior. EDW is the durable/historical layer, not INT."
+        },
+        {
+          "id": "ms_q014_notification_boundary",
+          "type": "multiple_choice",
+          "title": "Notification boundary",
+          "prompt": "A framework failure occurred, but the expected Teams message did not arrive. What should support avoid assuming?",
+          "points": 1,
+          "competency": "Notification troubleshooting",
+          "options": [
+            {
+              "id": "A",
+              "text": "They should avoid assuming the framework failure diagnosis is wrong solely because final channel delivery failed."
+            },
+            {
+              "id": "B",
+              "text": "They should assume the queue never failed."
+            },
+            {
+              "id": "C",
+              "text": "They should ignore framework evidence and only debug Teams."
+            },
+            {
+              "id": "D",
+              "text": "They should use domain-owner names as the guaranteed recipient-routing configuration."
+            }
+          ],
+          "correctAnswer": "A",
+          "correctFeedback": "Correct. Framework failure diagnosis and channel delivery are related but distinct.",
+          "incorrectFeedback": "Review notification handoff versus channel delivery."
+        },
+        {
+          "id": "ms_q015_domain_owner_routing",
+          "type": "multiple_choice",
+          "title": "Domain owner names",
+          "prompt": "How should domain-owner names be interpreted in the current notification design direction?",
+          "points": 1,
+          "competency": "Notification boundary",
+          "options": [
+            {
+              "id": "A",
+              "text": "As governance visibility metadata, not the final alert-recipient routing mechanism."
+            },
+            {
+              "id": "B",
+              "text": "As the only source of final email and Teams routing."
+            },
+            {
+              "id": "C",
+              "text": "As a replacement for runtime failure logs."
+            },
+            {
+              "id": "D",
+              "text": "As proof that notification delivery must remain inside every job's metadata."
+            }
+          ],
+          "correctAnswer": "A",
+          "correctFeedback": "Correct. Governance visibility and alert routing are distinct.",
+          "incorrectFeedback": "Review externalized notification delivery and domain-owner visibility."
+        },
+        {
+          "id": "ms_q016_recovery_vs_release",
+          "type": "multiple_choice",
+          "title": "Recovery versus release change",
+          "prompt": "Which statement correctly distinguishes operational recovery from release change?",
+          "points": 1,
+          "competency": "Change boundary",
+          "options": [
+            {
+              "id": "A",
+              "text": "Recovery restores correctness after failure or missing/bad output, while a release change modifies approved behavior, artifacts, shared capability, control-plane package, or environment posture."
+            },
+            {
+              "id": "B",
+              "text": "Recovery and release change are always the same and require the same rollback process."
+            },
+            {
+              "id": "C",
+              "text": "A release change means only rerunning a failed queue row."
+            },
+            {
+              "id": "D",
+              "text": "Recovery always means changing shared framework code."
+            }
+          ],
+          "correctAnswer": "A",
+          "correctFeedback": "Correct. Recovery and release change have different governance meanings.",
+          "incorrectFeedback": "Review escalation and change boundaries."
+        },
+        {
+          "id": "ms_q017_explain_triage_flow",
+          "type": "free_text",
+          "title": "Explain a triage path",
+          "prompt": "A batch has several downstream SKIPPED jobs and one upstream FAILED ingestion job. Explain how you would triage this situation before deciding whether to rerun anything.",
+          "context": "A strong answer should start from runtime evidence, identify the earliest upstream failure, inspect failure logs and run history, understand dependency impact, fix the cause first, and only then consider minimum-scope rerun.",
+          "points": 4,
+          "competency": "Incident triage reasoning",
+          "semanticScoring": {
+            "floorSimilarity": 0.28,
+            "minAcceptableSimilarity": 0.42,
+            "goodSimilarity": 0.55,
+            "excellentSimilarity": 0.68
+          },
+          "rubric": {
+            "referenceAnswers": [
+              "I would first inspect the active batch and queue state, then identify the earliest upstream failed ingestion job rather than treating every skipped downstream job as a separate issue. I would review job_failure_log and job_runhistory to find the direct error and failing zone, use dependency or impact views to confirm why downstream jobs were skipped, fix or escalate the root cause, and only then consider a controlled minimum-scope rerun from the point of failure onward.",
+              "The skipped downstream rows are likely dependency outcomes, so I would start with the upstream failed ingestion job. I would validate the failure using queue state, run history, and failure logs, determine whether the issue is source change, configuration, access, or runtime handling, check downstream impact, correct the cause first, and avoid resetting completed work or rerunning blindly.",
+              "I would not force-run the skipped jobs. I would use runtime evidence to find the earliest failing queue row, inspect the exact step and failure message, confirm dependency blockage, decide whether the ingestion failure is recoverable or needs escalation, and after the issue is fixed perform only the necessary rerun scope from the failure point onward."
+            ]
+          },
+          "explanation": "The expected reasoning is evidence-first triage, earliest upstream failure focus, fix-first behavior, and minimum-scope recovery."
+        },
+        {
+          "id": "ms_q018_explain_ingestion_failure",
+          "type": "free_text",
+          "title": "Differentiate ingestion failure causes",
+          "prompt": "An ingestion job that worked yesterday starts failing today. Explain how you would determine whether it is caused by a source-side change or a configuration issue.",
+          "context": "A strong answer should compare failure evidence, run history stage, effective source configuration, linked service/source-detail settings, and current source payload or schema behavior.",
+          "points": 4,
+          "competency": "Ingestion troubleshooting reasoning",
+          "semanticScoring": {
+            "floorSimilarity": 0.28,
+            "minAcceptableSimilarity": 0.42,
+            "goodSimilarity": 0.55,
+            "excellentSimilarity": 0.68
+          },
+          "rubric": {
+            "referenceAnswers": [
+              "I would inspect job_failure_log and job_runhistory to see whether the failure happened during source read, landing, standardization, or staging. Then I would compare the effective source-detail and linked-service configuration with the intended design, and compare the current source payload or schema to the expected pattern. If the endpoint, schema, fields, nullability, or credentials changed, it points to source-side change. If the selector, linked service, load mode, or source metadata is wrong, it points to configuration.",
+              "I would start from the direct failure message and failing runtime step. I would validate the deployed source detail, linked service, source query or selector, and load mode. Separately, I would check whether the source API or table changed its structure, access behavior, or field presence. That distinction tells me whether to coordinate with the source owner, correct metadata, or escalate connector/framework handling before rerun.",
+              "The key is not to rerun blindly. I would use run history and failure logs, inspect the effective source configuration, then compare today's source response to the previous expected shape. Source schema or endpoint changes suggest source-side cause; invalid source-detail or linked-service metadata suggests configuration cause."
+            ]
+          },
+          "explanation": "The expected answer distinguishes source reality from deployed configuration and uses evidence before rerun."
+        },
+        {
+          "id": "ms_q019_explain_unit_test_failure",
+          "type": "free_text",
+          "title": "Handle validation failure",
+          "prompt": "A transformation job writes its target table, but a required validation/unit test fails. Explain how managed services should treat this situation.",
+          "context": "A strong answer should explain that technical write completion is not enough, required validation failure is a real failure, evidence should be reviewed, and rerun should wait until cause is fixed.",
+          "points": 3,
+          "competency": "Validation failure reasoning",
+          "semanticScoring": {
+            "floorSimilarity": 0.28,
+            "minAcceptableSimilarity": 0.42,
+            "goodSimilarity": 0.55,
+            "excellentSimilarity": 0.68
+          },
+          "rubric": {
+            "referenceAnswers": [
+              "Managed services should treat the job as failed because required validation did not pass. A table write alone does not prove business or operational success. I would inspect the unit-test or quality-result evidence, job run history, failure logs, and transformation configuration to determine whether the cause is data, metadata, model assumptions, or framework logic. The cause should be fixed or escalated before rerun.",
+              "A required unit-test failure is a real operational failure even if the target write completed. Support should review validation results and runtime evidence, determine what rule failed, avoid marking it successful, and coordinate a metadata, data, or business-rule fix before controlled rerun.",
+              "I would not ignore the failed validation. The framework treats required unit tests as part of load success. I would investigate the failed check, determine whether the output is unsafe, escalate if the model or business rule needs clarification, and rerun only after the issue is corrected."
+            ]
+          },
+          "explanation": "The expected answer recognizes validation as part of operational success, not a cosmetic post-check."
+        },
+        {
+          "id": "ms_q020_explain_recovery_choice",
+          "type": "free_text",
+          "title": "Choose recovery language",
+          "prompt": "Explain the difference between rerun, replay, backfill, and rebuild in a way that would help a new managed service teammate choose the right recovery language.",
+          "context": "A strong answer should define each term and connect the choice to the failure scope, available upstream data, missing historical periods, and target/layer rebuild needs.",
+          "points": 4,
+          "competency": "Recovery vocabulary reasoning",
+          "semanticScoring": {
+            "floorSimilarity": 0.28,
+            "minAcceptableSimilarity": 0.42,
+            "goodSimilarity": 0.55,
+            "excellentSimilarity": 0.68
+          },
+          "rubric": {
+            "referenceAnswers": [
+              "Rerun means resetting unresolved runtime work so the same configured job can execute again after the cause is fixed. Replay means processing already-available upstream data through downstream logic again. Backfill means loading historical or previously missing data that did not arrive during normal execution. Rebuild means recreating a target layer or object from upstream data using intended logic. The right choice depends on whether the problem is a failed queue attempt, downstream reprocessing, missing source coverage, or a target that must be recreated.",
+              "I would use rerun for controlled queue recovery from the point of failure, replay when upstream data already exists but downstream logic must run again, backfill when a historical period or missing data must be brought in, and rebuild when a layer or target needs to be recreated from safe upstream state. The choice should be minimum-scope and layer-aware, especially around INT versus EDW.",
+              "These terms are not interchangeable. Rerun is queue-oriented, replay is downstream reprocessing of available data, backfill restores missing historical source coverage, and rebuild recreates a target. Managed services should use the term that matches the actual recovery scope and avoid broad reruns when a narrower recovery is enough."
+            ]
+          },
+          "explanation": "The expected answer distinguishes related recovery terms and connects them to scope selection."
+        },
+        {
+          "id": "ms_q021_explain_notification_boundary",
+          "type": "free_text",
+          "title": "Explain notification boundary",
+          "prompt": "A framework job failed, and the failure payload handoff succeeded, but the expected email was not delivered. Explain how you would classify and investigate this issue.",
+          "context": "A strong answer should distinguish framework execution failure, notification handoff, and downstream channel delivery, and avoid treating domain owner metadata as recipient routing.",
+          "points": 3,
+          "competency": "Notification boundary reasoning",
+          "semanticScoring": {
+            "floorSimilarity": 0.28,
+            "minAcceptableSimilarity": 0.42,
+            "goodSimilarity": 0.55,
+            "excellentSimilarity": 0.68
+          },
+          "rubric": {
+            "referenceAnswers": [
+              "I would separate the original framework execution failure from notification delivery. If the failure payload handoff succeeded, the framework likely detected the failure and handed it to the external notification service. The missing email should be investigated as downstream channel delivery or external service routing, not as proof that the framework failure diagnosis was wrong. I would check handoff evidence, then downstream service logs or email routing, and avoid using domain owner names as the final recipient configuration.",
+              "This is a downstream notification delivery issue after successful handoff. I would still keep the framework job failure as its own incident evidence, then check the external notification service, channel template, recipient routing, and email infrastructure. Framework failure, handoff, and final channel delivery are related but distinct.",
+              "I would classify the failed email as external channel delivery, because the framework handoff succeeded. The support response should confirm the runtime failure evidence, confirm handoff success, and escalate to the owner of the notification service or email routing if the downstream delivery failed."
+            ]
+          },
+          "explanation": "The expected answer separates notification handoff from final channel delivery."
+        },
+        {
+          "id": "ms_q022_explain_escalation",
+          "type": "free_text",
+          "title": "Escalation decision",
+          "prompt": "A recurring production issue requires changing shared framework library behavior, not just correcting one client's metadata. Explain how managed services should classify and escalate it.",
+          "context": "A strong answer should classify this as more than routine operational recovery, explain shared framework change boundaries, and avoid hiding the fix as client-specific support work.",
+          "points": 3,
+          "competency": "Escalation and change boundary reasoning",
+          "semanticScoring": {
+            "floorSimilarity": 0.28,
+            "minAcceptableSimilarity": 0.42,
+            "goodSimilarity": 0.55,
+            "excellentSimilarity": 0.68
+          },
+          "rubric": {
+            "referenceAnswers": [
+              "Managed services should not treat this as only a routine rerun or client-specific recovery. If the fix requires changing shared framework library behavior, it should be escalated as a shared framework or shared package/library change. The issue should be documented with evidence, affected scope, client impact, and reproduction details, then handled through the appropriate review, validation, and release path rather than hidden inside one client's metadata.",
+              "I would classify it as a shared framework change because the required correction affects reusable library behavior. Managed services can provide incident evidence and impact, but the fix belongs to the internal framework or development owner and should follow change management, validation, approval, and deployment readiness expectations.",
+              "This is not just operational recovery. A recurring issue that needs a shared library change crosses into release governance. It should be escalated with runtime evidence and impact analysis so the framework team can plan a controlled shared change and avoid client-specific forks."
+            ]
+          },
+          "explanation": "The expected answer distinguishes operational support from shared framework change and release governance."
+        }
+      ]
+    }
+  ],
+  "badges": [
+    {
+      "id": "badge_managed_service_level_1",
+      "title": "Managed Service Level 1 Certified",
+      "icon": "🛡️",
+      "description": "Awarded after completing the Managed Service Level 1 certification path and passing the operational readiness assessment.",
+      "requirements": {
+        "trackId": "track_managed_service_level_1",
+        "requiredLessons": [
+          "ms_lesson_001_operational_mission_and_evidence",
+          "ms_lesson_002_batch_queue_and_statuses",
+          "ms_lesson_003_dependency_scheduling_and_executability",
+          "ms_lesson_004_standard_triage_flow",
+          "ms_lesson_005_ingestion_failure_investigation",
+          "ms_lesson_006_transformation_and_validation_failures",
+          "ms_lesson_007_controlled_rerun_handling",
+          "ms_lesson_008_backfill_replay_rebuild_and_layer_recovery",
+          "ms_lesson_009_notification_handoff_and_external_delivery",
+          "ms_lesson_010_escalation_change_and_communication_boundaries"
+        ],
+        "requiredAssessments": [
+          "assessment_managed_service_level_1_v1"
+        ],
+        "minimumAssessmentScore": 0.8
+      },
+      "issuer": "Culina Academy",
+      "evidenceRule": "Complete all Managed Service Level 1 lessons and pass the operational readiness assessment.",
+      "displayOrder": 2
+    }
+  ],
+  "scoringPolicy": {
+    "freeText": "Free-text questions are scored by browser-based calibrated semantic reference matching against approved reference answers. Exact wording is not required.",
+    "defaultSemanticCalibration": {
+      "floorSimilarity": 0.28,
+      "minAcceptableSimilarity": 0.42,
+      "goodSimilarity": 0.55,
+      "excellentSimilarity": 0.68
+    },
+    "multipleChoice": "Multiple-choice questions use direct correctAnswer matching.",
+    "multiSelect": "Multi-select questions require the selected option set to exactly match correctAnswer."
+  }
+}

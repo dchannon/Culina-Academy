@@ -1,0 +1,978 @@
+{
+  "id": "culina_academy_common_foundation_path_v1_0",
+  "schemaVersion": "culina-academy-content/1.3-multi-dataset-semantic",
+  "appCompatibility": {
+    "minimumApp": "culina_academy_semantic_app_v6",
+    "datasetMode": "single_track_dataset",
+    "scoringMode": "calibrated_semantic_reference_match_for_free_text",
+    "multipleChoiceScoring": "direct_correctAnswer_match",
+    "multiSelectScoring": "exact_set_match",
+    "notes": "This dataset contains one certification track. It is intended to be imported alongside other track datasets in the v6 multi-dataset academy app."
+  },
+  "academy": {
+    "id": "culina_academy_common_foundation",
+    "title": "Culina Academy — Common Foundation",
+    "name": "Culina Academy",
+    "subtitle": "Common Foundation Certification",
+    "version": "1.0.0",
+    "status": "Pilotable",
+    "owner": "Metadata Framework Lead",
+    "publisher": "Data Culina Inc.",
+    "createdAt": "2026-05-20T09:52:31Z",
+    "lastUpdated": "2026-05-20",
+    "description": "Foundation certification content for all team members before entering specialized Managed Service or Implementation Service tracks.",
+    "sourceModules": [
+      {
+        "moduleId": "MOD-001",
+        "title": "Framework Overview",
+        "version": "0.3",
+        "role": "Primary conceptual foundation"
+      },
+      {
+        "moduleId": "MOD-002",
+        "title": "Framework Principles and Design Rules",
+        "version": "0.4",
+        "role": "Primary rulebook and non-negotiable principles"
+      },
+      {
+        "moduleId": "MOD-003",
+        "title": "Glossary and Terminology Reference",
+        "version": "0.6",
+        "role": "Canonical vocabulary and distinction pairs"
+      },
+      {
+        "moduleId": "MOD-004",
+        "title": "Logical Architecture",
+        "version": "0.5",
+        "role": "Logical domains and responsibility boundaries"
+      },
+      {
+        "moduleId": "MOD-005",
+        "title": "Processing Layer Architecture",
+        "version": "0.3",
+        "role": "Processing-layer responsibilities and data flow"
+      },
+      {
+        "moduleId": "MOD-006",
+        "title": "Runtime Orchestration Architecture",
+        "version": "0.7",
+        "role": "Batch, queue, dependency, retry, and rerun foundation"
+      },
+      {
+        "moduleId": "MOD-007",
+        "title": "Environment and Deployment Topology",
+        "version": "0.6",
+        "role": "Environment mapping and deployment boundary awareness"
+      },
+      {
+        "moduleId": "MOD-008",
+        "title": "Metadata Entity Reference",
+        "version": "0.4",
+        "role": "Entity-level view of framework metadata"
+      },
+      {
+        "moduleId": "MOD-009",
+        "title": "Metadata Relationship Model",
+        "version": "0.4",
+        "role": "How authored metadata becomes runtime behavior"
+      },
+      {
+        "moduleId": "MOD-010",
+        "title": "Config Field Dictionary",
+        "version": "0.6",
+        "role": "Field meaning and configuration vocabulary"
+      },
+      {
+        "moduleId": "MOD-011",
+        "title": "Naming Standards and Key Conventions",
+        "version": "0.3",
+        "role": "Naming and identifier distinction awareness"
+      },
+      {
+        "moduleId": "MOD-017",
+        "title": "Metadata Studio Functional Guide",
+        "version": "0.7",
+        "role": "Studio authoring, validation, export, and handoff foundation"
+      },
+      {
+        "moduleId": "MOD-018",
+        "title": "AI Copilot Interaction Guide",
+        "version": "0.3",
+        "role": "Copilot usage and manual-copy boundary"
+      },
+      {
+        "moduleId": "MOD-028",
+        "title": "AI Knowledge Pack Index",
+        "version": "0.8",
+        "role": "Documentation routing and authority awareness"
+      },
+      {
+        "moduleId": "MOD-029",
+        "title": "AI Answering and Safety Policy",
+        "version": "0.2",
+        "role": "Grounding, uncertainty, and advisory-output behavior"
+      }
+    ]
+  },
+  "tracks": [
+    {
+      "id": "track_common_foundation",
+      "title": "Common Foundation Certification",
+      "audience": "All team members before specialization",
+      "role": "Foundation",
+      "level": "Foundation",
+      "pathType": "certification_path",
+      "description": "Builds the shared mental model, vocabulary, architecture awareness, governance boundaries, and documentation navigation skills required before entering Managed Service or Implementation certification paths.",
+      "prerequisites": [],
+      "learningObjectives": [
+        "Explain the framework as both a metadata-driven execution framework and a governed delivery methodology.",
+        "Describe how metadata connects design intent to runtime behavior, supportability, and traceability.",
+        "Recognize the framework's core non-negotiable principles and common anti-patterns.",
+        "Distinguish logical architecture domains, control plane, data plane, and runtime orchestration responsibilities.",
+        "Explain the processing layer flow and the responsibilities of Landing, Archive, Delta, Staging, Integration, EDW, and Consumption.",
+        "Understand basic queue, batch, dependency, retry, and rerun concepts.",
+        "Route questions to the correct documentation module family and respect authority/maturity boundaries.",
+        "Use Studio and Copilot safely without treating advisory output as approved configuration."
+      ],
+      "estimatedMinutes": 123,
+      "lessonIds": [
+        "cf_lesson_001_framework_purpose_operating_model",
+        "cf_lesson_002_metadata_driven_mindset",
+        "cf_lesson_003_principles_and_non_negotiables",
+        "cf_lesson_004_logical_architecture_domains",
+        "cf_lesson_005_processing_layer_architecture",
+        "cf_lesson_006_runtime_orchestration_basics",
+        "cf_lesson_007_metadata_model_fundamentals",
+        "cf_lesson_008_studio_and_copilot_boundaries",
+        "cf_lesson_009_environment_and_deployment_boundaries",
+        "cf_lesson_010_documentation_navigation_authority"
+      ],
+      "assessmentIds": [
+        "assessment_common_foundation_v2"
+      ],
+      "badgeIds": [
+        "badge_common_foundation"
+      ],
+      "passingScore": 0.8,
+      "displayOrder": 1,
+      "sourceModuleIds": [
+        "MOD-001",
+        "MOD-002",
+        "MOD-003",
+        "MOD-004",
+        "MOD-005",
+        "MOD-006",
+        "MOD-007",
+        "MOD-008",
+        "MOD-009",
+        "MOD-010",
+        "MOD-011",
+        "MOD-017",
+        "MOD-018",
+        "MOD-028",
+        "MOD-029"
+      ]
+    }
+  ],
+  "lessons": [
+    {
+      "id": "cf_lesson_001_framework_purpose_operating_model",
+      "trackIds": [
+        "track_common_foundation"
+      ],
+      "moduleId": "MOD-001",
+      "sourceModuleIds": [
+        "MOD-001"
+      ],
+      "title": "Framework Purpose and Operating Model",
+      "summary": "Understand the framework as both a metadata-driven execution framework and a governed delivery methodology.",
+      "estimatedMinutes": 10,
+      "displayOrder": 1,
+      "content": "## Why this lesson matters\n\nBefore a learner can work in managed services or implementation, they need the same mental model for what the Culina Metadata Framework is. The framework is not just a set of pipelines. It is a governed operating model for defining, orchestrating, processing, validating, deploying, and supporting data movement and transformation behavior.\n\n## What the framework is\n\nThe framework is metadata-driven. That means approved configuration describes what should happen, and standardized runtime components interpret that configuration. Instead of creating disconnected one-off scripts for each client, the team captures delivery intent through metadata and uses common execution patterns.\n\nThe framework should be understood in two connected ways:\n\n- **Execution framework:** it turns configured jobs, dependencies, source definitions, transformations, and validations into runtime behavior.\n- **Delivery methodology:** it defines how requirements, discovery, modeling, metadata authoring, validation, deployment, support, and change management should work in a repeatable way.\n\n## Why the framework exists\n\nThe framework exists to reduce repeated implementation effort, inconsistent engineering patterns, weak traceability, high support burden, and limited scalability across clients. Standardized patterns help the team onboard faster, deliver more consistently, and support production systems with less guesswork.\n\n## What the framework is not\n\nThe framework is not an ungoverned collection of client-specific scripts. It is not a substitute for discovery, modeling, validation, or engineering judgment. It is also not an autonomous AI system that changes production configuration without review.\n\n## Readiness expectation\n\nA certified learner should be able to explain why the framework improves delivery quality: it connects requirements, metadata, runtime behavior, validation, supportability, and governance into one shared operating model."
+    },
+    {
+      "id": "cf_lesson_002_metadata_driven_mindset",
+      "trackIds": [
+        "track_common_foundation"
+      ],
+      "moduleId": "MOD-001 / MOD-002 / MOD-003",
+      "sourceModuleIds": [
+        "MOD-001",
+        "MOD-002",
+        "MOD-003"
+      ],
+      "title": "Metadata-Driven Thinking",
+      "summary": "Learn why metadata is the bridge between design intent and runtime execution.",
+      "estimatedMinutes": 12,
+      "displayOrder": 2,
+      "content": "## Core idea\n\nA metadata-driven framework controls behavior through structured configuration metadata rather than large amounts of hard-coded, one-off logic. This is one of the most important ideas in the framework.\n\nMetadata is not only technical storage. It is the bridge between human design intent and runtime execution. It defines things like:\n\n- which sources exist\n- which jobs should run\n- how jobs depend on one another\n- which transformations are required\n- what target write behavior should be used\n- what validation expectations apply\n- what runtime rules the engine should interpret\n\n## Why this matters for onboarding\n\nNew team members do not need to memorize many unrelated client-specific scripts. They can learn the standard metadata concepts, standard processing layers, standard orchestration behavior, and standard support rules. This makes onboarding more scalable.\n\n## Why this matters for implementation quality\n\nA metadata-driven model encourages configuration that is reviewable, explainable, and traceable. The team can ask: What requirement or modeling decision caused this metadata to exist? What runtime behavior will it create? What validation proves it is safe?\n\n## Why this matters for supportability\n\nWhen behavior is standardized and metadata-controlled, managed service teams can troubleshoot from known evidence surfaces such as queue state, run history, failure logs, source details, dependencies, and validation outputs.\n\n## Anti-pattern\n\nThe main anti-pattern is treating metadata as a place to hide random logic. Metadata must stay human-readable, explainable, and aligned to framework patterns. If the team starts adding uncontrolled exceptions, the framework becomes harder to maintain and support."
+    },
+    {
+      "id": "cf_lesson_003_principles_and_non_negotiables",
+      "trackIds": [
+        "track_common_foundation"
+      ],
+      "moduleId": "MOD-002",
+      "sourceModuleIds": [
+        "MOD-002"
+      ],
+      "title": "Core Principles and Non-Negotiables",
+      "summary": "Learn the stable design rules that should guide framework decisions.",
+      "estimatedMinutes": 12,
+      "displayOrder": 3,
+      "content": "## Why principles matter\n\nThe framework has detailed technical modules, but many decisions depend on core principles. When a situation is ambiguous, learners should return to the principle layer before improvising.\n\n## Architecture principles\n\nThe framework is metadata-driven and prefers standardization over one-off handling. It separates orchestration from data processing and separates transient processing from durable persistence. It also tries to remain platform-neutral at the conceptual level, even when the physical deployment is in a specific cloud.\n\n## Metadata principles\n\nMetadata should be human-readable, modular, explainable, and traceable. Discovery evidence should not be copied directly into metadata. It should first be interpreted into rules. Modeling should stabilize before transformation metadata is finalized. Grain, source behavior, target intent, and write mode should be explicit.\n\n## Operational principles\n\nOperations should start from queue state and runtime evidence. A `PENDING` job is not automatically runnable. Retry and rerun are different. Failed work should be fixed before rerun. Recovery should start from the point of failure onward, not from broad blind reruns.\n\n## Governance principles\n\nStudio is authoritative. Copilot is additive, read-only, and advisory. AI output does not become authoritative simply because it looks useful. Human review remains required before any AI-generated suggestion is used in an approved workflow.\n\n## Readiness expectation\n\nA certified learner should not only know what the rules are. They should be able to recognize when a proposed action violates a principle, such as bypassing review, collapsing layer responsibilities, or treating advisory AI output as approved configuration."
+    },
+    {
+      "id": "cf_lesson_004_logical_architecture_domains",
+      "trackIds": [
+        "track_common_foundation"
+      ],
+      "moduleId": "MOD-004",
+      "sourceModuleIds": [
+        "MOD-004"
+      ],
+      "title": "Logical Architecture and Responsibility Boundaries",
+      "summary": "Understand the six logical domains and why their boundaries matter.",
+      "estimatedMinutes": 13,
+      "displayOrder": 4,
+      "content": "## Logical architecture versus physical topology\n\nLogical architecture describes the stable conceptual structure of the framework. It explains responsibilities and boundaries. It is not the same thing as physical deployment topology in AWS, Synapse, or another target environment.\n\n## The six logical domains\n\nThe framework can be understood through six logical domains:\n\n1. **Studio and Copilot domain** — where framework-compatible artifacts are authored, reviewed, governed, and assisted.\n2. **Metadata control domain** — the logical control plane where jobs, dependencies, domains, source details, linked services, transformation controllers, data models, and control settings define what should happen.\n3. **Orchestration and runtime control domain** — where batches, queue rows, dependency readiness, run history, and failure logs turn metadata into controlled runtime work.\n4. **Data processing and persistence domain** — the logical data plane where source data is captured, standardized, transformed, persisted, and served.\n5. **Operations and support domain** — where monitoring, triage, rerun, recovery, troubleshooting, and failure evidence are handled.\n6. **External notification delivery domain** — where downstream delivery services, such as email or Teams integrations, handle final channel delivery after framework handoff.\n\n## Why boundaries matter\n\nGood architecture depends on clean separation of concerns. Metadata control should not be confused with data processing. Studio authoring should not be confused with runtime execution. Failure handoff should not be confused with final notification delivery. Logical architecture should not be confused with cloud-specific topology.\n\n## Readiness expectation\n\nA certified learner should be able to identify which domain owns a concern and avoid moving responsibilities into the wrong layer or system."
+    },
+    {
+      "id": "cf_lesson_005_processing_layer_architecture",
+      "trackIds": [
+        "track_common_foundation"
+      ],
+      "moduleId": "MOD-005",
+      "sourceModuleIds": [
+        "MOD-005"
+      ],
+      "title": "Processing Layers and Data Flow",
+      "summary": "Learn how data moves from source intake through staging, integration, EDW, and consumption.",
+      "estimatedMinutes": 14,
+      "displayOrder": 5,
+      "content": "## Processing layer groups\n\nThe processing architecture separates **Ingestion** from **Transformation**. Ingestion captures and standardizes source data. Transformation aligns data to models, persists durable warehouse history, and creates downstream consumption outputs.\n\n## Canonical data movement\n\nThe high-level movement is:\n\n`Source -> Landing -> Archive / Delta -> Staging -> Integration -> EDW -> Consumption`\n\n## Layer responsibilities\n\n- **Source to Landing:** acquire source data into framework-controlled storage in raw or near-raw form.\n- **Landing to Archive:** preserve ingested source data.\n- **Landing to Delta:** standardize raw source content into table-like structure. Semi-structured flattening belongs here, not in Landing as final business transformation.\n- **Delta to Staging:** append standardized data into the Bronze-style Staging layer.\n- **Staging to Integration:** deduplicate and transform data into model-aligned transient structures.\n- **Integration to EDW:** persist transformed data into durable historical warehouse structures.\n- **EDW to Consumption:** produce reporting-oriented or downstream-serving datasets derived from EDW.\n\n## Important distinctions\n\nStaging is not the place for durable warehouse historization. Integration is transient and rebuildable; it is not the long-term record of truth. EDW is the durable modeled warehouse layer. Consumption is derived and reporting-oriented; it should not replace EDW as the authoritative warehouse layer.\n\n## Readiness expectation\n\nA certified learner should be able to place a problem or design decision in the correct layer and explain why that layer owns the responsibility."
+    },
+    {
+      "id": "cf_lesson_006_runtime_orchestration_basics",
+      "trackIds": [
+        "track_common_foundation"
+      ],
+      "moduleId": "MOD-006",
+      "sourceModuleIds": [
+        "MOD-006",
+        "MOD-015"
+      ],
+      "title": "Runtime Orchestration Basics",
+      "summary": "Understand how configured jobs become executable work through batches, queues, dependencies, and runtime evidence.",
+      "estimatedMinutes": 14,
+      "displayOrder": 6,
+      "content": "## Core runtime idea\n\nApproved metadata does not execute by itself. Runtime orchestration turns configured jobs into queue work. The framework uses a batch-and-queue runtime model so execution can be controlled, monitored, retried, rerun, and explained.\n\n## Main runtime concepts\n\n- **Batch:** a seeded group of runtime work for a scheduling cycle.\n- **Queue row:** the runtime execution instance of a configured job.\n- **Dependency readiness:** the logic that determines whether queued work is executable.\n- **Run history and failure logs:** runtime evidence used for support, triage, and recovery.\n\n## Hierarchical orchestration model\n\nThe runtime model separates responsibility across orchestration levels. Grandparent, Parent, Child, and Grandchild style orchestration keeps batch seeding, queue supervision, dependency checks, job routing, and finalization separated.\n\n## Key operational distinction\n\n`PENDING` means a queue row exists. It does not automatically mean the job can run. A job should become `IN_PROGRESS` only after dependency gating has passed. If an upstream dependency fails, downstream pending work may become `SKIPPED` because the dependency path cannot validly execute.\n\n## Retry versus rerun\n\nRetry is automatic runtime behavior when retry conditions still allow another attempt. Rerun is controlled manual intervention after the root cause has been understood and corrected.\n\n## Readiness expectation\n\nA certified learner should be able to explain why queue state is the main operational signal and why runtime behavior must be interpreted through dependency readiness rather than status labels alone."
+    },
+    {
+      "id": "cf_lesson_007_metadata_model_fundamentals",
+      "trackIds": [
+        "track_common_foundation"
+      ],
+      "moduleId": "MOD-008 / MOD-009 / MOD-010 / MOD-011",
+      "sourceModuleIds": [
+        "MOD-008",
+        "MOD-009",
+        "MOD-010",
+        "MOD-011"
+      ],
+      "title": "Metadata Model Fundamentals",
+      "summary": "Learn the main metadata entity families and the distinction between entity meaning, relationships, fields, and naming conventions.",
+      "estimatedMinutes": 13,
+      "displayOrder": 7,
+      "content": "## Why metadata model fundamentals matter\n\nImplementation and support teams both need to understand the metadata landscape. They do not need to memorize every field in the foundation path, but they must know which kind of module to consult and which entity family owns a concern.\n\n## Entity-level view\n\nThe metadata entity reference describes primary control and configuration entities, runtime and operational entities, quality and test-result entities, derived helper views, and legacy or transitional entities. Primary control/configuration entities define what the framework should do. Runtime entities track what happened. Derived views interpret stored configuration and runtime state for execution and support.\n\n## Relationship view\n\nThe relationship model explains how Studio-authored metadata, governing export-envelope metadata, deployed control-plane tables, runtime entities, and derived views connect. This is important because authored configuration becomes runtime behavior through a controlled deployment and interpretation path.\n\n## Field-level view\n\nThe config field dictionary is the right place to understand specific field meaning, such as governing envelope fields, transformation parameter fields, source-detail fields, or deployed control-plane fields.\n\n## Naming and key conventions\n\nNaming standards help distinguish business keys, surrogate keys, technical row keys, control-plane identifiers, runtime queue identifiers, file names, package names, and governing export fields. Inconsistent naming weakens review, validation, deployment traceability, and AI reasoning.\n\n## Readiness expectation\n\nA certified learner should be able to identify whether a question is about entity purpose, entity relationships, field meaning, or naming convention, and then route to the right documentation area."
+    },
+    {
+      "id": "cf_lesson_008_studio_and_copilot_boundaries",
+      "trackIds": [
+        "track_common_foundation"
+      ],
+      "moduleId": "MOD-017 / MOD-018 / MOD-029",
+      "sourceModuleIds": [
+        "MOD-017",
+        "MOD-018",
+        "MOD-029"
+      ],
+      "title": "Metadata Studio and Copilot Boundaries",
+      "summary": "Learn why Studio is authoritative and Copilot remains advisory, read-only, and manual-copy based.",
+      "estimatedMinutes": 12,
+      "displayOrder": 8,
+      "content": "## Studio as the authoritative workspace\n\nMetadata Studio is the authoring and management application for framework-compatible metadata and related delivery artifacts. It is used to define jobs and dependencies, manage domains, source details, transformations, service configuration, validation, export, and handoff behavior.\n\nStudio is part of the governed delivery methodology. Approved client-scoped records belong in Studio or approved artifact state, not only in chat or loose notes.\n\n## Local Studio versus full internal Studio\n\nThe local Studio app is a reduced client-facing version for managing one client metadata set locally, export/import, local file sync, and read-only data model viewing. The full internal Studio is the richer internal platform for broader metadata framework configuration and capabilities.\n\n## Copilot boundary\n\nCopilot is an additive helper layer inside Studio. It may explain framework behavior, support troubleshooting, help interpret requirements, compare design directions, and draft content in chat. It does not replace Studio, does not write directly into authoritative records, and does not automatically promote generated output.\n\n## Manual-copy rule\n\nCopilot output stays in chat until a human reviews it and manually uses it in the authoritative workflow. A good-looking draft is still advisory. This boundary protects governance and prevents accidental production changes.\n\n## Readiness expectation\n\nA certified learner should be able to use AI assistance safely without confusing advisory output with approved configuration."
+    },
+    {
+      "id": "cf_lesson_009_environment_and_deployment_boundaries",
+      "trackIds": [
+        "track_common_foundation"
+      ],
+      "moduleId": "MOD-004 / MOD-007 / MOD-024 / MOD-034",
+      "sourceModuleIds": [
+        "MOD-004",
+        "MOD-007",
+        "MOD-024",
+        "MOD-034"
+      ],
+      "title": "Environment, Deployment, and Package Boundaries",
+      "summary": "Learn the high-level difference between logical framework behavior, physical topology, metadata artifacts, control-plane setup, IaC, and shared runtime packages.",
+      "estimatedMinutes": 12,
+      "displayOrder": 9,
+      "content": "## Why this matters\n\nA common onboarding mistake is to collapse several artifact families into one idea called deployment. The framework separates logical architecture, physical topology, metadata movement, control-plane setup, environment provisioning, and shared runtime packaging.\n\n## Logical versus physical\n\nLogical architecture explains stable domains and responsibilities. Environment topology explains how those domains map into specific cloud environments such as AWS or Synapse. A learner should not treat a cloud service diagram as the definition of the logical framework.\n\n## Artifact families\n\nThe framework may involve several artifact families:\n\n- **Studio metadata artifact:** client-scoped metadata content exported or handed off from Studio.\n- **Control-plane package:** SQL-hosted control-plane database objects such as tables, views, stored procedures, and setup scripts.\n- **Environment provisioning artifact:** infrastructure and environment setup, typically through Infrastructure as Code.\n- **Shared execution library package:** reusable data-plane runtime helper capability, such as the maintained runtime library used by approved execution surfaces.\n\n## Current direction\n\nThe current direction favors SQL project generated DDL scripts for client-facing control-plane setup and Infrastructure as Code for environment provisioning. The shared data-plane execution library should receive approved execution context from orchestration and return structured status, not become a hidden metadata store or direct control-plane owner.\n\n## Readiness expectation\n\nA certified learner should be able to explain why Studio export, control-plane setup, environment provisioning, and shared library deployment are related but not interchangeable."
+    },
+    {
+      "id": "cf_lesson_010_documentation_navigation_authority",
+      "trackIds": [
+        "track_common_foundation"
+      ],
+      "moduleId": "MOD-028 / MOD-029",
+      "sourceModuleIds": [
+        "MOD-028",
+        "MOD-029"
+      ],
+      "title": "Documentation Navigation and Authority",
+      "summary": "Learn how to route questions to the right module and avoid treating the documentation library as an undifferentiated pile of text.",
+      "estimatedMinutes": 11,
+      "displayOrder": 10,
+      "content": "## Why module routing matters\n\nThe documentation library is modular. A learner should not search randomly and accept the first matching phrase. They should understand the question type, choose the narrowest authoritative module, and combine modules when the topic crosses domains.\n\n## Primary routing logic\n\n- For what the framework is, use the foundation layer.\n- For core rules and philosophy, use the principles module.\n- For terminology and distinction pairs, use the glossary.\n- For logical components, use logical architecture.\n- For layers, use processing layer architecture.\n- For runtime execution, use runtime orchestration and dependency/scheduling modules.\n- For field meaning, use the config field dictionary.\n- For Studio and Copilot workflows, use the Studio and Copilot modules.\n- For incidents, use troubleshooting and operations modules.\n- For recovery, use the backfill and recovery module.\n- For release governance, use the change management and release guide.\n- For client delivery process, use onboarding and requirement mapping modules.\n\n## Authority and maturity\n\nSome modules are approved, some are draft, and some are examples. Learners must be honest about documentation maturity. Example modules demonstrate shapes and patterns, but examples should not be copied into production unchanged.\n\n## AI grounding rule\n\nThe AI assistant should stay grounded in retrieved documentation and approved context. If a topic is incomplete or still evolving, the answer should say so rather than inventing certainty.\n\n## Readiness expectation\n\nA certified learner should be able to route their own questions and know which module family to consult before making or recommending a framework decision."
+    }
+  ],
+  "assessments": [
+    {
+      "id": "assessment_common_foundation_v2",
+      "trackId": "track_common_foundation",
+      "title": "Common Foundation Certification Assessment",
+      "type": "Certification Assessment",
+      "description": "Validates shared understanding of framework purpose, metadata-driven behavior, principles, logical architecture, processing layers, orchestration, metadata model fundamentals, Studio/Copilot boundaries, deployment boundaries, and documentation routing.",
+      "passThreshold": 0.8,
+      "estimatedMinutes": 35,
+      "displayOrder": 1,
+      "questions": [
+        {
+          "id": "cf_q001_framework_identity",
+          "type": "multiple_choice",
+          "title": "Framework identity",
+          "prompt": "Which statement best describes the Culina Metadata Framework?",
+          "context": "Choose the option that reflects both runtime execution and governed delivery methodology.",
+          "points": 1,
+          "competency": "Framework foundation",
+          "options": [
+            {
+              "id": "A",
+              "text": "A collection of independent client-specific scripts maintained separately for each client."
+            },
+            {
+              "id": "B",
+              "text": "A metadata-driven data engineering framework and governed delivery methodology for defining, orchestrating, processing, validating, and supporting data movement and transformation behavior."
+            },
+            {
+              "id": "C",
+              "text": "A reporting-only layer used after warehouse tables already exist."
+            },
+            {
+              "id": "D",
+              "text": "An autonomous AI tool that updates production configuration without human review."
+            }
+          ],
+          "correctAnswer": "B",
+          "correctFeedback": "Correct. The framework is both an execution framework and a governed delivery methodology.",
+          "incorrectFeedback": "Review the framework purpose lesson. The framework is not one-off scripts, reporting-only tooling, or autonomous AI-driven production change."
+        },
+        {
+          "id": "cf_q002_metadata_driven",
+          "type": "multiple_choice",
+          "title": "Metadata-driven behavior",
+          "prompt": "What does metadata-driven mean in this framework?",
+          "points": 1,
+          "competency": "Metadata-driven thinking",
+          "options": [
+            {
+              "id": "A",
+              "text": "Runtime behavior is primarily controlled through structured metadata/configuration rather than hard-coded one-off logic."
+            },
+            {
+              "id": "B",
+              "text": "All business users directly edit pipeline code."
+            },
+            {
+              "id": "C",
+              "text": "Every client must receive a unique custom engine."
+            },
+            {
+              "id": "D",
+              "text": "Metadata is only documentation and has no runtime effect."
+            }
+          ],
+          "correctAnswer": "A",
+          "correctFeedback": "Correct. Metadata controls behavior that the runtime interprets.",
+          "incorrectFeedback": "Review metadata-driven thinking. Metadata bridges design intent and runtime execution."
+        },
+        {
+          "id": "cf_q003_framework_not",
+          "type": "multi_select",
+          "title": "What the framework is not",
+          "prompt": "Select all statements that correctly describe what the framework is not.",
+          "points": 2,
+          "competency": "Governance and boundaries",
+          "options": [
+            {
+              "id": "A",
+              "text": "It is not an ungoverned collection of client-specific scripts."
+            },
+            {
+              "id": "B",
+              "text": "It is not a substitute for proper discovery and modeling."
+            },
+            {
+              "id": "C",
+              "text": "It is not a reason to bypass validation, review, or governance."
+            },
+            {
+              "id": "D",
+              "text": "It is not allowed to use reusable patterns across clients."
+            }
+          ],
+          "correctAnswer": [
+            "A",
+            "B",
+            "C"
+          ],
+          "correctFeedback": "Correct. The framework standardizes and governs common patterns, but does not remove the need for discovery, validation, or review.",
+          "incorrectFeedback": "Review the framework purpose and non-goals. Reusable patterns are encouraged, not forbidden."
+        },
+        {
+          "id": "cf_q004_core_principles",
+          "type": "multi_select",
+          "title": "Core principles",
+          "prompt": "Which statements align with the framework's core principles?",
+          "points": 2,
+          "competency": "Framework principles",
+          "options": [
+            {
+              "id": "A",
+              "text": "Prefer standardization and maintained reusable patterns over uncontrolled one-off handling."
+            },
+            {
+              "id": "B",
+              "text": "Treat INT, EDW, and Consumption as interchangeable layers."
+            },
+            {
+              "id": "C",
+              "text": "Separate orchestration control from data-processing logic."
+            },
+            {
+              "id": "D",
+              "text": "Keep metadata human-readable, explainable, and traceable."
+            },
+            {
+              "id": "E",
+              "text": "Bypass review when AI output appears confident."
+            }
+          ],
+          "correctAnswer": [
+            "A",
+            "C",
+            "D"
+          ],
+          "correctFeedback": "Correct. These are foundational architecture, metadata, and governance principles.",
+          "incorrectFeedback": "Review the principles lesson. Layer responsibilities and review boundaries should not be collapsed."
+        },
+        {
+          "id": "cf_q005_logical_domains",
+          "type": "multiple_choice",
+          "title": "Logical domains",
+          "prompt": "Which set best reflects the major logical domains of the framework?",
+          "points": 1,
+          "competency": "Logical architecture",
+          "options": [
+            {
+              "id": "A",
+              "text": "Studio/Copilot, metadata control, runtime control, data processing/persistence, operations/support, external notification delivery."
+            },
+            {
+              "id": "B",
+              "text": "SQL only, Spark only, Power BI only, and email only."
+            },
+            {
+              "id": "C",
+              "text": "Source system, report page, user group, and color theme."
+            },
+            {
+              "id": "D",
+              "text": "AWS, Azure, and local desktop only."
+            }
+          ],
+          "correctAnswer": "A",
+          "correctFeedback": "Correct. These are the stable logical domains before cloud-specific topology is considered.",
+          "incorrectFeedback": "Review logical architecture. Logical domains are responsibility boundaries, not only products or cloud services."
+        },
+        {
+          "id": "cf_q006_control_data_plane",
+          "type": "multiple_choice",
+          "title": "Control plane versus data plane",
+          "prompt": "Which pairing is correct?",
+          "points": 1,
+          "competency": "Architecture vocabulary",
+          "options": [
+            {
+              "id": "A",
+              "text": "The control plane governs behavior through metadata and control assets; the data plane ingests, standardizes, transforms, persists, and serves data."
+            },
+            {
+              "id": "B",
+              "text": "The control plane stores only report visuals; the data plane stores only approval notes."
+            },
+            {
+              "id": "C",
+              "text": "The control plane and data plane are interchangeable terms for the same layer."
+            },
+            {
+              "id": "D",
+              "text": "The data plane is the Studio user interface."
+            }
+          ],
+          "correctAnswer": "A",
+          "correctFeedback": "Correct. The control plane governs what should happen; the data plane performs data processing and persistence.",
+          "incorrectFeedback": "Review the logical architecture and glossary definitions. These terms are related but not interchangeable."
+        },
+        {
+          "id": "cf_q007_processing_sequence",
+          "type": "multiple_choice",
+          "title": "Processing sequence",
+          "prompt": "Which sequence best represents the high-level processing flow?",
+          "points": 1,
+          "competency": "Processing layers",
+          "options": [
+            {
+              "id": "A",
+              "text": "Source -> Landing -> Archive / Delta -> Staging -> Integration -> EDW -> Consumption."
+            },
+            {
+              "id": "B",
+              "text": "Source -> EDW -> Landing -> Consumption -> Archive -> Staging."
+            },
+            {
+              "id": "C",
+              "text": "Consumption -> Source -> Integration -> Delta -> Landing."
+            },
+            {
+              "id": "D",
+              "text": "Studio -> Copilot -> Report -> Email -> Source."
+            }
+          ],
+          "correctAnswer": "A",
+          "correctFeedback": "Correct. This is the canonical high-level data movement path.",
+          "incorrectFeedback": "Review the processing layer lesson and the responsibility summary."
+        },
+        {
+          "id": "cf_q008_layer_responsibility",
+          "type": "multiple_choice",
+          "title": "Layer responsibility",
+          "prompt": "Which statement is correct?",
+          "points": 1,
+          "competency": "Processing layer responsibility",
+          "options": [
+            {
+              "id": "A",
+              "text": "Integration is the durable historical layer of truth."
+            },
+            {
+              "id": "B",
+              "text": "EDW is the durable modeled persistence layer where historical processing and long-term warehouse storage belong."
+            },
+            {
+              "id": "C",
+              "text": "Consumption replaces EDW as the authoritative historical warehouse."
+            },
+            {
+              "id": "D",
+              "text": "Staging is where final business-model historization should occur."
+            }
+          ],
+          "correctAnswer": "B",
+          "correctFeedback": "Correct. EDW is the durable warehouse layer; INT is transient and Consumption is derived.",
+          "incorrectFeedback": "Review the layer responsibility lesson. INT, EDW, and Consumption are not interchangeable."
+        },
+        {
+          "id": "cf_q009_orchestration_model",
+          "type": "multiple_choice",
+          "title": "Runtime orchestration",
+          "prompt": "What is the role of runtime orchestration?",
+          "points": 1,
+          "competency": "Runtime orchestration",
+          "options": [
+            {
+              "id": "A",
+              "text": "It turns approved metadata into controlled queued work, evaluates dependencies, dispatches executable work, and records runtime evidence."
+            },
+            {
+              "id": "B",
+              "text": "It directly edits Studio records whenever a job fails."
+            },
+            {
+              "id": "C",
+              "text": "It replaces metadata because jobs run directly from source systems."
+            },
+            {
+              "id": "D",
+              "text": "It only sends emails and does not affect execution."
+            }
+          ],
+          "correctAnswer": "A",
+          "correctFeedback": "Correct. Runtime orchestration is the bridge from approved metadata to executable queue work.",
+          "incorrectFeedback": "Review runtime orchestration basics. Metadata defines intent; orchestration controls execution."
+        },
+        {
+          "id": "cf_q010_pending_executable",
+          "type": "multiple_choice",
+          "title": "PENDING versus executable",
+          "prompt": "A job is shown as PENDING. What is the correct interpretation?",
+          "points": 1,
+          "competency": "Runtime status interpretation",
+          "options": [
+            {
+              "id": "A",
+              "text": "It is guaranteed to be running now."
+            },
+            {
+              "id": "B",
+              "text": "It exists in the queue, but it may still be dependency-blocked and not yet executable."
+            },
+            {
+              "id": "C",
+              "text": "It has already completed successfully."
+            },
+            {
+              "id": "D",
+              "text": "It should always be manually rerun immediately."
+            }
+          ],
+          "correctAnswer": "B",
+          "correctFeedback": "Correct. PENDING means the queue row exists; dependency readiness determines executability.",
+          "incorrectFeedback": "Review orchestration basics. Queue status alone does not prove runnable state."
+        },
+        {
+          "id": "cf_q011_retry_rerun",
+          "type": "multiple_choice",
+          "title": "Retry versus rerun",
+          "prompt": "Which statement correctly distinguishes retry and rerun?",
+          "points": 1,
+          "competency": "Operational vocabulary",
+          "options": [
+            {
+              "id": "A",
+              "text": "Retry is automatic runtime behavior; rerun is controlled manual intervention after the cause is understood and corrected."
+            },
+            {
+              "id": "B",
+              "text": "Retry and rerun are exactly the same and can be used interchangeably."
+            },
+            {
+              "id": "C",
+              "text": "Rerun should happen before any root cause investigation."
+            },
+            {
+              "id": "D",
+              "text": "Retry is only used for AI-generated answers."
+            }
+          ],
+          "correctAnswer": "A",
+          "correctFeedback": "Correct. Retry and rerun are distinct operational concepts.",
+          "incorrectFeedback": "Review the runtime and glossary lessons. Fix first, rerun second."
+        },
+        {
+          "id": "cf_q012_metadata_entity_categories",
+          "type": "multi_select",
+          "title": "Metadata entity categories",
+          "prompt": "Which categories belong to the metadata entity landscape?",
+          "points": 2,
+          "competency": "Metadata model fundamentals",
+          "options": [
+            {
+              "id": "A",
+              "text": "Primary control and configuration entities."
+            },
+            {
+              "id": "B",
+              "text": "Runtime and operational entities."
+            },
+            {
+              "id": "C",
+              "text": "Quality and test-result entities."
+            },
+            {
+              "id": "D",
+              "text": "Derived helper and operational views."
+            },
+            {
+              "id": "E",
+              "text": "Unreviewed personal spreadsheets as authoritative runtime state."
+            }
+          ],
+          "correctAnswer": [
+            "A",
+            "B",
+            "C",
+            "D"
+          ],
+          "correctFeedback": "Correct. These entity categories help separate configuration, runtime evidence, validation results, and derived interpretation.",
+          "incorrectFeedback": "Review the metadata model fundamentals. Personal or unreviewed spreadsheets are not authoritative runtime entities."
+        },
+        {
+          "id": "cf_q013_studio_authority",
+          "type": "multiple_choice",
+          "title": "Studio authority",
+          "prompt": "Which statement correctly describes Metadata Studio?",
+          "points": 1,
+          "competency": "Studio governance",
+          "options": [
+            {
+              "id": "A",
+              "text": "Studio is the authoritative authoring and management surface for framework-compatible metadata and related delivery artifacts."
+            },
+            {
+              "id": "B",
+              "text": "Studio is only a read-only report with no relationship to metadata."
+            },
+            {
+              "id": "C",
+              "text": "Studio should be bypassed whenever a text editor is faster."
+            },
+            {
+              "id": "D",
+              "text": "Studio is less authoritative than Copilot chat output."
+            }
+          ],
+          "correctAnswer": "A",
+          "correctFeedback": "Correct. Studio is the governed workspace for approved metadata and related artifacts.",
+          "incorrectFeedback": "Review Studio boundaries. Copilot helps, but Studio remains authoritative."
+        },
+        {
+          "id": "cf_q014_copilot_boundary",
+          "type": "multiple_choice",
+          "title": "Copilot boundary",
+          "prompt": "What is the correct boundary for Copilot output?",
+          "points": 1,
+          "competency": "AI governance",
+          "options": [
+            {
+              "id": "A",
+              "text": "Copilot output becomes authoritative immediately because the model generated it."
+            },
+            {
+              "id": "B",
+              "text": "Copilot may guide, explain, and draft in chat, but output remains advisory until a human reviews and manually uses it."
+            },
+            {
+              "id": "C",
+              "text": "Copilot should directly deploy metadata when confidence is high."
+            },
+            {
+              "id": "D",
+              "text": "Copilot replaces validation and approval workflows."
+            }
+          ],
+          "correctAnswer": "B",
+          "correctFeedback": "Correct. Copilot is additive, read-only, advisory, and manual-copy based.",
+          "incorrectFeedback": "Review the Studio and Copilot lesson. AI output stays in chat until manually reviewed and used."
+        },
+        {
+          "id": "cf_q015_artifact_boundaries",
+          "type": "multiple_choice",
+          "title": "Artifact boundaries",
+          "prompt": "Which statement correctly separates deployment-related artifact families?",
+          "points": 1,
+          "competency": "Deployment boundary awareness",
+          "options": [
+            {
+              "id": "A",
+              "text": "Studio metadata export, control-plane package, environment provisioning, and shared execution library package are related but distinct artifact families."
+            },
+            {
+              "id": "B",
+              "text": "A Studio ZIP automatically replaces environment provisioning and shared runtime package deployment."
+            },
+            {
+              "id": "C",
+              "text": "Infrastructure as Code is the same thing as transformation metadata."
+            },
+            {
+              "id": "D",
+              "text": "Control-plane setup is just a report export."
+            }
+          ],
+          "correctAnswer": "A",
+          "correctFeedback": "Correct. These concerns must be governed separately but coherently.",
+          "incorrectFeedback": "Review environment and deployment boundaries. Do not collapse artifact families."
+        },
+        {
+          "id": "cf_q016_document_routing",
+          "type": "multiple_choice",
+          "title": "Documentation routing",
+          "prompt": "A learner wants to understand exact field meaning for a configuration field. Which module family should they consult first?",
+          "points": 1,
+          "competency": "Knowledge navigation",
+          "options": [
+            {
+              "id": "A",
+              "text": "Config Field Dictionary, with entity or relationship modules as supporting context if needed."
+            },
+            {
+              "id": "B",
+              "text": "Operations Runbook only."
+            },
+            {
+              "id": "C",
+              "text": "Standard Example Library only, then copy values directly into production."
+            },
+            {
+              "id": "D",
+              "text": "Any module with the word metadata in it, regardless of authority or purpose."
+            }
+          ],
+          "correctAnswer": "A",
+          "correctFeedback": "Correct. Field meaning should start with the Config Field Dictionary.",
+          "incorrectFeedback": "Review documentation routing. Use the narrowest authoritative module for the question type."
+        },
+        {
+          "id": "cf_q017_explain_metadata_driven",
+          "type": "free_text",
+          "title": "Explain metadata-driven delivery",
+          "prompt": "In your own words, explain why the framework is metadata-driven and why that matters for onboarding, delivery quality, and supportability.",
+          "context": "A strong answer should connect metadata/configuration to runtime behavior, standardization, traceability, onboarding, and support.",
+          "points": 3,
+          "competency": "Framework explanation",
+          "semanticScoring": {
+            "floorSimilarity": 0.28,
+            "minAcceptableSimilarity": 0.42,
+            "goodSimilarity": 0.55,
+            "excellentSimilarity": 0.68
+          },
+          "rubric": {
+            "referenceAnswers": [
+              "The framework is metadata-driven because structured metadata and configuration control runtime behavior instead of one-off hard-coded pipeline logic. This matters because new team members can learn consistent patterns, implementation teams can create reviewable and traceable configurations, and support teams can troubleshoot from standardized metadata and runtime evidence.",
+              "Metadata acts as the bridge between design intent and execution. It defines sources, jobs, dependencies, transformations, write behavior, validation expectations, and runtime rules. This improves onboarding, delivery quality, traceability, repeatability, and production supportability across clients.",
+              "The framework uses metadata so work is not rebuilt differently for every client. Common behavior is standardized through configuration and reusable runtime patterns. That makes delivery easier to review and govern, makes onboarding less dependent on KT, and gives managed services a clearer way to monitor and diagnose issues.",
+              "Being metadata-driven means the team captures what the framework should do in governed configuration. The runtime interprets those rules. This creates consistent delivery patterns, makes requirements easier to trace to implementation, and reduces the support burden compared with scattered custom scripts."
+            ]
+          },
+          "explanation": "Free-text scoring uses calibrated semantic similarity against approved reference answers. The answer does not need exact wording, but it should explain metadata as the bridge from design/configuration to runtime behavior and service quality."
+        },
+        {
+          "id": "cf_q018_explain_architecture_boundaries",
+          "type": "free_text",
+          "title": "Explain architecture boundaries",
+          "prompt": "Explain the difference between the logical control plane, logical data plane, and runtime orchestration in practical terms.",
+          "context": "A strong answer should distinguish what governs behavior, where data is processed, and how configured jobs become executable runtime work.",
+          "points": 3,
+          "competency": "Architecture explanation",
+          "semanticScoring": {
+            "floorSimilarity": 0.28,
+            "minAcceptableSimilarity": 0.42,
+            "goodSimilarity": 0.55,
+            "excellentSimilarity": 0.68
+          },
+          "rubric": {
+            "referenceAnswers": [
+              "The control plane governs what should happen through metadata, control tables, helper views, stored procedures, and configuration. The data plane is where source data is ingested, standardized, transformed, persisted, and served through layers such as Landing, Staging, Integration, EDW, and Consumption. Runtime orchestration turns approved metadata into queue work, evaluates dependencies, dispatches executable jobs, and records runtime evidence.",
+              "In practical terms, the control plane is the rule and configuration surface, the data plane is where the data work happens, and orchestration is the runtime coordinator that converts configured jobs into batches and queue rows. These boundaries keep metadata governance, data processing, and execution control separated.",
+              "The control plane defines jobs, dependencies, source behavior, and transformation configuration. The data plane performs ingestion and transformation work. Orchestration sits between approved metadata and execution by seeding batches, checking dependencies, routing work, and finalizing queue outcomes.",
+              "The control plane answers what should run and how it is configured. The data plane performs the actual data movement and persistence. Runtime orchestration manages when and whether configured work runs by using queues, dependencies, status, retries, and run history."
+            ]
+          },
+          "explanation": "A strong answer separates governing metadata, actual data processing, and runtime queue/dependency control."
+        },
+        {
+          "id": "cf_q019_explain_copilot_boundary",
+          "type": "free_text",
+          "title": "Explain the Copilot boundary",
+          "prompt": "A teammate says, 'Copilot gave us the transformation draft, so it is already approved.' Explain why this is incorrect and what the correct workflow should be.",
+          "context": "A strong answer should mention that Studio remains authoritative, Copilot is advisory/read-only, output stays in chat, and human review/manual use is required.",
+          "points": 3,
+          "competency": "AI governance explanation",
+          "semanticScoring": {
+            "floorSimilarity": 0.28,
+            "minAcceptableSimilarity": 0.42,
+            "goodSimilarity": 0.55,
+            "excellentSimilarity": 0.68
+          },
+          "rubric": {
+            "referenceAnswers": [
+              "That statement is incorrect because Copilot output is advisory chat output, not an authoritative Studio record. Studio remains the system of record. The draft must be reviewed by a human, validated against the relevant framework rules, and manually entered or copied into the authoritative workflow before it can be treated as approved.",
+              "Copilot can help explain, analyze, and draft, but it does not directly author or approve Studio records. A transformation draft from Copilot is only a suggestion. The correct workflow is to review it, check it against documentation and validation expectations, and then manually use it in Studio if it is acceptable.",
+              "The framework boundary is that Copilot is additive, read-only, and advisory. Generated content stays in chat until a person reviews and manually copies or applies it through the normal Studio process. It should not bypass human review, validation, or approval.",
+              "A Copilot draft is not automatically saved, approved, or deployed. The team must treat it as a draft, review it, validate it, and then use Studio or the approved artifact workflow to make any authoritative change."
+            ]
+          },
+          "explanation": "This tests whether the learner can apply the manual-copy and advisory-output boundary in a realistic situation."
+        },
+        {
+          "id": "cf_q020_explain_documentation_routing",
+          "type": "free_text",
+          "title": "Explain documentation routing",
+          "prompt": "You are asked a framework question you are not sure about. Explain how you should decide which documentation module to consult first.",
+          "context": "A strong answer should use question type, narrow authoritative module selection, supporting modules, and honesty about draft or incomplete guidance.",
+          "points": 3,
+          "competency": "Knowledge navigation explanation",
+          "semanticScoring": {
+            "floorSimilarity": 0.28,
+            "minAcceptableSimilarity": 0.42,
+            "goodSimilarity": 0.55,
+            "excellentSimilarity": 0.68
+          },
+          "rubric": {
+            "referenceAnswers": [
+              "I should first identify the type of question being asked, such as framework concept, terminology, processing layer, orchestration, field meaning, Studio workflow, troubleshooting, recovery, release, or client delivery. Then I should use the narrowest authoritative module for that question type, bring in supporting modules if the topic crosses domains, and be clear if the documentation is draft or incomplete.",
+              "I would not search randomly. I would route by intent: overview questions to MOD-001, principles to MOD-002, terms to MOD-003, logical architecture to MOD-004, layers to MOD-005, runtime to MOD-006, field meaning to MOD-010, Studio/Copilot to MOD-017 or MOD-018, incidents to operations/troubleshooting, and release questions to change management. If multiple areas apply, I would combine modules and state uncertainty where needed.",
+              "The right approach is to classify the question, select the most specific authoritative module, and use broader principle modules only when the question is ambiguous or crosses boundaries. I should also respect module authority level and maturity, especially when a module is draft or when the topic is still evolving.",
+              "I should use the documentation library as a routed knowledge pack, not a pile of keyword matches. The first source should depend on whether the question is conceptual, field-level, operational, architectural, delivery-related, or AI governance related. Then I can add supporting modules and avoid inventing rules when the docs are incomplete."
+            ]
+          },
+          "explanation": "This tests whether the learner can independently navigate the knowledge pack instead of relying on ad hoc keyword search."
+        }
+      ]
+    }
+  ],
+  "badges": [
+    {
+      "id": "badge_common_foundation",
+      "title": "Framework Foundation Certified",
+      "icon": "🏛️",
+      "description": "Awarded after completing the Common Foundation certification path and passing the foundation readiness assessment.",
+      "requirements": {
+        "trackId": "track_common_foundation",
+        "requiredLessons": [
+          "cf_lesson_001_framework_purpose_operating_model",
+          "cf_lesson_002_metadata_driven_mindset",
+          "cf_lesson_003_principles_and_non_negotiables",
+          "cf_lesson_004_logical_architecture_domains",
+          "cf_lesson_005_processing_layer_architecture",
+          "cf_lesson_006_runtime_orchestration_basics",
+          "cf_lesson_007_metadata_model_fundamentals",
+          "cf_lesson_008_studio_and_copilot_boundaries",
+          "cf_lesson_009_environment_and_deployment_boundaries",
+          "cf_lesson_010_documentation_navigation_authority"
+        ],
+        "requiredAssessments": [
+          "assessment_common_foundation_v2"
+        ],
+        "minimumAssessmentScore": 0.8
+      },
+      "issuer": "Culina Academy",
+      "evidenceRule": "Complete all lessons assigned to the path and pass the path assessment.",
+      "displayOrder": 1
+    }
+  ],
+  "scoringPolicy": {
+    "freeText": "Free-text questions are scored by browser-based calibrated semantic reference matching against approved reference answers. Exact wording is not required.",
+    "defaultSemanticCalibration": {
+      "floorSimilarity": 0.28,
+      "minAcceptableSimilarity": 0.42,
+      "goodSimilarity": 0.55,
+      "excellentSimilarity": 0.68
+    },
+    "multipleChoice": "Multiple-choice questions use direct correctAnswer matching.",
+    "multiSelect": "Multi-select questions require the selected option set to exactly match correctAnswer."
+  }
+}
