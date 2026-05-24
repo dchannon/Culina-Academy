@@ -140,6 +140,19 @@
         "MOD-023",
         "MOD-024",
         "MOD-033"
+      ],
+      "labIds": [
+        "ms_lab_pending_queue_triage",
+        "ms_lab_failed_job_recovery",
+        "ms_capstone_incident_review"
+      ],
+      "depthLevel": "Level 1 local workbook",
+      "competencyIds": [
+        "runtime_triage",
+        "incident_response",
+        "rerun_recovery",
+        "support_boundaries",
+        "communication"
       ]
     }
   ],
@@ -159,7 +172,30 @@
       "summary": "Learn the operating mission of managed services and why runtime evidence is the starting point for support decisions.",
       "estimatedMinutes": 12,
       "displayOrder": 1,
-      "content": "## Why this lesson matters\n\nManaged service work is not just watching for red statuses. The role is to keep scheduled ingestion, transformation, validation, and service jobs running reliably while making failures visible, traceable, recoverable, and explainable.\n\n## Operating mindset\n\nA managed service person should start from framework evidence, not guesswork. The first question is not usually \"which report looks wrong?\" but rather \"what does the runtime control plane say?\" The framework is designed so that batch state, queue rows, run history, failure logs, dependency views, and impact views tell the support story.\n\n## Primary evidence sources\n\nThe core evidence families are:\n\n- **Batch state:** whether a scheduling cycle exists, is still active, or is blocked by unresolved work.\n- **Queue state:** the operational status of configured jobs in the batch.\n- **Run history:** the zone, step, or activity where execution succeeded or failed.\n- **Failure logs:** the direct error message and affected queue row.\n- **Dependency and impact views:** why work cannot run and which downstream jobs are affected.\n- **Quality-result entities:** validation or unit-test evidence that may fail a job even when target writing technically occurred.\n\n## Readiness expectation\n\nA certified managed service learner should be able to explain what evidence they would inspect first, how they would identify the earliest failing point, and why operational action should be based on framework evidence rather than assumptions."
+      "content": "## Why this lesson matters\n\nManaged service work is not just watching for red statuses. The role is to keep scheduled ingestion, transformation, validation, and service jobs running reliably while making failures visible, traceable, recoverable, and explainable.\n\n## Operating mindset\n\nA managed service person should start from framework evidence, not guesswork. The first question is not usually \"which report looks wrong?\" but rather \"what does the runtime control plane say?\" The framework is designed so that batch state, queue rows, run history, failure logs, dependency views, and impact views tell the support story.\n\n## Primary evidence sources\n\nThe core evidence families are:\n\n- **Batch state:** whether a scheduling cycle exists, is still active, or is blocked by unresolved work.\n- **Queue state:** the operational status of configured jobs in the batch.\n- **Run history:** the zone, step, or activity where execution succeeded or failed.\n- **Failure logs:** the direct error message and affected queue row.\n- **Dependency and impact views:** why work cannot run and which downstream jobs are affected.\n- **Quality-result entities:** validation or unit-test evidence that may fail a job even when target writing technically occurred.\n\n## Readiness expectation\n\nA certified managed service learner should be able to explain what evidence they would inspect first, how they would identify the earliest failing point, and why operational action should be based on framework evidence rather than assumptions.",
+      "learningObjectives": [
+        "Explain the core decision points in Managed Service Mission and Evidence Model.",
+        "Apply Managed Service Mission and Evidence Model concepts to a realistic Culina delivery or support scenario."
+      ],
+      "keyTerms": [
+        "Managed",
+        "Service",
+        "Mission",
+        "Evidence"
+      ],
+      "practice": {
+        "prompts": [
+          "Write a three-sentence field explanation of Managed Service Mission and Evidence Model for a new teammate.",
+          "List one risk, one evidence source, and one safe next action related to this lesson."
+        ],
+        "expectedEvidence": "Short notes that show the learner can apply the concept, not only repeat definitions."
+      },
+      "remediation": {
+        "reviewIfMissed": "Re-read Managed Service Mission and Evidence Model, then compare your answer to the assessment feedback and glossary terms.",
+        "relatedCompetencyIds": [
+          "runtime_triage"
+        ]
+      }
     },
     {
       "id": "ms_lesson_002_batch_queue_and_statuses",
@@ -177,7 +213,30 @@
       "summary": "Understand how runtime work is represented and what each queue status means operationally.",
       "estimatedMinutes": 13,
       "displayOrder": 2,
-      "content": "## Batch and queue model\n\nThe framework turns configured jobs into runtime work through a batch-and-queue model. A batch represents a scheduling cycle. A queue row represents one runtime execution instance of a job inside that cycle. Support work begins by understanding what queue rows exist and what state they are in.\n\n## Queue statuses\n\nThe common statuses are:\n\n- **PENDING:** the job exists in the queue but may still be dependency-blocked. PENDING does not automatically mean runnable.\n- **IN_PROGRESS:** the job has been claimed for execution and dependency gating should already have passed.\n- **ON_HOLD_RETRY:** the job failed but automatic retry is still allowed and the next retry time has not arrived yet. This is not terminal failure.\n- **FAILED:** the job failed permanently for the current attempt and requires intervention or escalation.\n- **COMPLETED:** the job finished successfully. Completed rows are not normal rerun targets.\n- **SKIPPED:** the job did not run because dependency conditions made execution invalid, usually due to upstream failure.\n\n## Operational danger points\n\nDo not assume a PENDING job is stuck just because it has not run. Do not treat ON_HOLD_RETRY as permanent failure. Do not reset COMPLETED rows casually. And do not investigate only the downstream FAILED or SKIPPED job if an upstream failure explains the issue.\n\n## Readiness expectation\n\nA certified learner should be able to interpret each queue status and explain what support action is appropriate or inappropriate for that status."
+      "content": "## Batch and queue model\n\nThe framework turns configured jobs into runtime work through a batch-and-queue model. A batch represents a scheduling cycle. A queue row represents one runtime execution instance of a job inside that cycle. Support work begins by understanding what queue rows exist and what state they are in.\n\n## Queue statuses\n\nThe common statuses are:\n\n- **PENDING:** the job exists in the queue but may still be dependency-blocked. PENDING does not automatically mean runnable.\n- **IN_PROGRESS:** the job has been claimed for execution and dependency gating should already have passed.\n- **ON_HOLD_RETRY:** the job failed but automatic retry is still allowed and the next retry time has not arrived yet. This is not terminal failure.\n- **FAILED:** the job failed permanently for the current attempt and requires intervention or escalation.\n- **COMPLETED:** the job finished successfully. Completed rows are not normal rerun targets.\n- **SKIPPED:** the job did not run because dependency conditions made execution invalid, usually due to upstream failure.\n\n## Operational danger points\n\nDo not assume a PENDING job is stuck just because it has not run. Do not treat ON_HOLD_RETRY as permanent failure. Do not reset COMPLETED rows casually. And do not investigate only the downstream FAILED or SKIPPED job if an upstream failure explains the issue.\n\n## Readiness expectation\n\nA certified learner should be able to interpret each queue status and explain what support action is appropriate or inappropriate for that status.",
+      "learningObjectives": [
+        "Explain the core decision points in Batch, Queue, and Runtime Status Interpretation.",
+        "Apply Batch, Queue, and Runtime Status Interpretation concepts to a realistic Culina delivery or support scenario."
+      ],
+      "keyTerms": [
+        "Batch",
+        "Queue",
+        "Runtime",
+        "Status"
+      ],
+      "practice": {
+        "prompts": [
+          "Write a three-sentence field explanation of Batch, Queue, and Runtime Status Interpretation for a new teammate.",
+          "List one risk, one evidence source, and one safe next action related to this lesson."
+        ],
+        "expectedEvidence": "Short notes that show the learner can apply the concept, not only repeat definitions."
+      },
+      "remediation": {
+        "reviewIfMissed": "Re-read Batch, Queue, and Runtime Status Interpretation, then compare your answer to the assessment feedback and glossary terms.",
+        "relatedCompetencyIds": [
+          "incident_response"
+        ]
+      }
     },
     {
       "id": "ms_lesson_003_dependency_scheduling_and_executability",
@@ -194,7 +253,30 @@
       "summary": "Distinguish scheduled work from executable work and diagnose dependency-blocked behavior safely.",
       "estimatedMinutes": 12,
       "displayOrder": 3,
-      "content": "## Scheduling is not executability\n\nScheduling determines whether a job may be considered for queue insertion. Dependency readiness determines whether queued work can actually run. This distinction is central to managed service triage.\n\nA job can be scheduled and PENDING without being executable. It may be waiting for upstream work to complete, blocked by failed upstream work, or held because open active work still needs to resolve.\n\n## Dependency evaluation\n\nThe framework evaluates dependency readiness against open active work rather than treating each queue row in isolation. This allows the runtime to avoid unsafe execution when unresolved upstream work is still active.\n\n## SKIPPED behavior\n\nWhen an upstream dependency fails and downstream work cannot validly run, the downstream PENDING job should become SKIPPED. SKIPPED is a dependency outcome, not a partial execution failure.\n\n## Managed service behavior\n\nWhen a job appears stuck in PENDING, support should check dependency readiness and upstream state before taking action. The correct action may be to fix the upstream failure, wait for retry behavior, or escalate—not to force the downstream job to run.\n\n## Readiness expectation\n\nA certified learner should be able to explain why PENDING does not mean runnable and why dependency-blocked work should be resolved from the earliest upstream failure first."
+      "content": "## Scheduling is not executability\n\nScheduling determines whether a job may be considered for queue insertion. Dependency readiness determines whether queued work can actually run. This distinction is central to managed service triage.\n\nA job can be scheduled and PENDING without being executable. It may be waiting for upstream work to complete, blocked by failed upstream work, or held because open active work still needs to resolve.\n\n## Dependency evaluation\n\nThe framework evaluates dependency readiness against open active work rather than treating each queue row in isolation. This allows the runtime to avoid unsafe execution when unresolved upstream work is still active.\n\n## SKIPPED behavior\n\nWhen an upstream dependency fails and downstream work cannot validly run, the downstream PENDING job should become SKIPPED. SKIPPED is a dependency outcome, not a partial execution failure.\n\n## Managed service behavior\n\nWhen a job appears stuck in PENDING, support should check dependency readiness and upstream state before taking action. The correct action may be to fix the upstream failure, wait for retry behavior, or escalate—not to force the downstream job to run.\n\n## Readiness expectation\n\nA certified learner should be able to explain why PENDING does not mean runnable and why dependency-blocked work should be resolved from the earliest upstream failure first.",
+      "learningObjectives": [
+        "Explain the core decision points in Dependency, Scheduling, and Executability.",
+        "Apply Dependency, Scheduling, and Executability concepts to a realistic Culina delivery or support scenario."
+      ],
+      "keyTerms": [
+        "Dependency",
+        "Scheduling",
+        "Executability",
+        "Distinguish"
+      ],
+      "practice": {
+        "prompts": [
+          "Write a three-sentence field explanation of Dependency, Scheduling, and Executability for a new teammate.",
+          "List one risk, one evidence source, and one safe next action related to this lesson."
+        ],
+        "expectedEvidence": "Short notes that show the learner can apply the concept, not only repeat definitions."
+      },
+      "remediation": {
+        "reviewIfMissed": "Re-read Dependency, Scheduling, and Executability, then compare your answer to the assessment feedback and glossary terms.",
+        "relatedCompetencyIds": [
+          "rerun_recovery"
+        ]
+      }
     },
     {
       "id": "ms_lesson_004_standard_triage_flow",
@@ -211,7 +293,30 @@
       "summary": "Practice the standard flow for moving from visible symptom to likely root cause and next action.",
       "estimatedMinutes": 14,
       "displayOrder": 4,
-      "content": "## Triage objective\n\nTriage is the process of identifying the issue type, likely cause, severity, and next action. The goal is not to reset work quickly. The goal is to understand the failure safely enough to choose the right recovery or escalation path.\n\n## Standard triage order\n\nUse this operating sequence:\n\n1. Confirm whether there is an active batch.\n2. Review queue rows by status.\n3. Identify the earliest failing queue row in the dependency chain.\n4. Check whether the failure happened in ingestion, transformation, validation, or service behavior.\n5. Review job_runhistory and job_failure_log for direct evidence.\n6. Check dependency and impact views to understand downstream effects.\n7. Determine whether automatic retry is still active.\n8. Decide whether the issue is recoverable after a fix or requires escalation.\n9. Only then decide whether rerun, replay, backfill, rebuild, or communication is needed.\n\n## Prioritization rule\n\nThe earliest upstream failure matters most. Downstream failures and skipped jobs may be symptoms. Treating every downstream row as a separate root cause creates duplicate effort and increases recovery risk.\n\n## Readiness expectation\n\nA certified learner should be able to narrate a triage path from runtime symptom to evidence, cause, action, and escalation decision."
+      "content": "## Triage objective\n\nTriage is the process of identifying the issue type, likely cause, severity, and next action. The goal is not to reset work quickly. The goal is to understand the failure safely enough to choose the right recovery or escalation path.\n\n## Standard triage order\n\nUse this operating sequence:\n\n1. Confirm whether there is an active batch.\n2. Review queue rows by status.\n3. Identify the earliest failing queue row in the dependency chain.\n4. Check whether the failure happened in ingestion, transformation, validation, or service behavior.\n5. Review job_runhistory and job_failure_log for direct evidence.\n6. Check dependency and impact views to understand downstream effects.\n7. Determine whether automatic retry is still active.\n8. Decide whether the issue is recoverable after a fix or requires escalation.\n9. Only then decide whether rerun, replay, backfill, rebuild, or communication is needed.\n\n## Prioritization rule\n\nThe earliest upstream failure matters most. Downstream failures and skipped jobs may be symptoms. Treating every downstream row as a separate root cause creates duplicate effort and increases recovery risk.\n\n## Readiness expectation\n\nA certified learner should be able to narrate a triage path from runtime symptom to evidence, cause, action, and escalation decision.",
+      "learningObjectives": [
+        "Explain the core decision points in Standard Triage Flow.",
+        "Apply Standard Triage Flow concepts to a realistic Culina delivery or support scenario."
+      ],
+      "keyTerms": [
+        "Standard",
+        "Triage",
+        "Practice",
+        "standard"
+      ],
+      "practice": {
+        "prompts": [
+          "Write a three-sentence field explanation of Standard Triage Flow for a new teammate.",
+          "List one risk, one evidence source, and one safe next action related to this lesson."
+        ],
+        "expectedEvidence": "Short notes that show the learner can apply the concept, not only repeat definitions."
+      },
+      "remediation": {
+        "reviewIfMissed": "Re-read Standard Triage Flow, then compare your answer to the assessment feedback and glossary terms.",
+        "relatedCompetencyIds": [
+          "support_boundaries"
+        ]
+      }
     },
     {
       "id": "ms_lesson_005_ingestion_failure_investigation",
@@ -229,7 +334,30 @@
       "summary": "Identify whether ingestion failures are caused by source changes, source configuration, access, payload shape, or runtime interpretation.",
       "estimatedMinutes": 13,
       "displayOrder": 5,
-      "content": "## Common ingestion issue families\n\nIngestion failures commonly come from either source-side changes or configuration issues. A source-side change might involve schema drift, payload structure changes, endpoint behavior changes, credential/access changes, or unexpected nullability. A configuration issue might involve a broken selector, invalid linked service, wrong load mode, invalid source-detail metadata, or a target setup problem.\n\n## Confirmation steps\n\nSupport should inspect failure logs and run history to determine whether the failure happened during source read, landing, standardization, delta processing, or staging. The effective source configuration should be compared to the expected source behavior. If possible, the current source payload or object shape should be compared against the previous expected pattern.\n\n## Recommended action\n\nIf the source has genuinely changed, coordinate with the source owner or implementation team and update metadata or connector handling if the new shape is intended. If the metadata is wrong, correct and validate the configuration before rerun. Do not rerun blindly before the compatibility issue is resolved.\n\n## Readiness expectation\n\nA certified learner should be able to distinguish source-side change from configuration error and describe the evidence needed before choosing a rerun or escalation path."
+      "content": "## Common ingestion issue families\n\nIngestion failures commonly come from either source-side changes or configuration issues. A source-side change might involve schema drift, payload structure changes, endpoint behavior changes, credential/access changes, or unexpected nullability. A configuration issue might involve a broken selector, invalid linked service, wrong load mode, invalid source-detail metadata, or a target setup problem.\n\n## Confirmation steps\n\nSupport should inspect failure logs and run history to determine whether the failure happened during source read, landing, standardization, delta processing, or staging. The effective source configuration should be compared to the expected source behavior. If possible, the current source payload or object shape should be compared against the previous expected pattern.\n\n## Recommended action\n\nIf the source has genuinely changed, coordinate with the source owner or implementation team and update metadata or connector handling if the new shape is intended. If the metadata is wrong, correct and validate the configuration before rerun. Do not rerun blindly before the compatibility issue is resolved.\n\n## Readiness expectation\n\nA certified learner should be able to distinguish source-side change from configuration error and describe the evidence needed before choosing a rerun or escalation path.",
+      "learningObjectives": [
+        "Explain the core decision points in Investigating Ingestion Failures.",
+        "Apply Investigating Ingestion Failures concepts to a realistic Culina delivery or support scenario."
+      ],
+      "keyTerms": [
+        "Investigating",
+        "Ingestion",
+        "Failures",
+        "Identify"
+      ],
+      "practice": {
+        "prompts": [
+          "Write a three-sentence field explanation of Investigating Ingestion Failures for a new teammate.",
+          "List one risk, one evidence source, and one safe next action related to this lesson."
+        ],
+        "expectedEvidence": "Short notes that show the learner can apply the concept, not only repeat definitions."
+      },
+      "remediation": {
+        "reviewIfMissed": "Re-read Investigating Ingestion Failures, then compare your answer to the assessment feedback and glossary terms.",
+        "relatedCompetencyIds": [
+          "communication"
+        ]
+      }
     },
     {
       "id": "ms_lesson_006_transformation_and_validation_failures",
@@ -247,7 +375,30 @@
       "summary": "Diagnose transformation step failures and unit-test failures without treating technical execution as automatic success.",
       "estimatedMinutes": 14,
       "displayOrder": 6,
-      "content": "## Transformation failure types\n\nTransformation failures may occur because new data violates assumptions, a join no longer resolves as expected, a deduplication rule exposes duplicate business keys, a required source table is missing, or a transformation JSON step is invalid for the target behavior.\n\n## Unit-test and validation failures\n\nA transformation job is not operationally successful simply because a target write completed. If required unit tests or validation checks fail, the job should be treated as failed. Validation is part of metadata quality and runtime correctness, not an optional afterthought.\n\n## Evidence to inspect\n\nSupport should inspect job_runhistory, job_failure_log, unit-test results, quality-result entities, and the transformation controller or JSON configuration. The goal is to determine whether the issue is metadata design, unexpected data, source shape change, target readiness, or a true framework logic gap.\n\n## Recommended action\n\nCorrect the metadata, source issue, data issue, or framework logic before rerun. If the transformation reveals a modeling or business-rule question, escalate to implementation or business stakeholders rather than masking the failure.\n\n## Readiness expectation\n\nA certified learner should be able to explain why failed required unit tests are real operational failures and how transformation evidence should be reviewed."
+      "content": "## Transformation failure types\n\nTransformation failures may occur because new data violates assumptions, a join no longer resolves as expected, a deduplication rule exposes duplicate business keys, a required source table is missing, or a transformation JSON step is invalid for the target behavior.\n\n## Unit-test and validation failures\n\nA transformation job is not operationally successful simply because a target write completed. If required unit tests or validation checks fail, the job should be treated as failed. Validation is part of metadata quality and runtime correctness, not an optional afterthought.\n\n## Evidence to inspect\n\nSupport should inspect job_runhistory, job_failure_log, unit-test results, quality-result entities, and the transformation controller or JSON configuration. The goal is to determine whether the issue is metadata design, unexpected data, source shape change, target readiness, or a true framework logic gap.\n\n## Recommended action\n\nCorrect the metadata, source issue, data issue, or framework logic before rerun. If the transformation reveals a modeling or business-rule question, escalate to implementation or business stakeholders rather than masking the failure.\n\n## Readiness expectation\n\nA certified learner should be able to explain why failed required unit tests are real operational failures and how transformation evidence should be reviewed.",
+      "learningObjectives": [
+        "Explain the core decision points in Transformation and Validation Failure Investigation.",
+        "Apply Transformation and Validation Failure Investigation concepts to a realistic Culina delivery or support scenario."
+      ],
+      "keyTerms": [
+        "Transformation",
+        "Validation",
+        "Failure",
+        "Investigation"
+      ],
+      "practice": {
+        "prompts": [
+          "Write a three-sentence field explanation of Transformation and Validation Failure Investigation for a new teammate.",
+          "List one risk, one evidence source, and one safe next action related to this lesson."
+        ],
+        "expectedEvidence": "Short notes that show the learner can apply the concept, not only repeat definitions."
+      },
+      "remediation": {
+        "reviewIfMissed": "Re-read Transformation and Validation Failure Investigation, then compare your answer to the assessment feedback and glossary terms.",
+        "relatedCompetencyIds": [
+          "runtime_triage"
+        ]
+      }
     },
     {
       "id": "ms_lesson_007_controlled_rerun_handling",
@@ -265,7 +416,30 @@
       "summary": "Learn when rerun is appropriate, what should usually be rerun, and what must not be reset casually.",
       "estimatedMinutes": 13,
       "displayOrder": 7,
-      "content": "## Rerun principle\n\nRetry and rerun are different. Retry is automatic runtime behavior. Rerun is controlled manual intervention. A failed job should not be rerun blindly. The root cause should be understood and corrected first.\n\n## What should usually be rerun\n\nRerun should normally start from the point of failure onward. The framework prefers minimum effective scope rather than broad indiscriminate reprocessing. Eligible unresolved states may include failed, skipped, or related blocked work, depending on the resolved cause and approved recovery approach.\n\n## COMPLETED rows rule\n\nCOMPLETED rows are not normal rerun targets. Resetting completed work casually can create duplicated processing, unnecessary downstream impact, and historical data risk. If completed work must be touched, it should be done through an approved controlled recovery plan.\n\n## Parent-loop rule\n\nDo not create duplicate orchestration by repeatedly launching parent or supervisor flows without confirming current open active work. Duplicate orchestration can confuse state, trigger redundant work, and make incident recovery harder.\n\n## Readiness expectation\n\nA certified learner should be able to decide whether rerun is appropriate and explain why \"fix first, rerun second\" is a non-negotiable support rule."
+      "content": "## Rerun principle\n\nRetry and rerun are different. Retry is automatic runtime behavior. Rerun is controlled manual intervention. A failed job should not be rerun blindly. The root cause should be understood and corrected first.\n\n## What should usually be rerun\n\nRerun should normally start from the point of failure onward. The framework prefers minimum effective scope rather than broad indiscriminate reprocessing. Eligible unresolved states may include failed, skipped, or related blocked work, depending on the resolved cause and approved recovery approach.\n\n## COMPLETED rows rule\n\nCOMPLETED rows are not normal rerun targets. Resetting completed work casually can create duplicated processing, unnecessary downstream impact, and historical data risk. If completed work must be touched, it should be done through an approved controlled recovery plan.\n\n## Parent-loop rule\n\nDo not create duplicate orchestration by repeatedly launching parent or supervisor flows without confirming current open active work. Duplicate orchestration can confuse state, trigger redundant work, and make incident recovery harder.\n\n## Readiness expectation\n\nA certified learner should be able to decide whether rerun is appropriate and explain why \"fix first, rerun second\" is a non-negotiable support rule.",
+      "learningObjectives": [
+        "Explain the core decision points in Controlled Rerun Handling.",
+        "Apply Controlled Rerun Handling concepts to a realistic Culina delivery or support scenario."
+      ],
+      "keyTerms": [
+        "Controlled",
+        "Rerun",
+        "Handling",
+        "Learn"
+      ],
+      "practice": {
+        "prompts": [
+          "Write a three-sentence field explanation of Controlled Rerun Handling for a new teammate.",
+          "List one risk, one evidence source, and one safe next action related to this lesson."
+        ],
+        "expectedEvidence": "Short notes that show the learner can apply the concept, not only repeat definitions."
+      },
+      "remediation": {
+        "reviewIfMissed": "Re-read Controlled Rerun Handling, then compare your answer to the assessment feedback and glossary terms.",
+        "relatedCompetencyIds": [
+          "incident_response"
+        ]
+      }
     },
     {
       "id": "ms_lesson_008_backfill_replay_rebuild_and_layer_recovery",
@@ -283,7 +457,30 @@
       "summary": "Distinguish the main recovery concepts and understand how layer responsibility affects recovery scope.",
       "estimatedMinutes": 15,
       "displayOrder": 8,
-      "content": "## Recovery vocabulary\n\nThe framework uses several related but different recovery concepts:\n\n- **Rerun:** controlled reset of unresolved runtime work so the same configured logic can execute again.\n- **Replay:** reprocessing already-available upstream data through downstream logic again.\n- **Backfill:** controlled loading of historical or previously missing data that did not arrive correctly during normal execution.\n- **Rebuild:** recreation of a target layer or target object from upstream data using intended logic.\n\n## Layer-based thinking\n\nINT is the main transient recovery boundary because it is rebuildable and truncate-load by design. EDW is durable and often historical, so facts, dimensions, SCD2, hash comparison, tombstone handling, and current flags require extra care. Staging recovery differs between full-ingestion and delta-ingestion behavior.\n\n## Recovery workflow\n\nA safe recovery process should identify the failing scope, confirm the earliest root cause, fix before recovery, select the minimum effective recovery scope, validate after recovery, and escalate when the required recovery touches historical correctness or client-facing outputs.\n\n## Readiness expectation\n\nA certified learner should be able to choose between rerun, replay, backfill, and rebuild language and explain why recovery scope should follow layer responsibilities."
+      "content": "## Recovery vocabulary\n\nThe framework uses several related but different recovery concepts:\n\n- **Rerun:** controlled reset of unresolved runtime work so the same configured logic can execute again.\n- **Replay:** reprocessing already-available upstream data through downstream logic again.\n- **Backfill:** controlled loading of historical or previously missing data that did not arrive correctly during normal execution.\n- **Rebuild:** recreation of a target layer or target object from upstream data using intended logic.\n\n## Layer-based thinking\n\nINT is the main transient recovery boundary because it is rebuildable and truncate-load by design. EDW is durable and often historical, so facts, dimensions, SCD2, hash comparison, tombstone handling, and current flags require extra care. Staging recovery differs between full-ingestion and delta-ingestion behavior.\n\n## Recovery workflow\n\nA safe recovery process should identify the failing scope, confirm the earliest root cause, fix before recovery, select the minimum effective recovery scope, validate after recovery, and escalate when the required recovery touches historical correctness or client-facing outputs.\n\n## Readiness expectation\n\nA certified learner should be able to choose between rerun, replay, backfill, and rebuild language and explain why recovery scope should follow layer responsibilities.",
+      "learningObjectives": [
+        "Explain the core decision points in Backfill, Replay, Rebuild, and Layer Recovery.",
+        "Apply Backfill, Replay, Rebuild, and Layer Recovery concepts to a realistic Culina delivery or support scenario."
+      ],
+      "keyTerms": [
+        "Backfill",
+        "Replay",
+        "Rebuild",
+        "Layer"
+      ],
+      "practice": {
+        "prompts": [
+          "Write a three-sentence field explanation of Backfill, Replay, Rebuild, and Layer Recovery for a new teammate.",
+          "List one risk, one evidence source, and one safe next action related to this lesson."
+        ],
+        "expectedEvidence": "Short notes that show the learner can apply the concept, not only repeat definitions."
+      },
+      "remediation": {
+        "reviewIfMissed": "Re-read Backfill, Replay, Rebuild, and Layer Recovery, then compare your answer to the assessment feedback and glossary terms.",
+        "relatedCompetencyIds": [
+          "rerun_recovery"
+        ]
+      }
     },
     {
       "id": "ms_lesson_009_notification_handoff_and_external_delivery",
@@ -301,7 +498,30 @@
       "summary": "Separate framework failure diagnosis from downstream notification channel delivery.",
       "estimatedMinutes": 12,
       "displayOrder": 9,
-      "content": "## Notification boundary\n\nThe framework is responsible for detecting failures, recording runtime evidence, surfacing failure state, and where implemented, handing off a useful failure payload to an external notification endpoint. Final channel delivery is intended to be owned by an external notification service, such as Logic Apps, email infrastructure, Teams integration, or another downstream delivery platform.\n\n## Important distinction\n\nFramework execution failure, notification handoff failure, and downstream channel delivery failure are related but distinct concerns. A Teams or email delivery problem does not automatically mean the framework failure diagnosis is wrong.\n\n## Domain ownership is not alert routing\n\nDomain owner names are governance visibility metadata. They should not be treated as the final recipient-routing mechanism. The older job-level email-recipient model is legacy or transitional and should not override the externalized notification direction.\n\n## Support behavior\n\nSupport should first understand the framework failure. Then, if notification behavior is also part of the incident, determine whether handoff was attempted, whether handoff succeeded, and whether the issue sits in the downstream delivery service.\n\n## Readiness expectation\n\nA certified learner should be able to explain the difference between notification handoff and channel delivery and avoid confusing governance visibility with alert routing."
+      "content": "## Notification boundary\n\nThe framework is responsible for detecting failures, recording runtime evidence, surfacing failure state, and where implemented, handing off a useful failure payload to an external notification endpoint. Final channel delivery is intended to be owned by an external notification service, such as Logic Apps, email infrastructure, Teams integration, or another downstream delivery platform.\n\n## Important distinction\n\nFramework execution failure, notification handoff failure, and downstream channel delivery failure are related but distinct concerns. A Teams or email delivery problem does not automatically mean the framework failure diagnosis is wrong.\n\n## Domain ownership is not alert routing\n\nDomain owner names are governance visibility metadata. They should not be treated as the final recipient-routing mechanism. The older job-level email-recipient model is legacy or transitional and should not override the externalized notification direction.\n\n## Support behavior\n\nSupport should first understand the framework failure. Then, if notification behavior is also part of the incident, determine whether handoff was attempted, whether handoff succeeded, and whether the issue sits in the downstream delivery service.\n\n## Readiness expectation\n\nA certified learner should be able to explain the difference between notification handoff and channel delivery and avoid confusing governance visibility with alert routing.",
+      "learningObjectives": [
+        "Explain the core decision points in Failure Notification Handoff and External Delivery.",
+        "Apply Failure Notification Handoff and External Delivery concepts to a realistic Culina delivery or support scenario."
+      ],
+      "keyTerms": [
+        "Failure",
+        "Notification",
+        "Handoff",
+        "External"
+      ],
+      "practice": {
+        "prompts": [
+          "Write a three-sentence field explanation of Failure Notification Handoff and External Delivery for a new teammate.",
+          "List one risk, one evidence source, and one safe next action related to this lesson."
+        ],
+        "expectedEvidence": "Short notes that show the learner can apply the concept, not only repeat definitions."
+      },
+      "remediation": {
+        "reviewIfMissed": "Re-read Failure Notification Handoff and External Delivery, then compare your answer to the assessment feedback and glossary terms.",
+        "relatedCompetencyIds": [
+          "support_boundaries"
+        ]
+      }
     },
     {
       "id": "ms_lesson_010_escalation_change_and_communication_boundaries",
@@ -319,7 +539,30 @@
       "summary": "Know when an issue is operational recovery versus a release change and how escalation should be framed.",
       "estimatedMinutes": 14,
       "displayOrder": 10,
-      "content": "## Escalation mindset\n\nManaged service work should resolve operationally recoverable issues, but it should not hide design gaps, source-governance problems, model questions, framework logic gaps, or release changes. Escalation is appropriate when the issue cannot be safely corrected through normal support action.\n\n## Common escalation triggers\n\nEscalate when source-side action is required, connector or framework logic must change, metadata design must be corrected, model or business-rule clarification is required, historical EDW recovery is risky, or external notification delivery requires downstream service owner action.\n\n## Recovery versus release change\n\nOperational rerun, replay, backfill, or rebuild activity restores correctness after failure, missing data, or bad output. A release change modifies approved behavior, approved artifacts, shared framework capability, control-plane package, or environment deployment posture. These should not be treated as the same thing.\n\n## Communication quality\n\nGood incident communication should identify the affected job or scope, current status, earliest known cause, downstream impact, next action, and whether escalation is needed. Avoid overpromising before the evidence supports a conclusion.\n\n## Readiness expectation\n\nA certified learner should be able to classify whether a situation is support recovery, implementation fix, source-owner action, downstream notification issue, or governed release change."
+      "content": "## Escalation mindset\n\nManaged service work should resolve operationally recoverable issues, but it should not hide design gaps, source-governance problems, model questions, framework logic gaps, or release changes. Escalation is appropriate when the issue cannot be safely corrected through normal support action.\n\n## Common escalation triggers\n\nEscalate when source-side action is required, connector or framework logic must change, metadata design must be corrected, model or business-rule clarification is required, historical EDW recovery is risky, or external notification delivery requires downstream service owner action.\n\n## Recovery versus release change\n\nOperational rerun, replay, backfill, or rebuild activity restores correctness after failure, missing data, or bad output. A release change modifies approved behavior, approved artifacts, shared framework capability, control-plane package, or environment deployment posture. These should not be treated as the same thing.\n\n## Communication quality\n\nGood incident communication should identify the affected job or scope, current status, earliest known cause, downstream impact, next action, and whether escalation is needed. Avoid overpromising before the evidence supports a conclusion.\n\n## Readiness expectation\n\nA certified learner should be able to classify whether a situation is support recovery, implementation fix, source-owner action, downstream notification issue, or governed release change.",
+      "learningObjectives": [
+        "Explain the core decision points in Escalation, Change, and Communication Boundaries.",
+        "Apply Escalation, Change, and Communication Boundaries concepts to a realistic Culina delivery or support scenario."
+      ],
+      "keyTerms": [
+        "Escalation",
+        "Change",
+        "Communication",
+        "Boundaries"
+      ],
+      "practice": {
+        "prompts": [
+          "Write a three-sentence field explanation of Escalation, Change, and Communication Boundaries for a new teammate.",
+          "List one risk, one evidence source, and one safe next action related to this lesson."
+        ],
+        "expectedEvidence": "Short notes that show the learner can apply the concept, not only repeat definitions."
+      },
+      "remediation": {
+        "reviewIfMissed": "Re-read Escalation, Change, and Communication Boundaries, then compare your answer to the assessment feedback and glossary terms.",
+        "relatedCompetencyIds": [
+          "communication"
+        ]
+      }
     }
   ],
   "assessments": [
@@ -972,7 +1215,15 @@
           },
           "explanation": "The expected answer distinguishes operational support from shared framework change and release governance."
         }
-      ]
+      ],
+      "competencyCoverage": [
+        "runtime_triage",
+        "incident_response",
+        "rerun_recovery",
+        "support_boundaries",
+        "communication"
+      ],
+      "reviewMode": "automatic_scoring_with_admin_review_for_free_text_and_labs"
     }
   ],
   "badges": [
@@ -1015,5 +1266,130 @@
     },
     "multipleChoice": "Multiple-choice questions use direct correctAnswer matching.",
     "multiSelect": "Multi-select questions require the selected option set to exactly match correctAnswer."
-  }
+  },
+  "contentDepthVersion": "2.0-local",
+  "competencies": [
+    {
+      "id": "runtime_triage",
+      "title": "Runtime triage",
+      "description": "Uses queue, run history, dependency, and failure evidence to understand production state.",
+      "displayOrder": 1
+    },
+    {
+      "id": "incident_response",
+      "title": "Incident response",
+      "description": "Separates symptom observation, root-cause analysis, escalation, and recovery action.",
+      "displayOrder": 2
+    },
+    {
+      "id": "rerun_recovery",
+      "title": "Retry, rerun, and recovery",
+      "description": "Distinguishes automatic retry from controlled manual rerun and recovery.",
+      "displayOrder": 3
+    },
+    {
+      "id": "support_boundaries",
+      "title": "Support boundaries",
+      "description": "Knows when managed service should act, escalate, or request implementation change.",
+      "displayOrder": 4
+    },
+    {
+      "id": "communication",
+      "title": "Operational communication",
+      "description": "Documents incident status, evidence, decisions, and handoff notes clearly.",
+      "displayOrder": 5
+    }
+  ],
+  "glossary": [
+    {
+      "term": "Queue row",
+      "definition": "A runtime execution instance of a configured job.",
+      "displayOrder": 1
+    },
+    {
+      "term": "Run history",
+      "definition": "Evidence of job execution attempts, outcomes, timings, and related runtime context.",
+      "displayOrder": 2
+    },
+    {
+      "term": "Failure log",
+      "definition": "Operational evidence describing a failed runtime event and supporting diagnostics.",
+      "displayOrder": 3
+    },
+    {
+      "term": "Retry",
+      "definition": "Automatic runtime behavior that attempts failed work again under configured rules.",
+      "displayOrder": 4
+    },
+    {
+      "term": "Rerun",
+      "definition": "Controlled manual intervention after the failure cause is understood and corrected.",
+      "displayOrder": 5
+    },
+    {
+      "term": "Escalation boundary",
+      "definition": "The point where managed service should hand off to implementation, engineering, or client decision makers.",
+      "displayOrder": 6
+    }
+  ],
+  "labs": [
+    {
+      "id": "ms_lab_pending_queue_triage",
+      "title": "Triage a pending queue backlog",
+      "type": "scenario_lab",
+      "scenario": "Several jobs are PENDING after an upstream failure and stakeholders ask for a rerun.",
+      "prompts": [
+        "Explain what PENDING does and does not prove.",
+        "List evidence you would inspect before taking action.",
+        "Describe the safe next step and escalation point."
+      ],
+      "estimatedMinutes": 25,
+      "competencyIds": [
+        "runtime_triage",
+        "incident_response"
+      ],
+      "expectedEvidence": "A concise written response with decisions, reasoning, evidence checked, and handoff notes where applicable.",
+      "reviewerGuidance": "Review for framework vocabulary, correct boundaries, evidence-based decisions, and clear next actions.",
+      "displayOrder": 1
+    },
+    {
+      "id": "ms_lab_failed_job_recovery",
+      "title": "Plan failed job recovery",
+      "type": "scenario_lab",
+      "scenario": "A child job failed after partial downstream work completed.",
+      "prompts": [
+        "Separate retry, rerun, and recovery options.",
+        "Identify the point of failure and downstream impact.",
+        "Draft the operator note you would attach to the incident."
+      ],
+      "estimatedMinutes": 25,
+      "competencyIds": [
+        "incident_response",
+        "rerun_recovery"
+      ],
+      "expectedEvidence": "A concise written response with decisions, reasoning, evidence checked, and handoff notes where applicable.",
+      "reviewerGuidance": "Review for framework vocabulary, correct boundaries, evidence-based decisions, and clear next actions.",
+      "displayOrder": 2
+    },
+    {
+      "id": "ms_capstone_incident_review",
+      "title": "Capstone: incident review package",
+      "type": "capstone",
+      "scenario": "Prepare a concise incident review for a production support lead.",
+      "prompts": [
+        "Summarize timeline, evidence, impact, and decision points.",
+        "Name what was fixed before rerun or recovery.",
+        "State what should be monitored after closure."
+      ],
+      "estimatedMinutes": 45,
+      "competencyIds": [
+        "rerun_recovery",
+        "support_boundaries",
+        "runtime_triage"
+      ],
+      "expectedEvidence": "A concise written response with decisions, reasoning, evidence checked, and handoff notes where applicable.",
+      "reviewerGuidance": "Review for framework vocabulary, correct boundaries, evidence-based decisions, and clear next actions.",
+      "displayOrder": 3
+    }
+  ]
 }

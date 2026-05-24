@@ -449,6 +449,23 @@
     .library-strip { display:flex; flex-wrap:wrap; gap:10px; margin-top: 18px; }
     .small-note { color: var(--muted); font-size: 13px; line-height: 1.55; margin-top: 10px; }
 
+    .field-stack { display: grid; gap: 10px; }
+    .text-field {
+      width: 100%;
+      border: 1px solid var(--line);
+      border-radius: var(--radius-sm);
+      background: white;
+      color: var(--ink);
+      min-height: 42px;
+      padding: 10px 12px;
+      outline: none;
+    }
+    .text-field:focus { border-color: rgba(15,118,110,.58); box-shadow: 0 0 0 4px rgba(15,118,110,.08); }
+    .tool-card { display: grid; gap: 12px; }
+    .objective-list { margin: 0; padding-left: 1.2em; color: var(--muted); line-height: 1.65; }
+    .note-box { min-height: 120px; resize: vertical; }
+    .search-box { max-width: 680px; margin-bottom: 20px; }
+
     .toast {
       position: fixed;
       right: 26px;
@@ -505,6 +522,14 @@
         <input type="file" accept="application/json,.json" id="jsonFileInput" class="hidden" multiple />
       </div>
 
+      <div class="package-card">
+        <div class="eyebrow">Learner</div>
+        <div class="field-stack">
+          <input class="text-field" id="learnerNameInput" placeholder="Name for transcript" />
+          <input class="text-field" id="learnerEmailInput" placeholder="Email for transcript" />
+        </div>
+      </div>
+
       <div class="semantic-card">
         <div class="eyebrow">Free Text Scoring</div>
         <h2 class="package-title" id="semanticTitle">Semantic model not loaded</h2>
@@ -527,6 +552,8 @@
         <div class="nav-item" data-page="assessments"><span class="nav-icon">✦</span><span>Assessments</span></div>
         <div class="nav-item" data-page="certifications"><span class="nav-icon">◆</span><span>Certifications</span></div>
         <div class="nav-item" data-page="transcript"><span class="nav-icon">☰</span><span>Transcript</span></div>
+        <div class="nav-item" data-page="labs"><span class="nav-icon">Lab</span><span>Labs</span></div>
+        <div class="nav-item" data-page="tools"><span class="nav-icon">?</span><span>Study Tools</span></div>
       </nav>
     </aside>
 
@@ -547,6 +574,7 @@
     const STORAGE_PACKAGES = 'culinaAcademy.contentDatasets.v6';
     const STORAGE_PROGRESS = 'culinaAcademy.progress.v6';
     const STORAGE_ACTIVE_TRACK = 'culinaAcademy.activeTrack.v6';
+    const STORAGE_LEARNER = 'culinaAcademy.learner.v2';
 
     const state = {
       page: 'dashboard',
@@ -555,6 +583,7 @@
       progress: emptyProgress(),
       activeTrackId: null,
       selectedLessonId: null,
+      selectedLabId: null,
       selectedAssessmentId: null,
       answers: {},
       assessmentResult: null,
@@ -566,8 +595,12 @@
     function emptyProgress() {
       return {
         packageId: null,
+        learner: { name: '', email: '' },
         completedLessons: {},
         assessmentResults: {},
+        labEvidence: {},
+        notes: {},
+        bookmarks: {},
         badges: {},
         events: []
       };
@@ -581,6 +614,8 @@
     const clearLibraryBtn = document.getElementById('clearLibraryBtn');
     const exportBtn = document.getElementById('exportBtn');
     const resetBtn = document.getElementById('resetBtn');
+    const learnerNameInput = document.getElementById('learnerNameInput');
+    const learnerEmailInput = document.getElementById('learnerEmailInput');
 
     initialize();
 
@@ -598,6 +633,8 @@
       prepareModelBtn.addEventListener('click', () => prepareEmbeddingModel().catch(error => showToast(error.message)));
       exportBtn.addEventListener('click', exportTranscript);
       resetBtn.addEventListener('click', resetProgress);
+      learnerNameInput.addEventListener('input', saveLearnerProfile);
+      learnerEmailInput.addEventListener('input', saveLearnerProfile);
       document.getElementById('navList').addEventListener('click', (event) => {
         const item = event.target.closest('.nav-item');
         if (!item) return;
@@ -620,6 +657,15 @@
       } catch (error) {
         console.warn('Failed to load progress', error);
       }
+      try {
+        const learner = JSON.parse(localStorage.getItem(STORAGE_LEARNER) || '{}');
+        state.progress.learner = { ...state.progress.learner, ...learner };
+      } catch (error) {
+        console.warn('Failed to load learner profile', error);
+      }
+      ensureProgressShape();
+      learnerNameInput.value = state.progress.learner.name || '';
+      learnerEmailInput.value = state.progress.learner.email || '';
       state.activeTrackId = localStorage.getItem(STORAGE_ACTIVE_TRACK) || null;
       if (state.package && !getTrack(state.activeTrackId)) {
         state.activeTrackId = state.package.tracks?.[0]?.id || null;
@@ -636,7 +682,28 @@
     }
 
     function saveProgress() {
+      ensureProgressShape();
       localStorage.setItem(STORAGE_PROGRESS, JSON.stringify(state.progress));
+    }
+
+    function saveLearnerProfile() {
+      state.progress.learner = {
+        name: learnerNameInput.value.trim(),
+        email: learnerEmailInput.value.trim(),
+      };
+      localStorage.setItem(STORAGE_LEARNER, JSON.stringify(state.progress.learner));
+      saveProgress();
+    }
+
+    function ensureProgressShape() {
+      state.progress.learner = { name: '', email: '', ...(state.progress.learner || {}) };
+      state.progress.completedLessons = state.progress.completedLessons || {};
+      state.progress.assessmentResults = state.progress.assessmentResults || {};
+      state.progress.labEvidence = state.progress.labEvidence || {};
+      state.progress.notes = state.progress.notes || {};
+      state.progress.bookmarks = state.progress.bookmarks || {};
+      state.progress.badges = state.progress.badges || {};
+      state.progress.events = state.progress.events || [];
     }
 
     function saveActiveTrack() {
@@ -679,6 +746,7 @@
         state.activeTrackId = firstImportedTrackId || state.package?.tracks?.[0]?.id || null;
       }
       state.selectedLessonId = null;
+      state.selectedLabId = null;
       state.selectedAssessmentId = null;
       state.answers = {};
       state.assessmentResult = null;
@@ -705,6 +773,9 @@
       clone.lessons = Array.isArray(clone.lessons) ? clone.lessons : [];
       clone.assessments = Array.isArray(clone.assessments) ? clone.assessments : [];
       clone.badges = Array.isArray(clone.badges) ? clone.badges : [];
+      clone.labs = Array.isArray(clone.labs) ? clone.labs : [];
+      clone.glossary = Array.isArray(clone.glossary) ? clone.glossary : [];
+      clone.competencies = Array.isArray(clone.competencies) ? clone.competencies : [];
       return clone;
     }
 
@@ -726,6 +797,9 @@
       const lessonMap = new Map();
       const assessmentMap = new Map();
       const badgeMap = new Map();
+      const labMap = new Map();
+      const glossaryMap = new Map();
+      const competencyMap = new Map();
       const academyTitle = packages[0]?.academy?.title || packages[0]?.academy?.name || 'Culina Academy';
       for (const pkg of packages) {
         const sourceId = getPackageId(pkg);
@@ -734,6 +808,9 @@
         for (const lesson of pkg.lessons || []) if (lesson?.id) lessonMap.set(lesson.id, annotate(lesson));
         for (const assessment of pkg.assessments || []) if (assessment?.id) assessmentMap.set(assessment.id, annotate(assessment));
         for (const badge of pkg.badges || []) if (badge?.id) badgeMap.set(badge.id, annotate(badge));
+        for (const lab of pkg.labs || []) if (lab?.id) labMap.set(lab.id, annotate(lab));
+        for (const competency of pkg.competencies || []) if (competency?.id) competencyMap.set(`${sourceId}:${competency.id}`, annotate(competency));
+        for (const entry of pkg.glossary || []) if (entry?.term) glossaryMap.set(`${sourceId}:${entry.term}`, annotate(entry));
         for (const track of pkg.tracks || []) if (track?.id) trackMap.set(track.id, annotate(track));
       }
       const sortByOrder = (a, b) => Number(a.displayOrder ?? 999) - Number(b.displayOrder ?? 999) || String(a.title || '').localeCompare(String(b.title || ''));
@@ -756,12 +833,16 @@
           trackCount: (pkg.tracks || []).length,
           lessonCount: (pkg.lessons || []).length,
           assessmentCount: (pkg.assessments || []).length,
+          labCount: (pkg.labs || []).length,
           badgeCount: (pkg.badges || []).length,
         })),
         tracks: Array.from(trackMap.values()).sort(sortByOrder),
         lessons: Array.from(lessonMap.values()).sort(sortByOrder),
         assessments: Array.from(assessmentMap.values()).sort(sortByOrder),
         badges: Array.from(badgeMap.values()).sort(sortByOrder),
+        labs: Array.from(labMap.values()).sort(sortByOrder),
+        glossary: Array.from(glossaryMap.values()).sort((a, b) => String(a.term || '').localeCompare(String(b.term || ''))),
+        competencies: Array.from(competencyMap.values()).sort(sortByOrder),
       };
     }
 
@@ -855,7 +936,9 @@
         case 'dashboard': renderDashboard(); break;
         case 'paths': renderPaths(); break;
         case 'lessons': renderLessons(); break;
+        case 'labs': renderLabs(); break;
         case 'assessments': renderAssessments(); break;
+        case 'tools': renderStudyTools(); break;
         case 'certifications': renderCertifications(); break;
         case 'transcript': renderTranscript(); break;
         default: renderDashboard(); break;
@@ -902,26 +985,29 @@
           <div class="btn-row">
             <button class="primary-btn" data-action="go-paths">Select Learning Path</button>
             <button class="secondary-btn" data-action="go-lessons">Continue Lessons</button>
+            <button class="secondary-btn" data-action="go-labs">Open Labs</button>
             <button class="secondary-btn" data-action="go-assessments">Open Assessments</button>
           </div>
           <div class="library-strip">
             <span class="pill strong">${state.packages.length} dataset${state.packages.length === 1 ? '' : 's'} loaded</span>
             <span class="pill">${tracks.length} certification path${tracks.length === 1 ? '' : 's'}</span>
             <span class="pill">${totals.totalLessons} lessons</span>
+            <span class="pill">${totals.totalLabs} labs</span>
             <span class="pill">${totals.totalAssessments} assessments</span>
           </div>
         </section>
         <div style="height: 22px"></div>
         <section class="grid grid-3">
           <div class="panel stat-card"><div class="stat-number">${totals.completedLessons}/${totals.totalLessons}</div><div class="stat-label">Lessons completed across all imported certification paths</div></div>
+          <div class="panel stat-card"><div class="stat-number">${totals.submittedLabs}/${totals.totalLabs}</div><div class="stat-label">Scenario labs submitted for review</div></div>
           <div class="panel stat-card"><div class="stat-number">${totals.passedAssessments}/${totals.totalAssessments}</div><div class="stat-label">Path assessments passed</div></div>
-          <div class="panel stat-card"><div class="stat-number">${totals.earnedBadges}/${totals.totalBadges}</div><div class="stat-label">Certification badges earned</div></div>
         </section>
         <div style="height: 22px"></div>
         ${renderDatasetSummary()}
       `;
       pageRoot.querySelector('[data-action="go-paths"]')?.addEventListener('click', () => setPage('paths'));
       pageRoot.querySelector('[data-action="go-lessons"]')?.addEventListener('click', () => setPage('lessons'));
+      pageRoot.querySelector('[data-action="go-labs"]')?.addEventListener('click', () => setPage('labs'));
       pageRoot.querySelector('[data-action="go-assessments"]')?.addEventListener('click', () => setPage('assessments'));
       bindPathCardActions();
     }
@@ -977,6 +1063,7 @@
       const badge = getTrackBadges(track)[0];
       const badgeEarned = badge && state.progress.badges[badge.id];
       const lessonCount = getTrackLessons(track).length;
+      const labCount = getTrackLabs(track).length;
       const assessmentCount = getTrackAssessments(track).length;
       return `
         <article class="panel path-card ${selected ? 'selected' : ''}">
@@ -991,6 +1078,7 @@
             <p class="path-desc">${escapeHtml(track.description || '')}</p>
             <div class="path-map">
               <div class="path-map-row"><span>Lessons</span><strong>${lessonCount}</strong></div>
+              <div class="path-map-row"><span>Labs</span><strong>${labCount}</strong></div>
               <div class="path-map-row"><span>Assessments</span><strong>${assessmentCount}</strong></div>
               <div class="path-map-row"><span>Required score</span><strong>${Math.round(((track.passingScore ?? getTrackAssessments(track)[0]?.passThreshold ?? .8)) * 100)}%</strong></div>
             </div>
@@ -1004,6 +1092,7 @@
             <div class="btn-row">
               <button class="${selected ? 'secondary-btn' : 'primary-btn'}" data-select-track="${escapeAttr(track.id)}">${selected ? 'Selected Path' : 'Enter Path'}</button>
               <button class="ghost-btn" data-track-lessons="${escapeAttr(track.id)}">Lessons</button>
+              <button class="ghost-btn" data-track-labs="${escapeAttr(track.id)}">Labs</button>
               <button class="ghost-btn" data-track-assessments="${escapeAttr(track.id)}">Assessment</button>
             </div>
           </div>
@@ -1020,6 +1109,10 @@
         selectTrack(btn.dataset.trackLessons);
         setPage('lessons');
       }));
+      pageRoot.querySelectorAll('[data-track-labs]').forEach(btn => btn.addEventListener('click', () => {
+        selectTrack(btn.dataset.trackLabs);
+        setPage('labs');
+      }));
       pageRoot.querySelectorAll('[data-track-assessments]').forEach(btn => btn.addEventListener('click', () => {
         selectTrack(btn.dataset.trackAssessments);
         setPage('assessments');
@@ -1030,6 +1123,7 @@
       if (!getTrack(trackId)) return;
       state.activeTrackId = trackId;
       state.selectedLessonId = null;
+      state.selectedLabId = null;
       state.selectedAssessmentId = null;
       state.answers = {};
       state.assessmentResult = null;
@@ -1067,6 +1161,8 @@
         renderLessons();
       }));
       pageRoot.querySelector('[data-complete-lesson]')?.addEventListener('click', () => completeLesson(current.id));
+      pageRoot.querySelector('[data-lesson-note]')?.addEventListener('input', event => saveLessonNote(current.id, event.target.value));
+      pageRoot.querySelector('[data-toggle-bookmark]')?.addEventListener('click', () => toggleBookmark(current.id));
       pageRoot.querySelector('[data-next-lesson]')?.addEventListener('click', () => {
         const idx = lessons.findIndex(l => l.id === current.id);
         const next = lessons[idx + 1];
@@ -1080,6 +1176,8 @@
     }
 
     function renderLessonDetail(lesson) {
+      const bookmarked = Boolean(state.progress.bookmarks[lesson.id]);
+      const note = state.progress.notes[lesson.id] || '';
       return `
         <div class="assessment-header">
           <div>
@@ -1089,10 +1187,32 @@
           </div>
           ${state.progress.completedLessons[lesson.id] ? '<span class="pill green">Completed</span>' : '<span class="pill">Not completed</span>'}
         </div>
+        ${lesson.learningObjectives?.length ? `
+          <section class="result-box">
+            <strong>Learning objectives</strong>
+            <ul class="objective-list">${lesson.learningObjectives.map(item => `<li>${escapeHtml(item)}</li>`).join('')}</ul>
+          </section>
+          <div style="height: 16px"></div>
+        ` : ''}
         <div class="lesson-body">${renderMarkdown(lesson.content || '')}</div>
+        ${lesson.practice?.prompts?.length ? `
+          <div style="height: 20px"></div>
+          <section class="result-box">
+            <strong>Practice prompts</strong>
+            <ul class="objective-list">${lesson.practice.prompts.map(item => `<li>${escapeHtml(item)}</li>`).join('')}</ul>
+          </section>
+        ` : ''}
+        <div style="height: 20px"></div>
+        <section class="result-box">
+          <strong>Private lesson notes</strong>
+          <div style="height: 10px"></div>
+          <textarea class="text-field note-box" data-lesson-note="${escapeAttr(lesson.id)}" placeholder="Capture questions, examples, or review notes...">${escapeHtml(note)}</textarea>
+          <p class="small-note">Notes stay local and are included in your transcript export.</p>
+        </section>
         <div style="height: 20px"></div>
         <div class="btn-row">
           <button class="primary-btn" data-complete-lesson="${escapeAttr(lesson.id)}">Mark Lesson Complete</button>
+          <button class="secondary-btn" data-toggle-bookmark="${escapeAttr(lesson.id)}">${bookmarked ? 'Remove Bookmark' : 'Bookmark'}</button>
           <button class="secondary-btn" data-next-lesson="${escapeAttr(lesson.id)}">Next</button>
         </div>
       `;
@@ -1105,6 +1225,97 @@
       awardEligibleBadges();
       showToast('Lesson completed.');
       renderLessons();
+    }
+
+    function saveLessonNote(lessonId, value) {
+      state.progress.notes[lessonId] = value;
+      saveProgress();
+    }
+
+    function toggleBookmark(lessonId) {
+      if (state.progress.bookmarks[lessonId]) delete state.progress.bookmarks[lessonId];
+      else state.progress.bookmarks[lessonId] = { lessonId, savedAt: new Date().toISOString(), trackId: state.activeTrackId };
+      saveProgress();
+      renderLessons();
+    }
+
+    function renderLabs() {
+      const track = getActiveTrack();
+      if (!track) return renderSelectPathFirst('labs');
+      const labs = getTrackLabs(track);
+      const current = getLab(state.selectedLabId) || labs.find(lab => state.progress.labEvidence[lab.id]?.status !== 'submitted') || labs[0];
+      state.selectedLabId = current?.id || null;
+      pageRoot.innerHTML = `
+        <div class="eyebrow">${escapeHtml(track.title)}</div>
+        <h1 class="page-title">Scenario labs</h1>
+        <p class="page-subtitle">Labs turn lessons into field decisions. Submit concise evidence for admin review in the exported transcript.</p>
+        <div style="height: 26px"></div>
+        <div class="content-shell">
+          <aside class="panel list-panel">
+            ${labs.map(lab => {
+              const evidence = state.progress.labEvidence[lab.id];
+              return `
+                <div class="list-item ${lab.id === state.selectedLabId ? 'active' : ''} ${evidence?.status === 'submitted' ? 'done' : ''}" data-lab-id="${escapeAttr(lab.id)}">
+                  <div class="list-title">${escapeHtml(lab.title)}</div>
+                  <div class="list-meta">${escapeHtml(lab.type || 'scenario_lab')} ${lab.estimatedMinutes ? ' - ' + escapeHtml(String(lab.estimatedMinutes)) + ' min' : ''}</div>
+                </div>
+              `;
+            }).join('')}
+          </aside>
+          <article class="panel">
+            ${current ? renderLabDetail(current) : renderNoItems('No labs are assigned to this path.')}
+          </article>
+        </div>
+      `;
+      pageRoot.querySelectorAll('[data-lab-id]').forEach(el => el.addEventListener('click', () => {
+        state.selectedLabId = el.dataset.labId;
+        renderLabs();
+      }));
+      pageRoot.querySelector('[data-lab-response]')?.addEventListener('input', event => saveLabEvidence(current.id, { response: event.target.value, status: 'draft' }));
+      pageRoot.querySelector('[data-submit-lab]')?.addEventListener('click', () => {
+        const response = pageRoot.querySelector('[data-lab-response]')?.value || '';
+        saveLabEvidence(current.id, { response, status: 'submitted', submittedAt: new Date().toISOString() });
+        showToast('Lab evidence submitted locally.');
+        renderLabs();
+      });
+    }
+
+    function renderLabDetail(lab) {
+      const evidence = state.progress.labEvidence[lab.id] || {};
+      return `
+        <div class="assessment-header">
+          <div>
+            <div class="eyebrow">${escapeHtml(lab.type || 'Scenario Lab')}</div>
+            <h2 class="path-title">${escapeHtml(lab.title)}</h2>
+            <p class="path-desc">${escapeHtml(lab.scenario || '')}</p>
+          </div>
+          <span class="pill ${evidence.status === 'submitted' ? 'green' : ''}">${evidence.status === 'submitted' ? 'Submitted' : 'Draft'}</span>
+        </div>
+        <section class="result-box">
+          <strong>Lab prompts</strong>
+          <ul class="objective-list">${(lab.prompts || []).map(prompt => `<li>${escapeHtml(prompt)}</li>`).join('')}</ul>
+          ${lab.expectedEvidence ? `<p class="small-note">${escapeHtml(lab.expectedEvidence)}</p>` : ''}
+        </section>
+        <div style="height: 18px"></div>
+        <textarea class="text-field note-box" data-lab-response="${escapeAttr(lab.id)}" placeholder="Write your lab evidence here...">${escapeHtml(evidence.response || '')}</textarea>
+        <div style="height: 18px"></div>
+        <div class="btn-row">
+          <button class="primary-btn" data-submit-lab="${escapeAttr(lab.id)}">Submit Lab Evidence</button>
+        </div>
+      `;
+    }
+
+    function saveLabEvidence(labId, patch) {
+      const existing = state.progress.labEvidence[labId] || {};
+      state.progress.labEvidence[labId] = {
+        ...existing,
+        ...patch,
+        labId,
+        trackId: state.activeTrackId,
+        updatedAt: new Date().toISOString(),
+      };
+      if (patch.status === 'submitted') logEvent('lab_evidence_submitted', { labId, trackId: state.activeTrackId });
+      saveProgress();
     }
 
     function renderAssessments() {
@@ -1518,6 +1729,70 @@
       saveProgress();
     }
 
+    function renderStudyTools() {
+      const query = state.toolQuery || '';
+      const lessons = state.package.lessons || [];
+      const glossary = state.package.glossary || [];
+      const bookmarkedLessons = Object.keys(state.progress.bookmarks || {}).map(getLesson).filter(Boolean);
+      const haystack = [
+        ...lessons.map(lesson => ({ type: 'Lesson', title: lesson.title, body: `${lesson.summary || ''} ${lesson.content || ''}`, id: lesson.id })),
+        ...glossary.map(entry => ({ type: 'Glossary', title: entry.term, body: entry.definition, id: entry.term })),
+      ];
+      const matches = normalizeWhitespace(query)
+        ? haystack.filter(item => `${item.title} ${item.body}`.toLowerCase().includes(query.toLowerCase())).slice(0, 12)
+        : [];
+      pageRoot.innerHTML = `
+        <div class="eyebrow">Study Tools</div>
+        <h1 class="page-title">Search, glossary, bookmarks</h1>
+        <p class="page-subtitle">Use local study tools to review concepts, find remediation targets, and return to bookmarked lessons.</p>
+        <div style="height: 26px"></div>
+        <input class="text-field search-box" id="toolSearchInput" placeholder="Search lessons and glossary..." value="${escapeAttr(query)}" />
+        <section class="grid grid-2">
+          <article class="panel tool-card">
+            <h2 class="path-title">Search results</h2>
+            ${matches.length ? matches.map(item => `
+              <div class="source-card">
+                <span class="pill blue">${escapeHtml(item.type)}</span>
+                <h3 class="source-title">${escapeHtml(item.title)}</h3>
+                <p class="source-meta">${escapeHtml(normalizeWhitespace(item.body).slice(0, 240))}</p>
+              </div>
+            `).join('') : '<p class="path-desc">Type a term to search imported lessons and glossary entries.</p>'}
+          </article>
+          <article class="panel tool-card">
+            <h2 class="path-title">Bookmarks</h2>
+            ${bookmarkedLessons.length ? bookmarkedLessons.map(lesson => `
+              <button class="secondary-btn" data-open-bookmark="${escapeAttr(lesson.id)}">${escapeHtml(lesson.title)}</button>
+            `).join('') : '<p class="path-desc">Bookmarked lessons appear here.</p>'}
+          </article>
+        </section>
+        <div style="height: 22px"></div>
+        <section class="panel">
+          <h2 class="path-title">Glossary</h2>
+          <div class="grid grid-auto">
+            ${glossary.map(entry => `
+              <article class="source-card">
+                <h3 class="source-title">${escapeHtml(entry.term)}</h3>
+                <p class="source-meta">${escapeHtml(entry.definition)}</p>
+              </article>
+            `).join('')}
+          </div>
+        </section>
+      `;
+      pageRoot.querySelector('#toolSearchInput')?.addEventListener('input', event => {
+        state.toolQuery = event.target.value;
+        clearTimeout(renderStudyTools._timer);
+        renderStudyTools._timer = setTimeout(renderStudyTools, 180);
+      });
+      pageRoot.querySelectorAll('[data-open-bookmark]').forEach(btn => btn.addEventListener('click', () => {
+        const lesson = getLesson(btn.dataset.openBookmark);
+        if (!lesson) return;
+        state.activeTrackId = lesson.trackIds?.[0] || state.activeTrackId;
+        state.selectedLessonId = lesson.id;
+        saveActiveTrack();
+        setPage('lessons');
+      }));
+    }
+
     function renderCertifications() {
       const badges = state.package.badges || [];
       pageRoot.innerHTML = `
@@ -1592,9 +1867,12 @@
       const lessons = state.package.lessons || [];
       const assessments = state.package.assessments || [];
       const badges = state.package.badges || [];
+      const labs = state.package.labs || [];
       return {
         totalLessons: lessons.length,
         completedLessons: lessons.filter(l => state.progress.completedLessons[l.id]).length,
+        totalLabs: labs.length,
+        submittedLabs: labs.filter(l => state.progress.labEvidence[l.id]?.status === 'submitted').length,
         totalAssessments: assessments.length,
         passedAssessments: assessments.filter(a => state.progress.assessmentResults[a.id]?.passed).length,
         totalBadges: badges.length,
@@ -1605,19 +1883,23 @@
     function getTrack(trackId) { return (state.package?.tracks || []).find(t => t.id === trackId); }
     function getActiveTrack() { return getTrack(state.activeTrackId); }
     function getLesson(lessonId) { return (state.package?.lessons || []).find(l => l.id === lessonId); }
+    function getLab(labId) { return (state.package?.labs || []).find(l => l.id === labId); }
     function getAssessment(assessmentId) { return (state.package?.assessments || []).find(a => a.id === assessmentId); }
     function getBadge(badgeId) { return (state.package?.badges || []).find(b => b.id === badgeId); }
     function getTrackLessons(track) { return (track.lessonIds || []).map(getLesson).filter(Boolean); }
+    function getTrackLabs(track) { return (track.labIds || []).map(getLab).filter(Boolean); }
     function getTrackAssessments(track) { return (track.assessmentIds || []).map(getAssessment).filter(Boolean); }
     function getTrackBadges(track) { return (track.badgeIds || []).map(getBadge).filter(Boolean); }
 
     function getTrackProgress(track) {
       const lessons = getTrackLessons(track);
+      const labs = getTrackLabs(track);
       const assessments = getTrackAssessments(track);
       const lessonRatio = lessons.length ? lessons.filter(l => state.progress.completedLessons[l.id]).length / lessons.length : 0;
+      const labRatio = labs.length ? labs.filter(l => state.progress.labEvidence[l.id]?.status === 'submitted').length / labs.length : 0;
       const assessmentRatio = assessments.length ? assessments.filter(a => state.progress.assessmentResults[a.id]?.passed).length / assessments.length : 0;
-      const overall = lessons.length && assessments.length ? (lessonRatio * .55 + assessmentRatio * .45) : Math.max(lessonRatio, assessmentRatio);
-      return { lessonRatio, assessmentRatio, overall };
+      const overall = lessons.length && assessments.length ? (lessonRatio * .45 + labRatio * .20 + assessmentRatio * .35) : Math.max(lessonRatio, labRatio, assessmentRatio);
+      return { lessonRatio, labRatio, assessmentRatio, overall };
     }
 
     function clearContentLibrary() {
@@ -1627,6 +1909,7 @@
       state.package = null;
       state.activeTrackId = null;
       state.selectedLessonId = null;
+      state.selectedLabId = null;
       state.selectedAssessmentId = null;
       state.answers = {};
       state.assessmentResult = null;
@@ -1657,8 +1940,10 @@
       const payload = {
         exportedAt: new Date().toISOString(),
         libraryId: getPackageId(),
+        learner: state.progress.learner || { name: '', email: '' },
         academy: state.package.academy || {},
         sources: state.package.sources || [],
+        contentDepthVersion: state.packages.map(pkg => pkg.contentDepthVersion).filter(Boolean),
         progress: state.progress,
       };
       const blob = new Blob([JSON.stringify(payload, null, 2)], { type: 'application/json' });
