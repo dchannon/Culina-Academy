@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Culina Academy Admin Workbook</title>
+  <style>
+    :root {
+      --bg: #f4f7f6;
+      --panel: #ffffff;
+      --ink: #17201d;
+      --muted: #60706a;
+      --line: #d6e0dc;
+      --brand: #0f766e;
+      --brand-dark: #115e59;
+      --brand-soft: #dff5ef;
+      --red: #b0413e;
+      --blue: #2c5fa8;
+      --shadow: 0 10px 28px rgba(23, 32, 29, .08);
+      --radius: 8px;
+    }
+
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background: linear-gradient(180deg, #f8faf9 0%, var(--bg) 100%);
+      color: var(--ink);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      letter-spacing: 0;
+    }
+    button, input, select, textarea { font: inherit; }
+    button {
+      border: 0;
+      border-radius: var(--radius);
+      cursor: pointer;
+      min-height: 44px;
+      padding: 0 18px;
+      font-weight: 850;
+    }
+    .app { display: grid; grid-template-columns: 320px 1fr; min-height: 100vh; }
+    .sidebar {
+      border-right: 1px solid var(--line);
+      background: rgba(248, 250, 249, .94);
+      padding: 28px;
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      overflow: auto;
+    }
+    .main { padding: 34px 42px 56px; min-width: 0; }
+    .brand { display: flex; gap: 14px; align-items: center; margin-bottom: 26px; }
+    .logo {
+      width: 56px;
+      height: 56px;
+      border-radius: 16px;
+      display: grid;
+      place-items: center;
+      color: white;
+      font-weight: 950;
+      background: linear-gradient(145deg, var(--brand), #1b8f74);
+    }
+    .brand h1 { margin: 0; font-size: 23px; line-height: 1.05; }
+    .brand p { margin: 5px 0 0; color: var(--muted); font-size: 13px; font-weight: 700; }
+    .panel {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 24px;
+      box-shadow: var(--shadow);
+    }
+    .side-card { margin-bottom: 18px; }
+    .eyebrow {
+      color: var(--brand-dark);
+      text-transform: uppercase;
+      letter-spacing: .12em;
+      font-size: 12px;
+      font-weight: 950;
+      margin-bottom: 10px;
+    }
+    .page-title { margin: 0; font-size: clamp(36px, 5vw, 68px); line-height: .98; letter-spacing: 0; }
+    .page-copy { color: var(--muted); font-size: 17px; line-height: 1.65; max-width: 940px; }
+    .btn-row { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+    .primary { background: var(--brand); color: white; }
+    .secondary { background: white; color: var(--brand-dark); border: 1px solid var(--line); }
+    .danger { background: rgba(176,65,62,.08); color: var(--red); border: 1px solid rgba(176,65,62,.18); }
+    .full { width: 100%; }
+    .hidden { display: none; }
+    .grid { display: grid; gap: 18px; }
+    .grid-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .grid-2 { grid-template-columns: minmax(280px, 380px) 1fr; align-items: start; }
+    .stat { display: grid; gap: 6px; }
+    .stat-number { font-size: 36px; font-weight: 950; }
+    .stat-label { color: var(--muted); font-weight: 720; line-height: 1.45; }
+    .pill {
+      display: inline-flex;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 7px 10px;
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 850;
+      background: white;
+    }
+    .pill.green { color: var(--brand-dark); background: var(--brand-soft); border-color: rgba(15,118,110,.22); }
+    .pill.red { color: var(--red); background: rgba(176,65,62,.08); border-color: rgba(176,65,62,.18); }
+    .pill.blue { color: var(--blue); background: rgba(44,95,168,.08); border-color: rgba(44,95,168,.18); }
+    .record-list { display: grid; gap: 10px; }
+    .record-button {
+      text-align: left;
+      background: white;
+      color: var(--ink);
+      border: 1px solid var(--line);
+      padding: 14px;
+      height: auto;
+    }
+    .record-button.active { border-color: rgba(15,118,110,.45); background: var(--brand-soft); }
+    .record-title { font-weight: 950; }
+    .record-meta { color: var(--muted); font-size: 13px; margin-top: 5px; }
+    table { width: 100%; border-collapse: collapse; }
+    th, td { text-align: left; padding: 12px; border-bottom: 1px solid var(--line); vertical-align: top; }
+    th { color: var(--muted); text-transform: uppercase; letter-spacing: .08em; font-size: 12px; }
+    .field {
+      width: 100%;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      min-height: 42px;
+      padding: 10px 12px;
+      color: var(--ink);
+      background: white;
+    }
+    textarea.field { min-height: 120px; resize: vertical; }
+    .detail-stack { display: grid; gap: 18px; }
+    .small-note { color: var(--muted); font-size: 13px; line-height: 1.5; }
+    .toast {
+      position: fixed;
+      right: 26px;
+      bottom: 26px;
+      background: #17201d;
+      color: white;
+      padding: 14px 18px;
+      border-radius: var(--radius);
+      display: none;
+      max-width: 460px;
+    }
+    .toast.show { display: block; }
+    @media (max-width: 900px) {
+      .app { grid-template-columns: 1fr; }
+      .sidebar { position: relative; height: auto; }
+      .main { padding: 26px 20px 44px; }
+      .grid-2, .grid-3 { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <div class="app">
+    <aside class="sidebar">
+      <div class="brand">
+        <div class="logo">ca</div>
+        <div>
+          <h1>Culina Academy</h1>
+          <p>Admin Workbook</p>
+        </div>
+      </div>
+      <div class="panel side-card">
+        <div class="eyebrow">Transcript Intake</div>
+        <p class="page-copy">Import learner transcript JSON exports. Review state stays local in this browser.</p>
+        <button class="primary full" id="importBtn">Import Transcripts</button>
+        <input class="hidden" id="transcriptInput" type="file" accept="application/json,.json" multiple />
+      </div>
+      <div class="panel side-card">
+        <div class="eyebrow">Exports</div>
+        <div class="grid">
+          <button class="secondary full" id="exportCsvBtn">Export Roster CSV</button>
+          <button class="secondary full" id="exportReportBtn">Export Review JSON</button>
+          <button class="danger full" id="clearReviewBtn">Clear Review State</button>
+        </div>
+      </div>
+    </aside>
+
+    <main class="main">
+      <div class="eyebrow">Local Review</div>
+      <h1 class="page-title">Transcript review workspace</h1>
+      <p class="page-copy">Use this workbook to review local transcript exports, inspect evidence, record review status, and produce admin reports.</p>
+      <div style="height: 24px"></div>
+      <section class="grid grid-3" id="statsRoot"></section>
+      <div style="height: 22px"></div>
+      <section class="grid grid-2">
+        <aside class="panel">
+          <div class="eyebrow">Roster</div>
+          <div class="record-list" id="recordList"></div>
+        </aside>
+        <section class="panel" id="detailRoot"></section>
+      </section>
+    </main>
+  </div>
+  <div class="toast" id="toast"></div>
+
+  <script type="module">
+    import {
+      REVIEW_STATUSES,
+      buildReviewReport,
+      buildRosterCsv,
+      mergeReviewState,
+      summarizeTranscript,
+    } from './scripts/admin-core.mjs';
+
+    const STORAGE_REVIEW = 'culinaAcademy.adminReview.v2';
+    const state = {
+      records: [],
+      reviewState: loadReviewState(),
+      selectedId: null,
+    };
+
+    const transcriptInput = document.getElementById('transcriptInput');
+    const recordList = document.getElementById('recordList');
+    const detailRoot = document.getElementById('detailRoot');
+    const statsRoot = document.getElementById('statsRoot');
+    const toast = document.getElementById('toast');
+
+    document.getElementById('importBtn').addEventListener('click', () => transcriptInput.click());
+    transcriptInput.addEventListener('change', importTranscripts);
+    document.getElementById('exportCsvBtn').addEventListener('click', exportCsv);
+    document.getElementById('exportReportBtn').addEventListener('click', exportReport);
+    document.getElementById('clearReviewBtn').addEventListener('click', clearReviewState);
+
+    render();
+
+    async function importTranscripts(event) {
+      const files = Array.from(event.target.files || []);
+      event.target.value = '';
+      if (!files.length) return;
+      const errors = [];
+      for (const file of files) {
+        try {
+          const payload = JSON.parse(await file.text());
+          const summary = summarizeTranscript(payload, file.name);
+          const index = state.records.findIndex(record => record.transcriptId === summary.transcriptId);
+          if (index >= 0) state.records[index] = summary;
+          else state.records.push(summary);
+          state.selectedId = summary.transcriptId;
+        } catch (error) {
+          errors.push(`${file.name}: ${error.message}`);
+        }
+      }
+      render();
+      showToast(errors.length ? `Imported with ${errors.length} error(s).` : `Imported ${files.length} transcript file(s).`);
+    }
+
+    function render() {
+      const hydrated = state.records.map(record => mergeReviewState(record, state.reviewState));
+      const passed = hydrated.filter(record => record.reviewStatus === 'passed').length;
+      const followUp = hydrated.filter(record => record.reviewStatus === 'needs_follow_up').length;
+      statsRoot.innerHTML = `
+        <article class="panel stat"><div class="stat-number">${hydrated.length}</div><div class="stat-label">Imported transcripts</div></article>
+        <article class="panel stat"><div class="stat-number">${passed}</div><div class="stat-label">Marked passed</div></article>
+        <article class="panel stat"><div class="stat-number">${followUp}</div><div class="stat-label">Need follow-up</div></article>
+      `;
+      recordList.innerHTML = hydrated.length ? hydrated.map(record => `
+        <button class="record-button ${record.transcriptId === state.selectedId ? 'active' : ''}" data-record-id="${escapeAttr(record.transcriptId)}">
+          <div class="record-title">${escapeHtml(record.learnerName)}</div>
+          <div class="record-meta">${escapeHtml(record.learnerEmail || 'No email')} - ${escapeHtml(record.reviewStatus)}</div>
+        </button>
+      `).join('') : '<p class="small-note">No transcripts imported yet.</p>';
+      recordList.querySelectorAll('[data-record-id]').forEach(button => {
+        button.addEventListener('click', () => {
+          state.selectedId = button.dataset.recordId;
+          render();
+        });
+      });
+      const selected = hydrated.find(record => record.transcriptId === state.selectedId) || hydrated[0];
+      if (selected && !state.selectedId) state.selectedId = selected.transcriptId;
+      detailRoot.innerHTML = selected ? renderDetail(selected) : renderEmptyDetail();
+      bindDetail(selected);
+    }
+
+    function renderDetail(record) {
+      return `
+        <div class="detail-stack">
+          <div>
+            <div class="eyebrow">Learner Detail</div>
+            <h2 class="page-title" style="font-size:38px">${escapeHtml(record.learnerName)}</h2>
+            <p class="page-copy">${escapeHtml(record.learnerEmail || 'No email supplied')} - Exported ${escapeHtml(formatDateTime(record.exportedAt))}</p>
+            <div class="btn-row">
+              <span class="pill green">${record.assessmentsPassed}/${record.assessmentCount} assessments passed</span>
+              <span class="pill blue">${record.labsSubmitted} labs submitted</span>
+              <span class="pill">${record.badgesEarned} badges</span>
+              <span class="pill">${record.freeTextResponses} free-text responses</span>
+            </div>
+          </div>
+          <section>
+            <div class="eyebrow">Review Decision</div>
+            <select class="field" id="reviewStatus">
+              ${REVIEW_STATUSES.map(status => `<option value="${status}" ${record.reviewStatus === status ? 'selected' : ''}>${status}</option>`).join('')}
+            </select>
+            <div style="height: 10px"></div>
+            <textarea class="field" id="reviewNotes" placeholder="Reviewer notes...">${escapeHtml(record.reviewNotes || '')}</textarea>
+          </section>
+          ${renderAssessments(record)}
+          ${renderLabs(record)}
+        </div>
+      `;
+    }
+
+    function renderAssessments(record) {
+      return `
+        <section>
+          <div class="eyebrow">Assessments</div>
+          <div style="overflow:auto">
+            <table>
+              <thead><tr><th>Assessment</th><th>Score</th><th>Passed</th><th>Free Text</th></tr></thead>
+              <tbody>
+                ${record.assessments.length ? record.assessments.map(assessment => `
+                  <tr>
+                    <td>${escapeHtml(assessment.title || assessment.assessmentId || '')}</td>
+                    <td>${Math.round(Number(assessment.scorePercent || 0) * 100)}%</td>
+                    <td>${assessment.passed ? 'Yes' : 'No'}</td>
+                    <td>${(assessment.questionResults || []).filter(result => result.type === 'free_text').length}</td>
+                  </tr>
+                `).join('') : '<tr><td colspan="4">No assessment results.</td></tr>'}
+              </tbody>
+            </table>
+          </div>
+        </section>
+      `;
+    }
+
+    function renderLabs(record) {
+      const labs = Object.values(record.labEvidence || {});
+      return `
+        <section>
+          <div class="eyebrow">Lab Evidence</div>
+          ${labs.length ? labs.map(lab => `
+            <article class="panel" style="box-shadow:none">
+              <span class="pill ${lab.status === 'submitted' ? 'green' : ''}">${escapeHtml(lab.status || 'draft')}</span>
+              <p class="page-copy">${escapeHtml(lab.response || 'No response supplied.')}</p>
+            </article>
+          `).join('') : '<p class="small-note">No lab evidence in this transcript.</p>'}
+        </section>
+      `;
+    }
+
+    function bindDetail(record) {
+      if (!record) return;
+      const status = document.getElementById('reviewStatus');
+      const notes = document.getElementById('reviewNotes');
+      const save = () => {
+        state.reviewState[record.transcriptId] = {
+          status: status.value,
+          notes: notes.value,
+          reviewedAt: new Date().toISOString(),
+        };
+        saveReviewState();
+      };
+      status?.addEventListener('change', () => { save(); render(); });
+      notes?.addEventListener('input', save);
+    }
+
+    function renderEmptyDetail() {
+      return '<div class="eyebrow">No Transcript</div><h2 class="page-title" style="font-size:38px">Import learner exports</h2><p class="page-copy">Start by importing one or more transcript JSON files from the learner workbook.</p>';
+    }
+
+    function exportCsv() {
+      if (!state.records.length) return showToast('No transcripts to export.');
+      const hydrated = state.records.map(record => mergeReviewState(record, state.reviewState));
+      downloadText('culina_academy_roster_review.csv', buildRosterCsv(hydrated), 'text/csv');
+    }
+
+    function exportReport() {
+      if (!state.records.length) return showToast('No transcripts to export.');
+      const hydrated = state.records.map(record => mergeReviewState(record, state.reviewState));
+      downloadText('culina_academy_admin_review.json', JSON.stringify(buildReviewReport(hydrated, state.reviewState), null, 2), 'application/json');
+    }
+
+    function clearReviewState() {
+      if (!confirm('Clear local admin review state? Imported transcripts remain on screen.')) return;
+      state.reviewState = {};
+      saveReviewState();
+      render();
+      showToast('Review state cleared.');
+    }
+
+    function loadReviewState() {
+      try { return JSON.parse(localStorage.getItem(STORAGE_REVIEW) || '{}'); }
+      catch { return {}; }
+    }
+
+    function saveReviewState() {
+      localStorage.setItem(STORAGE_REVIEW, JSON.stringify(state.reviewState));
+    }
+
+    function downloadText(fileName, text, type) {
+      const blob = new Blob([text], { type });
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(blob);
+      a.download = fileName;
+      a.click();
+      URL.revokeObjectURL(a.href);
+    }
+
+    function escapeHtml(value) {
+      return String(value ?? '').replace(/[&<>"]/g, ch => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[ch]));
+    }
+    function escapeAttr(value) { return escapeHtml(value).replace(/'/g, '&#39;'); }
+    function formatDateTime(value) { return value ? new Date(value).toLocaleString() : ''; }
+    function showToast(message) {
+      toast.textContent = message;
+      toast.classList.add('show');
+      clearTimeout(showToast._timer);
+      showToast._timer = setTimeout(() => toast.classList.remove('show'), 3600);
+    }
+  </script>
+</body>
+</html>

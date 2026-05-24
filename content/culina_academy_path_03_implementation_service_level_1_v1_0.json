@@ -163,6 +163,19 @@
         "MOD-027",
         "MOD-032",
         "MOD-034"
+      ],
+      "labIds": [
+        "is_lab_discovery_to_metadata",
+        "is_lab_layer_design_review",
+        "is_capstone_client_onboarding"
+      ],
+      "depthLevel": "Level 1 local workbook",
+      "competencyIds": [
+        "discovery_translation",
+        "metadata_design",
+        "modeling_transformation",
+        "deployment_handoff",
+        "quality_validation"
       ]
     }
   ],
@@ -182,7 +195,30 @@
       "summary": "Understand the implementation role as a governed delivery function that turns client needs into reviewable framework artifacts and validated runtime behavior.",
       "estimatedMinutes": 12,
       "displayOrder": 1,
-      "content": "## Why this lesson matters\n\nImplementation service work is not only writing configuration. The role is to move a client engagement from requirements and discovery through model design, metadata configuration, validation, deployment readiness, and handover.\n\n## Delivery mindset\n\nA certified implementation engineer should think in phases. Requirements explain the business need, discovery explains the source reality, modeling defines the target structure, metadata defines the framework implementation, and validation proves the result. Jumping directly into JSON or metadata without this chain creates fragile delivery.\n\n## Two delivery tracks\n\nThe framework supports an artifacts-only track and a framework-deployment-enabled track. In both cases, the implementation team must produce reviewable artifacts that are understandable to the client and maintainable by the team.\n\n## Readiness expectation\n\nBy the end of this path, a learner should be able to explain how client requirements become discovery scope, model decisions, metadata configuration, validation evidence, and handover artifacts."
+      "content": "## Why this lesson matters\n\nImplementation service work is not only writing configuration. The role is to move a client engagement from requirements and discovery through model design, metadata configuration, validation, deployment readiness, and handover.\n\n## Delivery mindset\n\nA certified implementation engineer should think in phases. Requirements explain the business need, discovery explains the source reality, modeling defines the target structure, metadata defines the framework implementation, and validation proves the result. Jumping directly into JSON or metadata without this chain creates fragile delivery.\n\n## Two delivery tracks\n\nThe framework supports an artifacts-only track and a framework-deployment-enabled track. In both cases, the implementation team must produce reviewable artifacts that are understandable to the client and maintainable by the team.\n\n## Readiness expectation\n\nBy the end of this path, a learner should be able to explain how client requirements become discovery scope, model decisions, metadata configuration, validation evidence, and handover artifacts.",
+      "learningObjectives": [
+        "Explain the core decision points in Implementation Mission and Delivery Lifecycle.",
+        "Apply Implementation Mission and Delivery Lifecycle concepts to a realistic Culina delivery or support scenario."
+      ],
+      "keyTerms": [
+        "Implementation",
+        "Mission",
+        "Delivery",
+        "Lifecycle"
+      ],
+      "practice": {
+        "prompts": [
+          "Write a three-sentence field explanation of Implementation Mission and Delivery Lifecycle for a new teammate.",
+          "List one risk, one evidence source, and one safe next action related to this lesson."
+        ],
+        "expectedEvidence": "Short notes that show the learner can apply the concept, not only repeat definitions."
+      },
+      "remediation": {
+        "reviewIfMissed": "Re-read Implementation Mission and Delivery Lifecycle, then compare your answer to the assessment feedback and glossary terms.",
+        "relatedCompetencyIds": [
+          "discovery_translation"
+        ]
+      }
     },
     {
       "id": "is_lesson_002_requirement_to_framework_mapping",
@@ -199,7 +235,30 @@
       "summary": "Learn how requirement artifacts drive discovery, modeling, metadata implementation, validation, deployment timing, and estimation.",
       "estimatedMinutes": 14,
       "displayOrder": 2,
-      "content": "## Requirements are delivery-driving artifacts\n\nA requirement artifact is not just meeting notes. It is the structured business-facing source of scope and direction for downstream work.\n\n## What requirements influence\n\nA good requirement artifact should help determine:\n\n- what source behavior must be discovered\n- whether the target model may need adjustment\n- which metadata objects may change\n- what validation evidence will prove success\n- whether deployment timing should shift\n- which phases can or cannot be estimated yet\n\n## Progressive estimation\n\nThe framework should not pretend that all phases can be estimated precisely up front. Requirements define discovery scope, discovery clarifies modeling scope, modeling clarifies metadata work, and validation findings may still change delivery effort.\n\n## Common mistake\n\nThe dangerous shortcut is jumping from a requirement note directly into metadata. The safer pattern is: business need -> requirement artifact -> scoped next steps -> discovery/modeling/metadata work -> validation and delivery."
+      "content": "## Requirements are delivery-driving artifacts\n\nA requirement artifact is not just meeting notes. It is the structured business-facing source of scope and direction for downstream work.\n\n## What requirements influence\n\nA good requirement artifact should help determine:\n\n- what source behavior must be discovered\n- whether the target model may need adjustment\n- which metadata objects may change\n- what validation evidence will prove success\n- whether deployment timing should shift\n- which phases can or cannot be estimated yet\n\n## Progressive estimation\n\nThe framework should not pretend that all phases can be estimated precisely up front. Requirements define discovery scope, discovery clarifies modeling scope, modeling clarifies metadata work, and validation findings may still change delivery effort.\n\n## Common mistake\n\nThe dangerous shortcut is jumping from a requirement note directly into metadata. The safer pattern is: business need -> requirement artifact -> scoped next steps -> discovery/modeling/metadata work -> validation and delivery.",
+      "learningObjectives": [
+        "Explain the core decision points in Requirement-to-Framework Mapping.",
+        "Apply Requirement-to-Framework Mapping concepts to a realistic Culina delivery or support scenario."
+      ],
+      "keyTerms": [
+        "Requirement",
+        "Framework",
+        "Mapping",
+        "Learn"
+      ],
+      "practice": {
+        "prompts": [
+          "Write a three-sentence field explanation of Requirement-to-Framework Mapping for a new teammate.",
+          "List one risk, one evidence source, and one safe next action related to this lesson."
+        ],
+        "expectedEvidence": "Short notes that show the learner can apply the concept, not only repeat definitions."
+      },
+      "remediation": {
+        "reviewIfMissed": "Re-read Requirement-to-Framework Mapping, then compare your answer to the assessment feedback and glossary terms.",
+        "relatedCompetencyIds": [
+          "metadata_design"
+        ]
+      }
     },
     {
       "id": "is_lesson_003_source_discovery_interpretation",
@@ -216,7 +275,30 @@
       "summary": "Learn how discovery evidence becomes interpreted rules before it becomes executable framework metadata.",
       "estimatedMinutes": 15,
       "displayOrder": 3,
-      "content": "## Discovery is not copied into metadata\n\nDiscovery findings must first be interpreted into source behavior rules, business rules, data-quality constraints, grain decisions, lookup logic, fallback logic, and modeling implications. Only after those are clarified should they become executable metadata.\n\n## Standard interpretation chain\n\nThe key chain is:\n\n**Discovery evidence -> interpreted rules -> metadata design -> executable configuration**\n\n## What implementation engineers must produce\n\nA strong discovery-to-metadata workflow produces an interpreted discovery summary, metadata design decisions, draft transformation metadata, optional ingestion metadata proposals, and visible unresolved items.\n\n## Key discipline\n\nIf a discovery artifact does not answer a question, the gap should remain visible. Silent assumptions create unstable keys, incorrect joins, and weak validation."
+      "content": "## Discovery is not copied into metadata\n\nDiscovery findings must first be interpreted into source behavior rules, business rules, data-quality constraints, grain decisions, lookup logic, fallback logic, and modeling implications. Only after those are clarified should they become executable metadata.\n\n## Standard interpretation chain\n\nThe key chain is:\n\n**Discovery evidence -> interpreted rules -> metadata design -> executable configuration**\n\n## What implementation engineers must produce\n\nA strong discovery-to-metadata workflow produces an interpreted discovery summary, metadata design decisions, draft transformation metadata, optional ingestion metadata proposals, and visible unresolved items.\n\n## Key discipline\n\nIf a discovery artifact does not answer a question, the gap should remain visible. Silent assumptions create unstable keys, incorrect joins, and weak validation.",
+      "learningObjectives": [
+        "Explain the core decision points in Source Discovery Interpretation.",
+        "Apply Source Discovery Interpretation concepts to a realistic Culina delivery or support scenario."
+      ],
+      "keyTerms": [
+        "Source",
+        "Discovery",
+        "Interpretation",
+        "Learn"
+      ],
+      "practice": {
+        "prompts": [
+          "Write a three-sentence field explanation of Source Discovery Interpretation for a new teammate.",
+          "List one risk, one evidence source, and one safe next action related to this lesson."
+        ],
+        "expectedEvidence": "Short notes that show the learner can apply the concept, not only repeat definitions."
+      },
+      "remediation": {
+        "reviewIfMissed": "Re-read Source Discovery Interpretation, then compare your answer to the assessment feedback and glossary terms.",
+        "relatedCompetencyIds": [
+          "modeling_transformation"
+        ]
+      }
     },
     {
       "id": "is_lesson_004_modeling_to_metadata_decisions",
@@ -233,7 +315,30 @@
       "summary": "Translate approved model decisions into target metadata, write modes, transformation design, and validation expectations.",
       "estimatedMinutes": 15,
       "displayOrder": 4,
-      "content": "## Modeling sits between discovery and metadata\n\nThe framework should not finalize transformation metadata before the target structure is understood. Discovery explains source reality. Modeling defines target structure. Metadata implements that structure.\n\n## Decisions that shape metadata\n\nModeling decisions influence:\n\n- fact versus dimension classification\n- source and target grain\n- business keys and surrogate-key needs\n- relationship and lookup design\n- historical behavior\n- write mode\n- final projection and output schema\n\n## Fact and dimension patterns\n\nFact-like targets often use append-oriented persistence when the model supports it. Dimension-like targets default to SCD2 unless another strategy is explicitly justified. If the target grain is coarser than the source grain, aggregation should be driven by the model, not added casually during implementation.\n\n## Review expectation\n\nA reviewer should be able to see that the target metadata, transformation steps, write mode, and validation focus all implement the approved model."
+      "content": "## Modeling sits between discovery and metadata\n\nThe framework should not finalize transformation metadata before the target structure is understood. Discovery explains source reality. Modeling defines target structure. Metadata implements that structure.\n\n## Decisions that shape metadata\n\nModeling decisions influence:\n\n- fact versus dimension classification\n- source and target grain\n- business keys and surrogate-key needs\n- relationship and lookup design\n- historical behavior\n- write mode\n- final projection and output schema\n\n## Fact and dimension patterns\n\nFact-like targets often use append-oriented persistence when the model supports it. Dimension-like targets default to SCD2 unless another strategy is explicitly justified. If the target grain is coarser than the source grain, aggregation should be driven by the model, not added casually during implementation.\n\n## Review expectation\n\nA reviewer should be able to see that the target metadata, transformation steps, write mode, and validation focus all implement the approved model.",
+      "learningObjectives": [
+        "Explain the core decision points in Modeling-to-Metadata Decisions.",
+        "Apply Modeling-to-Metadata Decisions concepts to a realistic Culina delivery or support scenario."
+      ],
+      "keyTerms": [
+        "Modeling",
+        "Metadata",
+        "Decisions",
+        "Translate"
+      ],
+      "practice": {
+        "prompts": [
+          "Write a three-sentence field explanation of Modeling-to-Metadata Decisions for a new teammate.",
+          "List one risk, one evidence source, and one safe next action related to this lesson."
+        ],
+        "expectedEvidence": "Short notes that show the learner can apply the concept, not only repeat definitions."
+      },
+      "remediation": {
+        "reviewIfMissed": "Re-read Modeling-to-Metadata Decisions, then compare your answer to the assessment feedback and glossary terms.",
+        "relatedCompetencyIds": [
+          "deployment_handoff"
+        ]
+      }
     },
     {
       "id": "is_lesson_005_naming_identity_and_key_conventions",
@@ -250,7 +355,30 @@
       "summary": "Apply naming and key conventions so metadata remains readable, reviewable, portable, and technically correct.",
       "estimatedMinutes": 12,
       "displayOrder": 5,
-      "content": "## Naming is part of metadata quality\n\nBecause the framework is metadata-driven, inconsistent names make configurations harder to review, validate, deploy, and support.\n\n## Important distinctions\n\nA control-plane identifier is not a business key, surrogate key, runtime queue identifier, or batch identifier. Control-plane record identity should stay separate from business-entity identity.\n\n## Source versus target naming\n\nSource keys should reflect source reality. Target output names should align to the approved model. If internal logic must use a more technically correct source identifier than the final target label suggests, the transformation design should document that clearly.\n\n## Join and lookup naming\n\nRight-side join fields should be renamed before reuse when ambiguity is possible. SCD-aware lookups should use names clear enough to show the role of effective dates, expiry dates, and source-system alignment."
+      "content": "## Naming is part of metadata quality\n\nBecause the framework is metadata-driven, inconsistent names make configurations harder to review, validate, deploy, and support.\n\n## Important distinctions\n\nA control-plane identifier is not a business key, surrogate key, runtime queue identifier, or batch identifier. Control-plane record identity should stay separate from business-entity identity.\n\n## Source versus target naming\n\nSource keys should reflect source reality. Target output names should align to the approved model. If internal logic must use a more technically correct source identifier than the final target label suggests, the transformation design should document that clearly.\n\n## Join and lookup naming\n\nRight-side join fields should be renamed before reuse when ambiguity is possible. SCD-aware lookups should use names clear enough to show the role of effective dates, expiry dates, and source-system alignment.",
+      "learningObjectives": [
+        "Explain the core decision points in Naming, Identity, and Key Conventions.",
+        "Apply Naming, Identity, and Key Conventions concepts to a realistic Culina delivery or support scenario."
+      ],
+      "keyTerms": [
+        "Naming",
+        "Identity",
+        "Conventions",
+        "Apply"
+      ],
+      "practice": {
+        "prompts": [
+          "Write a three-sentence field explanation of Naming, Identity, and Key Conventions for a new teammate.",
+          "List one risk, one evidence source, and one safe next action related to this lesson."
+        ],
+        "expectedEvidence": "Short notes that show the learner can apply the concept, not only repeat definitions."
+      },
+      "remediation": {
+        "reviewIfMissed": "Re-read Naming, Identity, and Key Conventions, then compare your answer to the assessment feedback and glossary terms.",
+        "relatedCompetencyIds": [
+          "quality_validation"
+        ]
+      }
     },
     {
       "id": "is_lesson_006_load_strategy_and_persistence_choices",
@@ -267,7 +395,30 @@
       "summary": "Choose load modes and target write modes that align with source reliability, layer responsibility, and model intent.",
       "estimatedMinutes": 14,
       "displayOrder": 6,
-      "content": "## Load strategy is metadata-driven\n\nLoad behavior should be determined by framework configuration and layer design rather than ad hoc one-off execution logic. Source-specific technical differences should be abstracted behind standardized metadata and maintained libraries.\n\n## Common strategy guidance\n\n- Reliable incremental source: Delta ingestion\n- Unreliable delta column: Full ingestion\n- Full-only source: Full ingestion\n- Dimension ingestion: Full by default\n- INT transient model alignment: truncate_insert\n- Mapping table or SCD1-style merge target: upsert\n- Fact persistence where append is acceptable: append\n- Historized dimension persistence: scd2\n\n## Key implementation implications\n\nStaging is append-oriented. Deduplication happens before INT processing. INT is transient and rebuildable. EDW is durable and must respect fact and dimension persistence patterns. Required unit tests are part of transformation success, not optional decoration."
+      "content": "## Load strategy is metadata-driven\n\nLoad behavior should be determined by framework configuration and layer design rather than ad hoc one-off execution logic. Source-specific technical differences should be abstracted behind standardized metadata and maintained libraries.\n\n## Common strategy guidance\n\n- Reliable incremental source: Delta ingestion\n- Unreliable delta column: Full ingestion\n- Full-only source: Full ingestion\n- Dimension ingestion: Full by default\n- INT transient model alignment: truncate_insert\n- Mapping table or SCD1-style merge target: upsert\n- Fact persistence where append is acceptable: append\n- Historized dimension persistence: scd2\n\n## Key implementation implications\n\nStaging is append-oriented. Deduplication happens before INT processing. INT is transient and rebuildable. EDW is durable and must respect fact and dimension persistence patterns. Required unit tests are part of transformation success, not optional decoration.",
+      "learningObjectives": [
+        "Explain the core decision points in Load Strategy and Persistence Choices.",
+        "Apply Load Strategy and Persistence Choices concepts to a realistic Culina delivery or support scenario."
+      ],
+      "keyTerms": [
+        "Strategy",
+        "Persistence",
+        "Choices",
+        "Choose"
+      ],
+      "practice": {
+        "prompts": [
+          "Write a three-sentence field explanation of Load Strategy and Persistence Choices for a new teammate.",
+          "List one risk, one evidence source, and one safe next action related to this lesson."
+        ],
+        "expectedEvidence": "Short notes that show the learner can apply the concept, not only repeat definitions."
+      },
+      "remediation": {
+        "reviewIfMissed": "Re-read Load Strategy and Persistence Choices, then compare your answer to the assessment feedback and glossary terms.",
+        "relatedCompetencyIds": [
+          "discovery_translation"
+        ]
+      }
     },
     {
       "id": "is_lesson_007_transformation_json_patterns",
@@ -285,7 +436,30 @@
       "summary": "Build transformation logic as a full sources-target-steps contract using standardized step patterns and sequencing discipline.",
       "estimatedMinutes": 18,
       "displayOrder": 7,
-      "content": "## A transformation is more than a step list\n\nThe full transformation contract consists of `sources`, `target`, and `transformation.steps`. A reviewer cannot understand a transformation by looking only at the steps or only at the target block.\n\n## Standard step mindset\n\nTransformation logic should be expressed through standardized JSON steps such as read_source, filter, deduplicate, select, join, union, aggregate, add_system_fields, compute_hash, and write_target.\n\n## Sequencing discipline\n\nA normal transformation should declare sources and target first, read sources early, filter at the correct layer, deduplicate before downstream logic multiplies issues, shape the final output before persistence, add system fields and hashes deliberately, and produce one clear terminal working set for write_target.\n\n## Pattern examples\n\nSCD2 dimension preparation usually includes deduplication, final projection, system fields, hash computation, and scd2 write behavior. Fact append patterns usually include source reads, deduplication, final projection, system fields, and append write behavior. Aggregation belongs in a standard aggregate step when target grain requires grouping."
+      "content": "## A transformation is more than a step list\n\nThe full transformation contract consists of `sources`, `target`, and `transformation.steps`. A reviewer cannot understand a transformation by looking only at the steps or only at the target block.\n\n## Standard step mindset\n\nTransformation logic should be expressed through standardized JSON steps such as read_source, filter, deduplicate, select, join, union, aggregate, add_system_fields, compute_hash, and write_target.\n\n## Sequencing discipline\n\nA normal transformation should declare sources and target first, read sources early, filter at the correct layer, deduplicate before downstream logic multiplies issues, shape the final output before persistence, add system fields and hashes deliberately, and produce one clear terminal working set for write_target.\n\n## Pattern examples\n\nSCD2 dimension preparation usually includes deduplication, final projection, system fields, hash computation, and scd2 write behavior. Fact append patterns usually include source reads, deduplication, final projection, system fields, and append write behavior. Aggregation belongs in a standard aggregate step when target grain requires grouping.",
+      "learningObjectives": [
+        "Explain the core decision points in Transformation JSON Patterns.",
+        "Apply Transformation JSON Patterns concepts to a realistic Culina delivery or support scenario."
+      ],
+      "keyTerms": [
+        "Transformation",
+        "Patterns",
+        "Build",
+        "transformation"
+      ],
+      "practice": {
+        "prompts": [
+          "Write a three-sentence field explanation of Transformation JSON Patterns for a new teammate.",
+          "List one risk, one evidence source, and one safe next action related to this lesson."
+        ],
+        "expectedEvidence": "Short notes that show the learner can apply the concept, not only repeat definitions."
+      },
+      "remediation": {
+        "reviewIfMissed": "Re-read Transformation JSON Patterns, then compare your answer to the assessment feedback and glossary terms.",
+        "relatedCompetencyIds": [
+          "metadata_design"
+        ]
+      }
     },
     {
       "id": "is_lesson_008_validation_and_unit_test_readiness",
@@ -302,7 +476,30 @@
       "summary": "Understand validation as a layered quality gate across configuration, source readiness, transformation contracts, target writes, unit tests, and artifact identity.",
       "estimatedMinutes": 15,
       "displayOrder": 8,
-      "content": "## Validation is layered\n\nThe framework validates more than final data. Validation applies to metadata and configuration, governing export-envelope fields, source-read readiness, transformation contract coherence, target-write readiness, unit-test results, control-plane package compatibility, and runtime interpretation.\n\n## Hard-fail examples\n\nExecution should fail when the framework cannot interpret a transformation contract, when a step references an undeclared source or invalid alias, when the target write contract is incompatible with the write mode, or when required unit tests fail.\n\n## Unit tests are not decoration\n\nFor transformation jobs built through the JSON step builder, required unit tests are part of load acceptance. A written target is not automatically valid if required validation fails.\n\n## Studio validation\n\nStudio validation should be job-type driven. It should not treat every child metadata entity as universally required for every job. Errors and warnings must be interpreted differently."
+      "content": "## Validation is layered\n\nThe framework validates more than final data. Validation applies to metadata and configuration, governing export-envelope fields, source-read readiness, transformation contract coherence, target-write readiness, unit-test results, control-plane package compatibility, and runtime interpretation.\n\n## Hard-fail examples\n\nExecution should fail when the framework cannot interpret a transformation contract, when a step references an undeclared source or invalid alias, when the target write contract is incompatible with the write mode, or when required unit tests fail.\n\n## Unit tests are not decoration\n\nFor transformation jobs built through the JSON step builder, required unit tests are part of load acceptance. A written target is not automatically valid if required validation fails.\n\n## Studio validation\n\nStudio validation should be job-type driven. It should not treat every child metadata entity as universally required for every job. Errors and warnings must be interpreted differently.",
+      "learningObjectives": [
+        "Explain the core decision points in Validation and Unit-Test Readiness.",
+        "Apply Validation and Unit-Test Readiness concepts to a realistic Culina delivery or support scenario."
+      ],
+      "keyTerms": [
+        "Validation",
+        "Readiness",
+        "Understand",
+        "validation"
+      ],
+      "practice": {
+        "prompts": [
+          "Write a three-sentence field explanation of Validation and Unit-Test Readiness for a new teammate.",
+          "List one risk, one evidence source, and one safe next action related to this lesson."
+        ],
+        "expectedEvidence": "Short notes that show the learner can apply the concept, not only repeat definitions."
+      },
+      "remediation": {
+        "reviewIfMissed": "Re-read Validation and Unit-Test Readiness, then compare your answer to the assessment feedback and glossary terms.",
+        "relatedCompetencyIds": [
+          "modeling_transformation"
+        ]
+      }
     },
     {
       "id": "is_lesson_009_studio_authoring_and_copilot_boundaries",
@@ -319,7 +516,30 @@
       "summary": "Use Studio as the authoritative authoring surface and Copilot as a read-only advisory helper rather than an automatic configuration writer.",
       "estimatedMinutes": 12,
       "displayOrder": 9,
-      "content": "## Studio is authoritative\n\nMetadata Studio is the authoring and management application for framework-compatible metadata and related delivery artifacts. Approved client-scoped records belong in authoritative Studio state.\n\n## Copilot is advisory\n\nCopilot can explain framework behavior, help analyze impact, draft JSON or notes in chat, and support troubleshooting reasoning. It does not directly edit the current record, promote content, or make configuration authoritative.\n\n## Manual use boundary\n\nUseful Copilot output remains advisory until a human reviews it and manually uses it in the appropriate authoritative workflow. Implementation engineers remain responsible for validation, review, and signoff discipline.\n\n## Validation before handoff\n\nBefore export, handoff, or deployment movement, the configuration set should be validated for structural issues, broken references, and completeness issues relevant to the job type."
+      "content": "## Studio is authoritative\n\nMetadata Studio is the authoring and management application for framework-compatible metadata and related delivery artifacts. Approved client-scoped records belong in authoritative Studio state.\n\n## Copilot is advisory\n\nCopilot can explain framework behavior, help analyze impact, draft JSON or notes in chat, and support troubleshooting reasoning. It does not directly edit the current record, promote content, or make configuration authoritative.\n\n## Manual use boundary\n\nUseful Copilot output remains advisory until a human reviews it and manually uses it in the appropriate authoritative workflow. Implementation engineers remain responsible for validation, review, and signoff discipline.\n\n## Validation before handoff\n\nBefore export, handoff, or deployment movement, the configuration set should be validated for structural issues, broken references, and completeness issues relevant to the job type.",
+      "learningObjectives": [
+        "Explain the core decision points in Studio Authoring and Copilot Boundaries.",
+        "Apply Studio Authoring and Copilot Boundaries concepts to a realistic Culina delivery or support scenario."
+      ],
+      "keyTerms": [
+        "Studio",
+        "Authoring",
+        "Copilot",
+        "Boundaries"
+      ],
+      "practice": {
+        "prompts": [
+          "Write a three-sentence field explanation of Studio Authoring and Copilot Boundaries for a new teammate.",
+          "List one risk, one evidence source, and one safe next action related to this lesson."
+        ],
+        "expectedEvidence": "Short notes that show the learner can apply the concept, not only repeat definitions."
+      },
+      "remediation": {
+        "reviewIfMissed": "Re-read Studio Authoring and Copilot Boundaries, then compare your answer to the assessment feedback and glossary terms.",
+        "relatedCompetencyIds": [
+          "deployment_handoff"
+        ]
+      }
     },
     {
       "id": "is_lesson_010_reuse_handover_and_change_boundaries",
@@ -337,7 +557,30 @@
       "summary": "Decide when to use existing framework capability, client-specific metadata, or shared framework enhancement, and understand handover and change boundaries.",
       "estimatedMinutes": 13,
       "displayOrder": 10,
-      "content": "## Reuse first\n\nThe default question should be whether a client need can be solved with existing framework capability and standard patterns. If not, prefer client-specific metadata or configuration before changing shared framework behavior. Promote capability to the shared framework only when it is truly reusable.\n\n## Handover is transfer of understanding\n\nHandover is not just sending files. It should include review of the framework at a high level and the work artifacts produced, so the client and support teams understand what was created and how it connects to the solution.\n\n## Change boundary\n\nOperational recovery is not the same as release change. Changing approved metadata, shared framework behavior, control-plane packages, or environment provisioning belongs in change management and release governance.\n\n## Implementation readiness\n\nA certified implementation engineer should leave behind traceable artifacts, validated metadata, visible open questions, and enough context for managed service or future delivery teams to support the client safely."
+      "content": "## Reuse first\n\nThe default question should be whether a client need can be solved with existing framework capability and standard patterns. If not, prefer client-specific metadata or configuration before changing shared framework behavior. Promote capability to the shared framework only when it is truly reusable.\n\n## Handover is transfer of understanding\n\nHandover is not just sending files. It should include review of the framework at a high level and the work artifacts produced, so the client and support teams understand what was created and how it connects to the solution.\n\n## Change boundary\n\nOperational recovery is not the same as release change. Changing approved metadata, shared framework behavior, control-plane packages, or environment provisioning belongs in change management and release governance.\n\n## Implementation readiness\n\nA certified implementation engineer should leave behind traceable artifacts, validated metadata, visible open questions, and enough context for managed service or future delivery teams to support the client safely.",
+      "learningObjectives": [
+        "Explain the core decision points in Reuse, Handover, and Change Boundaries.",
+        "Apply Reuse, Handover, and Change Boundaries concepts to a realistic Culina delivery or support scenario."
+      ],
+      "keyTerms": [
+        "Reuse",
+        "Handover",
+        "Change",
+        "Boundaries"
+      ],
+      "practice": {
+        "prompts": [
+          "Write a three-sentence field explanation of Reuse, Handover, and Change Boundaries for a new teammate.",
+          "List one risk, one evidence source, and one safe next action related to this lesson."
+        ],
+        "expectedEvidence": "Short notes that show the learner can apply the concept, not only repeat definitions."
+      },
+      "remediation": {
+        "reviewIfMissed": "Re-read Reuse, Handover, and Change Boundaries, then compare your answer to the assessment feedback and glossary terms.",
+        "relatedCompetencyIds": [
+          "quality_validation"
+        ]
+      }
     }
   ],
   "assessments": [
@@ -1221,7 +1464,15 @@
           },
           "explanation": "The expected answer applies reuse-first, minimum-divergence thinking and avoids uncontrolled client-specific forks."
         }
-      ]
+      ],
+      "competencyCoverage": [
+        "discovery_translation",
+        "metadata_design",
+        "modeling_transformation",
+        "deployment_handoff",
+        "quality_validation"
+      ],
+      "reviewMode": "automatic_scoring_with_admin_review_for_free_text_and_labs"
     }
   ],
   "badges": [
@@ -1264,5 +1515,130 @@
     },
     "multipleChoice": "Multiple-choice questions use direct correctAnswer matching.",
     "multiSelect": "Multi-select questions require the selected option set to exactly match correctAnswer."
-  }
+  },
+  "contentDepthVersion": "2.0-local",
+  "competencies": [
+    {
+      "id": "discovery_translation",
+      "title": "Discovery translation",
+      "description": "Turns discovery evidence into framework-compatible implementation intent.",
+      "displayOrder": 1
+    },
+    {
+      "id": "metadata_design",
+      "title": "Metadata design",
+      "description": "Authors clear, traceable metadata decisions aligned to framework rules.",
+      "displayOrder": 2
+    },
+    {
+      "id": "modeling_transformation",
+      "title": "Modeling and transformation",
+      "description": "Connects grain, target intent, write behavior, and validation expectations.",
+      "displayOrder": 3
+    },
+    {
+      "id": "deployment_handoff",
+      "title": "Deployment and handoff",
+      "description": "Packages implementation outputs for controlled deployment and managed service support.",
+      "displayOrder": 4
+    },
+    {
+      "id": "quality_validation",
+      "title": "Quality validation",
+      "description": "Defines tests and acceptance evidence before implementation is considered ready.",
+      "displayOrder": 5
+    }
+  ],
+  "glossary": [
+    {
+      "term": "Discovery evidence",
+      "definition": "Raw client or source-system information that must be interpreted before it becomes metadata.",
+      "displayOrder": 1
+    },
+    {
+      "term": "Implementation intent",
+      "definition": "The approved design decision that metadata should express.",
+      "displayOrder": 2
+    },
+    {
+      "term": "Grain",
+      "definition": "The level of detail represented by a record in a source, model, or target structure.",
+      "displayOrder": 3
+    },
+    {
+      "term": "Write behavior",
+      "definition": "The configured target behavior such as append, merge, overwrite, historize, or rebuild.",
+      "displayOrder": 4
+    },
+    {
+      "term": "Handoff package",
+      "definition": "The implementation evidence, metadata, validation, and operating notes needed for support.",
+      "displayOrder": 5
+    },
+    {
+      "term": "Acceptance evidence",
+      "definition": "Proof that the delivered configuration satisfies agreed requirements and framework rules.",
+      "displayOrder": 6
+    }
+  ],
+  "labs": [
+    {
+      "id": "is_lab_discovery_to_metadata",
+      "title": "Translate discovery into metadata intent",
+      "type": "scenario_lab",
+      "scenario": "A client sends source notes, sample files, and transformation expectations.",
+      "prompts": [
+        "Identify which information is evidence versus approved metadata.",
+        "Write the implementation intent in reviewable language.",
+        "Name validation checks required before build acceptance."
+      ],
+      "estimatedMinutes": 25,
+      "competencyIds": [
+        "discovery_translation",
+        "metadata_design"
+      ],
+      "expectedEvidence": "A concise written response with decisions, reasoning, evidence checked, and handoff notes where applicable.",
+      "reviewerGuidance": "Review for framework vocabulary, correct boundaries, evidence-based decisions, and clear next actions.",
+      "displayOrder": 1
+    },
+    {
+      "id": "is_lab_layer_design_review",
+      "title": "Review a layer design decision",
+      "type": "scenario_lab",
+      "scenario": "A teammate proposes putting durable historization into Integration for speed.",
+      "prompts": [
+        "Explain the layer boundary problem.",
+        "Recommend the correct layer and write behavior.",
+        "List acceptance evidence for the corrected design."
+      ],
+      "estimatedMinutes": 25,
+      "competencyIds": [
+        "metadata_design",
+        "modeling_transformation"
+      ],
+      "expectedEvidence": "A concise written response with decisions, reasoning, evidence checked, and handoff notes where applicable.",
+      "reviewerGuidance": "Review for framework vocabulary, correct boundaries, evidence-based decisions, and clear next actions.",
+      "displayOrder": 2
+    },
+    {
+      "id": "is_capstone_client_onboarding",
+      "title": "Capstone: client onboarding design review",
+      "type": "capstone",
+      "scenario": "Prepare an implementation-readiness review for a new source onboarding.",
+      "prompts": [
+        "Summarize source grain, target intent, dependency assumptions, and validation plan.",
+        "Identify risks and open questions.",
+        "Write the handoff note managed service will need later."
+      ],
+      "estimatedMinutes": 45,
+      "competencyIds": [
+        "modeling_transformation",
+        "deployment_handoff",
+        "discovery_translation"
+      ],
+      "expectedEvidence": "A concise written response with decisions, reasoning, evidence checked, and handoff notes where applicable.",
+      "reviewerGuidance": "Review for framework vocabulary, correct boundaries, evidence-based decisions, and clear next actions.",
+      "displayOrder": 3
+    }
+  ]
 }
