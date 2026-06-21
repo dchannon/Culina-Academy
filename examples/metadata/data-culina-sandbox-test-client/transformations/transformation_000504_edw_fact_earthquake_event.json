@@ -1,0 +1,15 @@
+{
+  "id": 504,
+  "jobId": 208,
+  "transformationType": "Notebook",
+  "transformationName": "EDW_Fact_Earthquake_Event",
+  "parameters": "{\n  \"sources\": {\n    \"earthquake_event\": {\n      \"db\": \"int\",\n      \"table\": \"Earthquake_Event\",\n      \"business_keys\": [\n        \"Event_ID\"\n      ],\n      \"filter\": {\n        \"where_clause\": \"1 = 1\"\n      }\n    }\n  },\n  \"target\": {\n    \"db\": \"edw\",\n    \"table\": \"Fact_Earthquake_Event\",\n    \"business_keys\": [\n      \"Event_ID\"\n    ],\n    \"write_mode\": \"upsert\"\n  },\n  \"transformation\": {\n    \"steps\": [\n      {\n        \"step_id\": 10,\n        \"name\": \"read_earthquake_event\",\n        \"type\": \"read_source\",\n        \"config\": {\n          \"source_name\": \"earthquake_event\",\n          \"alias\": \"df_int\"\n        }\n      },\n      {\n        \"step_id\": 20,\n        \"name\": \"write_fact_earthquake_event\",\n        \"type\": \"write_target\",\n        \"config\": {\n          \"input_df\": \"df_int\"\n        }\n      }\n    ]\n  }\n}",
+  "testDataIntegrity": true,
+  "testDuplicateBks": true,
+  "testNullBks": true,
+  "createdBy": "system",
+  "createdAt": "2026-05-10T09:50:00.000Z",
+  "initialLoad": true,
+  "comments": "Upsert fact-table test using integrated earthquake events.",
+  "isActive": true
+}

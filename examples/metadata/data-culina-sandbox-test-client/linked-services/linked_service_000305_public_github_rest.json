@@ -1,0 +1,11 @@
+{
+  "id": 305,
+  "clientId": 4,
+  "sourceName": "public_github_rest",
+  "sourceType": "rest_api",
+  "configJson": "{\n  \"Endpoint\": {\n    \"BaseUrl\": \"https://api.github.com\",\n    \"Method\": \"GET\"\n  },\n  \"Auth\": {\n    \"Method\": \"None\"\n  },\n  \"Options\": {\n    \"TimeoutSeconds\": 60,\n    \"Headers\": {\n      \"Accept\": \"application/vnd.github+json\",\n      \"User-Agent\": \"data-culina-metadata-framework-sandbox\"\n    }\n  }\n}",
+  "createdBy": "system",
+  "createdAt": "2026-05-31T00:00:00.000Z",
+  "modifiedBy": "system",
+  "modifiedAt": "2026-05-31T00:00:00.000Z"
+}

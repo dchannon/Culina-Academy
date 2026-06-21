@@ -1,0 +1,17 @@
+{
+  "id": 413,
+  "jobId": 224,
+  "sourceEntityName": "StackOverflow_Questions_Delta",
+  "sourceSelectQuery": "{\n  \"path\": \"/2.3/questions\",\n  \"params\": {\n    \"site\": \"stackoverflow\",\n    \"order\": \"desc\",\n    \"sort\": \"activity\",\n    \"pagesize\": \"100\"\n  },\n  \"delta\": {\n    \"ParamName\": \"fromdate\"\n  },\n  \"flatten\": {\n    \"type\": \"flatten\",\n    \"explode\": [],\n    \"columns\": [\n      {\n        \"expr\": \"question_id\",\n        \"alias\": \"question_id\",\n        \"dtype\": \"bigint\"\n      },\n      {\n        \"expr\": \"title\",\n        \"alias\": \"question_title\",\n        \"dtype\": \"string\"\n      },\n      {\n        \"expr\": \"link\",\n        \"alias\": \"question_url\",\n        \"dtype\": \"string\"\n      },\n      {\n        \"expr\": \"creation_date\",\n        \"alias\": \"creation_date_epoch\",\n        \"dtype\": \"bigint\"\n      },\n      {\n        \"expr\": \"last_activity_date\",\n        \"alias\": \"last_activity_date\",\n        \"dtype\": \"bigint\"\n      },\n      {\n        \"expr\": \"score\",\n        \"alias\": \"score\",\n        \"dtype\": \"int\"\n      },\n      {\n        \"expr\": \"answer_count\",\n        \"alias\": \"answer_count\",\n        \"dtype\": \"int\"\n      },\n      {\n        \"expr\": \"is_answered\",\n        \"alias\": \"is_answered\",\n        \"dtype\": \"boolean\"\n      },\n      {\n        \"expr\": \"owner.user_id\",\n        \"alias\": \"owner_user_id\",\n        \"dtype\": \"bigint\"\n      },\n      {\n        \"expr\": \"owner.display_name\",\n        \"alias\": \"owner_display_name\",\n        \"dtype\": \"string\"\n      }\n    ]\n  }\n}",
+  "sourceDeltaColumn": "last_activity_date",
+  "deltaOrFull": "DELTA",
+  "fallbackWatermark": "0",
+  "linkedServiceConfigId": 306,
+  "landingFileExtension": ".parquet",
+  "deltaFileExtension": ".parquet",
+  "stagingTableName": "StackOverflow_Questions_Delta",
+  "createdBy": "system",
+  "createdAt": "2026-05-31T00:00:00.000Z",
+  "modifiedBy": "system",
+  "modifiedAt": "2026-05-31T00:00:00.000Z"
+}

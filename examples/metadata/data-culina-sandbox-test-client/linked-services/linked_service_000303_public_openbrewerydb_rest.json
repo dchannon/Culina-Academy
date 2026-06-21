@@ -1,0 +1,11 @@
+{
+  "id": 303,
+  "clientId": 4,
+  "sourceName": "public_openbrewerydb_rest",
+  "sourceType": "rest_api",
+  "configJson": "{\n  \"Endpoint\": {\n    \"BaseUrl\": \"https://api.openbrewerydb.org\",\n    \"Method\": \"GET\"\n  },\n  \"Auth\": {\n    \"Method\": \"None\"\n  },\n  \"Options\": {\n    \"TimeoutSeconds\": 60,\n    \"Headers\": {\n      \"Accept\": \"application/json\"\n    }\n  }\n}",
+  "createdBy": "system",
+  "createdAt": "2026-05-16T00:00:00.000Z",
+  "modifiedBy": "system",
+  "modifiedAt": "2026-05-16T00:00:00.000Z"
+}

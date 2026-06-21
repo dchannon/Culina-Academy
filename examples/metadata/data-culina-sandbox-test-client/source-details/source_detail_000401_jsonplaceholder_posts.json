@@ -1,0 +1,17 @@
+{
+  "id": 401,
+  "jobId": 201,
+  "sourceEntityName": "JsonPlaceholder_Posts",
+  "sourceSelectQuery": "{\n  \"path\": \"/posts\",\n  \"params\": {},\n  \"flatten\": {\n    \"type\": \"flatten\",\n    \"explode\": [],\n    \"columns\": [\n      {\n        \"expr\": \"id\",\n        \"alias\": \"post_id\",\n        \"dtype\": \"bigint\"\n      },\n      {\n        \"expr\": \"userId\",\n        \"alias\": \"author_user_id\",\n        \"dtype\": \"bigint\"\n      },\n      {\n        \"expr\": \"title\",\n        \"alias\": \"post_title\",\n        \"dtype\": \"string\"\n      },\n      {\n        \"expr\": \"body\",\n        \"alias\": \"post_body\",\n        \"dtype\": \"string\"\n      }\n    ]\n  }\n}",
+  "sourceDeltaColumn": null,
+  "deltaOrFull": "FULL",
+  "linkedServiceConfigId": 301,
+  "landingFileExtension": ".parquet",
+  "deltaFileExtension": ".parquet",
+  "stagingTableName": "JsonPlaceholder_Posts",
+  "createdBy": "system",
+  "createdAt": "2026-05-10T09:50:00.000Z",
+  "modifiedBy": "system",
+  "modifiedAt": "2026-05-10T09:50:00.000Z",
+  "fallbackWatermark": "1900-01-01T00:00:00Z"
+}

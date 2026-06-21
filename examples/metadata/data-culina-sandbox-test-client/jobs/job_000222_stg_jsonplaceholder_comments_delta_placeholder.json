@@ -1,0 +1,15 @@
+{
+  "id": 222,
+  "clientId": 4,
+  "jobType": "Ingestion",
+  "entityName": "STG.JsonPlaceholder_Comments_Delta_Placeholder",
+  "description": "Delta-load compatibility test using a legacy {{last_run_date_time}} source query placeholder.",
+  "frequencyGroup": "Sandbox Delta Test",
+  "maxRetryCount": 3,
+  "retryDelayBackoff": 60,
+  "isActive": true,
+  "createdBy": "system",
+  "createdAt": "2026-05-31T00:00:00.000Z",
+  "modifiedBy": "system",
+  "modifiedAt": "2026-05-31T00:00:00.000Z"
+}

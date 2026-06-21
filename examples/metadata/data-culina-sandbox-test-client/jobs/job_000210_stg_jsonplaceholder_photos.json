@@ -1,0 +1,15 @@
+{
+  "id": 210,
+  "clientId": 4,
+  "jobType": "Ingestion",
+  "entityName": "STG.JsonPlaceholder_Photos",
+  "description": "Ingest flattened JSONPlaceholder photos from a public REST endpoint into staging.",
+  "frequencyGroup": "Sandbox Public API",
+  "maxRetryCount": 3,
+  "retryDelayBackoff": 60,
+  "isActive": true,
+  "createdBy": "system",
+  "createdAt": "2026-05-16T00:00:00.000Z",
+  "modifiedBy": "system",
+  "modifiedAt": "2026-05-16T00:00:00.000Z"
+}

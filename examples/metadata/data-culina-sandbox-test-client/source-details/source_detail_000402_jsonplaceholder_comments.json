@@ -1,0 +1,17 @@
+{
+  "id": 402,
+  "jobId": 202,
+  "sourceEntityName": "JsonPlaceholder_Comments",
+  "sourceSelectQuery": "{\n  \"path\": \"/comments\",\n  \"params\": {},\n  \"flatten\": {\n    \"type\": \"flatten\",\n    \"explode\": [],\n    \"columns\": [\n      {\n        \"expr\": \"id\",\n        \"alias\": \"comment_id\",\n        \"dtype\": \"bigint\"\n      },\n      {\n        \"expr\": \"postId\",\n        \"alias\": \"post_id\",\n        \"dtype\": \"bigint\"\n      },\n      {\n        \"expr\": \"name\",\n        \"alias\": \"comment_name\",\n        \"dtype\": \"string\"\n      },\n      {\n        \"expr\": \"email\",\n        \"alias\": \"comment_email\",\n        \"dtype\": \"string\"\n      },\n      {\n        \"expr\": \"body\",\n        \"alias\": \"comment_body\",\n        \"dtype\": \"string\"\n      }\n    ]\n  }\n}",
+  "sourceDeltaColumn": null,
+  "deltaOrFull": "FULL",
+  "linkedServiceConfigId": 301,
+  "landingFileExtension": ".parquet",
+  "deltaFileExtension": ".parquet",
+  "stagingTableName": "JsonPlaceholder_Comments",
+  "createdBy": "system",
+  "createdAt": "2026-05-10T09:50:00.000Z",
+  "modifiedBy": "system",
+  "modifiedAt": "2026-05-10T09:50:00.000Z",
+  "fallbackWatermark": "1900-01-01T00:00:00Z"
+}

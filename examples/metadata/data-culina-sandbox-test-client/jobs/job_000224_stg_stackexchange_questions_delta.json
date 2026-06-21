@@ -1,0 +1,15 @@
+{
+  "id": 224,
+  "clientId": 4,
+  "jobType": "Ingestion",
+  "entityName": "STG.StackOverflow_Questions_Delta",
+  "description": "Public REST delta-load test using Stack Exchange questions and numeric watermark parameter injection.",
+  "frequencyGroup": "Sandbox Delta Test",
+  "maxRetryCount": 3,
+  "retryDelayBackoff": 60,
+  "isActive": true,
+  "createdBy": "system",
+  "createdAt": "2026-05-31T00:00:00.000Z",
+  "modifiedBy": "system",
+  "modifiedAt": "2026-05-31T00:00:00.000Z"
+}

@@ -1,0 +1,17 @@
+{
+  "id": 412,
+  "jobId": 223,
+  "sourceEntityName": "GitHub_Vscode_Commits_Delta",
+  "sourceSelectQuery": "{\n  \"path\": \"/repos/microsoft/vscode/commits\",\n  \"params\": {\n    \"per_page\": \"100\"\n  },\n  \"delta\": {\n    \"ParamName\": \"since\"\n  },\n  \"flatten\": {\n    \"type\": \"flatten\",\n    \"explode\": [],\n    \"columns\": [\n      {\n        \"expr\": \"sha\",\n        \"alias\": \"commit_sha\",\n        \"dtype\": \"string\"\n      },\n      {\n        \"expr\": \"commit.author.name\",\n        \"alias\": \"commit_author_name\",\n        \"dtype\": \"string\"\n      },\n      {\n        \"expr\": \"commit.author.email\",\n        \"alias\": \"commit_author_email\",\n        \"dtype\": \"string\"\n      },\n      {\n        \"expr\": \"commit.author.date\",\n        \"alias\": \"commit_author_date\",\n        \"dtype\": \"string\"\n      },\n      {\n        \"expr\": \"commit.committer.date\",\n        \"alias\": \"commit_committer_date\",\n        \"dtype\": \"string\"\n      },\n      {\n        \"expr\": \"commit.message\",\n        \"alias\": \"commit_message\",\n        \"dtype\": \"string\"\n      },\n      {\n        \"expr\": \"author.login\",\n        \"alias\": \"github_author_login\",\n        \"dtype\": \"string\"\n      },\n      {\n        \"expr\": \"html_url\",\n        \"alias\": \"commit_url\",\n        \"dtype\": \"string\"\n      }\n    ]\n  }\n}",
+  "sourceDeltaColumn": "commit_author_date",
+  "deltaOrFull": "DELTA",
+  "fallbackWatermark": "2026-01-01T00:00:00Z",
+  "linkedServiceConfigId": 305,
+  "landingFileExtension": ".parquet",
+  "deltaFileExtension": ".parquet",
+  "stagingTableName": "GitHub_Vscode_Commits_Delta",
+  "createdBy": "system",
+  "createdAt": "2026-05-31T00:00:00.000Z",
+  "modifiedBy": "system",
+  "modifiedAt": "2026-05-31T00:00:00.000Z"
+}

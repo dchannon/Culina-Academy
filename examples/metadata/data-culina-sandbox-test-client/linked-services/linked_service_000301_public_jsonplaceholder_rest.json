@@ -1,0 +1,11 @@
+{
+  "id": 301,
+  "clientId": 4,
+  "sourceName": "public_jsonplaceholder_rest",
+  "sourceType": "rest_api",
+  "configJson": "{\n  \"Endpoint\": {\n    \"BaseUrl\": \"https://jsonplaceholder.typicode.com\",\n    \"Method\": \"GET\"\n  },\n  \"Auth\": {\n    \"Method\": \"None\"\n  },\n  \"Options\": {\n    \"TimeoutSeconds\": 30,\n    \"Headers\": {\n      \"Accept\": \"application/json\"\n    }\n  }\n}",
+  "createdBy": "system",
+  "createdAt": "2026-05-10T09:50:00.000Z",
+  "modifiedBy": "system",
+  "modifiedAt": "2026-05-10T09:50:00.000Z"
+}

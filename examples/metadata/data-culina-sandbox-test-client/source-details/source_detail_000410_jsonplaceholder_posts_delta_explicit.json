@@ -1,0 +1,17 @@
+{
+  "id": 410,
+  "jobId": 221,
+  "sourceEntityName": "JsonPlaceholder_Posts_Delta_Explicit",
+  "sourceSelectQuery": "{\n  \"path\": \"/posts\",\n  \"params\": {\n    \"_limit\": \"100\"\n  },\n  \"delta\": {\n    \"ParamName\": \"_start\"\n  },\n  \"flatten\": {\n    \"type\": \"flatten\",\n    \"explode\": [],\n    \"columns\": [\n      {\n        \"expr\": \"id\",\n        \"alias\": \"post_id\",\n        \"dtype\": \"bigint\"\n      },\n      {\n        \"expr\": \"userId\",\n        \"alias\": \"author_user_id\",\n        \"dtype\": \"bigint\"\n      },\n      {\n        \"expr\": \"title\",\n        \"alias\": \"post_title\",\n        \"dtype\": \"string\"\n      },\n      {\n        \"expr\": \"body\",\n        \"alias\": \"post_body\",\n        \"dtype\": \"string\"\n      }\n    ]\n  }\n}",
+  "sourceDeltaColumn": "post_id",
+  "deltaOrFull": "DELTA",
+  "fallbackWatermark": "0",
+  "linkedServiceConfigId": 301,
+  "landingFileExtension": ".parquet",
+  "deltaFileExtension": ".parquet",
+  "stagingTableName": "JsonPlaceholder_Posts_Delta_Explicit",
+  "createdBy": "system",
+  "createdAt": "2026-05-31T00:00:00.000Z",
+  "modifiedBy": "system",
+  "modifiedAt": "2026-05-31T00:00:00.000Z"
+}

@@ -36,6 +36,19 @@ Source -> Landing -> Archive -> Delta -> Staging
 7. Add validation expectations.
 8. Connect downstream dependencies.
 
+## Control Records
+
+| Record | Required purpose |
+| --- | --- |
+| `job` | Defines the ingestion unit, retry policy, layer target, and active flag. |
+| `linked_service` | Defines source endpoint, auth mode, request method, timeout, and headers. |
+| `source_detail` | Defines source path, parameters, full or delta behavior, flattening, landing extension, delta extension, and staging table. |
+| `dependency` | Releases downstream work only after ingestion is complete. |
+
+## Sandbox Example
+
+Use `examples/metadata/data-culina-sandbox-test-client/source-details/source_detail_000401_jsonplaceholder_posts.json` with `jobs/job_000201_stg_jsonplaceholder_posts.json` as a complete REST ingestion reference.
+
 ## Common Load Strategies
 
 - `full`: reload the source snapshot for each run.

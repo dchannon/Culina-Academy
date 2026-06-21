@@ -1,0 +1,15 @@
+{
+  "id": 511,
+  "jobId": 220,
+  "transformationType": "Notebook",
+  "transformationName": "EDW_Dim_Country",
+  "parameters": "{\n  \"sources\": {\n    \"country_profile\": {\n      \"db\": \"int\",\n      \"table\": \"Country_Profile\",\n      \"business_keys\": [\n        \"Country_Code_Alpha3\"\n      ],\n      \"filter\": {\n        \"where_clause\": \"1 = 1\"\n      }\n    }\n  },\n  \"target\": {\n    \"db\": \"edw\",\n    \"table\": \"Dim_Country\",\n    \"business_keys\": [\n      \"Country_Code_Alpha3\"\n    ],\n    \"write_mode\": \"truncate_insert\"\n  },\n  \"transformation\": {\n    \"steps\": [\n      {\n        \"step_id\": 10,\n        \"name\": \"read_country_profile\",\n        \"type\": \"read_source\",\n        \"config\": {\n          \"source_name\": \"country_profile\",\n          \"alias\": \"df_int\"\n        }\n      },\n      {\n        \"step_id\": 20,\n        \"name\": \"write_dim_country\",\n        \"type\": \"write_target\",\n        \"config\": {\n          \"input_df\": \"df_int\"\n        }\n      }\n    ]\n  }\n}",
+  "testDataIntegrity": true,
+  "testDuplicateBks": true,
+  "testNullBks": true,
+  "createdBy": "system",
+  "createdAt": "2026-05-16T00:00:00.000Z",
+  "initialLoad": true,
+  "comments": "Warehouse country dimension test from integrated country profile.",
+  "isActive": true
+}

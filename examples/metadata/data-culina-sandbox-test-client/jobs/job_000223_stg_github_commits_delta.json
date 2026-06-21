@@ -1,0 +1,15 @@
+{
+  "id": 223,
+  "clientId": 4,
+  "jobType": "Ingestion",
+  "entityName": "STG.GitHub_Vscode_Commits_Delta",
+  "description": "Public REST delta-load test using GitHub commits and sourceSelectQuery.delta.ParamName.",
+  "frequencyGroup": "Sandbox Delta Test",
+  "maxRetryCount": 3,
+  "retryDelayBackoff": 60,
+  "isActive": true,
+  "createdBy": "system",
+  "createdAt": "2026-05-31T00:00:00.000Z",
+  "modifiedBy": "system",
+  "modifiedAt": "2026-05-31T00:00:00.000Z"
+}

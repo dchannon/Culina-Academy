@@ -1,0 +1,15 @@
+{
+  "id": 219,
+  "clientId": 4,
+  "jobType": "Data Warehouse",
+  "entityName": "EDW.Fact_Todo_Status",
+  "description": "Load integrated todo status summary into a warehouse fact table.",
+  "frequencyGroup": "Sandbox Public API",
+  "maxRetryCount": 3,
+  "retryDelayBackoff": 60,
+  "isActive": true,
+  "createdBy": "system",
+  "createdAt": "2026-05-16T00:00:00.000Z",
+  "modifiedBy": "system",
+  "modifiedAt": "2026-05-16T00:00:00.000Z"
+}

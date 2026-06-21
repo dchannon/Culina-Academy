@@ -1,6 +1,9 @@
 # Configuration Examples
 
-The `examples/config/sandbox-v2/` folder contains sandbox-style V2 examples for common framework configuration records.
+The repository contains two example sets:
+
+- `examples/config/sandbox-v2/` contains compact V2 configuration examples for the main job patterns.
+- `examples/metadata/data-culina-sandbox-test-client/` contains a full sandbox client metadata export with jobs, linked services, source details, transformations, and dependencies.
 
 These examples are designed to show the shape and relationships users should understand:
 
@@ -15,6 +18,7 @@ These examples are designed to show the shape and relationships users should und
 - [customer_orders_transformation_job.json](../../examples/config/sandbox-v2/customer_orders_transformation_job.json)
 - [customer_orders_dependencies.json](../../examples/config/sandbox-v2/customer_orders_dependencies.json)
 - [customer_orders_validation.json](../../examples/config/sandbox-v2/customer_orders_validation.json)
+- [Data Culina sandbox client metadata](sandbox-client-example.md)
 
 ## How To Read The Examples
 
@@ -24,6 +28,12 @@ The important relationship is:
 
 ```text
 source definition -> ingestion job -> staged output -> transformation job -> modeled output -> consumption
+```
+
+The full sandbox metadata expands this relationship into concrete control records:
+
+```text
+client -> job -> linked service -> source detail -> transformation -> dependency
 ```
 
 ## Configuration Review Questions

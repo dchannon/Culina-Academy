@@ -1,0 +1,15 @@
+{
+  "id": 205,
+  "clientId": 4,
+  "jobType": "Integration",
+  "entityName": "INT.Blog_Post_Engagement",
+  "description": "Join flattened posts, users, and comment counts into an integrated blog engagement table.",
+  "frequencyGroup": "Sandbox Public API",
+  "maxRetryCount": 3,
+  "retryDelayBackoff": 60,
+  "isActive": true,
+  "createdBy": "system",
+  "createdAt": "2026-05-10T09:50:00.000Z",
+  "modifiedBy": "system",
+  "modifiedAt": "2026-05-10T09:50:00.000Z"
+}

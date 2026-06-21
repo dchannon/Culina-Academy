@@ -29,6 +29,9 @@ test('public docs avoid withheld-content framing', async () => {
   assert.equal(combined.includes(blockedStem), false);
   assert.equal(combined.includes(`${blockedStem}ed`), false);
   assert.equal(combined.includes(`${blockedStem}ion`), false);
+  assert.equal(combined.includes('phase-based'), false);
+  assert.equal(combined.includes('phase based'), false);
+  assert.equal(combined.includes('runtime library'), false);
 });
 
 test('sandbox V2 config examples parse as JSON', async () => {
@@ -39,6 +42,48 @@ test('sandbox V2 config examples parse as JSON', async () => {
     const parsed = JSON.parse(await readFile(file, 'utf8'));
     assert.equal(parsed.schemaVersion, 'culina.framework.config.v2.example');
   }
+});
+
+test('sandbox client metadata examples parse as JSON', async () => {
+  const metadataRoot = path.join(repoRoot, 'examples', 'metadata', 'data-culina-sandbox-test-client');
+  const files = await listFiles(metadataRoot, file => file.endsWith('.json'));
+
+  assert.equal(files.length, 71);
+
+  const exportMetadata = JSON.parse(await readFile(path.join(metadataRoot, 'metadata.json'), 'utf8'));
+  assert.equal(exportMetadata.summary.jobs, 24);
+  assert.equal(exportMetadata.summary.dependencies, 15);
+  assert.equal(exportMetadata.summary.linkedServices, 6);
+  assert.equal(exportMetadata.summary.sourceDetails, 13);
+  assert.equal(exportMetadata.summary.transformations, 11);
+
+  for (const file of files) {
+    const parsed = JSON.parse(await readFile(file, 'utf8'));
+    for (const field of ['configJson', 'sourceSelectQuery', 'parameters']) {
+      if (typeof parsed[field] === 'string' && parsed[field].trim()) {
+        JSON.parse(parsed[field]);
+      }
+    }
+  }
+});
+
+test('public docs include schema, sandbox, and recovery guides', async () => {
+  const requiredFiles = [
+    'docs/architecture/control-plane-schema.md',
+    'docs/configuration/sandbox-client-example.md',
+    'docs/operations/backfill-and-recovery.md',
+    'examples/metadata/data-culina-sandbox-test-client/README.md',
+  ];
+
+  for (const rel of requiredFiles) {
+    const content = await readFile(path.join(repoRoot, rel), 'utf8');
+    assert.ok(content.trim().length > 200);
+  }
+
+  const docsIndex = await readFile(path.join(repoRoot, 'docs', 'README.md'), 'utf8');
+  assert.match(docsIndex, /Control Plane Schema/);
+  assert.match(docsIndex, /Sandbox Client Metadata Example/);
+  assert.match(docsIndex, /Backfill And Recovery/);
 });
 
 async function listFiles(root, include) {

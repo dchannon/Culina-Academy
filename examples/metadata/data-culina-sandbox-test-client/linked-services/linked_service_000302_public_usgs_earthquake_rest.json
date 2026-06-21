@@ -1,0 +1,11 @@
+{
+  "id": 302,
+  "clientId": 4,
+  "sourceName": "public_usgs_earthquake_rest",
+  "sourceType": "rest_api",
+  "configJson": "{\n  \"Endpoint\": {\n    \"BaseUrl\": \"https://earthquake.usgs.gov\",\n    \"Method\": \"GET\"\n  },\n  \"Auth\": {\n    \"Method\": \"None\"\n  },\n  \"Options\": {\n    \"TimeoutSeconds\": 60,\n    \"Headers\": {\n      \"Accept\": \"application/json\"\n    }\n  }\n}",
+  "createdBy": "system",
+  "createdAt": "2026-05-10T09:50:00.000Z",
+  "modifiedBy": "system",
+  "modifiedAt": "2026-05-10T09:50:00.000Z"
+}

@@ -1,0 +1,15 @@
+{
+  "id": 220,
+  "clientId": 4,
+  "jobType": "Data Warehouse",
+  "entityName": "EDW.Dim_Country",
+  "description": "Load integrated country profile records into a warehouse country dimension.",
+  "frequencyGroup": "Sandbox Public API",
+  "maxRetryCount": 3,
+  "retryDelayBackoff": 60,
+  "isActive": true,
+  "createdBy": "system",
+  "createdAt": "2026-05-16T00:00:00.000Z",
+  "modifiedBy": "system",
+  "modifiedAt": "2026-05-16T00:00:00.000Z"
+}

@@ -1,0 +1,15 @@
+{
+  "id": 221,
+  "clientId": 4,
+  "jobType": "Ingestion",
+  "entityName": "STG.JsonPlaceholder_Posts_Delta_Explicit",
+  "description": "Delta-load test using sourceSelectQuery.delta.ParamName to inject the runtime watermark into a public REST query parameter.",
+  "frequencyGroup": "Sandbox Delta Test",
+  "maxRetryCount": 3,
+  "retryDelayBackoff": 60,
+  "isActive": true,
+  "createdBy": "system",
+  "createdAt": "2026-05-31T00:00:00.000Z",
+  "modifiedBy": "system",
+  "modifiedAt": "2026-05-31T00:00:00.000Z"
+}

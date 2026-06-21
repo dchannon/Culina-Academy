@@ -1,0 +1,15 @@
+{
+  "id": 216,
+  "clientId": 4,
+  "jobType": "Integration",
+  "entityName": "INT.Brewery_Master",
+  "description": "Standardize Open Brewery DB brewery records for integration testing.",
+  "frequencyGroup": "Sandbox Public API",
+  "maxRetryCount": 3,
+  "retryDelayBackoff": 60,
+  "isActive": true,
+  "createdBy": "system",
+  "createdAt": "2026-05-16T00:00:00.000Z",
+  "modifiedBy": "system",
+  "modifiedAt": "2026-05-16T00:00:00.000Z"
+}

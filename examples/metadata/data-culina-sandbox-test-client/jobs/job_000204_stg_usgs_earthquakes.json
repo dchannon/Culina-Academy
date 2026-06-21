@@ -1,0 +1,15 @@
+{
+  "id": 204,
+  "clientId": 4,
+  "jobType": "Ingestion",
+  "entityName": "STG.USGS_Earthquakes",
+  "description": "Ingest flattened USGS earthquake GeoJSON features from a public REST endpoint into staging.",
+  "frequencyGroup": "Sandbox Public API",
+  "maxRetryCount": 3,
+  "retryDelayBackoff": 60,
+  "isActive": true,
+  "createdBy": "system",
+  "createdAt": "2026-05-10T09:50:00.000Z",
+  "modifiedBy": "system",
+  "modifiedAt": "2026-05-10T09:50:00.000Z"
+}

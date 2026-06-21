@@ -1,0 +1,17 @@
+{
+  "id": 411,
+  "jobId": 222,
+  "sourceEntityName": "JsonPlaceholder_Comments_Delta_Placeholder",
+  "sourceSelectQuery": "{\n  \"path\": \"/comments\",\n  \"params\": {\n    \"_limit\": \"100\",\n    \"_start\": \"{{last_run_date_time}}\"\n  },\n  \"flatten\": {\n    \"type\": \"flatten\",\n    \"explode\": [],\n    \"columns\": [\n      {\n        \"expr\": \"id\",\n        \"alias\": \"comment_id\",\n        \"dtype\": \"bigint\"\n      },\n      {\n        \"expr\": \"postId\",\n        \"alias\": \"post_id\",\n        \"dtype\": \"bigint\"\n      },\n      {\n        \"expr\": \"name\",\n        \"alias\": \"comment_name\",\n        \"dtype\": \"string\"\n      },\n      {\n        \"expr\": \"email\",\n        \"alias\": \"comment_email\",\n        \"dtype\": \"string\"\n      },\n      {\n        \"expr\": \"body\",\n        \"alias\": \"comment_body\",\n        \"dtype\": \"string\"\n      }\n    ]\n  }\n}",
+  "sourceDeltaColumn": "comment_id",
+  "deltaOrFull": "DELTA",
+  "fallbackWatermark": "0",
+  "linkedServiceConfigId": 301,
+  "landingFileExtension": ".parquet",
+  "deltaFileExtension": ".parquet",
+  "stagingTableName": "JsonPlaceholder_Comments_Delta_Placeholder",
+  "createdBy": "system",
+  "createdAt": "2026-05-31T00:00:00.000Z",
+  "modifiedBy": "system",
+  "modifiedAt": "2026-05-31T00:00:00.000Z"
+}

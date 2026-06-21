@@ -1,0 +1,15 @@
+{
+  "id": 510,
+  "jobId": 219,
+  "transformationType": "Notebook",
+  "transformationName": "EDW_Fact_Todo_Status",
+  "parameters": "{\n  \"sources\": {\n    \"user_todo_summary\": {\n      \"db\": \"int\",\n      \"table\": \"User_Todo_Summary\",\n      \"business_keys\": [\n        \"User_ID\"\n      ],\n      \"filter\": {\n        \"where_clause\": \"1 = 1\"\n      }\n    }\n  },\n  \"target\": {\n    \"db\": \"edw\",\n    \"table\": \"Fact_Todo_Status\",\n    \"business_keys\": [\n      \"User_ID\"\n    ],\n    \"write_mode\": \"upsert\"\n  },\n  \"transformation\": {\n    \"steps\": [\n      {\n        \"step_id\": 10,\n        \"name\": \"read_user_todo_summary\",\n        \"type\": \"read_source\",\n        \"config\": {\n          \"source_name\": \"user_todo_summary\",\n          \"alias\": \"df_int\"\n        }\n      },\n      {\n        \"step_id\": 20,\n        \"name\": \"write_fact_todo_status\",\n        \"type\": \"write_target\",\n        \"config\": {\n          \"input_df\": \"df_int\"\n        }\n      }\n    ]\n  }\n}",
+  "testDataIntegrity": true,
+  "testDuplicateBks": true,
+  "testNullBks": true,
+  "createdBy": "system",
+  "createdAt": "2026-05-16T00:00:00.000Z",
+  "initialLoad": true,
+  "comments": "Warehouse todo status fact test from integrated user todo summary.",
+  "isActive": true
+}

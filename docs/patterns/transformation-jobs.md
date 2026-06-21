@@ -37,6 +37,18 @@ Staging -> Integration -> EDW / Core Warehouse -> Consumption
 9. Write the target using the chosen write behavior.
 10. Run validation expectations.
 
+## Control Records
+
+| Record | Required purpose |
+| --- | --- |
+| `job` | Defines the transformation unit, retry policy, layer target, and active flag. |
+| `transformation` | Defines source aliases, filters, business keys, target table, write mode, and ordered steps. |
+| `dependency` | Ensures upstream staging or integration jobs finish before the transformation runs. |
+
+## Sandbox Example
+
+Use `examples/metadata/data-culina-sandbox-test-client/transformations/transformation_000501_int_blog_post_engagement.json` as a reference for multi-source transformation. It reads posts, comments, and users; deduplicates inputs; aggregates comments; joins user context; selects modeled columns; adds system fields; computes a hash; and writes the INT target.
+
 ## Common Write Behaviors
 
 - `append`: add new fact-like records.

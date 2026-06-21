@@ -1,0 +1,139 @@
+{
+  "version": "2.2.0",
+  "contractVersion": "2.0.0",
+  "studioName": "Metadata Config Studio",
+  "studioPublisher": "Internal",
+  "studioVersion": "0.1.30",
+  "exportedAt": "2026-05-16T00:00:00.000Z",
+  "exportedBy": "codex",
+  "clientId": 4,
+  "clientName": "Data Culina Sandbox Test Client",
+  "summary": {
+    "jobs": 24,
+    "domains": 0,
+    "domainMappings": 0,
+    "dependencies": 15,
+    "linkedServices": 6,
+    "serviceConfigs": 0,
+    "sourceDetails": 13,
+    "transformations": 11,
+    "dataModels": 0,
+    "totalEntities": 0,
+    "totalAttributes": 0,
+    "totalForeignKeys": 0,
+    "totalIndexes": 0
+  },
+  "checksums": {
+    "jobs": "6696782670e1ae43287991581bc855c793cae72734eac4342eb8d059d9f5618d",
+    "domains": "",
+    "domainMappings": "",
+    "dependencies": "fec69939875c7b737457624c489d0d45ae037d2d8ab568d31fb89e5b12cbf164",
+    "linkedServices": "bae82a06bdc5d5b28de27eeaac731628970f928ca330e369a738845127e6a54b",
+    "serviceConfigs": "",
+    "sourceDetails": "bcc058ea313af1d19be4cf061598a0af836df743c2ea2729c977de597c515c36",
+    "transformations": "53cb44d3997e4976c90a0b6cc8eb2560b202d1274fb1e82c223e5e868246ee2f",
+    "dataModels": ""
+  },
+  "idRegistry": {
+    "jobs": [
+      {
+        "oldId": 201,
+        "entityName": "STG.JsonPlaceholder_Posts"
+      },
+      {
+        "oldId": 202,
+        "entityName": "STG.JsonPlaceholder_Comments"
+      },
+      {
+        "oldId": 203,
+        "entityName": "STG.JsonPlaceholder_Users"
+      },
+      {
+        "oldId": 204,
+        "entityName": "STG.USGS_Earthquakes"
+      },
+      {
+        "oldId": 205,
+        "entityName": "INT.Blog_Post_Engagement"
+      },
+      {
+        "oldId": 206,
+        "entityName": "EDW.Dim_Blog_Post"
+      },
+      {
+        "oldId": 207,
+        "entityName": "INT.Earthquake_Event"
+      },
+      {
+        "oldId": 208,
+        "entityName": "EDW.Fact_Earthquake_Event"
+      },
+      {
+        "oldId": 209,
+        "entityName": "STG.JsonPlaceholder_Albums"
+      },
+      {
+        "oldId": 210,
+        "entityName": "STG.JsonPlaceholder_Photos"
+      },
+      {
+        "oldId": 211,
+        "entityName": "STG.JsonPlaceholder_Todos"
+      },
+      {
+        "oldId": 212,
+        "entityName": "STG.OpenBreweryDB_Breweries"
+      },
+      {
+        "oldId": 213,
+        "entityName": "STG.RestCountries_Countries"
+      },
+      {
+        "oldId": 214,
+        "entityName": "INT.Photo_Album_Stats"
+      },
+      {
+        "oldId": 215,
+        "entityName": "INT.User_Todo_Summary"
+      },
+      {
+        "oldId": 216,
+        "entityName": "INT.Brewery_Master"
+      },
+      {
+        "oldId": 217,
+        "entityName": "INT.Country_Profile"
+      },
+      {
+        "oldId": 218,
+        "entityName": "EDW.Dim_User"
+      },
+      {
+        "oldId": 219,
+        "entityName": "EDW.Fact_Todo_Status"
+      },
+      {
+        "oldId": 220,
+        "entityName": "EDW.Dim_Country"
+      },
+      {
+        "oldId": 221,
+        "entityName": "STG.JsonPlaceholder_Posts_Delta_Explicit"
+      },
+      {
+        "oldId": 222,
+        "entityName": "STG.JsonPlaceholder_Comments_Delta_Placeholder"
+      },
+      {
+        "oldId": 223,
+        "entityName": "STG.GitHub_Vscode_Commits_Delta"
+      },
+      {
+        "oldId": 224,
+        "entityName": "STG.StackOverflow_Questions_Delta"
+      }
+    ],
+    "dataModels": [],
+    "entities": []
+  }
+}

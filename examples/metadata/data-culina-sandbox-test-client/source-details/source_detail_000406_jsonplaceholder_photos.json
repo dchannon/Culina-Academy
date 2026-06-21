@@ -1,0 +1,17 @@
+{
+  "id": 406,
+  "jobId": 210,
+  "sourceEntityName": "JsonPlaceholder_Photos",
+  "sourceSelectQuery": "{\n  \"path\": \"/photos\",\n  \"params\": {},\n  \"flatten\": {\n    \"type\": \"flatten\",\n    \"explode\": [],\n    \"columns\": [\n      {\n        \"expr\": \"id\",\n        \"alias\": \"photo_id\",\n        \"dtype\": \"bigint\"\n      },\n      {\n        \"expr\": \"albumId\",\n        \"alias\": \"album_id\",\n        \"dtype\": \"bigint\"\n      },\n      {\n        \"expr\": \"title\",\n        \"alias\": \"photo_title\",\n        \"dtype\": \"string\"\n      },\n      {\n        \"expr\": \"url\",\n        \"alias\": \"photo_url\",\n        \"dtype\": \"string\"\n      },\n      {\n        \"expr\": \"thumbnailUrl\",\n        \"alias\": \"thumbnail_url\",\n        \"dtype\": \"string\"\n      }\n    ]\n  }\n}",
+  "sourceDeltaColumn": null,
+  "deltaOrFull": "FULL",
+  "fallbackWatermark": "1900-01-01T00:00:00Z",
+  "linkedServiceConfigId": 301,
+  "landingFileExtension": ".parquet",
+  "deltaFileExtension": ".parquet",
+  "stagingTableName": "JsonPlaceholder_Photos",
+  "createdBy": "system",
+  "createdAt": "2026-05-16T00:00:00.000Z",
+  "modifiedBy": "system",
+  "modifiedAt": "2026-05-16T00:00:00.000Z"
+}

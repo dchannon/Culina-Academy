@@ -6,20 +6,23 @@ Public documentation for understanding and operating the Culina framework.
 
 1. [Framework Overview](getting-started/framework-overview.md)
 2. [Control Plane Structure](architecture/control-plane.md)
-3. [Orchestration Plane Layers](architecture/orchestration-plane.md)
-4. [Data Layers](architecture/data-layers.md)
-5. [Framework Concepts](concepts/framework-concepts.md)
-6. [Configuration Examples](configuration/config-examples.md)
-7. [Ingestion Job Pattern](patterns/ingestion-jobs.md)
-8. [Transformation Job Pattern](patterns/transformation-jobs.md)
+3. [Control Plane Schema](architecture/control-plane-schema.md)
+4. [Orchestration Plane Layers](architecture/orchestration-plane.md)
+5. [Data Layers](architecture/data-layers.md)
+6. [Framework Concepts](concepts/framework-concepts.md)
+7. [Configuration Examples](configuration/config-examples.md)
+8. [Sandbox Client Metadata Example](configuration/sandbox-client-example.md)
+9. [Ingestion Job Pattern](patterns/ingestion-jobs.md)
+10. [Transformation Job Pattern](patterns/transformation-jobs.md)
 
 ## Operations
 
 1. [User Guide](getting-started/user-guide.md)
 2. [Operating Guide](operations/operating-guide.md)
-3. [Engine Diagnostics](troubleshooting/engine-diagnostics.md)
-4. [Support Handoff](troubleshooting/support-handoff.md)
-5. [Glossary](reference/glossary.md)
+3. [Backfill And Recovery](operations/backfill-and-recovery.md)
+4. [Engine Diagnostics](troubleshooting/engine-diagnostics.md)
+5. [Support Handoff](troubleshooting/support-handoff.md)
+6. [Glossary](reference/glossary.md)
 
 ## Documentation Scope
 

@@ -1,0 +1,15 @@
+{
+  "id": 213,
+  "clientId": 4,
+  "jobType": "Ingestion",
+  "entityName": "STG.RestCountries_Countries",
+  "description": "Ingest flattened REST Countries country profile records into staging.",
+  "frequencyGroup": "Sandbox Public API",
+  "maxRetryCount": 3,
+  "retryDelayBackoff": 60,
+  "isActive": true,
+  "createdBy": "system",
+  "createdAt": "2026-05-16T00:00:00.000Z",
+  "modifiedBy": "system",
+  "modifiedAt": "2026-05-16T00:00:00.000Z"
+}

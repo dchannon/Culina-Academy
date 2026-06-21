@@ -1,0 +1,17 @@
+{
+  "id": 409,
+  "jobId": 213,
+  "sourceEntityName": "RestCountries_Countries",
+  "sourceSelectQuery": "{\n  \"path\": \"/v3.1/all\",\n  \"params\": {\n    \"fields\": \"name,cca2,cca3,region,subregion,population,area,capital,latlng,timezones\"\n  },\n  \"flatten\": {\n    \"type\": \"flatten\",\n    \"explode\": [],\n    \"columns\": [\n      {\n        \"expr\": \"cca2\",\n        \"alias\": \"country_code_alpha2\",\n        \"dtype\": \"string\"\n      },\n      {\n        \"expr\": \"cca3\",\n        \"alias\": \"country_code_alpha3\",\n        \"dtype\": \"string\"\n      },\n      {\n        \"expr\": \"name.common\",\n        \"alias\": \"country_name\",\n        \"dtype\": \"string\"\n      },\n      {\n        \"expr\": \"name.official\",\n        \"alias\": \"official_country_name\",\n        \"dtype\": \"string\"\n      },\n      {\n        \"expr\": \"region\",\n        \"alias\": \"region\",\n        \"dtype\": \"string\"\n      },\n      {\n        \"expr\": \"subregion\",\n        \"alias\": \"subregion\",\n        \"dtype\": \"string\"\n      },\n      {\n        \"expr\": \"population\",\n        \"alias\": \"population\",\n        \"dtype\": \"bigint\"\n      },\n      {\n        \"expr\": \"area\",\n        \"alias\": \"area_sq_km\",\n        \"dtype\": \"double\"\n      },\n      {\n        \"expr\": \"capital[0]\",\n        \"alias\": \"capital_city\",\n        \"dtype\": \"string\"\n      },\n      {\n        \"expr\": \"latlng[0]\",\n        \"alias\": \"latitude\",\n        \"dtype\": \"double\"\n      },\n      {\n        \"expr\": \"latlng[1]\",\n        \"alias\": \"longitude\",\n        \"dtype\": \"double\"\n      },\n      {\n        \"expr\": \"timezones[0]\",\n        \"alias\": \"primary_timezone\",\n        \"dtype\": \"string\"\n      }\n    ]\n  }\n}",
+  "sourceDeltaColumn": null,
+  "deltaOrFull": "FULL",
+  "fallbackWatermark": "1900-01-01T00:00:00Z",
+  "linkedServiceConfigId": 304,
+  "landingFileExtension": ".parquet",
+  "deltaFileExtension": ".parquet",
+  "stagingTableName": "RestCountries_Countries",
+  "createdBy": "system",
+  "createdAt": "2026-05-16T00:00:00.000Z",
+  "modifiedBy": "system",
+  "modifiedAt": "2026-05-16T00:00:00.000Z"
+}

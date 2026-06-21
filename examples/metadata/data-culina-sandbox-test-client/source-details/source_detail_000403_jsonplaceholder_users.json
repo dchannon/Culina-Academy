@@ -1,0 +1,17 @@
+{
+  "id": 403,
+  "jobId": 203,
+  "sourceEntityName": "JsonPlaceholder_Users",
+  "sourceSelectQuery": "{\n  \"path\": \"/users\",\n  \"params\": {},\n  \"flatten\": {\n    \"type\": \"flatten\",\n    \"explode\": [],\n    \"columns\": [\n      {\n        \"expr\": \"id\",\n        \"alias\": \"user_id\",\n        \"dtype\": \"bigint\"\n      },\n      {\n        \"expr\": \"name\",\n        \"alias\": \"display_name\",\n        \"dtype\": \"string\"\n      },\n      {\n        \"expr\": \"username\",\n        \"alias\": \"username\",\n        \"dtype\": \"string\"\n      },\n      {\n        \"expr\": \"email\",\n        \"alias\": \"email\",\n        \"dtype\": \"string\"\n      },\n      {\n        \"expr\": \"phone\",\n        \"alias\": \"phone\",\n        \"dtype\": \"string\"\n      },\n      {\n        \"expr\": \"website\",\n        \"alias\": \"website\",\n        \"dtype\": \"string\"\n      },\n      {\n        \"expr\": \"address.street\",\n        \"alias\": \"address_street\",\n        \"dtype\": \"string\"\n      },\n      {\n        \"expr\": \"address.suite\",\n        \"alias\": \"address_suite\",\n        \"dtype\": \"string\"\n      },\n      {\n        \"expr\": \"address.city\",\n        \"alias\": \"address_city\",\n        \"dtype\": \"string\"\n      },\n      {\n        \"expr\": \"address.zipcode\",\n        \"alias\": \"address_zipcode\",\n        \"dtype\": \"string\"\n      },\n      {\n        \"expr\": \"address.geo.lat\",\n        \"alias\": \"geo_latitude\",\n        \"dtype\": \"double\"\n      },\n      {\n        \"expr\": \"address.geo.lng\",\n        \"alias\": \"geo_longitude\",\n        \"dtype\": \"double\"\n      },\n      {\n        \"expr\": \"company.name\",\n        \"alias\": \"company_name\",\n        \"dtype\": \"string\"\n      },\n      {\n        \"expr\": \"company.catchPhrase\",\n        \"alias\": \"company_catch_phrase\",\n        \"dtype\": \"string\"\n      },\n      {\n        \"expr\": \"company.bs\",\n        \"alias\": \"company_business_scope\",\n        \"dtype\": \"string\"\n      }\n    ]\n  }\n}",
+  "sourceDeltaColumn": null,
+  "deltaOrFull": "FULL",
+  "linkedServiceConfigId": 301,
+  "landingFileExtension": ".parquet",
+  "deltaFileExtension": ".parquet",
+  "stagingTableName": "JsonPlaceholder_Users",
+  "createdBy": "system",
+  "createdAt": "2026-05-10T09:50:00.000Z",
+  "modifiedBy": "system",
+  "modifiedAt": "2026-05-10T09:50:00.000Z",
+  "fallbackWatermark": "1900-01-01T00:00:00Z"
+}

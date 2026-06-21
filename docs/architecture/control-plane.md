@@ -2,7 +2,7 @@
 
 The control plane is the framework's structured operating record. It defines what work exists, how work is connected, how runtime state is tracked, and what evidence is available for support.
 
-The exact physical implementation can vary by deployment, but the conceptual structure is stable.
+For table-level detail, see [Control Plane Schema](control-plane-schema.md).
 
 ## Main Control Areas
 
@@ -15,6 +15,8 @@ The workflow catalog identifies framework-managed work. It should answer:
 - Is it active?
 - Which source and target areas does it affect?
 - Which schedule or trigger normally starts it?
+- What retry policy applies?
+- Is the job active?
 
 ### 2. Source And Connection Definitions
 
@@ -25,6 +27,8 @@ Source definitions describe what the framework expects to receive or read. Users
 - expected input shape at a high level
 - connection or location reference
 - ownership and support contact
+- full-load or delta-load behavior
+- landing, delta, and staging output expectations
 
 ### 3. Dependency Model
 
@@ -35,6 +39,7 @@ Dependency evidence should help explain:
 - which upstream work must finish first
 - whether a dependency is satisfied
 - whether a workflow is waiting, blocked, running, completed, or failed
+- which downstream jobs will be skipped or delayed if an upstream job fails
 
 ### 4. Runtime State
 
@@ -46,6 +51,9 @@ Runtime state records what happened during a run. This typically includes:
 - start and end timestamps
 - retry or attempt count, where visible
 - error message or failure context
+- queue row status
+- step-level run history
+- batch-level lifecycle
 
 ### 5. Validation And Quality Expectations
 
@@ -66,3 +74,11 @@ When diagnosing an issue, start with these questions:
 5. Which layer failed or produced unexpected output?
 6. What runtime evidence was recorded?
 7. What output was expected and what actually happened?
+
+## Configuration To Runtime Flow
+
+```text
+job definition -> source or transformation configuration -> dependency planning -> queue row -> run history -> failure or completion evidence
+```
+
+This flow is important during diagnosis. A failed queue row is not isolated; it points back to a job definition, source details, transformation parameters, dependency model, and batch context.

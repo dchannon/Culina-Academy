@@ -1,0 +1,15 @@
+{
+  "id": 502,
+  "jobId": 206,
+  "transformationType": "Notebook",
+  "transformationName": "EDW_Dim_Blog_Post",
+  "parameters": "{\n  \"sources\": {\n    \"blog_post_engagement\": {\n      \"db\": \"int\",\n      \"table\": \"Blog_Post_Engagement\",\n      \"business_keys\": [\n        \"Post_ID\"\n      ],\n      \"filter\": {\n        \"where_clause\": \"1 = 1\"\n      }\n    }\n  },\n  \"target\": {\n    \"db\": \"edw\",\n    \"table\": \"Dim_Blog_Post\",\n    \"business_keys\": [\n      \"Post_ID\"\n    ],\n    \"write_mode\": \"scd2\",\n    \"scd2\": {\n      \"surrogate_key_column\": \"Blog_Post_Key\",\n      \"effective_date_column\": \"Effective_Date\",\n      \"expiry_date_column\": \"Expiry_Date\",\n      \"current_flag_column\": \"Is_Current\",\n      \"effective_from_column\": \"stg_load_date\",\n      \"hash_column\": \"hash_value\",\n      \"infinite_future_date\": \"9999-12-31\"\n    }\n  },\n  \"transformation\": {\n    \"steps\": [\n      {\n        \"step_id\": 10,\n        \"name\": \"read_blog_post_engagement\",\n        \"type\": \"read_source\",\n        \"config\": {\n          \"source_name\": \"blog_post_engagement\",\n          \"alias\": \"df_int\"\n        }\n      },\n      {\n        \"step_id\": 20,\n        \"name\": \"write_dim_blog_post_scd2\",\n        \"type\": \"write_target\",\n        \"config\": {\n          \"input_df\": \"df_int\"\n        }\n      }\n    ]\n  }\n}",
+  "testDataIntegrity": true,
+  "testDuplicateBks": true,
+  "testNullBks": true,
+  "createdBy": "system",
+  "createdAt": "2026-05-10T09:50:00.000Z",
+  "initialLoad": true,
+  "comments": "SCD2 dimension test using integrated blog post engagement data.",
+  "isActive": true
+}
