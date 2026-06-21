@@ -1,68 +1,44 @@
 # Culina Academy
 
-Local training and review workbooks for new Culina team members.
+Public learning materials for the Data Culina framework.
 
-The repo contains a learner workbook, a separate admin workbook, and the current learning path JSON modules. Learners complete training locally and export a transcript. Admins import transcript exports locally, review evidence, and export roster/review reports.
+This repository is intended for clients, implementation partners, and users who want to understand the framework at a practical level. It explains the operating model, safe concepts, common user workflows, and troubleshooting steps without exposing proprietary product internals.
 
-## Files
+## Start Here
 
-- `index.html` - learner workbook app.
-- `admin.html` - local admin review workbook.
-- `content/culina_academy_path_01_common_foundation_v1_0.json` - Common Foundation path.
-- `content/culina_academy_path_02_managed_service_level_1_v1_0.json` - Managed Service Level 1 path.
-- `content/culina_academy_path_03_implementation_service_level_1_v1_0.json` - Implementation Service Level 1 path.
-- `docs/completion-note-template.md` - short note template for finished learners.
-- `scripts/` - local validation and admin review helpers.
-- `tests/` - Node tests for content and admin review logic.
+- [Framework Overview](docs/getting-started/framework-overview.md)
+- [Getting Started Guide](docs/getting-started/user-guide.md)
+- [Public Concepts](docs/concepts/framework-concepts.md)
+- [Troubleshooting Guide](docs/troubleshooting/engine-diagnostics.md)
+- [Support Handoff Checklist](docs/troubleshooting/support-handoff.md)
 
-## Learner Setup
+## What This Repo Covers
 
-1. Download this repo as a ZIP from GitHub.
-2. Extract the ZIP to a local folder.
-3. Open `index.html` in Chrome or Edge, preferably through the local server option below.
-4. Select `Import Track JSON`.
-5. Choose one or more files from the `content` folder. You can select all three path files at once.
-6. Add your name and email in the Learner card.
-7. Select a learning path and complete the lessons, labs, and assessment.
-8. Use lesson notes, bookmarks, search, and glossary as needed.
-9. Use `Export Transcript` when training is complete.
-10. Send the downloaded transcript JSON with a short completion note.
+- What the Culina framework is designed to help with.
+- How users should think about metadata-driven operations at a high level.
+- What evidence to collect when an engine run does not behave as expected.
+- How to describe issues clearly before contacting Data Culina support.
+- Safe terminology for public conversations.
 
-## Admin Workflow
+## What This Repo Does Not Cover
 
-1. Open `admin.html` through the local server option below.
-2. Select `Import Transcripts`.
-3. Choose one or more learner transcript JSON exports.
-4. Review each learner's scores, badges, labs, and free-text evidence.
-5. Set the review status to `needs_review`, `passed`, or `needs_follow_up`.
-6. Add reviewer notes.
-7. Export `Roster CSV` for status tracking or `Review JSON` for detailed archival.
+This repository intentionally avoids internal implementation details, proprietary metadata schemas, orchestration mechanics, deployment templates, private APIs, and internal support runbooks.
 
-## Notes
+See [Public Redaction Policy](docs/redaction-policy.md) for the content boundary.
 
-- Learner progress is stored in the local browser. Use the same browser and computer while training.
-- Admin review notes are stored in the admin browser until exported or cleared.
-- Multiple-choice and multi-select scoring run fully in the browser.
-- Free-text semantic scoring needs internet access when `Prepare Semantic Scoring` is used.
-- The transcript export is a JSON file named like `culina_academy_transcript_YYYY-MM-DD.json`.
-- Scenario labs are included in transcript exports for admin review.
+## Local Reading
 
-## Local Server Option
-
-Run a small static server from this folder for the best local experience:
+You can read the Markdown files directly in GitHub. You can also open `index.html` locally for a lightweight public landing page:
 
 ```powershell
 python -m http.server 8000
 ```
 
-Then open:
-
-- learner workbook: `http://localhost:8000`
-- admin workbook: `http://localhost:8000/admin.html`
+Then open `http://localhost:8000`.
 
 ## Validation
 
-Run local tests and content validation:
+Maintainers can run:
 
 ```powershell
 npm test
