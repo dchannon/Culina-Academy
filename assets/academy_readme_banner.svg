@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="360" viewBox="0 0 1200 360" role="img" aria-labelledby="title desc">
+  <title id="title">Data Culina Academy</title>
+  <desc id="desc">A branded banner for Culina Academy public framework documentation.</desc>
+  <defs>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#f47b20" stroke-width="1.2" opacity="0.16"/>
+    </pattern>
+  </defs>
+  <rect width="1200" height="360" fill="#f7f1e6"/>
+  <rect width="1200" height="360" fill="url(#grid)"/>
+  <rect x="0" y="0" width="1200" height="12" fill="#073f2c"/>
+  <rect x="0" y="348" width="1200" height="12" fill="#f47b20"/>
+  <circle cx="1090" cy="64" r="96" fill="#073f2c" opacity="0.08"/>
+  <circle cx="1128" cy="104" r="54" fill="#f47b20" opacity="0.16"/>
+
+  <g transform="translate(72 58)" fill="none" stroke="#073f2c" stroke-width="8" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M72 106H50C25 106 6 87 6 62S25 18 50 18c12 0 23 5 31 13C91 13 111 2 132 2s40 11 50 29c8-8 19-13 31-13 25 0 44 19 44 44s-19 44-44 44h-22l-5 78h-43l-5-78h-18l-5 78H77l-5-78Z"/>
+    <path d="M132 108v112"/>
+    <path d="M96 108v73"/>
+    <path d="M168 108v73"/>
+    <circle cx="132" cy="84" r="7" fill="#073f2c" stroke="none"/>
+    <circle cx="96" cy="204" r="8" fill="#f47b20" stroke="none"/>
+    <circle cx="132" cy="244" r="8" fill="#f47b20" stroke="none"/>
+    <circle cx="168" cy="204" r="8" fill="#f47b20" stroke="none"/>
+  </g>
+
+  <text x="360" y="118" fill="#073f2c" font-family="Georgia, 'Times New Roman', serif" font-size="72" font-weight="700">Data Culina</text>
+  <text x="360" y="172" fill="#073f2c" font-family="Arial, Helvetica, sans-serif" font-size="42" font-weight="700">Academy</text>
+  <path d="M360 198H815" stroke="#f47b20" stroke-width="6" stroke-linecap="round"/>
+  <text x="360" y="238" fill="#073f2c" font-family="Arial, Helvetica, sans-serif" font-size="26" font-weight="700">Public framework documentation for operators, clients, and users.</text>
+  <text x="360" y="276" fill="#335247" font-family="Arial, Helvetica, sans-serif" font-size="22">Control plane, orchestration layers, data layers, configuration, and diagnostics.</text>
+
+  <g font-family="Arial, Helvetica, sans-serif" font-size="15" font-weight="700" fill="#073f2c">
+    <rect x="360" y="304" width="138" height="32" fill="#fffaf1" stroke="#f47b20" stroke-width="2"/>
+    <text x="380" y="325">CONTROL PLANE</text>
+    <rect x="514" y="304" width="148" height="32" fill="#fffaf1" stroke="#f47b20" stroke-width="2"/>
+    <text x="534" y="325">CONFIGURATION</text>
+    <rect x="678" y="304" width="112" height="32" fill="#fffaf1" stroke="#f47b20" stroke-width="2"/>
+    <text x="698" y="325">OPERATIONS</text>
+    <rect x="806" y="304" width="158" height="32" fill="#fffaf1" stroke="#f47b20" stroke-width="2"/>
+    <text x="826" y="325">TROUBLESHOOTING</text>
+  </g>
+</svg>

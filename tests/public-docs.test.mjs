@@ -89,15 +89,19 @@ test('public docs include schema, sandbox, and recovery guides', async () => {
 test('public landing page uses Data Culina brand assets', async () => {
   await access(path.join(repoRoot, 'assets', 'data_culina_logo_vector.svg'));
   await access(path.join(repoRoot, 'assets', 'data_culina_icon_vector.svg'));
+  await access(path.join(repoRoot, 'assets', 'data_culina_logo_on_paper.svg'));
+  await access(path.join(repoRoot, 'assets', 'academy_readme_banner.svg'));
 
   const index = await readFile(path.join(repoRoot, 'index.html'), 'utf8');
   const readme = await readFile(path.join(repoRoot, 'README.md'), 'utf8');
+  const docsIndex = await readFile(path.join(repoRoot, 'docs', 'README.md'), 'utf8');
 
   assert.match(index, /assets\/data_culina_logo_vector\.svg/);
   assert.match(index, /assets\/data_culina_icon_vector\.svg/);
   assert.match(index, /#073f2c/);
   assert.match(index, /#f47b20/);
-  assert.match(readme, /assets\/data_culina_logo_vector\.svg/);
+  assert.match(readme, /assets\/academy_readme_banner\.svg/);
+  assert.match(docsIndex, /\.\.\/assets\/data_culina_logo_on_paper\.svg/);
 });
 
 async function listFiles(root, include) {
