@@ -1,3 +1,7 @@
+<p>
+  <img src="assets/data_culina_logo_vector.svg" alt="Data Culina" width="260">
+</p>
+
 # Culina Academy
 
 Public operating documentation for the Data Culina framework.

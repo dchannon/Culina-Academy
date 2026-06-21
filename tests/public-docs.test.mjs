@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { readdir, readFile } from 'node:fs/promises';
+import { access, readdir, readFile } from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
@@ -84,6 +84,20 @@ test('public docs include schema, sandbox, and recovery guides', async () => {
   assert.match(docsIndex, /Control Plane Schema/);
   assert.match(docsIndex, /Sandbox Client Metadata Example/);
   assert.match(docsIndex, /Backfill And Recovery/);
+});
+
+test('public landing page uses Data Culina brand assets', async () => {
+  await access(path.join(repoRoot, 'assets', 'data_culina_logo_vector.svg'));
+  await access(path.join(repoRoot, 'assets', 'data_culina_icon_vector.svg'));
+
+  const index = await readFile(path.join(repoRoot, 'index.html'), 'utf8');
+  const readme = await readFile(path.join(repoRoot, 'README.md'), 'utf8');
+
+  assert.match(index, /assets\/data_culina_logo_vector\.svg/);
+  assert.match(index, /assets\/data_culina_icon_vector\.svg/);
+  assert.match(index, /#073f2c/);
+  assert.match(index, /#f47b20/);
+  assert.match(readme, /assets\/data_culina_logo_vector\.svg/);
 });
 
 async function listFiles(root, include) {

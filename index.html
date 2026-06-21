@@ -3,166 +3,643 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Culina Academy</title>
+  <title>Data Culina Academy</title>
+  <meta name="theme-color" content="#073f2c" />
+  <link rel="icon" href="assets/data_culina_icon_vector.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,700;9..144,800;9..144,900&family=IBM+Plex+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
   <style>
     :root {
-      --bg: #f5f8f7;
-      --panel: #ffffff;
-      --ink: #17201d;
-      --muted: #60706a;
-      --line: #d6e0dc;
-      --brand: #0f766e;
-      --brand-dark: #115e59;
-      --brand-soft: #dff5ef;
-      --blue: #2c5fa8;
-      --gold: #b88412;
-      --shadow: 0 14px 36px rgba(23, 32, 29, .09);
+      --paper: #f7f1e6;
+      --paper-soft: #fffaf1;
+      --green: #073f2c;
+      --green-deep: #042e20;
+      --ink: #102923;
+      --muted: #6f8579;
+      --sage: #8da494;
+      --line: #d8cdbd;
+      --orange: #f47b20;
+      --orange-soft: #ffb366;
+      --white: #ffffff;
+      --shadow: 0 24px 70px rgba(16, 41, 35, 0.14);
+      --radius: 8px;
+      --shell: min(1180px, calc(100vw - 48px));
     }
 
     * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
     body {
+      min-width: 320px;
       margin: 0;
       color: var(--ink);
-      background: linear-gradient(180deg, #fbfdfc 0%, var(--bg) 100%);
-      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background:
+        linear-gradient(90deg, rgba(216, 205, 189, 0.22) 1px, transparent 1px) 0 0 / 72px 72px,
+        var(--paper);
+      font-family: "IBM Plex Sans", Arial, sans-serif;
+      font-size: 16px;
+      line-height: 1.5;
       letter-spacing: 0;
     }
-    a { color: inherit; }
-    .shell { max-width: 1180px; margin: 0 auto; padding: 28px 24px 64px; }
-    .nav { display: flex; justify-content: space-between; gap: 18px; align-items: center; margin-bottom: 46px; }
-    .brand { display: flex; align-items: center; gap: 14px; font-weight: 950; }
-    .mark {
-      width: 48px;
-      height: 48px;
-      border-radius: 8px;
-      display: grid;
-      place-items: center;
-      color: white;
-      background: linear-gradient(145deg, var(--brand), #1b8f74 70%, var(--gold));
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      opacity: 0.24;
+      background-image:
+        linear-gradient(rgba(7, 63, 44, 0.035) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(7, 63, 44, 0.03) 1px, transparent 1px);
+      background-size: 28px 28px;
+      mask-image: linear-gradient(to bottom, transparent, black 12%, black 84%, transparent);
     }
-    .nav-links { display: flex; flex-wrap: wrap; gap: 10px; }
-    .nav-links a, .button {
-      min-height: 42px;
+
+    a { color: inherit; }
+    img { display: block; max-width: 100%; }
+
+    .section-shell {
+      position: relative;
+      z-index: 1;
+      width: var(--shell);
+      margin: 0 auto;
+    }
+
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      display: grid;
+      grid-template-columns: auto 1fr;
+      align-items: center;
+      gap: 28px;
+      min-height: 82px;
+      padding: 18px 0 14px;
+      background: rgba(247, 241, 230, 0.92);
+      border-bottom: 1px solid rgba(141, 164, 148, 0.36);
+      backdrop-filter: blur(12px);
+    }
+
+    .brand {
       display: inline-flex;
       align-items: center;
-      justify-content: center;
-      border-radius: 8px;
-      padding: 0 16px;
-      border: 1px solid var(--line);
+      width: 218px;
       text-decoration: none;
-      font-weight: 820;
-      background: white;
     }
-    .button.primary { background: var(--brand); color: white; border-color: var(--brand); }
+
+    .brand img {
+      width: 100%;
+      height: auto;
+      filter: drop-shadow(0 8px 16px rgba(7, 63, 44, 0.08));
+    }
+
+    .nav-links {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+      gap: 22px;
+      color: var(--green);
+      font-size: 0.86rem;
+      font-weight: 800;
+      text-transform: uppercase;
+    }
+
+    .nav-links a {
+      display: inline-flex;
+      min-height: 44px;
+      align-items: center;
+      border-bottom: 2px solid transparent;
+      text-decoration: none;
+    }
+
+    .nav-links a:hover,
+    .nav-links a:focus-visible {
+      border-bottom-color: var(--orange);
+    }
+
     .hero {
       display: grid;
-      grid-template-columns: minmax(0, 1.05fr) minmax(320px, .95fr);
-      gap: 42px;
+      grid-template-columns: minmax(0, 0.92fr) minmax(390px, 1.08fr);
+      gap: 54px;
       align-items: center;
-      min-height: 560px;
+      min-height: calc(88vh - 82px);
+      padding: 76px 0 42px;
     }
-    .eyebrow {
-      color: var(--brand-dark);
+
+    .brand-line {
+      max-width: 440px;
+      margin: 0 0 26px;
+      color: var(--green);
+      font-size: 0.98rem;
+      font-weight: 800;
+      line-height: 1.45;
       text-transform: uppercase;
-      letter-spacing: .12em;
-      font-size: 12px;
-      font-weight: 950;
-      margin-bottom: 12px;
     }
-    h1 { margin: 0; font-size: clamp(42px, 7vw, 82px); line-height: .96; letter-spacing: 0; max-width: 880px; }
-    .lead { color: var(--muted); font-size: 19px; line-height: 1.65; max-width: 720px; margin: 22px 0 0; }
-    .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 28px; }
-    .map {
-      background: var(--panel);
-      border: 1px solid var(--line);
-      border-radius: 8px;
-      box-shadow: var(--shadow);
-      padding: 24px;
-      display: grid;
+
+    h1,
+    h2,
+    h3 {
+      margin: 0;
+      color: var(--green);
+    }
+
+    h1,
+    h2 {
+      font-family: "Fraunces", Georgia, serif;
+      font-weight: 900;
+    }
+
+    h1 {
+      max-width: 760px;
+      font-size: 4.75rem;
+      line-height: 0.95;
+      letter-spacing: 0;
+    }
+
+    .orange-rule {
+      width: 108px;
+      height: 6px;
+      margin: 28px 0 25px;
+      background: var(--orange);
+    }
+
+    .lead {
+      max-width: 610px;
+      margin: 0;
+      color: var(--ink);
+      font-size: 1.22rem;
+      font-weight: 500;
+      line-height: 1.45;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
       gap: 14px;
+      margin-top: 34px;
     }
-    .map-row { display: grid; grid-template-columns: 120px 1fr; gap: 12px; align-items: center; }
-    .map-label { color: var(--muted); font-size: 13px; font-weight: 850; }
-    .map-bar { min-height: 58px; border-radius: 8px; border: 1px solid var(--line); padding: 14px; background: #fbfdfc; }
-    .map-bar strong { display: block; margin-bottom: 4px; }
-    .map-bar span { color: var(--muted); font-size: 13px; line-height: 1.45; }
-    .section { margin-top: 34px; }
-    .grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; }
-    .card {
-      background: var(--panel);
-      border: 1px solid var(--line);
-      border-radius: 8px;
+
+    .button {
+      display: inline-flex;
+      min-height: 44px;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 13px 18px;
+      border: 1px solid transparent;
+      border-radius: var(--radius);
+      font-size: 0.94rem;
+      font-weight: 800;
+      text-decoration: none;
+      text-transform: uppercase;
+      transition: transform 160ms ease, box-shadow 160ms ease, background 160ms ease;
+    }
+
+    .button:hover,
+    .button:focus-visible {
+      transform: translateY(-2px);
+    }
+
+    .button-primary {
+      background: var(--green);
+      color: var(--paper-soft);
+      box-shadow: 0 14px 28px rgba(7, 63, 44, 0.22);
+    }
+
+    .button-secondary {
+      border-color: var(--line);
+      background: rgba(255, 250, 241, 0.72);
+      color: var(--green);
+    }
+
+    .button svg {
+      width: 18px;
+      height: 18px;
+      fill: none;
+      stroke: currentColor;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      stroke-width: 2.4;
+    }
+
+    .guide-board {
+      position: relative;
+      display: grid;
+      gap: 18px;
+      min-height: 540px;
+      padding: 28px;
+      overflow: hidden;
+      border-radius: var(--radius);
+      background: var(--green);
+      color: var(--paper-soft);
+      box-shadow: 0 28px 54px rgba(7, 63, 44, 0.28);
+    }
+
+    .guide-board::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(90deg, rgba(255, 250, 241, 0.08) 1px, transparent 1px),
+        linear-gradient(rgba(255, 250, 241, 0.08) 1px, transparent 1px);
+      background-size: 46px 46px;
+      mask-image: radial-gradient(circle at 50% 50%, black, transparent 74%);
+    }
+
+    .guide-card,
+    .engine-card {
+      position: relative;
+      z-index: 1;
+      border-radius: var(--radius);
+    }
+
+    .guide-card {
+      display: grid;
+      gap: 8px;
+      min-height: 132px;
+      align-content: center;
+      padding: 24px 28px;
+      background: var(--paper-soft);
+      color: var(--green);
+    }
+
+    .guide-card span,
+    .board-label {
+      color: var(--orange);
+      font-size: 0.78rem;
+      font-weight: 900;
+      text-transform: uppercase;
+    }
+
+    .guide-card strong {
+      font-family: "Fraunces", Georgia, serif;
+      font-size: 1.58rem;
+      line-height: 1;
+    }
+
+    .guide-card small {
+      color: var(--ink);
+      font-size: 0.92rem;
+      line-height: 1.35;
+    }
+
+    .engine-card {
+      display: grid;
+      min-height: 176px;
+      place-items: center;
       padding: 22px;
-      box-shadow: var(--shadow);
-      min-height: 190px;
+      border: 1px solid rgba(255, 250, 241, 0.38);
+      background: var(--green-deep);
+      text-align: center;
     }
-    .card h2 { margin: 0 0 10px; font-size: 24px; }
-    .card p { color: var(--muted); line-height: 1.6; margin: 0 0 18px; }
-    @media (max-width: 900px) {
-      .hero, .grid { grid-template-columns: 1fr; }
-      .nav { align-items: flex-start; flex-direction: column; }
+
+    .engine-card::before,
+    .engine-card::after {
+      content: "";
+      position: absolute;
+      left: 50%;
+      width: 18px;
+      height: 18px;
+      border: 3px solid var(--orange);
+      border-radius: 50%;
+      background: var(--green-deep);
+      box-shadow: 0 0 0 7px rgba(244, 123, 32, 0.12), 0 0 20px rgba(244, 123, 32, 0.56);
+      transform: translateX(-50%);
+    }
+
+    .engine-card::before { top: -11px; }
+    .engine-card::after { bottom: -11px; }
+
+    .engine-card img {
+      width: 92px;
+      height: auto;
+      margin-bottom: 10px;
+      filter: brightness(0) invert(1);
+    }
+
+    .engine-card strong {
+      color: var(--paper-soft);
+      font-size: 1rem;
+      text-transform: uppercase;
+    }
+
+    .engine-card small {
+      color: rgba(255, 250, 241, 0.8);
+      font-size: 0.78rem;
+      font-weight: 700;
+    }
+
+    .section {
+      padding: 42px 0 78px;
+      border-top: 1px solid var(--line);
+    }
+
+    .section-heading {
+      display: grid;
+      grid-template-columns: minmax(0, 0.92fr) minmax(300px, 0.7fr);
+      gap: 48px;
+      align-items: end;
+      margin-bottom: 28px;
+      padding-bottom: 18px;
+      border-bottom: 1px solid rgba(7, 63, 44, 0.14);
+    }
+
+    .section-heading h2 {
+      max-width: 720px;
+      font-size: 3rem;
+      line-height: 1;
+    }
+
+    .section-heading p {
+      margin: 0;
+      color: var(--ink);
+      font-size: 1.04rem;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 20px;
+      padding: 26px;
+      border: 1px solid rgba(7, 63, 44, 0.12);
+      border-radius: var(--radius);
+      background: rgba(7, 63, 44, 0.06);
+    }
+
+    .card {
+      position: relative;
+      display: grid;
+      min-height: 248px;
+      padding: 28px;
+      overflow: hidden;
+      border: 1px solid rgba(216, 205, 189, 0.9);
+      border-radius: var(--radius);
+      background: var(--paper-soft);
+      transition: transform 180ms ease, box-shadow 180ms ease, border-color 180ms ease;
+    }
+
+    .card::before {
+      content: "";
+      position: absolute;
+      inset: 0 28px auto;
+      height: 3px;
+      background: var(--orange);
+    }
+
+    .card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(244, 123, 32, 0.4);
+      box-shadow: 0 18px 38px rgba(16, 41, 35, 0.1);
+    }
+
+    .card-number {
+      display: grid;
+      width: 58px;
+      height: 58px;
+      place-items: center;
+      margin-bottom: 22px;
+      border-radius: 50%;
+      background: rgba(244, 123, 32, 0.1);
+      color: var(--orange);
+      font-weight: 900;
+    }
+
+    .card h2 {
+      margin: 0 0 12px;
+      font-family: "Fraunces", Georgia, serif;
+      font-size: 1.55rem;
+      line-height: 1.06;
+    }
+
+    .card p {
+      margin: 0 0 22px;
+      color: var(--ink);
+      line-height: 1.48;
+    }
+
+    .card .button {
+      align-self: end;
+      justify-self: start;
+    }
+
+    .site-footer {
+      display: flex;
+      min-height: 82px;
+      align-items: center;
+      justify-content: center;
+      gap: 18px;
+      padding: 22px 0 34px;
+      color: var(--green);
+      font-weight: 900;
+      text-transform: uppercase;
+    }
+
+    .site-footer i {
+      display: block;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--orange);
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        scroll-behavior: auto !important;
+        transition: none !important;
+      }
+    }
+
+    @media (max-width: 1020px) {
+      .site-header,
+      .hero,
+      .section-heading {
+        grid-template-columns: 1fr;
+      }
+
+      .site-header {
+        align-items: start;
+      }
+
+      .nav-links {
+        justify-content: flex-start;
+      }
+
+      .hero {
+        min-height: auto;
+        padding-top: 38px;
+      }
+
+      .grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 720px) {
+      :root { --shell: min(100vw - 28px, 680px); }
+
+      body { background: var(--paper); }
+
+      .site-header {
+        min-height: 66px;
+        gap: 12px;
+      }
+
+      .brand { width: 154px; }
+
+      .nav-links {
+        gap: 12px;
+        font-size: 0.76rem;
+      }
+
+      h1 { font-size: 2.65rem; }
+
+      .section-heading h2 { font-size: 2.18rem; }
+
+      .brand-line { font-size: 0.85rem; }
+
+      .lead { font-size: 1rem; }
+
+      .hero-actions,
+      .button {
+        width: 100%;
+      }
+
+      .button {
+        justify-content: space-between;
+      }
+
+      .guide-board,
+      .grid,
+      .card {
+        padding: 24px;
+      }
+
+      .guide-board {
+        min-height: auto;
+      }
+
+      .section {
+        padding-bottom: 54px;
+      }
+
+      .site-footer {
+        flex-wrap: wrap;
+        gap: 10px;
+        font-size: 0.8rem;
+      }
     }
   </style>
 </head>
 <body>
-  <div class="shell">
-    <nav class="nav">
-      <div class="brand"><div class="mark">ca</div><span>Culina Academy</span></div>
-      <div class="nav-links">
-        <a href="docs/getting-started/framework-overview.md">Overview</a>
-        <a href="docs/architecture/control-plane.md">Control Plane</a>
-        <a href="docs/architecture/control-plane-schema.md">Schema</a>
-        <a href="docs/configuration/config-examples.md">Config Examples</a>
-        <a href="docs/troubleshooting/engine-diagnostics.md">Troubleshooting</a>
-      </div>
+  <header class="site-header section-shell">
+    <a class="brand" href="index.html" aria-label="Data Culina Academy home">
+      <img src="assets/data_culina_logo_vector.svg" alt="Data Culina" />
+    </a>
+    <nav class="nav-links" aria-label="Primary navigation">
+      <a href="docs/getting-started/framework-overview.md">Overview</a>
+      <a href="docs/architecture/control-plane.md">Control Plane</a>
+      <a href="docs/architecture/control-plane-schema.md">Schema</a>
+      <a href="docs/configuration/config-examples.md">Config Examples</a>
+      <a href="docs/troubleshooting/engine-diagnostics.md">Troubleshooting</a>
     </nav>
+  </header>
 
-    <main>
-      <section class="hero">
-        <div>
-          <div class="eyebrow">Public Framework Guide</div>
-          <h1>Understand and operate the Culina framework.</h1>
-          <p class="lead">Culina Academy gives clients and users a practical guide to the control plane, orchestration layers, data layers, configuration examples, and operating diagnostics.</p>
-          <div class="hero-actions">
-            <a class="button primary" href="docs/getting-started/framework-overview.md">Read the Overview</a>
-            <a class="button" href="docs/configuration/sandbox-client-example.md">View Sandbox Metadata</a>
-          </div>
+  <main>
+    <section class="hero section-shell">
+      <div>
+        <p class="brand-line">Cooking better data. Serving better outcomes.</p>
+        <h1>Understand and operate the Culina framework.</h1>
+        <div class="orange-rule"></div>
+        <p class="lead">Culina Academy gives clients and users a practical guide to the control plane, orchestration layers, data layers, configuration examples, and operating diagnostics.</p>
+        <div class="hero-actions">
+          <a class="button button-primary" href="docs/getting-started/framework-overview.md">
+            <span>Read the Overview</span>
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M5 12h13m-5-5 5 5-5 5" />
+            </svg>
+          </a>
+          <a class="button button-secondary" href="docs/configuration/sandbox-client-example.md">
+            <span>View Sandbox Metadata</span>
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M7 17 17 7M9 7h8v8" />
+            </svg>
+          </a>
         </div>
-        <aside class="map" aria-label="Framework concept map">
-          <div class="eyebrow">Framework Map</div>
-          <div class="map-row">
-            <div class="map-label">Control</div>
-            <div class="map-bar"><strong>Control plane</strong><span>Workflow catalog, dependencies, runtime state, and validation expectations.</span></div>
-          </div>
-          <div class="map-row">
-            <div class="map-label">Run</div>
-            <div class="map-bar"><strong>Orchestration plane</strong><span>Trigger intake, planning, readiness, dispatch, monitoring, and finalization.</span></div>
-          </div>
-          <div class="map-row">
-            <div class="map-label">Data</div>
-            <div class="map-bar"><strong>Data layers</strong><span>Source, landing, archive, delta, staging, integration, warehouse, and consumption.</span></div>
-          </div>
-        </aside>
-      </section>
+      </div>
 
-      <section class="section grid">
+      <aside class="guide-board" aria-label="Framework guide map">
+        <div class="guide-card">
+          <span>Define</span>
+          <strong>Control plane</strong>
+          <small>Workflow catalog, dependencies, runtime state, and validation expectations.</small>
+        </div>
+        <div class="engine-card">
+          <img src="assets/data_culina_icon_vector.svg" alt="" aria-hidden="true" />
+          <strong>Operate</strong>
+          <small>Trigger intake, planning, readiness, dispatch, monitoring, and finalization.</small>
+        </div>
+        <div class="guide-card">
+          <span>Prove</span>
+          <strong>Data layers</strong>
+          <small>Source, landing, archive, delta, staging, integration, warehouse, and consumption.</small>
+        </div>
+      </aside>
+    </section>
+
+    <section class="section section-shell">
+      <div class="section-heading">
+        <h2>Start with the operating model.</h2>
+        <p>Review the public docs, inspect the sandbox metadata, then use the troubleshooting guides to diagnose what is running in the system.</p>
+      </div>
+
+      <div class="grid">
         <article class="card">
+          <span class="card-number">01</span>
           <h2>Review The Structure</h2>
           <p>Understand the control plane schema, orchestration plane, and data layers.</p>
-          <a class="button" href="docs/architecture/control-plane-schema.md">Open Schema</a>
+          <a class="button button-secondary" href="docs/architecture/control-plane-schema.md">
+            <span>Open Schema</span>
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M7 17 17 7M9 7h8v8" />
+            </svg>
+          </a>
         </article>
         <article class="card">
+          <span class="card-number">02</span>
           <h2>Create Jobs</h2>
           <p>Use sandbox metadata examples and patterns for ingestion and transformation jobs.</p>
-          <a class="button" href="docs/configuration/sandbox-client-example.md">Open Examples</a>
+          <a class="button button-secondary" href="docs/configuration/sandbox-client-example.md">
+            <span>Open Examples</span>
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M7 17 17 7M9 7h8v8" />
+            </svg>
+          </a>
         </article>
         <article class="card">
+          <span class="card-number">03</span>
           <h2>Diagnose Runs</h2>
           <p>Identify the affected plane, layer, status, evidence, and recovery scope.</p>
-          <a class="button" href="docs/operations/backfill-and-recovery.md">Open Recovery</a>
+          <a class="button button-secondary" href="docs/operations/backfill-and-recovery.md">
+            <span>Open Recovery</span>
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M7 17 17 7M9 7h8v8" />
+            </svg>
+          </a>
         </article>
-      </section>
-    </main>
-  </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer section-shell">
+    <span>Better data</span>
+    <i></i>
+    <span>Repeatable delivery</span>
+    <i></i>
+    <span>Framework evidence</span>
+  </footer>
 </body>
 </html>
