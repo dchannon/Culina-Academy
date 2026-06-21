@@ -1,44 +1,47 @@
 # User Guide
 
-Use this guide when you are starting with a Culina-powered workflow or need to describe an issue clearly.
+Use this guide when operating or reviewing a Culina-powered workflow.
 
-## Before Running a Workflow
+## Before A Run
 
 Confirm:
 
-- the workflow name or business purpose
-- the expected source or input
-- the expected output
-- the environment or workspace you are using
-- any required approvals or configuration changes have already been completed
+- workflow name or business purpose
+- expected source or input
+- expected output
+- environment or workspace
+- run schedule or trigger expectation
+- dependency expectations
+- recent configuration changes
 
-## During a Run
+## During A Run
 
-Track only user-visible information:
+Track:
 
+- run identifier
 - run start time
-- run status
-- visible step or phase name
+- current status
+- current orchestration layer or data layer, if shown
 - warning or error message
-- input period or batch context, if shown
+- input period or batch context
 - output availability
 
-## After a Run
+## After A Successful Run
 
-If the run completes, confirm the expected output is available. If the run fails or produces unexpected results, avoid rerunning repeatedly without understanding the visible failure.
+Confirm:
 
-Collect evidence first, then contact the appropriate Data Culina support contact.
+- output exists in the expected serving location
+- output covers the expected period or source context
+- row counts or file counts are reasonable where visible
+- no downstream workflow is blocked
 
-## Safe User Actions
+## After A Failed Or Unexpected Run
 
-- Capture screenshots of visible statuses and error messages.
-- Record timestamps and run identifiers.
-- Compare expected output with actual output.
-- Note whether the issue happened once or repeats.
+Do not repeatedly rerun before collecting evidence. Capture the visible status, failing area, timestamp, and message first. Then use the diagnostics guide.
 
-## Avoid
+## Related Docs
 
-- Guessing at internal causes.
-- Making unsupported configuration changes.
-- Repeated reruns without evidence review.
-- Sharing credentials or private data in support notes.
+- [Control Plane Structure](../architecture/control-plane.md)
+- [Orchestration Plane Layers](../architecture/orchestration-plane.md)
+- [Data Layers](../architecture/data-layers.md)
+- [Engine Diagnostics](../troubleshooting/engine-diagnostics.md)

@@ -1,0 +1,19 @@
+{
+  "schemaVersion": "culina.framework.config.v2.example",
+  "dependencies": [
+    {
+      "dependencyId": "dep_orders_transform_after_ingest",
+      "upstreamJobId": "job_ingest_customer_orders",
+      "downstreamJobId": "job_transform_customer_orders",
+      "condition": "upstream_completed_successfully",
+      "releasePoint": "staging_write_complete"
+    },
+    {
+      "dependencyId": "dep_orders_transform_after_customer_dimension",
+      "upstreamJobId": "job_transform_customer_dimension",
+      "downstreamJobId": "job_transform_customer_orders",
+      "condition": "upstream_completed_successfully",
+      "releasePoint": "target_write_complete"
+    }
+  ]
+}

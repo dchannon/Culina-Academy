@@ -4,14 +4,16 @@ Use this page when a Culina engine workflow does not behave as expected.
 
 ## First Check
 
-Confirm the basics before escalating:
+Confirm:
 
-- Are you in the expected environment or workspace?
-- Is the expected input available?
-- Did the workflow start?
-- Did the visible status change?
-- Is there a visible warning or error?
-- Is the expected output missing, incomplete, or delayed?
+- expected environment or workspace
+- workflow name
+- run identifier
+- trigger time
+- current status
+- current orchestration layer, if visible
+- current data layer, if visible
+- expected output
 
 ## Common Symptoms
 
@@ -20,10 +22,25 @@ Confirm the basics before escalating:
 Collect:
 
 - workflow name
-- expected start time
-- current visible status
+- expected trigger time
 - environment or workspace
-- any recent configuration change you know about
+- schedule or manual trigger context
+- visible status
+- recent configuration change, if known
+
+Likely areas to review: trigger intake, run planning, workflow catalog.
+
+### Workflow Is Waiting
+
+Collect:
+
+- waiting workflow
+- upstream dependency name, if visible
+- upstream status
+- run context or input period
+- how long it has been waiting
+
+Likely areas to review: dependency resolution, upstream workflow status, source availability.
 
 ### Workflow Failed
 
@@ -31,10 +48,12 @@ Collect:
 
 - run identifier
 - failure timestamp
-- visible failing step or phase
+- failing orchestration layer or data layer
 - full visible error message
-- screenshot if available
-- whether the issue repeats
+- affected source, target, or output
+- whether the failure repeats
+
+Likely areas to review: dispatch, execution monitoring, current data layer, validation expectations.
 
 ### Output Looks Wrong
 
@@ -42,14 +61,19 @@ Collect:
 
 - expected output
 - actual output
-- input period or source context
-- example affected record or file, if safe to share
-- when the issue was first noticed
+- source period or source file context
+- last layer that appears correct
+- first layer that appears incorrect
+- example affected record or aggregate, if appropriate
 
-## Rerun Guidance
+Likely areas to review: staging, integration, EDW/core warehouse, consumption.
 
-Do not repeatedly rerun a failing workflow without collecting evidence. Repeated reruns can make diagnosis harder if the original context is lost.
+## Diagnostic Rule
 
-## Escalation
+Separate the problem into:
 
-If the visible status or output does not explain the issue, use the support handoff checklist.
+- control plane issue: configuration, dependencies, run state, validation expectation
+- orchestration issue: trigger, planning, readiness, dispatch, monitoring, finalization
+- data layer issue: source, landing, delta, staging, integration, EDW/core warehouse, consumption
+
+This separation makes support handoff faster and avoids guessing.

@@ -125,7 +125,7 @@
       "description": "Builds the shared mental model, vocabulary, architecture awareness, governance boundaries, and documentation navigation skills required before entering Managed Service or Implementation certification paths.",
       "prerequisites": [],
       "learningObjectives": [
-        "Explain the framework as both a metadata-driven execution framework and a governed delivery methodology.",
+        "Explain the framework as both a metadata-driven execution framework and a governed operating model.",
         "Describe how metadata connects design intent to runtime behavior, supportability, and traceability.",
         "Recognize the framework's core non-negotiable principles and common anti-patterns.",
         "Distinguish logical architecture domains, control plane, data plane, and runtime orchestration responsibilities.",
@@ -198,10 +198,10 @@
         "MOD-001"
       ],
       "title": "Framework Purpose and Operating Model",
-      "summary": "Understand the framework as both a metadata-driven execution framework and a governed delivery methodology.",
+      "summary": "Understand the framework as both a metadata-driven execution framework and a governed operating model.",
       "estimatedMinutes": 10,
       "displayOrder": 1,
-      "content": "## Why this lesson matters\n\nBefore a learner can work in managed services or implementation, they need the same mental model for what the Culina Metadata Framework is. The framework is not just a set of pipelines. It is a governed operating model for defining, orchestrating, processing, validating, deploying, and supporting data movement and transformation behavior.\n\n## What the framework is\n\nThe framework is metadata-driven. That means approved configuration describes what should happen, and standardized runtime components interpret that configuration. Instead of creating disconnected one-off scripts for each client, the team captures delivery intent through metadata and uses common execution patterns.\n\nThe framework should be understood in two connected ways:\n\n- **Execution framework:** it turns configured jobs, dependencies, source definitions, transformations, and validations into runtime behavior.\n- **Delivery methodology:** it defines how requirements, discovery, modeling, metadata authoring, validation, deployment, support, and change management should work in a repeatable way.\n\n## Why the framework exists\n\nThe framework exists to reduce repeated implementation effort, inconsistent engineering patterns, weak traceability, high support burden, and limited scalability across clients. Standardized patterns help the team onboard faster, deliver more consistently, and support production systems with less guesswork.\n\n## What the framework is not\n\nThe framework is not an ungoverned collection of client-specific scripts. It is not a substitute for discovery, modeling, validation, or engineering judgment. It is also not an autonomous AI system that changes production configuration without review.\n\n## Readiness expectation\n\nA certified learner should be able to explain why the framework improves delivery quality: it connects requirements, metadata, runtime behavior, validation, supportability, and governance into one shared operating model.",
+      "content": "## Why this lesson matters\n\nBefore a learner can work in managed services or implementation, they need the same mental model for what the Culina Metadata Framework is. The framework is not just a set of pipelines. It is a governed operating model for defining, orchestrating, processing, validating, deploying, and supporting data movement and transformation behavior.\n\n## What the framework is\n\nThe framework is metadata-driven. That means approved configuration describes what should happen, and standardized runtime components interpret that configuration. Instead of creating disconnected one-off scripts for each client, the team captures delivery intent through metadata and uses common execution patterns.\n\nThe framework should be understood in two connected ways:\n\n- **Execution framework:** it turns configured jobs, dependencies, source definitions, transformations, and validations into runtime behavior.\n- **Operating model:** it defines how requirements, discovery, modeling, metadata authoring, validation, deployment, support, and change management should work in a repeatable way.\n\n## Why the framework exists\n\nThe framework exists to reduce repeated implementation effort, inconsistent engineering patterns, weak traceability, high support burden, and limited scalability across clients. Standardized patterns help the team onboard faster, deliver more consistently, and support production systems with less guesswork.\n\n## What the framework is not\n\nThe framework is not an ungoverned collection of client-specific scripts. It is not a substitute for discovery, modeling, validation, or engineering judgment. It is also not an autonomous AI system that changes production configuration without review.\n\n## Readiness expectation\n\nA certified learner should be able to explain why the framework improves operating quality: it connects requirements, metadata, runtime behavior, validation, supportability, and governance into one shared operating model.",
       "learningObjectives": [
         "Explain the core decision points in Framework Purpose and Operating Model.",
         "Apply Framework Purpose and Operating Model concepts to a realistic Culina delivery or support scenario."
@@ -475,7 +475,7 @@
       "summary": "Learn why Studio is authoritative and Copilot remains advisory, read-only, and manual-copy based.",
       "estimatedMinutes": 12,
       "displayOrder": 8,
-      "content": "## Studio as the authoritative workspace\n\nMetadata Studio is the authoring and management application for framework-compatible metadata and related delivery artifacts. It is used to define jobs and dependencies, manage domains, source details, transformations, service configuration, validation, export, and handoff behavior.\n\nStudio is part of the governed delivery methodology. Approved client-scoped records belong in Studio or approved artifact state, not only in chat or loose notes.\n\n## Local Studio versus full internal Studio\n\nThe local Studio app is a reduced client-facing version for managing one client metadata set locally, export/import, local file sync, and read-only data model viewing. The full internal Studio is the richer internal platform for broader metadata framework configuration and capabilities.\n\n## Copilot boundary\n\nCopilot is an additive helper layer inside Studio. It may explain framework behavior, support troubleshooting, help interpret requirements, compare design directions, and draft content in chat. It does not replace Studio, does not write directly into authoritative records, and does not automatically promote generated output.\n\n## Manual-copy rule\n\nCopilot output stays in chat until a human reviews it and manually uses it in the authoritative workflow. A good-looking draft is still advisory. This boundary protects governance and prevents accidental production changes.\n\n## Readiness expectation\n\nA certified learner should be able to use AI assistance safely without confusing advisory output with approved configuration.",
+      "content": "## Studio as the authoritative workspace\n\nMetadata Studio is the authoring and management application for framework-compatible metadata and related configuration artifacts. It is used to define jobs and dependencies, manage domains, source details, transformations, service configuration, validation, export, and handoff behavior.\n\nStudio is part of the governed operating model. Approved client-scoped records belong in Studio or approved artifact state, not only in chat or loose notes.\n\n## Local Studio versus full internal Studio\n\nThe local Studio app is a reduced client-facing version for managing one client metadata set locally, export/import, local file sync, and read-only data model viewing. The full internal Studio is the richer internal platform for broader metadata framework configuration and capabilities.\n\n## Copilot boundary\n\nCopilot is an additive helper layer inside Studio. It may explain framework behavior, support troubleshooting, help interpret requirements, compare design directions, and draft content in chat. It does not replace Studio, does not write directly into authoritative records, and does not automatically promote generated output.\n\n## Manual-copy rule\n\nCopilot output stays in chat until a human reviews it and manually uses it in the authoritative workflow. A good-looking draft is still advisory. This boundary protects governance and prevents accidental production changes.\n\n## Readiness expectation\n\nA certified learner should be able to use AI assistance safely without confusing advisory output with approved configuration.",
       "learningObjectives": [
         "Explain the core decision points in Metadata Studio and Copilot Boundaries.",
         "Apply Metadata Studio and Copilot Boundaries concepts to a realistic Culina delivery or support scenario."
@@ -516,7 +516,7 @@
       "summary": "Learn the high-level difference between logical framework behavior, physical topology, metadata artifacts, control-plane setup, IaC, and shared runtime packages.",
       "estimatedMinutes": 12,
       "displayOrder": 9,
-      "content": "## Why this matters\n\nA common onboarding mistake is to collapse several artifact families into one idea called deployment. The framework separates logical architecture, physical topology, metadata movement, control-plane setup, environment provisioning, and shared runtime packaging.\n\n## Logical versus physical\n\nLogical architecture explains stable domains and responsibilities. Environment topology explains how those domains map into specific cloud environments such as AWS or Synapse. A learner should not treat a cloud service diagram as the definition of the logical framework.\n\n## Artifact families\n\nThe framework may involve several artifact families:\n\n- **Studio metadata artifact:** client-scoped metadata content exported or handed off from Studio.\n- **Control-plane package:** SQL-hosted control-plane database objects such as tables, views, stored procedures, and setup scripts.\n- **Environment provisioning artifact:** infrastructure and environment setup, typically through Infrastructure as Code.\n- **Shared execution library package:** reusable data-plane runtime helper capability, such as the maintained runtime library used by approved execution surfaces.\n\n## Current direction\n\nThe current direction favors SQL project generated DDL scripts for client-facing control-plane setup and Infrastructure as Code for environment provisioning. The shared data-plane execution library should receive approved execution context from orchestration and return structured status, not become a hidden metadata store or direct control-plane owner.\n\n## Readiness expectation\n\nA certified learner should be able to explain why Studio export, control-plane setup, environment provisioning, and shared library deployment are related but not interchangeable.",
+      "content": "## Why this matters\n\nA common onboarding mistake is to collapse several artifact families into one idea called deployment. The framework separates logical architecture, physical topology, metadata movement, control-plane setup, environment provisioning, and shared execution setup.\n\n## Logical versus physical\n\nLogical architecture explains stable domains and responsibilities. Environment topology explains how those domains map into specific cloud environments such as AWS or Synapse. A learner should not treat a cloud service diagram as the definition of the logical framework.\n\n## Artifact families\n\nThe framework may involve several artifact families:\n\n- **Studio metadata artifact:** client-scoped metadata content exported or handed off from Studio.\n- **Control-plane package:** SQL-hosted control-plane database objects such as tables, views, stored procedures, and setup scripts.\n- **Environment provisioning artifact:** infrastructure and environment setup, typically through Infrastructure as Code.\n- **Execution surface package:** reusable data-plane runtime helper capability, such as the approved execution surface used by approved execution surfaces.\n\n## Current direction\n\nThe current direction favors SQL project generated DDL scripts for client-facing control-plane setup and Infrastructure as Code for environment provisioning. The approved data-plane execution surface should receive approved execution context from orchestration and return structured status, not become a hidden metadata store or direct control-plane owner.\n\n## Readiness expectation\n\nA certified learner should be able to explain why Studio export, control-plane setup, environment provisioning, and execution surface setup are related but not interchangeable.",
       "learningObjectives": [
         "Explain the core decision points in Environment, Deployment, and Package Boundaries.",
         "Apply Environment, Deployment, and Package Boundaries concepts to a realistic Culina delivery or support scenario."
@@ -597,7 +597,7 @@
           "type": "multiple_choice",
           "title": "Framework identity",
           "prompt": "Which statement best describes the Culina Metadata Framework?",
-          "context": "Choose the option that reflects both runtime execution and governed delivery methodology.",
+          "context": "Choose the option that reflects both runtime execution and governed operating model.",
           "points": 1,
           "competency": "Framework foundation",
           "options": [
@@ -607,7 +607,7 @@
             },
             {
               "id": "B",
-              "text": "A metadata-driven data engineering framework and governed delivery methodology for defining, orchestrating, processing, validating, and supporting data movement and transformation behavior."
+              "text": "A metadata-driven data engineering framework and governed operating model for defining, orchestrating, processing, validating, and supporting data movement and transformation behavior."
             },
             {
               "id": "C",
@@ -619,7 +619,7 @@
             }
           ],
           "correctAnswer": "B",
-          "correctFeedback": "Correct. The framework is both an execution framework and a governed delivery methodology.",
+          "correctFeedback": "Correct. The framework is both an execution framework and a governed operating model.",
           "incorrectFeedback": "Review the framework purpose lesson. The framework is not one-off scripts, reporting-only tooling, or autonomous AI-driven production change."
         },
         {
@@ -972,7 +972,7 @@
           "options": [
             {
               "id": "A",
-              "text": "Studio is the authoritative authoring and management surface for framework-compatible metadata and related delivery artifacts."
+              "text": "Studio is the authoritative authoring and management surface for framework-compatible metadata and related configuration artifacts."
             },
             {
               "id": "B",
@@ -1030,7 +1030,7 @@
           "options": [
             {
               "id": "A",
-              "text": "Studio metadata export, control-plane package, environment provisioning, and shared execution library package are related but distinct artifact families."
+              "text": "Studio metadata export, control-plane package, environment provisioning, and execution surface setup are related but distinct artifact families."
             },
             {
               "id": "B",
@@ -1082,7 +1082,7 @@
           "id": "cf_q017_explain_metadata_driven",
           "type": "free_text",
           "title": "Explain metadata-driven delivery",
-          "prompt": "In your own words, explain why the framework is metadata-driven and why that matters for onboarding, delivery quality, and supportability.",
+          "prompt": "In your own words, explain why the framework is metadata-driven and why that matters for onboarding, operating quality, and supportability.",
           "context": "A strong answer should connect metadata/configuration to runtime behavior, standardization, traceability, onboarding, and support.",
           "points": 3,
           "competency": "Framework explanation",
@@ -1095,7 +1095,7 @@
           "rubric": {
             "referenceAnswers": [
               "The framework is metadata-driven because structured metadata and configuration control runtime behavior instead of one-off hard-coded pipeline logic. This matters because new team members can learn consistent patterns, implementation teams can create reviewable and traceable configurations, and support teams can troubleshoot from standardized metadata and runtime evidence.",
-              "Metadata acts as the bridge between design intent and execution. It defines sources, jobs, dependencies, transformations, write behavior, validation expectations, and runtime rules. This improves onboarding, delivery quality, traceability, repeatability, and production supportability across clients.",
+              "Metadata acts as the bridge between design intent and execution. It defines sources, jobs, dependencies, transformations, write behavior, validation expectations, and runtime rules. This improves onboarding, operating quality, traceability, repeatability, and production supportability across clients.",
               "The framework uses metadata so work is not rebuilt differently for every client. Common behavior is standardized through configuration and reusable runtime patterns. That makes delivery easier to review and govern, makes onboarding less dependent on KT, and gives managed services a clearer way to monitor and diagnose issues.",
               "Being metadata-driven means the team captures what the framework should do in governed configuration. The runtime interprets those rules. This creates consistent delivery patterns, makes requirements easier to trace to implementation, and reduces the support burden compared with scattered custom scripts."
             ]
@@ -1298,7 +1298,7 @@
       "type": "scenario_lab",
       "scenario": "A new teammate thinks the framework is just a set of pipelines.",
       "prompts": [
-        "Explain the framework as both an execution framework and delivery methodology.",
+        "Explain the framework as both an execution framework and operating model.",
         "Name two delivery risks the framework reduces.",
         "Describe where metadata fits between requirements and runtime behavior."
       ],

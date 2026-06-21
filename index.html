@@ -110,7 +110,8 @@
       <div class="brand"><div class="mark">ca</div><span>Culina Academy</span></div>
       <div class="nav-links">
         <a href="docs/getting-started/framework-overview.md">Overview</a>
-        <a href="docs/getting-started/user-guide.md">Get Started</a>
+        <a href="docs/architecture/control-plane.md">Control Plane</a>
+        <a href="docs/configuration/config-examples.md">Config Examples</a>
         <a href="docs/troubleshooting/engine-diagnostics.md">Troubleshooting</a>
       </div>
     </nav>
@@ -119,45 +120,45 @@
       <section class="hero">
         <div>
           <div class="eyebrow">Public Framework Guide</div>
-          <h1>Understand the Culina framework without exposing product internals.</h1>
-          <p class="lead">Culina Academy gives clients and users a practical, support-safe explanation of the framework, common operating concepts, and what to collect when something needs diagnosis.</p>
+          <h1>Understand and operate the Culina framework.</h1>
+          <p class="lead">Culina Academy gives clients and users a practical guide to the control plane, orchestration layers, data layers, configuration examples, and operating diagnostics.</p>
           <div class="hero-actions">
             <a class="button primary" href="docs/getting-started/framework-overview.md">Read the Overview</a>
-            <a class="button" href="docs/troubleshooting/engine-diagnostics.md">Diagnose an Issue</a>
+            <a class="button" href="docs/configuration/config-examples.md">View Config Examples</a>
           </div>
         </div>
         <aside class="map" aria-label="Framework concept map">
-          <div class="eyebrow">Public Concept Map</div>
+          <div class="eyebrow">Framework Map</div>
           <div class="map-row">
-            <div class="map-label">Intent</div>
-            <div class="map-bar"><strong>Framework purpose</strong><span>Repeatable, governed data operations.</span></div>
+            <div class="map-label">Control</div>
+            <div class="map-bar"><strong>Control plane</strong><span>Workflow catalog, dependencies, runtime state, and validation expectations.</span></div>
           </div>
           <div class="map-row">
-            <div class="map-label">Behavior</div>
-            <div class="map-bar"><strong>Configuration-driven flow</strong><span>Users describe outcomes through approved configuration.</span></div>
+            <div class="map-label">Run</div>
+            <div class="map-bar"><strong>Orchestration plane</strong><span>Trigger intake, planning, readiness, dispatch, monitoring, and finalization.</span></div>
           </div>
           <div class="map-row">
-            <div class="map-label">Evidence</div>
-            <div class="map-bar"><strong>Diagnostics</strong><span>Collect visible run details before escalation.</span></div>
+            <div class="map-label">Data</div>
+            <div class="map-bar"><strong>Data layers</strong><span>Source, landing, archive, delta, staging, integration, warehouse, and consumption.</span></div>
           </div>
         </aside>
       </section>
 
       <section class="section grid">
         <article class="card">
-          <h2>Learn the Framework</h2>
-          <p>Start with high-level concepts, terminology, and user-facing workflows.</p>
-          <a class="button" href="docs/concepts/framework-concepts.md">Open Concepts</a>
+          <h2>Review The Structure</h2>
+          <p>Understand the control plane, orchestration plane, and data layers.</p>
+          <a class="button" href="docs/architecture/control-plane.md">Open Architecture</a>
         </article>
         <article class="card">
-          <h2>Use the Engine</h2>
-          <p>Follow safe setup and operating guidance for normal users.</p>
-          <a class="button" href="docs/getting-started/user-guide.md">Open Guide</a>
+          <h2>Create Jobs</h2>
+          <p>Use sandbox-style examples and patterns for ingestion and transformation jobs.</p>
+          <a class="button" href="docs/patterns/ingestion-jobs.md">Open Patterns</a>
         </article>
         <article class="card">
-          <h2>Collect Evidence</h2>
-          <p>Capture support-ready details before requesting help.</p>
-          <a class="button" href="docs/troubleshooting/support-handoff.md">Open Checklist</a>
+          <h2>Diagnose Runs</h2>
+          <p>Identify the affected plane, layer, status, and evidence needed for support.</p>
+          <a class="button" href="docs/troubleshooting/engine-diagnostics.md">Open Diagnostics</a>
         </article>
       </section>
     </main>

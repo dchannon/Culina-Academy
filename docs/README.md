@@ -1,17 +1,26 @@
 # Culina Academy Docs
 
-Public documentation for learning and using the Culina framework.
+Public documentation for understanding and operating the Culina framework.
 
-## Learning Path
+## Framework Structure
 
 1. [Framework Overview](getting-started/framework-overview.md)
-2. [User Guide](getting-started/user-guide.md)
-3. [Framework Concepts](concepts/framework-concepts.md)
-4. [Engine Diagnostics](troubleshooting/engine-diagnostics.md)
-5. [Support Handoff](troubleshooting/support-handoff.md)
+2. [Control Plane Structure](architecture/control-plane.md)
+3. [Orchestration Plane Layers](architecture/orchestration-plane.md)
+4. [Data Layers](architecture/data-layers.md)
+5. [Framework Concepts](concepts/framework-concepts.md)
+6. [Configuration Examples](configuration/config-examples.md)
+7. [Ingestion Job Pattern](patterns/ingestion-jobs.md)
+8. [Transformation Job Pattern](patterns/transformation-jobs.md)
 
-## Content Boundary
+## Operations
 
-The public docs are intentionally high-level. They explain safe operating concepts and support workflows without publishing proprietary internals.
+1. [User Guide](getting-started/user-guide.md)
+2. [Operating Guide](operations/operating-guide.md)
+3. [Engine Diagnostics](troubleshooting/engine-diagnostics.md)
+4. [Support Handoff](troubleshooting/support-handoff.md)
+5. [Glossary](reference/glossary.md)
 
-See [Redaction Policy](redaction-policy.md).
+## Documentation Scope
+
+The docs focus on framework structure, observable behavior, configuration examples, and operating guidance needed by users and client teams.

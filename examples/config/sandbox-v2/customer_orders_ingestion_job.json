@@ -1,0 +1,51 @@
+{
+  "schemaVersion": "culina.framework.config.v2.example",
+  "job": {
+    "jobId": "job_ingest_customer_orders",
+    "jobType": "ingestion",
+    "displayName": "Ingest Customer Orders",
+    "description": "Loads customer order source files into the framework intake and staging layers.",
+    "owner": "data-operations",
+    "status": "active"
+  },
+  "source": {
+    "sourceId": "src_customer_orders",
+    "sourceType": "file",
+    "format": "csv",
+    "cadence": "daily",
+    "expectedPath": "sandbox/customer-orders/inbound/",
+    "filePattern": "customer_orders_YYYYMMDD.csv",
+    "headerRow": true,
+    "delimiter": ","
+  },
+  "load": {
+    "strategy": "incremental",
+    "watermarkColumn": "updated_at",
+    "lateArrivingDataPolicy": "include_in_next_run"
+  },
+  "layers": {
+    "landing": "landing/customer_orders/",
+    "archive": "archive/customer_orders/",
+    "delta": "delta/customer_orders/",
+    "staging": "staging/customer_orders/"
+  },
+  "validation": {
+    "requiredFields": [
+      "order_id",
+      "customer_id",
+      "order_date",
+      "updated_at"
+    ],
+    "minimumRecordCount": 1,
+    "duplicateCheck": {
+      "keys": [
+        "order_id"
+      ],
+      "severity": "fail"
+    }
+  },
+  "operationalContext": {
+    "releaseDependencyOn": "staging_write_complete",
+    "supportNotes": "If this job fails before Delta, check source availability and file shape first."
+  }
+}

@@ -1,34 +1,40 @@
 # Culina Academy
 
-Public learning materials for the Data Culina framework.
+Public operating documentation for the Data Culina framework.
 
-This repository is intended for clients, implementation partners, and users who want to understand the framework at a practical level. It explains the operating model, safe concepts, common user workflows, and troubleshooting steps without exposing proprietary product internals.
+This repository is for clients, implementation partners, and users who need to understand what is running in their environment, how the framework is organized, and how to diagnose issues when the engine reports unexpected behavior.
 
 ## Start Here
 
 - [Framework Overview](docs/getting-started/framework-overview.md)
-- [Getting Started Guide](docs/getting-started/user-guide.md)
-- [Public Concepts](docs/concepts/framework-concepts.md)
-- [Troubleshooting Guide](docs/troubleshooting/engine-diagnostics.md)
+- [Control Plane Structure](docs/architecture/control-plane.md)
+- [Orchestration Plane Layers](docs/architecture/orchestration-plane.md)
+- [Data Layers](docs/architecture/data-layers.md)
+- [Configuration Examples](docs/configuration/config-examples.md)
+- [Ingestion Job Pattern](docs/patterns/ingestion-jobs.md)
+- [Transformation Job Pattern](docs/patterns/transformation-jobs.md)
+- [Operating Guide](docs/operations/operating-guide.md)
+- [Engine Diagnostics](docs/troubleshooting/engine-diagnostics.md)
 - [Support Handoff Checklist](docs/troubleshooting/support-handoff.md)
 
-## What This Repo Covers
+## Repository Scope
 
-- What the Culina framework is designed to help with.
-- How users should think about metadata-driven operations at a high level.
-- What evidence to collect when an engine run does not behave as expected.
-- How to describe issues clearly before contacting Data Culina support.
-- Safe terminology for public conversations.
+This repo documents the public framework structure and day-to-day operating model:
 
-## What This Repo Does Not Cover
+- control plane concepts and responsibilities
+- high-level orchestration plane layers
+- data processing layers used by the framework
+- sandbox-style V2 configuration examples
+- ingestion and transformation job patterns
+- operating and diagnostic workflows
+- common terminology
+- support handoff expectations
 
-This repository intentionally avoids internal implementation details, proprietary metadata schemas, orchestration mechanics, deployment templates, private APIs, and internal support runbooks.
-
-See [Public Redaction Policy](docs/redaction-policy.md) for the content boundary.
+The docs focus on framework operation, configuration structure, and supportability. Package source code and consulting methodology are maintained separately.
 
 ## Local Reading
 
-You can read the Markdown files directly in GitHub. You can also open `index.html` locally for a lightweight public landing page:
+You can read the Markdown files directly in GitHub. You can also open `index.html` locally for a lightweight documentation landing page:
 
 ```powershell
 python -m http.server 8000
@@ -36,9 +42,7 @@ python -m http.server 8000
 
 Then open `http://localhost:8000`.
 
-## Validation
-
-Maintainers can run:
+## Maintainer Validation
 
 ```powershell
 npm test

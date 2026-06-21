@@ -20,7 +20,7 @@
     "publisher": "Data Culina Inc.",
     "createdAt": "2026-05-20T13:33:17Z",
     "lastUpdated": "2026-05-20",
-    "description": "Implementation Service Level 1 certification content for data engineers and consultants who create client-scoped framework metadata and delivery artifacts.",
+    "description": "Implementation Service Level 1 certification content for data engineers and consultants who create client-scoped framework metadata and configuration artifacts.",
     "sourceModules": [
       {
         "moduleId": "MOD-011",
@@ -106,11 +106,11 @@
     {
       "id": "track_implementation_service_level_1",
       "title": "Implementation Service Level 1 Certification",
-      "audience": "Implementation Service Team, implementation consultants, external data engineers, delivery engineers building client configurations",
+      "audience": "Implementation Service Team, implementation consultants, external data engineers, configuration engineers building client configurations",
       "role": "Implementation Service",
       "level": "Level 1",
       "pathType": "certification_path",
-      "description": "Builds the delivery capability required to translate client requirements, discovery findings, and modeling decisions into framework-compatible metadata, transformation JSON, validation evidence, and handover-ready artifacts while following reuse, governance, and standardization rules.",
+      "description": "Builds the configuration capability required to translate client requirements, discovery findings, and modeling decisions into framework-compatible metadata, transformation JSON, validation evidence, and support-ready artifacts while following reuse, governance, and standardization rules.",
       "prerequisites": [
         "track_common_foundation"
       ],
@@ -195,7 +195,7 @@
       "summary": "Understand the implementation role as a governed delivery function that turns client needs into reviewable framework artifacts and validated runtime behavior.",
       "estimatedMinutes": 12,
       "displayOrder": 1,
-      "content": "## Why this lesson matters\n\nImplementation service work is not only writing configuration. The role is to move a client engagement from requirements and discovery through model design, metadata configuration, validation, deployment readiness, and handover.\n\n## Delivery mindset\n\nA certified implementation engineer should think in phases. Requirements explain the business need, discovery explains the source reality, modeling defines the target structure, metadata defines the framework implementation, and validation proves the result. Jumping directly into JSON or metadata without this chain creates fragile delivery.\n\n## Two delivery tracks\n\nThe framework supports an artifacts-only track and a framework-deployment-enabled track. In both cases, the implementation team must produce reviewable artifacts that are understandable to the client and maintainable by the team.\n\n## Readiness expectation\n\nBy the end of this path, a learner should be able to explain how client requirements become discovery scope, model decisions, metadata configuration, validation evidence, and handover artifacts.",
+      "content": "## Why this lesson matters\n\nImplementation service work is not only writing configuration. The role is to move a client engagement from requirements and discovery through model design, metadata configuration, validation, deployment readiness, and handover.\n\n## Configuration mindset\n\nA certified implementation engineer should think in connected work areas. Requirements explain the business need, discovery explains the source reality, modeling defines the target structure, metadata defines the framework implementation, and validation proves the result. Jumping directly into JSON or metadata without this chain creates fragile delivery.\n\n## Two configuration scopes\n\nThe framework supports an artifacts-only track and a framework-deployment-enabled track. In both cases, the implementation team must produce reviewable artifacts that are understandable to the client and maintainable by the team.\n\n## Readiness expectation\n\nBy the end of this path, a learner should be able to explain how client requirements become discovery scope, model decisions, metadata configuration, validation evidence, and handover artifacts.",
       "learningObjectives": [
         "Explain the core decision points in Implementation Mission and Delivery Lifecycle.",
         "Apply Implementation Mission and Delivery Lifecycle concepts to a realistic Culina delivery or support scenario."
@@ -235,7 +235,7 @@
       "summary": "Learn how requirement artifacts drive discovery, modeling, metadata implementation, validation, deployment timing, and estimation.",
       "estimatedMinutes": 14,
       "displayOrder": 2,
-      "content": "## Requirements are delivery-driving artifacts\n\nA requirement artifact is not just meeting notes. It is the structured business-facing source of scope and direction for downstream work.\n\n## What requirements influence\n\nA good requirement artifact should help determine:\n\n- what source behavior must be discovered\n- whether the target model may need adjustment\n- which metadata objects may change\n- what validation evidence will prove success\n- whether deployment timing should shift\n- which phases can or cannot be estimated yet\n\n## Progressive estimation\n\nThe framework should not pretend that all phases can be estimated precisely up front. Requirements define discovery scope, discovery clarifies modeling scope, modeling clarifies metadata work, and validation findings may still change delivery effort.\n\n## Common mistake\n\nThe dangerous shortcut is jumping from a requirement note directly into metadata. The safer pattern is: business need -> requirement artifact -> scoped next steps -> discovery/modeling/metadata work -> validation and delivery.",
+      "content": "## Requirements are configuration-driving artifacts\n\nA requirement artifact is not just meeting notes. It is the structured business-facing source of scope and direction for downstream work.\n\n## What requirements influence\n\nA good requirement artifact should help determine:\n\n- what source behavior must be discovered\n- whether the target model may need adjustment\n- which metadata objects may change\n- what validation evidence will prove success\n- whether deployment timing should shift\n- which work areas can or cannot be estimated yet\n\n## Progressive estimation\n\nThe framework should not pretend that all downstream work areas can be estimated precisely up front. Requirements define discovery scope, discovery clarifies modeling scope, modeling clarifies metadata work, and validation findings may still change implementation effort.\n\n## Common mistake\n\nThe dangerous shortcut is jumping from a requirement note directly into metadata. The safer pattern is: business need -> requirement artifact -> scoped next steps -> discovery/modeling/metadata work -> validation and delivery.",
       "learningObjectives": [
         "Explain the core decision points in Requirement-to-Framework Mapping.",
         "Apply Requirement-to-Framework Mapping concepts to a realistic Culina delivery or support scenario."
@@ -516,7 +516,7 @@
       "summary": "Use Studio as the authoritative authoring surface and Copilot as a read-only advisory helper rather than an automatic configuration writer.",
       "estimatedMinutes": 12,
       "displayOrder": 9,
-      "content": "## Studio is authoritative\n\nMetadata Studio is the authoring and management application for framework-compatible metadata and related delivery artifacts. Approved client-scoped records belong in authoritative Studio state.\n\n## Copilot is advisory\n\nCopilot can explain framework behavior, help analyze impact, draft JSON or notes in chat, and support troubleshooting reasoning. It does not directly edit the current record, promote content, or make configuration authoritative.\n\n## Manual use boundary\n\nUseful Copilot output remains advisory until a human reviews it and manually uses it in the appropriate authoritative workflow. Implementation engineers remain responsible for validation, review, and signoff discipline.\n\n## Validation before handoff\n\nBefore export, handoff, or deployment movement, the configuration set should be validated for structural issues, broken references, and completeness issues relevant to the job type.",
+      "content": "## Studio is authoritative\n\nMetadata Studio is the authoring and management application for framework-compatible metadata and related configuration artifacts. Approved client-scoped records belong in authoritative Studio state.\n\n## Copilot is advisory\n\nCopilot can explain framework behavior, help analyze impact, draft JSON or notes in chat, and support troubleshooting reasoning. It does not directly edit the current record, promote content, or make configuration authoritative.\n\n## Manual use boundary\n\nUseful Copilot output remains advisory until a human reviews it and manually uses it in the appropriate authoritative workflow. Implementation engineers remain responsible for validation, review, and signoff discipline.\n\n## Validation before handoff\n\nBefore export, handoff, or deployment movement, the configuration set should be validated for structural issues, broken references, and completeness issues relevant to the job type.",
       "learningObjectives": [
         "Explain the core decision points in Studio Authoring and Copilot Boundaries.",
         "Apply Studio Authoring and Copilot Boundaries concepts to a realistic Culina delivery or support scenario."
@@ -557,7 +557,7 @@
       "summary": "Decide when to use existing framework capability, client-specific metadata, or shared framework enhancement, and understand handover and change boundaries.",
       "estimatedMinutes": 13,
       "displayOrder": 10,
-      "content": "## Reuse first\n\nThe default question should be whether a client need can be solved with existing framework capability and standard patterns. If not, prefer client-specific metadata or configuration before changing shared framework behavior. Promote capability to the shared framework only when it is truly reusable.\n\n## Handover is transfer of understanding\n\nHandover is not just sending files. It should include review of the framework at a high level and the work artifacts produced, so the client and support teams understand what was created and how it connects to the solution.\n\n## Change boundary\n\nOperational recovery is not the same as release change. Changing approved metadata, shared framework behavior, control-plane packages, or environment provisioning belongs in change management and release governance.\n\n## Implementation readiness\n\nA certified implementation engineer should leave behind traceable artifacts, validated metadata, visible open questions, and enough context for managed service or future delivery teams to support the client safely.",
+      "content": "## Reuse first\n\nThe default question should be whether a client need can be solved with existing framework capability and standard patterns. If not, prefer client-specific metadata or configuration before changing shared framework behavior. Promote capability to the shared framework only when it is truly reusable.\n\n## Handover is transfer of understanding\n\nHandover is not just sending files. It should include review of the framework at a high level and the work artifacts produced, so the client and support teams understand what was created and how it connects to the solution.\n\n## Change boundary\n\nOperational recovery is not the same as release change. Changing approved metadata, shared framework behavior, control-plane packages, or environment provisioning belongs in change management and release governance.\n\n## Implementation readiness\n\nA certified implementation engineer should leave behind traceable artifacts, validated metadata, visible open questions, and enough context for managed service or future configuration teams to support the client safely.",
       "learningObjectives": [
         "Explain the core decision points in Reuse, Handover, and Change Boundaries.",
         "Apply Reuse, Handover, and Change Boundaries concepts to a realistic Culina delivery or support scenario."
@@ -589,7 +589,7 @@
       "trackId": "track_implementation_service_level_1",
       "title": "Implementation Service Level 1 Readiness Assessment",
       "type": "certification_assessment",
-      "description": "Evaluates whether a learner can safely translate requirements, discovery, modeling, transformation patterns, validation rules, and delivery expectations into framework-compatible implementation behavior.",
+      "description": "Evaluates whether a learner can safely translate requirements, discovery, modeling, transformation patterns, validation rules, and operating expectations into framework-compatible implementation behavior.",
       "passThreshold": 0.8,
       "estimatedMinutes": 45,
       "displayOrder": 1,
@@ -655,7 +655,7 @@
             },
             {
               "id": "F",
-              "text": "A guaranteed fixed estimate for all phases before discovery begins"
+              "text": "A guaranteed fixed estimate for all downstream work areas before discovery begins"
             }
           ],
           "correctAnswer": [
@@ -666,7 +666,7 @@
             "E"
           ],
           "correctFeedback": "Correct. Requirement findings may affect discovery, modeling, metadata, validation, and deployment decisions.",
-          "incorrectFeedback": "Review the mapping categories. The framework estimates progressively and should not fake certainty for downstream phases."
+          "incorrectFeedback": "Review the mapping categories. The framework estimates progressively and should not fake certainty for downstream work areas."
         },
         {
           "id": "is_q003_discovery_chain",
@@ -1285,7 +1285,7 @@
         {
           "id": "is_q022_delivery_artifacts",
           "type": "multi_select",
-          "title": "Implementation delivery artifacts",
+          "title": "Implementation configuration artifacts",
           "prompt": "Which artifact families should implementation teams commonly expect to produce or hand over?",
           "context": "Select all that apply.",
           "points": 2,

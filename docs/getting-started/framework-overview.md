@@ -1,27 +1,31 @@
 # Framework Overview
 
-The Culina framework helps teams operate data movement and transformation in a repeatable, governed way.
+The Culina framework is a metadata-driven operating framework for repeatable data movement, transformation, orchestration, and operational support.
 
-At a public level, the framework can be understood through three ideas:
+The framework is organized around three planes:
 
-- **Intent:** users define what needs to happen through approved configuration and documented decisions.
-- **Execution:** the engine interprets approved configuration and runs standardized processing patterns.
-- **Evidence:** users collect run information, visible statuses, and error details to support diagnosis.
+- **Control plane:** configuration and operational state that describe what work exists, how it is related, and what evidence is available.
+- **Orchestration plane:** runtime coordination that turns approved control information into executable work.
+- **Data plane:** storage and processing layers where source data is landed, standardized, transformed, persisted, and served.
 
-## Why It Exists
+## Why The Framework Exists
 
-Data operations often become hard to support when every workflow is implemented differently. The Culina framework reduces that problem by encouraging consistent configuration, repeatable patterns, and clearer operational evidence.
+Data operations become difficult to operate when each workflow is built as a custom one-off process. Culina standardizes the shape of work so users can understand expected behavior, collect useful diagnostics, and support production runs consistently.
 
-## What Users Should Know
+## How Users Should Think About It
 
-Users do not need internal implementation details to get started. They should understand:
+A user does not need to know implementation code to understand the system. The important operating questions are:
 
-- what business outcome the workflow is meant to support
-- which input or source is expected
-- which output or target is expected
-- where to find visible run status
-- what evidence to collect when behavior is unexpected
+- What workflow is configured?
+- What source or input does it depend on?
+- What downstream output should it produce?
+- Which dependencies must be ready before it can run?
+- Which layer is currently doing work?
+- What evidence exists if the result is unexpected?
 
-## What Is Intentionally Not Included
+## Main Areas
 
-This public academy does not publish internal schemas, orchestration internals, private APIs, deployment templates, or proprietary engine behavior.
+- [Control Plane Structure](../architecture/control-plane.md)
+- [Orchestration Plane Layers](../architecture/orchestration-plane.md)
+- [Data Layers](../architecture/data-layers.md)
+- [Operating Guide](../operations/operating-guide.md)

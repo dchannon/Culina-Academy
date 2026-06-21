@@ -1,33 +1,35 @@
 # Framework Concepts
 
-This page defines public-safe framework concepts.
-
 ## Metadata-Driven Operation
 
-The framework uses approved configuration to describe intended behavior. Public users should think of metadata as structured instructions that help standardize how workflows are operated and supported.
+Culina uses structured control information to describe intended behavior. A workflow is not only a script or job. It has configuration, relationships, dependencies, expected inputs, output intent, and operational evidence.
 
-This documentation does not expose internal metadata schema details.
+## Control Plane
 
-## Control Surface
+The control plane contains the framework's configured understanding of work. It describes workflow definitions, source definitions, dependency relationships, run state, validation expectations, and support evidence.
 
-The control surface is the user-facing or support-facing area where workflow intent, status, and evidence can be reviewed. Public users should focus on what is visible and approved, not internal processing mechanics.
+## Orchestration Plane
 
-## Processing Flow
+The orchestration plane coordinates runtime work. It decides what can be planned, what is dependency-ready, what can be dispatched, and what status should be recorded after execution.
 
-A Culina workflow normally moves through a controlled sequence from input handling to output availability. Exact internal stages vary by product configuration and are intentionally not documented here.
+## Data Plane
+
+The data plane contains the data layers used by the framework. Data moves from source intake through standardized intermediate layers into durable modeled structures and consumption outputs.
 
 ## Operational Evidence
 
-Operational evidence is the information needed to understand what happened:
+Operational evidence is the information used to understand what happened during a run:
 
 - workflow name
 - run identifier
-- timestamp
+- schedule or trigger context
+- dependency state
 - visible status
-- visible error message
+- failing step or layer
+- error message
 - affected input or output
-- user action before the issue
+- completion or failure timestamp
 
 ## Support Boundary
 
-Users should collect evidence and escalate when the problem is not explained by visible configuration, expected input availability, or documented operating guidance.
+Users should first identify the affected workflow, layer, status, and evidence. If the problem cannot be explained from visible configuration and run evidence, prepare a support handoff.

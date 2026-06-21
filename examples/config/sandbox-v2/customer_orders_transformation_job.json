@@ -1,0 +1,106 @@
+{
+  "schemaVersion": "culina.framework.config.v2.example",
+  "job": {
+    "jobId": "job_transform_customer_orders",
+    "jobType": "transformation",
+    "displayName": "Transform Customer Orders",
+    "description": "Transforms staged customer orders into modeled order facts.",
+    "owner": "data-operations",
+    "status": "active"
+  },
+  "sources": [
+    {
+      "alias": "orders",
+      "layer": "staging",
+      "dataset": "customer_orders"
+    },
+    {
+      "alias": "customers",
+      "layer": "edw",
+      "dataset": "dim_customer"
+    }
+  ],
+  "target": {
+    "layer": "edw",
+    "dataset": "fact_customer_order",
+    "grain": "one row per source order",
+    "writeBehavior": "append",
+    "businessKeys": [
+      "order_id"
+    ]
+  },
+  "transformation": {
+    "steps": [
+      {
+        "stepId": "read_orders",
+        "type": "read_source",
+        "sourceAlias": "orders"
+      },
+      {
+        "stepId": "filter_valid_orders",
+        "type": "filter",
+        "input": "read_orders",
+        "condition": "order_id is not null and customer_id is not null"
+      },
+      {
+        "stepId": "dedupe_orders",
+        "type": "deduplicate",
+        "input": "filter_valid_orders",
+        "keys": [
+          "order_id"
+        ],
+        "orderBy": [
+          {
+            "column": "updated_at",
+            "direction": "desc"
+          }
+        ]
+      },
+      {
+        "stepId": "join_customer",
+        "type": "join",
+        "left": "dedupe_orders",
+        "rightSourceAlias": "customers",
+        "joinType": "left",
+        "on": [
+          {
+            "leftColumn": "customer_id",
+            "rightColumn": "customer_id"
+          }
+        ]
+      },
+      {
+        "stepId": "final_projection",
+        "type": "select",
+        "input": "join_customer",
+        "columns": [
+          "order_id",
+          "customer_id",
+          "order_date",
+          "order_amount",
+          "customer_key"
+        ]
+      },
+      {
+        "stepId": "write_fact",
+        "type": "write_target",
+        "input": "final_projection",
+        "target": "fact_customer_order"
+      }
+    ]
+  },
+  "validation": {
+    "minimumRecordCount": 1,
+    "requiredFields": [
+      "order_id",
+      "customer_id",
+      "order_date"
+    ],
+    "referentialChecks": [
+      {
+        "field": "customer_key",
+        "severity": "warn"
+      }
+    ]
+  }
+}

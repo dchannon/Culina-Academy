@@ -1,0 +1,34 @@
+{
+  "schemaVersion": "culina.framework.config.v2.example",
+  "validationSet": {
+    "validationSetId": "val_customer_orders",
+    "appliesTo": [
+      "job_ingest_customer_orders",
+      "job_transform_customer_orders"
+    ],
+    "checks": [
+      {
+        "checkId": "orders_required_fields",
+        "type": "required_fields",
+        "fields": [
+          "order_id",
+          "customer_id",
+          "order_date"
+        ],
+        "severity": "fail"
+      },
+      {
+        "checkId": "orders_positive_amount",
+        "type": "business_rule",
+        "description": "Order amount should not be negative.",
+        "severity": "warn"
+      },
+      {
+        "checkId": "orders_minimum_count",
+        "type": "record_count",
+        "minimum": 1,
+        "severity": "fail"
+      }
+    ]
+  }
+}
