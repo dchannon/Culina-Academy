@@ -22,22 +22,6 @@ This repository is for clients, implementation partners, and users who need to u
 | --- | --- | --- |
 | [Framework Overview](docs/getting-started/framework-overview.md)<br>[Control Plane Structure](docs/architecture/control-plane.md)<br>[Control Plane Schema](docs/architecture/control-plane-schema.md)<br>[Orchestration Plane Layers](docs/architecture/orchestration-plane.md)<br>[Data Layers](docs/architecture/data-layers.md) | [Configuration Examples](docs/configuration/config-examples.md)<br>[Sandbox Client Metadata Example](docs/configuration/sandbox-client-example.md)<br>[Ingestion Job Pattern](docs/patterns/ingestion-jobs.md)<br>[Transformation Job Pattern](docs/patterns/transformation-jobs.md) | [Operating Guide](docs/operations/operating-guide.md)<br>[Backfill And Recovery](docs/operations/backfill-and-recovery.md)<br>[Engine Diagnostics](docs/troubleshooting/engine-diagnostics.md)<br>[Support Handoff Checklist](docs/troubleshooting/support-handoff.md) |
 
-## Document Map
-
-- [Framework Overview](docs/getting-started/framework-overview.md)
-- [Control Plane Structure](docs/architecture/control-plane.md)
-- [Control Plane Schema](docs/architecture/control-plane-schema.md)
-- [Orchestration Plane Layers](docs/architecture/orchestration-plane.md)
-- [Data Layers](docs/architecture/data-layers.md)
-- [Configuration Examples](docs/configuration/config-examples.md)
-- [Sandbox Client Metadata Example](docs/configuration/sandbox-client-example.md)
-- [Ingestion Job Pattern](docs/patterns/ingestion-jobs.md)
-- [Transformation Job Pattern](docs/patterns/transformation-jobs.md)
-- [Operating Guide](docs/operations/operating-guide.md)
-- [Backfill And Recovery](docs/operations/backfill-and-recovery.md)
-- [Engine Diagnostics](docs/troubleshooting/engine-diagnostics.md)
-- [Support Handoff Checklist](docs/troubleshooting/support-handoff.md)
-
 ## Repository Scope
 
 This repo documents the public framework structure and day-to-day operating model:

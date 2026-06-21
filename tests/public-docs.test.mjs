@@ -95,13 +95,17 @@ test('public landing page uses Data Culina brand assets', async () => {
   const index = await readFile(path.join(repoRoot, 'index.html'), 'utf8');
   const readme = await readFile(path.join(repoRoot, 'README.md'), 'utf8');
   const docsIndex = await readFile(path.join(repoRoot, 'docs', 'README.md'), 'utf8');
+  const banner = await readFile(path.join(repoRoot, 'assets', 'academy_readme_banner.svg'), 'utf8');
 
   assert.match(index, /assets\/data_culina_logo_vector\.svg/);
   assert.match(index, /assets\/data_culina_icon_vector\.svg/);
   assert.match(index, /#073f2c/);
   assert.match(index, /#f47b20/);
   assert.match(readme, /assets\/academy_readme_banner\.svg/);
+  assert.doesNotMatch(readme, /## Document Map/);
   assert.match(docsIndex, /\.\.\/assets\/data_culina_logo_on_paper\.svg/);
+  assert.match(banner, /M 436\.0 68\.0/);
+  assert.doesNotMatch(banner, /CONTROL PLANE|CONFIGURATION|OPERATIONS|TROUBLESHOOTING/);
 });
 
 async function listFiles(root, include) {
