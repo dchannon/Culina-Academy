@@ -20,6 +20,13 @@ These examples are designed to show the shape and relationships users should und
 - [customer_orders_validation.json](../../examples/config/sandbox-v2/customer_orders_validation.json)
 - [Data Culina sandbox client metadata](sandbox-client-example.md)
 
+## Cookbooks
+
+- [Add A REST Ingestion Job](../guides/add-rest-ingestion.md)
+- [Add A Transformation Job](../guides/add-transformation.md)
+- [Dependencies And Validation](../guides/dependencies-and-validation.md)
+- [Configuration Field Reference](../reference/config-field-reference.md)
+
 ## How To Read The Examples
 
 Start with the ingestion job. It defines source intake and target layers through staging. Then review the transformation job. It reads staged data, applies transformation steps, and writes to the modeled target. Finally, review dependencies and validation expectations.

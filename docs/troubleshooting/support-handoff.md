@@ -2,6 +2,8 @@
 
 Use this checklist before sending a support request to Data Culina.
 
+For severity, ownership, and escalation context, see [Support Model](support-model.md).
+
 ## Required Details
 
 - Your name and organization.

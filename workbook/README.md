@@ -1,4 +1,4 @@
-# Culina Academy Workbook
+# Culina Academy Workbook Exercises
 
 Optional local exercises for users who want to confirm their learning after reading the public docs.
 
@@ -15,11 +15,11 @@ python -m http.server 8000
 2. Open the learner workbook:
 
 ```text
-http://localhost:8000/internal/workbook/learner.html
+http://localhost:8000/workbook/learner.html
 ```
 
 3. Select `Import Track JSON`.
-4. Choose one or more files from `internal/workbook/content/`.
+4. Choose one or more files from `workbook/content/`.
 5. Enter your name and email in the Learner card.
 6. Select a learning path.
 7. Complete the lessons, labs, and assessment.
@@ -32,7 +32,7 @@ http://localhost:8000/internal/workbook/learner.html
 1. Open:
 
 ```text
-http://localhost:8000/internal/workbook/admin.html
+http://localhost:8000/workbook/admin.html
 ```
 
 2. Select `Import Transcripts`.

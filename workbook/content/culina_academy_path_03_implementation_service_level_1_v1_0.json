@@ -7,7 +7,7 @@
     "scoringMode": "calibrated_semantic_reference_match_for_free_text",
     "multipleChoiceScoring": "direct_correctAnswer_match",
     "multiSelectScoring": "exact_set_match",
-    "notes": "This dataset contains one certification track. It is intended to be imported alongside other track datasets in the v6 multi-dataset academy app."
+    "notes": "This dataset contains one workbook track. It is intended to be imported alongside other track datasets in the v6 multi-dataset academy app."
   },
   "academy": {
     "id": "culina_academy_implementation_service_level_1",
@@ -20,7 +20,7 @@
     "publisher": "Data Culina Inc.",
     "createdAt": "2026-05-20T13:33:17Z",
     "lastUpdated": "2026-05-20",
-    "description": "Implementation Service Level 1 certification content for data engineers and consultants who create client-scoped framework metadata and configuration artifacts.",
+    "description": "Implementation Service Level 1 workbook exercise content for data engineers and consultants who create client-scoped framework metadata and configuration artifacts.",
     "sourceModules": [
       {
         "moduleId": "MOD-011",
@@ -195,7 +195,7 @@
       "summary": "Understand the implementation role as a governed delivery function that turns client needs into reviewable framework artifacts and validated runtime behavior.",
       "estimatedMinutes": 12,
       "displayOrder": 1,
-      "content": "## Why this lesson matters\n\nImplementation service work is not only writing configuration. The role is to move a client engagement from requirements and discovery through model design, metadata configuration, validation, deployment readiness, and handover.\n\n## Configuration mindset\n\nA certified implementation engineer should think in connected work areas. Requirements explain the business need, discovery explains the source reality, modeling defines the target structure, metadata defines the framework implementation, and validation proves the result. Jumping directly into JSON or metadata without this chain creates fragile delivery.\n\n## Two configuration scopes\n\nThe framework supports an artifacts-only track and a framework-deployment-enabled track. In both cases, the implementation team must produce reviewable artifacts that are understandable to the client and maintainable by the team.\n\n## Readiness expectation\n\nBy the end of this path, a learner should be able to explain how client requirements become discovery scope, model decisions, metadata configuration, validation evidence, and handover artifacts.",
+      "content": "## Why this lesson matters\n\nImplementation service work is not only writing configuration. The role is to move a client engagement from requirements and discovery through model design, metadata configuration, validation, deployment readiness, and handover.\n\n## Configuration mindset\n\nA prepared implementation user should think in connected work areas. Requirements explain the business need, discovery explains the source reality, modeling defines the target structure, metadata defines the framework implementation, and validation proves the result. Jumping directly into JSON or metadata without this chain creates fragile delivery.\n\n## Two configuration scopes\n\nThe framework supports an artifacts-only track and a framework-deployment-enabled track. In both cases, the implementation team must produce reviewable artifacts that are understandable to the client and maintainable by the team.\n\n## Readiness expectation\n\nBy the end of this path, a learner should be able to explain how client requirements become discovery scope, model decisions, metadata configuration, validation evidence, and handover artifacts.",
       "learningObjectives": [
         "Explain the core decision points in Implementation Mission and Delivery Lifecycle.",
         "Apply Implementation Mission and Delivery Lifecycle concepts to a realistic Culina delivery or support scenario."
@@ -355,7 +355,7 @@
       "summary": "Apply naming and key conventions so metadata remains readable, reviewable, portable, and technically correct.",
       "estimatedMinutes": 12,
       "displayOrder": 5,
-      "content": "## Naming is part of metadata quality\n\nBecause the framework is metadata-driven, inconsistent names make configurations harder to review, validate, deploy, and support.\n\n## Important distinctions\n\nA control-plane identifier is not a business key, surrogate key, runtime queue identifier, or batch identifier. Control-plane record identity should stay separate from business-entity identity.\n\n## Source versus target naming\n\nSource keys should reflect source reality. Target output names should align to the approved model. If internal logic must use a more technically correct source identifier than the final target label suggests, the transformation design should document that clearly.\n\n## Join and lookup naming\n\nRight-side join fields should be renamed before reuse when ambiguity is possible. SCD-aware lookups should use names clear enough to show the role of effective dates, expiry dates, and source-system alignment.",
+      "content": "## Naming is part of metadata quality\n\nBecause the framework is metadata-driven, inconsistent names make configurations harder to review, validate, deploy, and support.\n\n## Important distinctions\n\nA control-plane identifier is not a business key, surrogate key, runtime queue identifier, or batch identifier. Control-plane record identity should stay separate from business-entity identity.\n\n## Source versus target naming\n\nSource keys should reflect source reality. Target output names should align to the approved model. If transformation logic must use a more technically correct source identifier than the final target label suggests, the transformation design should document that clearly.\n\n## Join and lookup naming\n\nRight-side join fields should be renamed before reuse when ambiguity is possible. SCD-aware lookups should use names clear enough to show the role of effective dates, expiry dates, and source-system alignment.",
       "learningObjectives": [
         "Explain the core decision points in Naming, Identity, and Key Conventions.",
         "Apply Naming, Identity, and Key Conventions concepts to a realistic Culina delivery or support scenario."
@@ -557,7 +557,7 @@
       "summary": "Decide when to use existing framework capability, client-specific metadata, or shared framework enhancement, and understand handover and change boundaries.",
       "estimatedMinutes": 13,
       "displayOrder": 10,
-      "content": "## Reuse first\n\nThe default question should be whether a client need can be solved with existing framework capability and standard patterns. If not, prefer client-specific metadata or configuration before changing shared framework behavior. Promote capability to the shared framework only when it is truly reusable.\n\n## Handover is transfer of understanding\n\nHandover is not just sending files. It should include review of the framework at a high level and the work artifacts produced, so the client and support teams understand what was created and how it connects to the solution.\n\n## Change boundary\n\nOperational recovery is not the same as release change. Changing approved metadata, shared framework behavior, control-plane packages, or environment provisioning belongs in change management and release governance.\n\n## Implementation readiness\n\nA certified implementation engineer should leave behind traceable artifacts, validated metadata, visible open questions, and enough context for managed service or future configuration teams to support the client safely.",
+      "content": "## Reuse first\n\nThe default question should be whether a client need can be solved with existing framework capability and standard patterns. If not, prefer client-specific metadata or configuration before changing shared framework behavior. Promote capability to the shared framework only when it is truly reusable.\n\n## Handover is transfer of understanding\n\nHandover is not just sending files. It should include review of the framework at a high level and the work artifacts produced, so the client and support teams understand what was created and how it connects to the solution.\n\n## Change boundary\n\nOperational recovery is not the same as release change. Changing approved metadata, shared framework behavior, control-plane packages, or environment provisioning belongs in change management and release governance.\n\n## Implementation readiness\n\nA prepared implementation user should leave behind traceable artifacts, validated metadata, visible open questions, and enough context for managed service or future configuration teams to support the client safely.",
       "learningObjectives": [
         "Explain the core decision points in Reuse, Handover, and Change Boundaries.",
         "Apply Reuse, Handover, and Change Boundaries concepts to a realistic Culina delivery or support scenario."
@@ -588,7 +588,7 @@
       "id": "assessment_implementation_service_level_1_v1",
       "trackId": "track_implementation_service_level_1",
       "title": "Implementation Service Level 1 Readiness Assessment",
-      "type": "certification_assessment",
+      "type": "workbook_assessment",
       "description": "Evaluates whether a learner can safely translate requirements, discovery, modeling, transformation patterns, validation rules, and operating expectations into framework-compatible implementation behavior.",
       "passThreshold": 0.8,
       "estimatedMinutes": 45,
@@ -869,7 +869,7 @@
           "id": "is_q009_source_target_key_naming",
           "type": "multiple_choice",
           "title": "Source versus target key naming",
-          "prompt": "What should an implementer do when internal processing must use a technically correct source identifier but final output naming must align to the target model?",
+          "prompt": "What should an implementer do when transformation processing must use a technically correct source identifier but final output naming must align to the target model?",
           "context": "Choose the safest framework-aligned behavior.",
           "points": 1,
           "competency": "Naming and key conventions",
@@ -880,7 +880,7 @@
             },
             {
               "id": "B",
-              "text": "Use the technically correct identifier internally, preserve target-aligned output naming, and document the distinction clearly in the transformation design."
+              "text": "Use the technically correct identifier inside the transformation, preserve target-aligned output naming, and document the distinction clearly in the transformation design."
             },
             {
               "id": "C",
@@ -1480,7 +1480,7 @@
       "id": "badge_implementation_service_level_1",
       "title": "Implementation Service Level 1 Certified",
       "icon": "🧭",
-      "description": "Awarded after completing the Implementation Service Level 1 certification path and passing the implementation readiness assessment.",
+      "description": "Awarded after completing the Implementation Service Level 1 workbook path and passing the implementation readiness assessment.",
       "requirements": {
         "trackId": "track_implementation_service_level_1",
         "requiredLessons": [

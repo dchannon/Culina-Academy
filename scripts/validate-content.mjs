@@ -104,7 +104,7 @@ function toPath(value) {
 }
 
 if (import.meta.url === pathToFileURL(process.argv[1]).href) {
-  const target = process.argv[2] || 'internal/workbook/content';
+  const target = process.argv[2] || 'workbook/content';
   const result = await validateContentDirectory(path.resolve(target));
   if (result.errors.length) {
     console.error(result.errors.join('\n'));

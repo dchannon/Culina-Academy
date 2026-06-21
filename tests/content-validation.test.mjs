@@ -7,14 +7,14 @@ import {
 } from '../scripts/validate-content.mjs';
 
 test('loads bundled content packages', async () => {
-  const packages = await loadContentPackages(new URL('../internal/workbook/content/', import.meta.url));
+  const packages = await loadContentPackages(new URL('../workbook/content/', import.meta.url));
 
   assert.equal(packages.length, 3);
   assert.ok(packages.every(pkg => pkg.data.academy?.title));
 });
 
 test('validates references for every bundled content package', async () => {
-  const result = await validateContentDirectory(new URL('../internal/workbook/content/', import.meta.url));
+  const result = await validateContentDirectory(new URL('../workbook/content/', import.meta.url));
 
   assert.deepEqual(result.errors, []);
   assert.equal(result.packageCount, 3);
@@ -23,7 +23,7 @@ test('validates references for every bundled content package', async () => {
 });
 
 test('bundled content packages include v2 depth fields', async () => {
-  const packages = await loadContentPackages(new URL('../internal/workbook/content/', import.meta.url));
+  const packages = await loadContentPackages(new URL('../workbook/content/', import.meta.url));
 
   for (const pkg of packages) {
     assert.ok(pkg.data.competencies?.length >= 4, `${pkg.file} missing competencies`);

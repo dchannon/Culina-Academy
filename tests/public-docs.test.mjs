@@ -6,16 +6,15 @@ import { fileURLToPath } from 'node:url';
 
 const repoRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 
-test('public docs do not link internal workbook', async () => {
+test('public docs use generic workbook paths', async () => {
   const files = await listFiles(repoRoot, file => {
     const rel = path.relative(repoRoot, file).replaceAll('\\', '/');
     return rel === 'README.md' || rel === 'index.html' || rel.startsWith('docs/');
   });
   const combined = (await Promise.all(files.map(file => readFile(file, 'utf8')))).join('\n');
 
-  assert.equal(combined.includes('internal/workbook'), false);
-  assert.equal(combined.includes('learner.html'), false);
-  assert.equal(combined.includes('admin.html'), false);
+  assert.equal(combined.includes('internal/'), false);
+  assert.equal(combined.includes('workbook/README.md'), true);
 });
 
 test('public docs avoid withheld-content framing', async () => {
@@ -69,10 +68,24 @@ test('sandbox client metadata examples parse as JSON', async () => {
 
 test('public docs include schema, sandbox, and recovery guides', async () => {
   const requiredFiles = [
+    'docs/getting-started/quickstart.md',
+    'docs/architecture/framework-architecture.md',
     'docs/architecture/control-plane-schema.md',
+    'docs/reference/config-field-reference.md',
     'docs/configuration/sandbox-client-example.md',
+    'docs/guides/add-rest-ingestion.md',
+    'docs/guides/add-transformation.md',
+    'docs/guides/dependencies-and-validation.md',
     'docs/operations/backfill-and-recovery.md',
+    'docs/troubleshooting/incident-walkthroughs.md',
+    'docs/troubleshooting/support-model.md',
+    'docs/reference/version-compatibility.md',
     'examples/metadata/data-culina-sandbox-test-client/README.md',
+    'SUPPORT.md',
+    'SECURITY.md',
+    'CHANGELOG.md',
+    'LICENSE',
+    'workbook/README.md',
   ];
 
   for (const rel of requiredFiles) {

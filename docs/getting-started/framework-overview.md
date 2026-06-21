@@ -25,6 +25,8 @@ A user does not need to know implementation code to understand the system. The i
 
 ## Main Areas
 
+- [Quickstart](quickstart.md)
+- [Framework Architecture](../architecture/framework-architecture.md)
 - [Control Plane Structure](../architecture/control-plane.md)
 - [Orchestration Plane Layers](../architecture/orchestration-plane.md)
 - [Data Layers](../architecture/data-layers.md)

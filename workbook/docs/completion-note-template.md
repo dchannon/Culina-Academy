@@ -4,7 +4,7 @@ Subject: Culina Academy training complete - <your name>
 
 Hi,
 
-I completed the assigned Culina Academy training paths.
+I completed the assigned Culina Academy workbook paths.
 
 Completed paths:
 

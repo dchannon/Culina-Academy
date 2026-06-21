@@ -507,7 +507,7 @@
         <div class="logo">ca</div>
         <div>
           <div class="brand-title">Culina Academy</div>
-          <div class="brand-subtitle">Training Workbook</div>
+          <div class="brand-subtitle">Workbook Exercises</div>
         </div>
       </div>
 
@@ -541,7 +541,7 @@
       <div class="active-path-card" id="activePathCard">
         <div class="eyebrow">Active Path</div>
         <h2 class="active-path-title" id="activePathTitle">No path selected</h2>
-        <p class="active-path-meta" id="activePathMeta">Select a certification path from Learning Paths.</p>
+        <p class="active-path-meta" id="activePathMeta">Select a workbook path from Learning Paths.</p>
       </div>
 
       <div class="nav-section-label">Workspace</div>
@@ -550,7 +550,7 @@
         <div class="nav-item" data-page="paths"><span class="nav-icon">◎</span><span>Learning Paths</span></div>
         <div class="nav-item" data-page="lessons"><span class="nav-icon">▣</span><span>Lessons</span></div>
         <div class="nav-item" data-page="assessments"><span class="nav-icon">✦</span><span>Assessments</span></div>
-        <div class="nav-item" data-page="certifications"><span class="nav-icon">◆</span><span>Certifications</span></div>
+        <div class="nav-item" data-page="certifications"><span class="nav-icon">◆</span><span>Badges</span></div>
         <div class="nav-item" data-page="transcript"><span class="nav-icon">☰</span><span>Transcript</span></div>
         <div class="nav-item" data-page="labs"><span class="nav-icon">Lab</span><span>Labs</span></div>
         <div class="nav-item" data-page="tools"><span class="nav-icon">?</span><span>Study Tools</span></div>
@@ -758,7 +758,7 @@
       refreshChrome();
       setPage('paths');
       const msg = imported.length === 1 ? 'Track dataset imported.' : `${imported.length} track datasets imported.`;
-      showToast(errors.length ? `${msg} ${errors.length} file(s) could not be imported.` : `${msg} Select a certification path to continue.`);
+      showToast(errors.length ? `${msg} ${errors.length} file(s) could not be imported.` : `${msg} Select a workbook path to continue.`);
     }
 
     function normalizeImportedPackage(data, fileName = 'academy-content.json') {
@@ -878,7 +878,7 @@
       const track = getActiveTrack();
       if (!track) {
         activeTrackTitle.textContent = 'No path selected';
-        activeTrackMeta.textContent = 'Select a certification path from Learning Paths.';
+        activeTrackMeta.textContent = 'Select a workbook path from Learning Paths.';
       } else {
         activeTrackTitle.textContent = track.title;
         activeTrackMeta.textContent = `${track.role || 'Certification'} · ${track.level || 'Path'} · ${Math.round(getTrackProgress(track).overall * 100)}% complete`;
@@ -939,7 +939,7 @@
         case 'labs': renderLabs(); break;
         case 'assessments': renderAssessments(); break;
         case 'tools': renderStudyTools(); break;
-        case 'certifications': renderCertifications(); break;
+        case 'certifications': renderBadges(); break;
         case 'transcript': renderTranscript(); break;
         default: renderDashboard(); break;
       }
@@ -951,21 +951,21 @@
           <section class="panel hero">
             <div>
               <div class="eyebrow">Culina Academy</div>
-              <h1 class="page-title">Load local training paths</h1>
+              <h1 class="page-title">Load local workbook paths</h1>
               <p class="page-subtitle">Use Import Track JSON to select the path files in the local content folder. Progress stays in this browser until exported.</p>
             </div>
             <div class="btn-row">
               <span class="pill strong">External JSON content</span>
-              <span class="pill">Separated certification paths</span>
+              <span class="pill">Separated workbook paths</span>
               <span class="pill">Browser semantic scoring</span>
             </div>
           </section>
           <section class="panel">
             <div class="eyebrow">Readiness Gate</div>
-            <h2 class="path-title">Official certification workflow</h2>
-            <p class="path-desc">Learners select a role-based path, complete the assigned lessons, pass the path assessment, and earn the relevant internal certification badge.</p>
+            <h2 class="path-title">Workbook exercise workflow</h2>
+            <p class="path-desc">Learners select a role-based path, complete the assigned lessons, pass the path assessment, and earn the relevant completion badge.</p>
             <div style="height: 24px"></div>
-            <div class="result-box">When training is done, export the transcript and send it with a short completion note to your training lead.</div>
+            <div class="result-box">When the exercise is done, export the transcript and send it with a short completion note to your exercise coordinator.</div>
           </section>
         </div>
       `;
@@ -979,7 +979,7 @@
         <section class="panel hero">
           <div>
             <div class="eyebrow">${escapeHtml(pkg.academy?.name || 'Culina Academy')}</div>
-            <h1 class="page-title">Framework certification dashboard</h1>
+            <h1 class="page-title">Framework workbook dashboard</h1>
             <p class="page-subtitle">Build the academy as a content library. Each role-based path can be imported as its own JSON dataset, so foundation, managed service, implementation, and future advanced paths can be authored and improved independently.</p>
           </div>
           <div class="btn-row">
@@ -990,7 +990,7 @@
           </div>
           <div class="library-strip">
             <span class="pill strong">${state.packages.length} dataset${state.packages.length === 1 ? '' : 's'} loaded</span>
-            <span class="pill">${tracks.length} certification path${tracks.length === 1 ? '' : 's'}</span>
+            <span class="pill">${tracks.length} workbook path${tracks.length === 1 ? '' : 's'}</span>
             <span class="pill">${totals.totalLessons} lessons</span>
             <span class="pill">${totals.totalLabs} labs</span>
             <span class="pill">${totals.totalAssessments} assessments</span>
@@ -998,7 +998,7 @@
         </section>
         <div style="height: 22px"></div>
         <section class="grid grid-3">
-          <div class="panel stat-card"><div class="stat-number">${totals.completedLessons}/${totals.totalLessons}</div><div class="stat-label">Lessons completed across all imported certification paths</div></div>
+          <div class="panel stat-card"><div class="stat-number">${totals.completedLessons}/${totals.totalLessons}</div><div class="stat-label">Lessons completed across all imported workbook paths</div></div>
           <div class="panel stat-card"><div class="stat-number">${totals.submittedLabs}/${totals.totalLabs}</div><div class="stat-label">Scenario labs submitted for review</div></div>
           <div class="panel stat-card"><div class="stat-number">${totals.passedAssessments}/${totals.totalAssessments}</div><div class="stat-label">Path assessments passed</div></div>
         </section>
@@ -1017,7 +1017,7 @@
       return `
         <section>
           <div class="eyebrow">Content Library</div>
-          <h2 class="section-title">Imported certification datasets</h2>
+          <h2 class="section-title">Imported workbook datasets</h2>
           <p class="page-subtitle" style="font-size:18px;max-width:980px;">Each dataset can own one path or a small group of related paths. Importing another JSON adds or replaces content by ID without mixing the learner workflow.</p>
           <div style="height:18px"></div>
           <div class="source-stack">
@@ -1047,7 +1047,7 @@
       const sources = state.package.sources || [];
       pageRoot.innerHTML = `
         <div class="eyebrow">Learning Paths</div>
-        <h1 class="page-title">Select a certification path</h1>
+        <h1 class="page-title">Select a workbook path</h1>
         <p class="page-subtitle">Paths are separated by imported dataset. This lets the academy grow one high-quality track package at a time while preserving a single learner experience.</p>
         <div style="height: 28px"></div>
         <div class="source-stack">
@@ -1140,7 +1140,7 @@
       pageRoot.innerHTML = `
         <div class="eyebrow">${escapeHtml(track.title)}</div>
         <h1 class="page-title">Lessons</h1>
-        <p class="page-subtitle">This workspace shows only the lessons assigned to the active certification path.</p>
+        <p class="page-subtitle">This workspace shows only the lessons assigned to the active workbook path.</p>
         <div style="height: 26px"></div>
         <div class="content-shell">
           <aside class="panel list-panel">
@@ -1327,7 +1327,7 @@
       pageRoot.innerHTML = `
         <div class="eyebrow">${escapeHtml(track.title)}</div>
         <h1 class="page-title">Assessment</h1>
-        <p class="page-subtitle">This workspace shows only the assessment assigned to the active certification path. Multiple-choice questions use direct answer matching. Free-text questions use calibrated semantic reference matching.</p>
+        <p class="page-subtitle">This workspace shows only the assessment assigned to the active workbook path. Multiple-choice questions use direct answer matching. Free-text questions use calibrated semantic reference matching.</p>
         <div style="height: 26px"></div>
         <div class="content-shell">
           <aside class="panel list-panel">
@@ -1793,10 +1793,10 @@
       }));
     }
 
-    function renderCertifications() {
+    function renderBadges() {
       const badges = state.package.badges || [];
       pageRoot.innerHTML = `
-        <div class="eyebrow">Certifications</div>
+        <div class="eyebrow">Badges</div>
         <h1 class="page-title">Badges and readiness</h1>
         <p class="page-subtitle">Badges are awarded when the learner completes all lessons in a path and passes the path assessment.</p>
         <div style="height: 28px"></div>
@@ -1849,7 +1849,7 @@
         <section class="panel empty-state">
           <div class="empty-inner">
             <div class="empty-icon">◎</div>
-            <h1 class="empty-title">Select a certification path</h1>
+            <h1 class="empty-title">Select a workbook path</h1>
             <p class="empty-copy">Choose a learning path before opening ${escapeHtml(target)}. Lessons and assessments are separated by path.</p>
             <div style="height: 22px"></div>
             <button class="primary-btn" id="selectPathNow">Open Learning Paths</button>
