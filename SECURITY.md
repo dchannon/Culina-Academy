@@ -2,7 +2,9 @@
 
 ## Reporting
 
-If you believe the public documentation or examples expose sensitive information, contact the Data Culina support or security owner directly. Do not open a public issue with secrets, credentials, private endpoint details, or sensitive client data.
+If you believe the public documentation or examples expose sensitive information, use [private security reporting](https://github.com/dchannon/Culina-Academy/security/advisories/new) when available or contact your assigned Data Culina support representative directly.
+
+Do not open a public issue with secrets, credentials, private endpoint details, or sensitive client data.
 
 ## Handling Evidence
 

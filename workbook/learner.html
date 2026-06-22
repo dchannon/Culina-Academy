@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Culina Academy Workbook</title>
+  <title>Culina Workbook</title>
   <style>
     :root {
       --bg: #f4f7f6;
@@ -523,7 +523,7 @@
       </div>
 
       <div class="package-card">
-        <div class="eyebrow">Learner</div>
+        <div class="eyebrow">Reader</div>
         <div class="field-stack">
           <input class="text-field" id="learnerNameInput" placeholder="Name for transcript" />
           <input class="text-field" id="learnerEmailInput" placeholder="Email for transcript" />
@@ -550,7 +550,7 @@
         <div class="nav-item" data-page="paths"><span class="nav-icon">◎</span><span>Learning Paths</span></div>
         <div class="nav-item" data-page="lessons"><span class="nav-icon">▣</span><span>Lessons</span></div>
         <div class="nav-item" data-page="assessments"><span class="nav-icon">✦</span><span>Assessments</span></div>
-        <div class="nav-item" data-page="certifications"><span class="nav-icon">◆</span><span>Badges</span></div>
+        <div class="nav-item" data-page="badges"><span class="nav-icon">◆</span><span>Badges</span></div>
         <div class="nav-item" data-page="transcript"><span class="nav-icon">☰</span><span>Transcript</span></div>
         <div class="nav-item" data-page="labs"><span class="nav-icon">Lab</span><span>Labs</span></div>
         <div class="nav-item" data-page="tools"><span class="nav-icon">?</span><span>Study Tools</span></div>
@@ -881,7 +881,7 @@
         activeTrackMeta.textContent = 'Select a workbook path from Learning Paths.';
       } else {
         activeTrackTitle.textContent = track.title;
-        activeTrackMeta.textContent = `${track.role || 'Certification'} · ${track.level || 'Path'} · ${Math.round(getTrackProgress(track).overall * 100)}% complete`;
+        activeTrackMeta.textContent = `${track.role || 'Exercise'} · ${track.level || 'Path'} · ${Math.round(getTrackProgress(track).overall * 100)}% complete`;
       }
 
       topMeta.innerHTML = '';
@@ -939,7 +939,7 @@
         case 'labs': renderLabs(); break;
         case 'assessments': renderAssessments(); break;
         case 'tools': renderStudyTools(); break;
-        case 'certifications': renderBadges(); break;
+        case 'badges': renderBadges(); break;
         case 'transcript': renderTranscript(); break;
         default: renderDashboard(); break;
       }
@@ -963,7 +963,7 @@
           <section class="panel">
             <div class="eyebrow">Readiness Gate</div>
             <h2 class="path-title">Workbook exercise workflow</h2>
-            <p class="path-desc">Learners select a role-based path, complete the assigned lessons, pass the path assessment, and earn the relevant completion badge.</p>
+            <p class="path-desc">Readers select a path, complete the lessons, pass the assessment, and earn the relevant completion badge.</p>
             <div style="height: 24px"></div>
             <div class="result-box">When the exercise is done, export the transcript and send it with a short completion note to your exercise coordinator.</div>
           </section>
@@ -1069,10 +1069,10 @@
         <article class="panel path-card ${selected ? 'selected' : ''}">
           <div>
             <div class="btn-row">
-              <span class="pill strong">${escapeHtml(track.role || track.audience || 'Certification')}</span>
+              <span class="pill strong">${escapeHtml(track.role || track.audience || 'Exercise')}</span>
               <span class="pill">${escapeHtml(track.level || 'Path')}</span>
               ${track._sourcePackageTitle ? `<span class="pill blue">${escapeHtml(track._sourcePackageTitle)}</span>` : ''}
-              ${badgeEarned ? '<span class="pill green">Certified</span>' : ''}
+              ${badgeEarned ? '<span class="pill green">Completed</span>' : ''}
             </div>
             <h2 class="path-title">${escapeHtml(track.title)}</h2>
             <p class="path-desc">${escapeHtml(track.description || '')}</p>
@@ -1445,7 +1445,7 @@
             <div class="metric-row"><div class="metric-label">Match interpretation</div><div class="metric-value">${escapeHtml(band)}</div></div>
             <div class="metric-row"><div class="metric-label">Reference answers compared</div><div class="metric-value">${detail.referenceCount || 0}</div></div>
             <div class="metric-row"><div class="metric-label">Word count</div><div class="metric-value">${detail.wordCount || 0}</div></div>
-            <p style="margin:16px 0 0; line-height:1.65; color:var(--muted);">Raw embedding similarity is calibrated into a learner score because semantic similarity is not a human grading percentage.</p>
+        <p style="margin:16px 0 0; line-height:1.65; color:var(--muted);">Raw embedding similarity is calibrated into a reader score because semantic similarity is not a human grading percentage.</p>
             ${detail.feedback ? `<p style="margin:10px 0 0; line-height:1.65;">${escapeHtml(detail.feedback)}</p>` : ''}
           </div>
         `;
@@ -1821,7 +1821,7 @@
       const events = state.progress.events || [];
       pageRoot.innerHTML = `
         <div class="eyebrow">Transcript</div>
-        <h1 class="page-title">Learner activity record</h1>
+        <h1 class="page-title">Reader activity record</h1>
         <p class="page-subtitle">The transcript reflects local browser progress for the currently loaded academy package.</p>
         <div style="height: 28px"></div>
         <section class="panel">

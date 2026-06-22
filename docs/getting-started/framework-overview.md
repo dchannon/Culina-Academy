@@ -25,6 +25,7 @@ A user does not need to know implementation code to understand the system. The i
 
 ## Main Areas
 
+- [What Is Culina?](what-is-culina.md)
 - [Quickstart](quickstart.md)
 - [Framework Architecture](../architecture/framework-architecture.md)
 - [Control Plane Structure](../architecture/control-plane.md)

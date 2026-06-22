@@ -13,7 +13,7 @@
     "id": "culina_academy_implementation_service_level_1",
     "title": "Culina Academy — Implementation Service Level 1",
     "name": "Culina Academy",
-    "subtitle": "Implementation Service Level 1 Certification",
+    "subtitle": "Implementation Service Level 1 Exercise",
     "version": "1.0.0",
     "status": "Pilotable",
     "owner": "Metadata Framework Lead",
@@ -105,11 +105,11 @@
   "tracks": [
     {
       "id": "track_implementation_service_level_1",
-      "title": "Implementation Service Level 1 Certification",
+      "title": "Implementation Service Level 1 Exercise",
       "audience": "Implementation Service Team, implementation consultants, external data engineers, configuration engineers building client configurations",
       "role": "Implementation Service",
       "level": "Level 1",
-      "pathType": "certification_path",
+      "pathType": "exercise_path",
       "description": "Builds the configuration capability required to translate client requirements, discovery findings, and modeling decisions into framework-compatible metadata, transformation JSON, validation evidence, and support-ready artifacts while following reuse, governance, and standardization rules.",
       "prerequisites": [
         "track_common_foundation"
@@ -1478,7 +1478,7 @@
   "badges": [
     {
       "id": "badge_implementation_service_level_1",
-      "title": "Implementation Service Level 1 Certified",
+      "title": "Implementation Service Level 1 Completed",
       "icon": "🧭",
       "description": "Awarded after completing the Implementation Service Level 1 workbook path and passing the implementation readiness assessment.",
       "requirements": {

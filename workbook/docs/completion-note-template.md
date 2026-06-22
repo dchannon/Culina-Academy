@@ -1,10 +1,10 @@
 # Completion Note Template
 
-Subject: Culina Academy training complete - <your name>
+Subject: Culina workbook exercise complete - <your name>
 
 Hi,
 
-I completed the assigned Culina Academy workbook paths.
+I completed the assigned Culina workbook exercise paths.
 
 Completed paths:
 

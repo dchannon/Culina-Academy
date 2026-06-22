@@ -1,6 +1,6 @@
 # Support Handoff Checklist
 
-Use this checklist before sending a support request to Data Culina.
+Use this checklist before sending a support request through a GitHub issue or the assigned client support channel.
 
 For severity, ownership, and escalation context, see [Support Model](support-model.md).
 

@@ -2,11 +2,13 @@
 
 Use this page to decide what evidence to collect and when to escalate.
 
+For public docs, examples, workbook, and validation questions, use the repository issue templates. For environment-specific incidents, use the assigned Data Culina client support channel.
+
 ## Severity Guide
 
 | Severity | Meaning | Examples | Response expectation |
 | --- | --- | --- | --- |
-| Sev 1 | Production-critical output unavailable or materially incorrect. | Executive dashboard unusable, downstream interface blocked, broad client data failure. | Collect evidence immediately and contact the accountable support channel. |
+| Sev 1 | Production-critical output unavailable or materially incorrect. | Executive dashboard unusable, downstream interface blocked, broad client data failure. | Collect evidence immediately and contact the assigned client support channel. |
 | Sev 2 | Important workflow failed, but workaround or partial output exists. | One domain delayed, retry exhausted, upstream source outage affecting a subset. | Diagnose with control-plane evidence and escalate if recovery is not clear. |
 | Sev 3 | Non-critical issue or question. | Configuration review, isolated validation warning, documentation question. | Track and resolve through normal support flow. |
 

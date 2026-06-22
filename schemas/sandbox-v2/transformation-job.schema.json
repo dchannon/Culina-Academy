@@ -1,0 +1,73 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/dchannon/Culina-Academy/schemas/sandbox-v2/transformation-job.schema.json",
+  "title": "Culina V2 Transformation Job Example",
+  "type": "object",
+  "required": ["schemaVersion", "job", "sources", "target", "transformation", "validation"],
+  "properties": {
+    "schemaVersion": { "const": "culina.framework.config.v2.example" },
+    "job": {
+      "type": "object",
+      "required": ["jobId", "jobType", "displayName", "owner", "status"],
+      "properties": {
+        "jobId": { "type": "string", "minLength": 1 },
+        "jobType": { "const": "transformation" },
+        "displayName": { "type": "string", "minLength": 1 },
+        "description": { "type": "string" },
+        "owner": { "type": "string", "minLength": 1 },
+        "status": { "enum": ["active", "inactive"] }
+      }
+    },
+    "sources": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["alias", "layer", "dataset"],
+        "properties": {
+          "alias": { "type": "string", "minLength": 1 },
+          "layer": { "type": "string", "minLength": 1 },
+          "dataset": { "type": "string", "minLength": 1 }
+        }
+      }
+    },
+    "target": {
+      "type": "object",
+      "required": ["layer", "dataset", "writeBehavior", "businessKeys"],
+      "properties": {
+        "layer": { "type": "string", "minLength": 1 },
+        "dataset": { "type": "string", "minLength": 1 },
+        "grain": { "type": "string" },
+        "writeBehavior": { "type": "string", "minLength": 1 },
+        "businessKeys": { "type": "array", "minItems": 1, "items": { "type": "string" } }
+      }
+    },
+    "transformation": {
+      "type": "object",
+      "required": ["steps"],
+      "properties": {
+        "steps": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "required": ["stepId", "type"],
+            "properties": {
+              "stepId": { "type": "string", "minLength": 1 },
+              "type": { "type": "string", "minLength": 1 }
+            }
+          }
+        }
+      }
+    },
+    "validation": {
+      "type": "object",
+      "required": ["minimumRecordCount", "requiredFields"],
+      "properties": {
+        "minimumRecordCount": { "type": "integer", "minimum": 0 },
+        "requiredFields": { "type": "array", "minItems": 1, "items": { "type": "string" } },
+        "referentialChecks": { "type": "array" }
+      }
+    }
+  }
+}

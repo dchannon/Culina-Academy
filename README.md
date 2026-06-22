@@ -20,7 +20,7 @@ This repository is for clients, implementation partners, and users who need to u
 
 | Learn the framework | Configure work | Operate and diagnose |
 | --- | --- | --- |
-| [Quickstart](docs/getting-started/quickstart.md)<br>[Framework Overview](docs/getting-started/framework-overview.md)<br>[Framework Architecture](docs/architecture/framework-architecture.md)<br>[Control Plane Structure](docs/architecture/control-plane.md)<br>[Control Plane Schema](docs/architecture/control-plane-schema.md)<br>[Data Layers](docs/architecture/data-layers.md) | [Configuration Examples](docs/configuration/config-examples.md)<br>[Sandbox Client Metadata Example](docs/configuration/sandbox-client-example.md)<br>[Config Field Reference](docs/reference/config-field-reference.md)<br>[Add REST Ingestion](docs/guides/add-rest-ingestion.md)<br>[Add Transformation](docs/guides/add-transformation.md)<br>[Dependencies And Validation](docs/guides/dependencies-and-validation.md) | [Operating Guide](docs/operations/operating-guide.md)<br>[Backfill And Recovery](docs/operations/backfill-and-recovery.md)<br>[Engine Diagnostics](docs/troubleshooting/engine-diagnostics.md)<br>[Incident Walkthroughs](docs/troubleshooting/incident-walkthroughs.md)<br>[Support Model](docs/troubleshooting/support-model.md)<br>[Workbook Exercises](workbook/README.md) |
+| [What Is Culina?](docs/getting-started/what-is-culina.md)<br>[Quickstart](docs/getting-started/quickstart.md)<br>[Framework Overview](docs/getting-started/framework-overview.md)<br>[Framework Architecture](docs/architecture/framework-architecture.md)<br>[Control Plane Structure](docs/architecture/control-plane.md)<br>[Control Plane Schema](docs/architecture/control-plane-schema.md)<br>[Data Layers](docs/architecture/data-layers.md) | [Configuration Examples](docs/configuration/config-examples.md)<br>[Sandbox Client Metadata Example](docs/configuration/sandbox-client-example.md)<br>[Config Field Reference](docs/reference/config-field-reference.md)<br>[Config Validation](docs/reference/config-validation.md)<br>[Add REST Ingestion](docs/guides/add-rest-ingestion.md)<br>[Add Transformation](docs/guides/add-transformation.md)<br>[Dependencies And Validation](docs/guides/dependencies-and-validation.md) | [Operating Guide](docs/operations/operating-guide.md)<br>[Diagnostic Queries](docs/troubleshooting/diagnostic-queries.md)<br>[Backfill And Recovery](docs/operations/backfill-and-recovery.md)<br>[Engine Diagnostics](docs/troubleshooting/engine-diagnostics.md)<br>[Incident Walkthroughs](docs/troubleshooting/incident-walkthroughs.md)<br>[Support Model](docs/troubleshooting/support-model.md)<br>[Workbook Exercises](workbook/README.md) |
 
 ## Repository Scope
 
@@ -31,6 +31,7 @@ This repo documents the public framework structure and day-to-day operating mode
 - data processing layers used by the framework
 - sandbox-style V2 configuration examples
 - full sandbox client metadata examples
+- JSON Schema validation for compact V2 examples
 - ingestion and transformation job patterns
 - operating and diagnostic workflows
 - incident walkthroughs and support handoff expectations
@@ -62,4 +63,5 @@ Then open `http://localhost:8000`.
 ```powershell
 npm test
 npm run validate:content
+npm run validate:schemas
 ```

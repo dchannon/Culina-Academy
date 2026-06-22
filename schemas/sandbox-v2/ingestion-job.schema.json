@@ -1,0 +1,72 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/dchannon/Culina-Academy/schemas/sandbox-v2/ingestion-job.schema.json",
+  "title": "Culina V2 Ingestion Job Example",
+  "type": "object",
+  "required": ["schemaVersion", "job", "source", "load", "layers", "validation", "operationalContext"],
+  "properties": {
+    "schemaVersion": { "const": "culina.framework.config.v2.example" },
+    "job": {
+      "type": "object",
+      "required": ["jobId", "jobType", "displayName", "owner", "status"],
+      "properties": {
+        "jobId": { "type": "string", "minLength": 1 },
+        "jobType": { "const": "ingestion" },
+        "displayName": { "type": "string", "minLength": 1 },
+        "description": { "type": "string" },
+        "owner": { "type": "string", "minLength": 1 },
+        "status": { "enum": ["active", "inactive"] }
+      }
+    },
+    "source": {
+      "type": "object",
+      "required": ["sourceId", "sourceType", "format", "cadence", "expectedPath"],
+      "properties": {
+        "sourceId": { "type": "string", "minLength": 1 },
+        "sourceType": { "type": "string", "minLength": 1 },
+        "format": { "type": "string", "minLength": 1 },
+        "cadence": { "type": "string", "minLength": 1 },
+        "expectedPath": { "type": "string", "minLength": 1 },
+        "filePattern": { "type": "string" },
+        "headerRow": { "type": "boolean" },
+        "delimiter": { "type": "string" }
+      }
+    },
+    "load": {
+      "type": "object",
+      "required": ["strategy"],
+      "properties": {
+        "strategy": { "enum": ["full", "incremental"] },
+        "watermarkColumn": { "type": "string" },
+        "lateArrivingDataPolicy": { "type": "string" }
+      }
+    },
+    "layers": {
+      "type": "object",
+      "required": ["landing", "archive", "delta", "staging"],
+      "properties": {
+        "landing": { "type": "string", "minLength": 1 },
+        "archive": { "type": "string", "minLength": 1 },
+        "delta": { "type": "string", "minLength": 1 },
+        "staging": { "type": "string", "minLength": 1 }
+      }
+    },
+    "validation": {
+      "type": "object",
+      "required": ["requiredFields", "minimumRecordCount"],
+      "properties": {
+        "requiredFields": { "type": "array", "minItems": 1, "items": { "type": "string" } },
+        "minimumRecordCount": { "type": "integer", "minimum": 0 },
+        "duplicateCheck": { "type": "object" }
+      }
+    },
+    "operationalContext": {
+      "type": "object",
+      "required": ["releaseDependencyOn"],
+      "properties": {
+        "releaseDependencyOn": { "type": "string", "minLength": 1 },
+        "supportNotes": { "type": "string" }
+      }
+    }
+  }
+}

@@ -13,7 +13,7 @@
     "id": "culina_academy_managed_service_level_1",
     "title": "Culina Academy — Managed Service Level 1",
     "name": "Culina Academy",
-    "subtitle": "Managed Service Level 1 Certification",
+    "subtitle": "Managed Service Level 1 Exercise",
     "version": "1.0.0",
     "status": "Pilotable",
     "owner": "Metadata Framework Lead",
@@ -87,11 +87,11 @@
   "tracks": [
     {
       "id": "track_managed_service_level_1",
-      "title": "Managed Service Level 1 Certification",
+      "title": "Managed Service Level 1 Exercise",
       "audience": "Managed Service Team, Support Team, L2 support, implementation consultants supporting production",
       "role": "Managed Service",
       "level": "Level 1",
-      "pathType": "certification_path",
+      "pathType": "exercise_path",
       "description": "Builds the operational capability required to monitor framework runtime health, triage common incidents, understand queue/dependency state, investigate ingestion/transformation/validation failures, perform controlled rerun/recovery reasoning, and separate framework failures from external notification delivery issues.",
       "prerequisites": [
         "track_common_foundation"
@@ -172,7 +172,7 @@
       "summary": "Learn the operating mission of managed services and why runtime evidence is the starting point for support decisions.",
       "estimatedMinutes": 12,
       "displayOrder": 1,
-      "content": "## Why this lesson matters\n\nManaged service work is not just watching for red statuses. The role is to keep scheduled ingestion, transformation, validation, and service jobs running reliably while making failures visible, traceable, recoverable, and explainable.\n\n## Operating mindset\n\nA managed service person should start from framework evidence, not guesswork. The first question is not usually \"which report looks wrong?\" but rather \"what does the runtime control plane say?\" The framework is designed so that batch state, queue rows, run history, failure logs, dependency views, and impact views tell the support story.\n\n## Primary evidence sources\n\nThe core evidence families are:\n\n- **Batch state:** whether a scheduling cycle exists, is still active, or is blocked by unresolved work.\n- **Queue state:** the operational status of configured jobs in the batch.\n- **Run history:** the zone, step, or activity where execution succeeded or failed.\n- **Failure logs:** the direct error message and affected queue row.\n- **Dependency and impact views:** why work cannot run and which downstream jobs are affected.\n- **Quality-result entities:** validation or unit-test evidence that may fail a job even when target writing technically occurred.\n\n## Readiness expectation\n\nA certified managed service learner should be able to explain what evidence they would inspect first, how they would identify the earliest failing point, and why operational action should be based on framework evidence rather than assumptions.",
+      "content": "## Why this lesson matters\n\nManaged service work is not just watching for red statuses. The role is to keep scheduled ingestion, transformation, validation, and service jobs running reliably while making failures visible, traceable, recoverable, and explainable.\n\n## Operating mindset\n\nA managed service person should start from framework evidence, not guesswork. The first question is not usually \"which report looks wrong?\" but rather \"what does the runtime control plane say?\" The framework is designed so that batch state, queue rows, run history, failure logs, dependency views, and impact views tell the support story.\n\n## Primary evidence sources\n\nThe core evidence families are:\n\n- **Batch state:** whether a scheduling cycle exists, is still active, or is blocked by unresolved work.\n- **Queue state:** the operational status of configured jobs in the batch.\n- **Run history:** the zone, step, or activity where execution succeeded or failed.\n- **Failure logs:** the direct error message and affected queue row.\n- **Dependency and impact views:** why work cannot run and which downstream jobs are affected.\n- **Quality-result entities:** validation or unit-test evidence that may fail a job even when target writing technically occurred.\n\n## Readiness expectation\n\nA prepared managed service learner should be able to explain what evidence they would inspect first, how they would identify the earliest failing point, and why operational action should be based on framework evidence rather than assumptions.",
       "learningObjectives": [
         "Explain the core decision points in Managed Service Mission and Evidence Model.",
         "Apply Managed Service Mission and Evidence Model concepts to a realistic Culina delivery or support scenario."
@@ -569,8 +569,8 @@
     {
       "id": "assessment_managed_service_level_1_v1",
       "trackId": "track_managed_service_level_1",
-      "title": "Managed Service Level 1 Certification Assessment",
-      "type": "Certification Assessment",
+      "title": "Managed Service Level 1 Exercise Assessment",
+      "type": "Exercise Assessment",
       "description": "Validates operational readiness for Level 1 managed service work: monitoring, status interpretation, dependency triage, ingestion and transformation troubleshooting, validation failure handling, controlled recovery reasoning, notification boundary awareness, and escalation classification.",
       "passThreshold": 0.8,
       "estimatedMinutes": 45,
@@ -1229,7 +1229,7 @@
   "badges": [
     {
       "id": "badge_managed_service_level_1",
-      "title": "Managed Service Level 1 Certified",
+      "title": "Managed Service Level 1 Completed",
       "icon": "🛡️",
       "description": "Awarded after completing the Managed Service Level 1 workbook path and passing the operational readiness assessment.",
       "requirements": {

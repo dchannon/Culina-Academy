@@ -45,3 +45,4 @@ Do not repeatedly rerun before collecting evidence. Capture the visible status, 
 - [Orchestration Plane Layers](../architecture/orchestration-plane.md)
 - [Data Layers](../architecture/data-layers.md)
 - [Engine Diagnostics](../troubleshooting/engine-diagnostics.md)
+- [Diagnostic Queries](../troubleshooting/diagnostic-queries.md)

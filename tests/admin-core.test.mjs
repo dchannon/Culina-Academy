@@ -22,7 +22,7 @@ test('summarizeTranscript extracts learner readiness', () => {
           questionResults: [{ type: 'free_text', scorePercent: 0.86, feedback: 'Strong' }],
         },
       },
-      badges: { b1: { title: 'Foundation Certified' } },
+      badges: { b1: { title: 'Foundation Completed' } },
       labEvidence: { lab1: { status: 'submitted', response: 'Evidence' } },
     },
   }, 'avery.json');

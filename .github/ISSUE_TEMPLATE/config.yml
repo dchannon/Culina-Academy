@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Security reporting
+    url: https://github.com/dchannon/Culina-Academy/security/advisories/new
+    about: Report sensitive security concerns privately instead of opening a public issue.
+  - name: Data Culina support
+    url: https://github.com/dchannon/Culina-Academy/issues/new/choose
+    about: Use public issues only for non-sensitive documentation, examples, and workbook questions.

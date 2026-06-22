@@ -11,6 +11,7 @@ These examples are designed to show the shape and relationships users should und
 - a transformation job that reads staged data and writes modeled output
 - a dependency record that controls ordering between jobs
 - validation expectations that describe what should be checked
+- schema files that validate the compact V2 example shape
 
 ## Example Files
 
@@ -19,6 +20,7 @@ These examples are designed to show the shape and relationships users should und
 - [customer_orders_dependencies.json](../../examples/config/sandbox-v2/customer_orders_dependencies.json)
 - [customer_orders_validation.json](../../examples/config/sandbox-v2/customer_orders_validation.json)
 - [Data Culina sandbox client metadata](sandbox-client-example.md)
+- [Config Validation](../reference/config-validation.md)
 
 ## Cookbooks
 
@@ -54,3 +56,13 @@ Use these questions when reviewing a new job:
 - Are dependencies explicit?
 - Are validation checks defined before the job is operated?
 - Is owner or support context present?
+
+## Local Validation
+
+Run:
+
+```powershell
+npm run validate:schemas
+```
+
+This checks the compact V2 example files against the bundled schema documents under `schemas/sandbox-v2/`.

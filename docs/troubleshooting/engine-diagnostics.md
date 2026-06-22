@@ -2,6 +2,8 @@
 
 Use this page when a Culina engine workflow does not behave as expected.
 
+For concrete query patterns, see [Diagnostic Queries](diagnostic-queries.md).
+
 ## First Check
 
 Confirm:

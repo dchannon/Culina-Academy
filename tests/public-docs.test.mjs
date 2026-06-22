@@ -68,19 +68,26 @@ test('sandbox client metadata examples parse as JSON', async () => {
 
 test('public docs include schema, sandbox, and recovery guides', async () => {
   const requiredFiles = [
+    'docs/getting-started/what-is-culina.md',
     'docs/getting-started/quickstart.md',
     'docs/architecture/framework-architecture.md',
     'docs/architecture/control-plane-schema.md',
     'docs/reference/config-field-reference.md',
+    'docs/reference/config-validation.md',
     'docs/configuration/sandbox-client-example.md',
     'docs/guides/add-rest-ingestion.md',
     'docs/guides/add-transformation.md',
     'docs/guides/dependencies-and-validation.md',
     'docs/operations/backfill-and-recovery.md',
+    'docs/troubleshooting/diagnostic-queries.md',
     'docs/troubleshooting/incident-walkthroughs.md',
     'docs/troubleshooting/support-model.md',
     'docs/reference/version-compatibility.md',
     'examples/metadata/data-culina-sandbox-test-client/README.md',
+    'schemas/sandbox-v2/ingestion-job.schema.json',
+    'schemas/sandbox-v2/transformation-job.schema.json',
+    'schemas/sandbox-v2/dependencies.schema.json',
+    'schemas/sandbox-v2/validation-set.schema.json',
     'SUPPORT.md',
     'SECURITY.md',
     'CHANGELOG.md',
@@ -96,6 +103,8 @@ test('public docs include schema, sandbox, and recovery guides', async () => {
   const docsIndex = await readFile(path.join(repoRoot, 'docs', 'README.md'), 'utf8');
   assert.match(docsIndex, /Control Plane Schema/);
   assert.match(docsIndex, /Sandbox Client Metadata Example/);
+  assert.match(docsIndex, /Config Validation/);
+  assert.match(docsIndex, /Diagnostic Queries/);
   assert.match(docsIndex, /Backfill And Recovery/);
 });
 

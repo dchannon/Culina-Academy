@@ -13,7 +13,7 @@
     "id": "culina_academy_common_foundation",
     "title": "Culina Academy — Common Foundation",
     "name": "Culina Academy",
-    "subtitle": "Common Foundation Certification",
+    "subtitle": "Common Foundation Exercise",
     "version": "1.0.0",
     "status": "Pilotable",
     "owner": "Metadata Framework Lead",
@@ -117,11 +117,11 @@
   "tracks": [
     {
       "id": "track_common_foundation",
-      "title": "Common Foundation Certification",
+      "title": "Common Foundation Exercise",
       "audience": "All team members before specialization",
       "role": "Foundation",
       "level": "Foundation",
-      "pathType": "certification_path",
+      "pathType": "exercise_path",
       "description": "Builds the shared mental model, vocabulary, architecture awareness, governance boundaries, and documentation navigation skills required before entering Managed Service or Implementation workbook paths.",
       "prerequisites": [],
       "learningObjectives": [
@@ -585,8 +585,8 @@
     {
       "id": "assessment_common_foundation_v2",
       "trackId": "track_common_foundation",
-      "title": "Common Foundation Certification Assessment",
-      "type": "Certification Assessment",
+      "title": "Common Foundation Exercise Assessment",
+      "type": "Exercise Assessment",
       "description": "Validates shared understanding of framework purpose, metadata-driven behavior, principles, logical architecture, processing layers, orchestration, metadata model fundamentals, Studio/Copilot boundaries, deployment boundaries, and documentation routing.",
       "passThreshold": 0.8,
       "estimatedMinutes": 35,
@@ -1188,7 +1188,7 @@
   "badges": [
     {
       "id": "badge_common_foundation",
-      "title": "Framework Foundation Certified",
+      "title": "Framework Foundation Completed",
       "icon": "🏛️",
       "description": "Awarded after completing the Common Foundation workbook path and passing the foundation readiness assessment.",
       "requirements": {

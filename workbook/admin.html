@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Culina Academy Admin Workbook</title>
+  <title>Culina Review Workbook</title>
   <style>
     :root {
       --bg: #f4f7f6;
@@ -158,13 +158,13 @@
       <div class="brand">
         <div class="logo">ca</div>
         <div>
-          <h1>Culina Academy</h1>
+          <h1>Culina Review Workbook</h1>
           <p>Admin Workbook</p>
         </div>
       </div>
       <div class="panel side-card">
         <div class="eyebrow">Transcript Intake</div>
-        <p class="page-copy">Import learner transcript JSON exports. Review state stays local in this browser.</p>
+        <p class="page-copy">Import reader transcript JSON exports. Review state stays local in this browser.</p>
         <button class="primary full" id="importBtn">Import Transcripts</button>
         <input class="hidden" id="transcriptInput" type="file" accept="application/json,.json" multiple />
       </div>
@@ -278,7 +278,7 @@
       return `
         <div class="detail-stack">
           <div>
-            <div class="eyebrow">Learner Detail</div>
+            <div class="eyebrow">Reader Detail</div>
             <h2 class="page-title" style="font-size:38px">${escapeHtml(record.learnerName)}</h2>
             <p class="page-copy">${escapeHtml(record.learnerEmail || 'No email supplied')} - Exported ${escapeHtml(formatDateTime(record.exportedAt))}</p>
             <div class="btn-row">
@@ -357,7 +357,7 @@
     }
 
     function renderEmptyDetail() {
-      return '<div class="eyebrow">No Transcript</div><h2 class="page-title" style="font-size:38px">Import learner exports</h2><p class="page-copy">Start by importing one or more transcript JSON files from the learner workbook.</p>';
+      return '<div class="eyebrow">No Transcript</div><h2 class="page-title" style="font-size:38px">Import reader exports</h2><p class="page-copy">Start by importing one or more transcript JSON files from the workbook.</p>';
     }
 
     function exportCsv() {
