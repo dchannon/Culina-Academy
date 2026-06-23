@@ -8,6 +8,8 @@ Public operating documentation, examples, and workbook exercises for the Data Cu
 
 This repository is for clients, implementation partners, and users who need to understand what is running in their environment, how the framework is organized, and how to diagnose issues when the engine reports unexpected behavior.
 
+Interested in working with Data Culina? Visit [dataculina.com](https://dataculina.com/).
+
 <p>
   <a href="docs/getting-started/quickstart.md"><strong>Start with the quickstart</strong></a>
   &nbsp;|&nbsp;

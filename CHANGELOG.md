@@ -11,6 +11,7 @@
 - Added GitHub issue templates for bugs, configuration help, docs issues, and support handoff.
 - Replaced abbreviated license notice with full Apache-2.0 license text.
 - Tightened workbook exercise wording for public use.
+- Added Data Culina contact links for users interested in working with the team.
 
 ## 2.0.0
 
