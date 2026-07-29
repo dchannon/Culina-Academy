@@ -38,12 +38,12 @@ This repo documents the public framework structure and day-to-day operating mode
 - JSON Schema validation for compact V2 examples
 - ingestion and transformation job patterns
 - operating and diagnostic workflows
-- YouTube tutorial catalog and transcript standards
+- YouTube tutorial series
 - incident walkthroughs and support handoff expectations
 - optional workbook exercises
 - common terminology
 
-The docs focus on framework operation, configuration structure, and supportability. Package source code and consulting methodology are maintained separately.
+This repository provides documentation, examples, and workbook exercises. It does not install the Culina engine.
 
 ## Project Files
 
@@ -63,7 +63,7 @@ python -m http.server 8000
 
 Then open `http://localhost:8000`.
 
-## Maintainer Validation
+## Validate A Local Checkout
 
 ```powershell
 npm test

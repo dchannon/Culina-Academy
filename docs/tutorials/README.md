@@ -36,22 +36,3 @@ Use the [Quickstart](../getting-started/quickstart.md) to trace one configured w
 | 6 | Inside `culina-runtime` | `payload.json` → shared execution library → `result.json` → official evidence. | [Framework Concepts](../concepts/framework-concepts.md), [Control Plane Schema](../architecture/control-plane-schema.md) |
 | 7 | Transformations You Can Trust | Ordered JSON steps, append/upsert/SCD2, validation, unit tests. | [Transformation Jobs](../patterns/transformation-jobs.md), [Add Transformation](../guides/add-transformation.md), [Dependencies And Validation](../guides/dependencies-and-validation.md) |
 | 8 | One Job, Any Platform | Same logical framework across local, A.W.S., Synapse, Fabric, and Databricks. | [Framework Architecture](../architecture/framework-architecture.md), [Version Compatibility](../reference/version-compatibility.md) |
-
-## Publishing Workflow
-
-1. Upload the final video to the Data Culina YouTube channel.
-2. Keep it unlisted during review, then make it public when approved.
-3. Add captions and chapters in YouTube.
-4. Copy the [video entry template](video-entry-template.md) into this page.
-5. Replace every placeholder with the final title, video id, duration, audience, and links.
-6. Add a transcript under [`transcripts/`](transcripts/README.md).
-7. Test the video and thumbnail while signed out of YouTube.
-8. Link the tutorial from its companion documentation page where useful.
-
-## Standards
-
-- Use H.264 video and clear 16:9 thumbnails.
-- Keep titles task-oriented and understandable without internal context.
-- Never show credentials, private endpoints, client data, or unapproved configuration.
-- Include captions, a written transcript, chapters, prerequisites, and a next action.
-- Update the tutorial entry when framework behavior or companion docs change.

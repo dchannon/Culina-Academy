@@ -514,7 +514,7 @@
       <div class="package-card">
         <div class="eyebrow">Content Library</div>
         <h2 class="package-title" id="packageTitle">No datasets loaded</h2>
-        <p class="package-meta" id="packageMeta">Import one or more approved track JSON datasets.</p>
+        <p class="package-meta" id="packageMeta">Import one or more Culina track JSON datasets.</p>
         <div style="height: 16px"></div>
         <button class="primary-btn full-btn" id="loadJsonBtn">Import Track JSON</button>
         <div style="height: 10px"></div>
@@ -868,7 +868,7 @@
 
       if (!pkg) {
         packageTitle.textContent = 'No datasets loaded';
-        packageMeta.textContent = 'Import one or more approved track JSON datasets.';
+        packageMeta.textContent = 'Import one or more Culina track JSON datasets.';
       } else {
         const datasetCount = state.packages.length;
         packageTitle.textContent = 'Content library loaded';
@@ -965,7 +965,7 @@
             <h2 class="path-title">Workbook exercise workflow</h2>
             <p class="path-desc">Readers select a path, complete the lessons, pass the assessment, and earn the relevant completion badge.</p>
             <div style="height: 24px"></div>
-            <div class="result-box">When the exercise is done, export the transcript and send it with a short completion note to your exercise coordinator.</div>
+            <div class="result-box">When the exercise is done, export the transcript and send it to a reviewer with a short completion note, if requested.</div>
           </section>
         </div>
       `;
@@ -980,7 +980,7 @@
           <div>
             <div class="eyebrow">${escapeHtml(pkg.academy?.name || 'Culina Academy')}</div>
             <h1 class="page-title">Framework workbook dashboard</h1>
-            <p class="page-subtitle">Build the academy as a content library. Each role-based path can be imported as its own JSON dataset, so foundation, managed service, implementation, and future advanced paths can be authored and improved independently.</p>
+            <p class="page-subtitle">Import one or more workbook paths, then choose the exercise that matches what you want to learn.</p>
           </div>
           <div class="btn-row">
             <button class="primary-btn" data-action="go-paths">Select Learning Path</button>
@@ -1147,7 +1147,7 @@
             ${lessons.map(lesson => `
               <div class="list-item ${lesson.id === state.selectedLessonId ? 'active' : ''} ${state.progress.completedLessons[lesson.id] ? 'done' : ''}" data-lesson-id="${escapeAttr(lesson.id)}">
                 <div class="list-title">${escapeHtml(lesson.title)}</div>
-                <div class="list-meta">${escapeHtml(lesson.moduleId || 'Lesson')} · ${lesson.estimatedMinutes ? escapeHtml(String(lesson.estimatedMinutes)) + ' min' : 'Self-paced'}</div>
+                <div class="list-meta">Lesson · ${lesson.estimatedMinutes ? escapeHtml(String(lesson.estimatedMinutes)) + ' min' : 'Self-paced'}</div>
               </div>
             `).join('')}
           </aside>
@@ -1181,7 +1181,7 @@
       return `
         <div class="assessment-header">
           <div>
-            <div class="eyebrow">${escapeHtml(lesson.moduleId || 'Lesson')}</div>
+            <div class="eyebrow">Lesson</div>
             <h2 class="path-title">${escapeHtml(lesson.title)}</h2>
             ${lesson.summary ? `<p class="path-desc">${escapeHtml(lesson.summary)}</p>` : ''}
           </div>
@@ -1248,7 +1248,7 @@
       pageRoot.innerHTML = `
         <div class="eyebrow">${escapeHtml(track.title)}</div>
         <h1 class="page-title">Scenario labs</h1>
-        <p class="page-subtitle">Labs turn lessons into field decisions. Submit concise evidence for admin review in the exported transcript.</p>
+        <p class="page-subtitle">Labs turn lessons into field decisions. Submit concise evidence for optional review in the exported transcript.</p>
         <div style="height: 26px"></div>
         <div class="content-shell">
           <aside class="panel list-panel">
@@ -1827,7 +1827,7 @@
         <section class="panel">
           <div class="eyebrow">Completion handoff</div>
           <h2 class="path-title">Export and send your transcript</h2>
-          <p class="path-desc">After you finish the assigned paths, use Export Transcript and send the downloaded JSON file with a short completion note.</p>
+          <p class="path-desc">After you finish the selected paths, use Export Transcript and send the downloaded JSON file with a short completion note.</p>
           <div style="height: 18px"></div>
           <button class="primary-btn" data-export-transcript>Export Transcript</button>
         </section>

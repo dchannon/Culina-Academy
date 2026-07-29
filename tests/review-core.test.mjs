@@ -5,7 +5,7 @@ import {
   buildRosterCsv,
   mergeReviewState,
   summarizeTranscript,
-} from '../scripts/admin-core.mjs';
+} from '../scripts/review-core.mjs';
 
 test('summarizeTranscript extracts learner readiness', () => {
   const summary = summarizeTranscript({

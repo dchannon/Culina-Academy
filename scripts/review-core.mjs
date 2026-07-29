@@ -86,7 +86,7 @@ export function buildRosterCsv(records) {
 
 export function buildReviewReport(records, reviewState = {}) {
   return {
-    reportType: 'culina_academy_admin_review',
+    reportType: 'culina_academy_workbook_review',
     exportedAt: new Date().toISOString(),
     recordCount: records.length,
     records: records.map(record => {

@@ -32,7 +32,7 @@ http://localhost:8000/workbook/learner.html
 1. Open:
 
 ```text
-http://localhost:8000/workbook/admin.html
+http://localhost:8000/workbook/review.html
 ```
 
 2. Select `Import Transcripts`.

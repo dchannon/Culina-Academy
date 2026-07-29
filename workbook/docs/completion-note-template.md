@@ -4,13 +4,13 @@ Subject: Culina workbook exercise complete - <your name>
 
 Hi,
 
-I completed the assigned Culina workbook exercise paths.
+I completed the Culina workbook exercise paths listed below.
 
 Completed paths:
 
 - Common Foundation
-- Managed Service Level 1
-- Implementation Service Level 1
+- Operations Practitioner
+- Configuration Practitioner
 
 I attached my exported transcript JSON for review. It includes my lesson completion, assessment results, lab evidence, notes, and badges.
 

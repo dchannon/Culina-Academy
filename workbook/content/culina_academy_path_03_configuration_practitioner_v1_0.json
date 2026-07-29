@@ -1,5 +1,5 @@
 {
-  "id": "culina_academy_implementation_service_level_1_path_v1_0",
+  "id": "culina_academy_configuration_practitioner_path_v1_0",
   "schemaVersion": "culina-academy-content/1.3-multi-dataset-semantic",
   "appCompatibility": {
     "minimumApp": "culina_academy_semantic_app_v6",
@@ -10,125 +10,41 @@
     "notes": "This dataset contains one workbook track. It is intended to be imported alongside other track datasets in the v6 multi-dataset academy app."
   },
   "academy": {
-    "id": "culina_academy_implementation_service_level_1",
-    "title": "Culina Academy — Implementation Service Level 1",
+    "id": "culina_academy_configuration_practitioner",
+    "title": "Culina Academy — Configuration Practitioner",
     "name": "Culina Academy",
-    "subtitle": "Implementation Service Level 1 Exercise",
+    "subtitle": "Configuration Practitioner Exercise",
     "version": "1.0.0",
-    "status": "Pilotable",
-    "owner": "Metadata Framework Lead",
     "publisher": "Data Culina Inc.",
-    "createdAt": "2026-05-20T13:33:17Z",
-    "lastUpdated": "2026-05-20",
-    "description": "Implementation Service Level 1 workbook exercise content for data engineers and consultants who create client-scoped framework metadata and configuration artifacts.",
-    "sourceModules": [
-      {
-        "moduleId": "MOD-011",
-        "title": "Naming Standards and Key Conventions",
-        "version": "0.3",
-        "role": "Naming, identity, and key convention guidance"
-      },
-      {
-        "moduleId": "MOD-012",
-        "title": "Load Strategy Playbook",
-        "version": "0.2",
-        "role": "Load strategy and write-mode guidance"
-      },
-      {
-        "moduleId": "MOD-013",
-        "title": "Historical Data and SCD Patterns",
-        "version": "0.1",
-        "role": "Historical persistence and SCD2 guidance"
-      },
-      {
-        "moduleId": "MOD-014",
-        "title": "Transformation Pattern Library",
-        "version": "0.5",
-        "role": "Transformation JSON and standard step-pattern guidance"
-      },
-      {
-        "moduleId": "MOD-016",
-        "title": "Data Quality and Validation Rules",
-        "version": "0.6",
-        "role": "Validation and unit-test rules"
-      },
-      {
-        "moduleId": "MOD-017",
-        "title": "Metadata Studio Functional Guide",
-        "version": "0.7",
-        "role": "Studio authoring, validation, import/export, and handoff behavior"
-      },
-      {
-        "moduleId": "MOD-018",
-        "title": "AI Copilot Interaction Guide",
-        "version": "0.3",
-        "role": "Copilot advisory-output boundaries"
-      },
-      {
-        "moduleId": "MOD-019",
-        "title": "Source Discovery to Metadata Workflow",
-        "version": "0.1",
-        "role": "Discovery interpretation into metadata"
-      },
-      {
-        "moduleId": "MOD-020",
-        "title": "Modeling to Metadata Workflow",
-        "version": "0.1",
-        "role": "Model decisions into target metadata and transformation design"
-      },
-      {
-        "moduleId": "MOD-025",
-        "title": "Client Onboarding Playbook",
-        "version": "0.4",
-        "role": "Delivery lifecycle, validation, and handover expectations"
-      },
-      {
-        "moduleId": "MOD-026",
-        "title": "Requirement-to-Framework Mapping Guide",
-        "version": "0.1",
-        "role": "Requirement artifacts into framework workstreams"
-      },
-      {
-        "moduleId": "MOD-027",
-        "title": "Client-Specific Overrides and Reuse Guide",
-        "version": "0.1",
-        "role": "Reuse, client-specific configuration, and shared enhancement boundary"
-      },
-      {
-        "moduleId": "MOD-032",
-        "title": "Standard Example Library",
-        "version": "0.3",
-        "role": "Sandbox-tested example-shape awareness"
-      }
-    ]
+    "description": "Workbook exercises for users who create and validate framework metadata, source contracts, dependencies, and transformations."
   },
   "tracks": [
     {
-      "id": "track_implementation_service_level_1",
-      "title": "Implementation Service Level 1 Exercise",
-      "audience": "Implementation Service Team, implementation consultants, external data engineers, configuration engineers building client configurations",
-      "role": "Implementation Service",
+      "id": "track_configuration_practitioner",
+      "title": "Configuration Practitioner Exercise",
+      "audience": "Clients, implementation partners, data engineers, and configuration practitioners",
+      "role": "Configuration Practitioner",
       "level": "Level 1",
       "pathType": "exercise_path",
-      "description": "Builds the configuration capability required to translate client requirements, discovery findings, and modeling decisions into framework-compatible metadata, transformation JSON, validation evidence, and support-ready artifacts while following reuse, governance, and standardization rules.",
+      "description": "Builds the capability to translate source facts and data requirements into framework-compatible metadata, transformation JSON, validation evidence, and supportable configuration artifacts.",
       "prerequisites": [
         "track_common_foundation"
       ],
       "learningObjectives": [
-        "Explain the implementation service role within the client onboarding lifecycle.",
-        "Map requirement artifacts into discovery, modeling, metadata, validation, deployment, and estimation workstreams.",
+        "Explain the configuration workflow from documented intent to validated framework artifacts.",
+        "Map requirements into jobs, sources, dependencies, transformations, targets, and validation evidence.",
         "Interpret discovery evidence into source behavior rules, business rules, grain decisions, lookup logic, fallback logic, and open questions before writing metadata.",
         "Translate modeling decisions into target metadata, write-mode decisions, transformation patterns, and validation expectations.",
         "Apply naming, identity, and key conventions without confusing control-plane IDs, business keys, surrogate keys, and runtime identifiers.",
         "Choose load strategies and write modes based on source reliability, layer responsibility, and model intent.",
         "Build and review transformation JSON as a full sources-target-steps contract using standardized step patterns.",
         "Validate transformation configuration, source readiness, target-write compatibility, unit-test results, and business-facing output evidence.",
-        "Use Studio and Copilot safely while respecting advisory-output and authoritative-artifact boundaries.",
-        "Decide whether a client need belongs in existing framework capability, client-specific metadata, or shared framework enhancement."
+        "Review generated drafts safely while respecting validation and authoritative-artifact boundaries.",
+        "Distinguish reusable framework patterns, environment-specific values, and unsupported behavior."
       ],
       "estimatedMinutes": 140,
       "lessonIds": [
-        "is_lesson_001_implementation_mission_delivery_lifecycle",
+        "is_lesson_001_configuration_workflow_evidence",
         "is_lesson_002_requirement_to_framework_mapping",
         "is_lesson_003_source_discovery_interpretation",
         "is_lesson_004_modeling_to_metadata_decisions",
@@ -136,38 +52,21 @@
         "is_lesson_006_load_strategy_and_persistence_choices",
         "is_lesson_007_transformation_json_patterns",
         "is_lesson_008_validation_and_unit_test_readiness",
-        "is_lesson_009_studio_authoring_and_copilot_boundaries",
-        "is_lesson_010_reuse_handover_and_change_boundaries"
+        "is_lesson_009_configuration_authoring_review",
+        "is_lesson_010_reuse_and_compatibility_boundaries"
       ],
       "assessmentIds": [
-        "assessment_implementation_service_level_1_v1"
+        "assessment_configuration_practitioner_v1"
       ],
       "badgeIds": [
-        "badge_implementation_service_level_1"
+        "badge_configuration_practitioner"
       ],
       "passingScore": 0.8,
       "displayOrder": 3,
-      "sourceModuleIds": [
-        "MOD-011",
-        "MOD-012",
-        "MOD-013",
-        "MOD-014",
-        "MOD-016",
-        "MOD-017",
-        "MOD-018",
-        "MOD-019",
-        "MOD-020",
-        "MOD-024",
-        "MOD-025",
-        "MOD-026",
-        "MOD-027",
-        "MOD-032",
-        "MOD-034"
-      ],
       "labIds": [
         "is_lab_discovery_to_metadata",
         "is_lab_layer_design_review",
-        "is_capstone_client_onboarding"
+        "is_capstone_configuration_review"
       ],
       "depthLevel": "Level 1 local workbook",
       "competencyIds": [
@@ -181,40 +80,34 @@
   ],
   "lessons": [
     {
-      "id": "is_lesson_001_implementation_mission_delivery_lifecycle",
+      "id": "is_lesson_001_configuration_workflow_evidence",
       "trackIds": [
-        "track_implementation_service_level_1"
+        "track_configuration_practitioner"
       ],
-      "moduleId": "MOD-025",
-      "sourceModuleIds": [
-        "MOD-025",
-        "MOD-026",
-        "MOD-001"
-      ],
-      "title": "Implementation Mission and Delivery Lifecycle",
-      "summary": "Understand the implementation role as a governed delivery function that turns client needs into reviewable framework artifacts and validated runtime behavior.",
+      "title": "Configuration Workflow and Evidence",
+      "summary": "Understand how documented intent becomes reviewable framework configuration and validated runtime behavior.",
       "estimatedMinutes": 12,
       "displayOrder": 1,
-      "content": "## Why this lesson matters\n\nImplementation service work is not only writing configuration. The role is to move a client engagement from requirements and discovery through model design, metadata configuration, validation, deployment readiness, and handover.\n\n## Configuration mindset\n\nA prepared implementation user should think in connected work areas. Requirements explain the business need, discovery explains the source reality, modeling defines the target structure, metadata defines the framework implementation, and validation proves the result. Jumping directly into JSON or metadata without this chain creates fragile delivery.\n\n## Two configuration scopes\n\nThe framework supports an artifacts-only track and a framework-deployment-enabled track. In both cases, the implementation team must produce reviewable artifacts that are understandable to the client and maintainable by the team.\n\n## Readiness expectation\n\nBy the end of this path, a learner should be able to explain how client requirements become discovery scope, model decisions, metadata configuration, validation evidence, and handover artifacts.",
+      "content": "## Why this lesson matters\n\nConfiguration is more than writing JSON. A supportable workflow connects documented intent, source facts, target grain, metadata, validation, and runtime evidence.\n\n## Configuration mindset\n\nStart with the outcome and source behavior. Define the job and source contracts, dependency order, target grain, transformation steps, write mode, and validation expectations. Jumping directly into isolated JSON creates broken references and unclear runtime behavior.\n\n## Evidence chain\n\nA reviewable configuration set should show:\n\n- what outcome the workflow is expected to produce\n- which source facts and assumptions it depends on\n- how jobs, sources, dependencies, and transformations connect\n- which validation proves the result\n- which artifact version produced the runtime evidence\n\n## Readiness expectation\n\nBy the end of this path, a learner should be able to trace documented intent into configuration records and explain how the resulting behavior will be validated.",
       "learningObjectives": [
-        "Explain the core decision points in Implementation Mission and Delivery Lifecycle.",
-        "Apply Implementation Mission and Delivery Lifecycle concepts to a realistic Culina delivery or support scenario."
+        "Explain the decision points in the configuration workflow.",
+        "Apply configuration and evidence concepts to a realistic Culina scenario."
       ],
       "keyTerms": [
-        "Implementation",
-        "Mission",
-        "Delivery",
-        "Lifecycle"
+        "Configuration",
+        "Intent",
+        "Contract",
+        "Evidence"
       ],
       "practice": {
         "prompts": [
-          "Write a three-sentence field explanation of Implementation Mission and Delivery Lifecycle for a new teammate.",
+          "Write a three-sentence explanation of the configuration workflow for another user.",
           "List one risk, one evidence source, and one safe next action related to this lesson."
         ],
         "expectedEvidence": "Short notes that show the learner can apply the concept, not only repeat definitions."
       },
       "remediation": {
-        "reviewIfMissed": "Re-read Implementation Mission and Delivery Lifecycle, then compare your answer to the assessment feedback and glossary terms.",
+        "reviewIfMissed": "Re-read Configuration Workflow and Evidence, then compare your answer to the assessment feedback and glossary terms.",
         "relatedCompetencyIds": [
           "discovery_translation"
         ]
@@ -223,19 +116,13 @@
     {
       "id": "is_lesson_002_requirement_to_framework_mapping",
       "trackIds": [
-        "track_implementation_service_level_1"
-      ],
-      "moduleId": "MOD-026",
-      "sourceModuleIds": [
-        "MOD-026",
-        "MOD-025",
-        "MOD-024"
+        "track_configuration_practitioner"
       ],
       "title": "Requirement-to-Framework Mapping",
-      "summary": "Learn how requirement artifacts drive discovery, modeling, metadata implementation, validation, deployment timing, and estimation.",
+      "summary": "Learn how documented requirements map to jobs, sources, dependencies, transformations, targets, and validation.",
       "estimatedMinutes": 14,
       "displayOrder": 2,
-      "content": "## Requirements are configuration-driving artifacts\n\nA requirement artifact is not just meeting notes. It is the structured business-facing source of scope and direction for downstream work.\n\n## What requirements influence\n\nA good requirement artifact should help determine:\n\n- what source behavior must be discovered\n- whether the target model may need adjustment\n- which metadata objects may change\n- what validation evidence will prove success\n- whether deployment timing should shift\n- which work areas can or cannot be estimated yet\n\n## Progressive estimation\n\nThe framework should not pretend that all downstream work areas can be estimated precisely up front. Requirements define discovery scope, discovery clarifies modeling scope, modeling clarifies metadata work, and validation findings may still change implementation effort.\n\n## Common mistake\n\nThe dangerous shortcut is jumping from a requirement note directly into metadata. The safer pattern is: business need -> requirement artifact -> scoped next steps -> discovery/modeling/metadata work -> validation and delivery.",
+      "content": "## Requirements drive configuration\n\nA useful requirement states the expected outcome, source scope, target grain, timing, data-quality expectations, and acceptance evidence.\n\n## Map each requirement\n\nDetermine which records express the requirement:\n\n- `job` for the managed unit of work\n- `linked_service` and `source_detail` for source access and shape\n- `dependency` for execution order\n- `transformation` for sources, target, and ordered steps\n- validation configuration for acceptance rules\n\n## Keep traceability\n\nRecord assumptions and unresolved questions. Use stable IDs and names so a reviewer can trace a requirement through the metadata export and then into runtime evidence.\n\n## Common mistake\n\nDo not copy a vague note directly into configuration. Clarify source behavior, target intent, dependency order, and validation before finalizing the contract.",
       "learningObjectives": [
         "Explain the core decision points in Requirement-to-Framework Mapping.",
         "Apply Requirement-to-Framework Mapping concepts to a realistic Culina delivery or support scenario."
@@ -248,7 +135,7 @@
       ],
       "practice": {
         "prompts": [
-          "Write a three-sentence field explanation of Requirement-to-Framework Mapping for a new teammate.",
+          "Write a three-sentence field explanation of Requirement-to-Framework Mapping for another user.",
           "List one risk, one evidence source, and one safe next action related to this lesson."
         ],
         "expectedEvidence": "Short notes that show the learner can apply the concept, not only repeat definitions."
@@ -263,19 +150,13 @@
     {
       "id": "is_lesson_003_source_discovery_interpretation",
       "trackIds": [
-        "track_implementation_service_level_1"
-      ],
-      "moduleId": "MOD-019",
-      "sourceModuleIds": [
-        "MOD-019",
-        "MOD-026",
-        "MOD-014"
+        "track_configuration_practitioner"
       ],
       "title": "Source Discovery Interpretation",
       "summary": "Learn how discovery evidence becomes interpreted rules before it becomes executable framework metadata.",
       "estimatedMinutes": 15,
       "displayOrder": 3,
-      "content": "## Discovery is not copied into metadata\n\nDiscovery findings must first be interpreted into source behavior rules, business rules, data-quality constraints, grain decisions, lookup logic, fallback logic, and modeling implications. Only after those are clarified should they become executable metadata.\n\n## Standard interpretation chain\n\nThe key chain is:\n\n**Discovery evidence -> interpreted rules -> metadata design -> executable configuration**\n\n## What implementation engineers must produce\n\nA strong discovery-to-metadata workflow produces an interpreted discovery summary, metadata design decisions, draft transformation metadata, optional ingestion metadata proposals, and visible unresolved items.\n\n## Key discipline\n\nIf a discovery artifact does not answer a question, the gap should remain visible. Silent assumptions create unstable keys, incorrect joins, and weak validation.",
+      "content": "## Source evidence is not configuration\n\nSource findings must first be interpreted into source behavior, business rules, data-quality constraints, grain, lookup logic, fallback logic, and modeling implications. Only clarified decisions should become executable metadata.\n\n## Standard interpretation chain\n\n**Source evidence -> interpreted rules -> metadata design -> executable configuration**\n\n## Expected outputs\n\nA strong workflow produces a source summary, explicit metadata decisions, draft ingestion or transformation configuration, validation expectations, and visible unresolved items.\n\n## Key discipline\n\nIf the source evidence does not answer a question, keep the gap visible. Silent assumptions create unstable keys, incorrect joins, and weak validation.",
       "learningObjectives": [
         "Explain the core decision points in Source Discovery Interpretation.",
         "Apply Source Discovery Interpretation concepts to a realistic Culina delivery or support scenario."
@@ -288,7 +169,7 @@
       ],
       "practice": {
         "prompts": [
-          "Write a three-sentence field explanation of Source Discovery Interpretation for a new teammate.",
+          "Write a three-sentence field explanation of Source Discovery Interpretation for another user.",
           "List one risk, one evidence source, and one safe next action related to this lesson."
         ],
         "expectedEvidence": "Short notes that show the learner can apply the concept, not only repeat definitions."
@@ -303,13 +184,7 @@
     {
       "id": "is_lesson_004_modeling_to_metadata_decisions",
       "trackIds": [
-        "track_implementation_service_level_1"
-      ],
-      "moduleId": "MOD-020",
-      "sourceModuleIds": [
-        "MOD-020",
-        "MOD-013",
-        "MOD-014"
+        "track_configuration_practitioner"
       ],
       "title": "Modeling-to-Metadata Decisions",
       "summary": "Translate approved model decisions into target metadata, write modes, transformation design, and validation expectations.",
@@ -328,7 +203,7 @@
       ],
       "practice": {
         "prompts": [
-          "Write a three-sentence field explanation of Modeling-to-Metadata Decisions for a new teammate.",
+          "Write a three-sentence field explanation of Modeling-to-Metadata Decisions for another user.",
           "List one risk, one evidence source, and one safe next action related to this lesson."
         ],
         "expectedEvidence": "Short notes that show the learner can apply the concept, not only repeat definitions."
@@ -343,13 +218,7 @@
     {
       "id": "is_lesson_005_naming_identity_and_key_conventions",
       "trackIds": [
-        "track_implementation_service_level_1"
-      ],
-      "moduleId": "MOD-011",
-      "sourceModuleIds": [
-        "MOD-011",
-        "MOD-003",
-        "MOD-010"
+        "track_configuration_practitioner"
       ],
       "title": "Naming, Identity, and Key Conventions",
       "summary": "Apply naming and key conventions so metadata remains readable, reviewable, portable, and technically correct.",
@@ -368,7 +237,7 @@
       ],
       "practice": {
         "prompts": [
-          "Write a three-sentence field explanation of Naming, Identity, and Key Conventions for a new teammate.",
+          "Write a three-sentence field explanation of Naming, Identity, and Key Conventions for another user.",
           "List one risk, one evidence source, and one safe next action related to this lesson."
         ],
         "expectedEvidence": "Short notes that show the learner can apply the concept, not only repeat definitions."
@@ -383,13 +252,7 @@
     {
       "id": "is_lesson_006_load_strategy_and_persistence_choices",
       "trackIds": [
-        "track_implementation_service_level_1"
-      ],
-      "moduleId": "MOD-012",
-      "sourceModuleIds": [
-        "MOD-012",
-        "MOD-013",
-        "MOD-005"
+        "track_configuration_practitioner"
       ],
       "title": "Load Strategy and Persistence Choices",
       "summary": "Choose load modes and target write modes that align with source reliability, layer responsibility, and model intent.",
@@ -408,7 +271,7 @@
       ],
       "practice": {
         "prompts": [
-          "Write a three-sentence field explanation of Load Strategy and Persistence Choices for a new teammate.",
+          "Write a three-sentence field explanation of Load Strategy and Persistence Choices for another user.",
           "List one risk, one evidence source, and one safe next action related to this lesson."
         ],
         "expectedEvidence": "Short notes that show the learner can apply the concept, not only repeat definitions."
@@ -423,14 +286,7 @@
     {
       "id": "is_lesson_007_transformation_json_patterns",
       "trackIds": [
-        "track_implementation_service_level_1"
-      ],
-      "moduleId": "MOD-014",
-      "sourceModuleIds": [
-        "MOD-014",
-        "MOD-012",
-        "MOD-020",
-        "MOD-032"
+        "track_configuration_practitioner"
       ],
       "title": "Transformation JSON Patterns",
       "summary": "Build transformation logic as a full sources-target-steps contract using standardized step patterns and sequencing discipline.",
@@ -449,7 +305,7 @@
       ],
       "practice": {
         "prompts": [
-          "Write a three-sentence field explanation of Transformation JSON Patterns for a new teammate.",
+          "Write a three-sentence field explanation of Transformation JSON Patterns for another user.",
           "List one risk, one evidence source, and one safe next action related to this lesson."
         ],
         "expectedEvidence": "Short notes that show the learner can apply the concept, not only repeat definitions."
@@ -464,19 +320,13 @@
     {
       "id": "is_lesson_008_validation_and_unit_test_readiness",
       "trackIds": [
-        "track_implementation_service_level_1"
-      ],
-      "moduleId": "MOD-016",
-      "sourceModuleIds": [
-        "MOD-016",
-        "MOD-014",
-        "MOD-017"
+        "track_configuration_practitioner"
       ],
       "title": "Validation and Unit-Test Readiness",
       "summary": "Understand validation as a layered quality gate across configuration, source readiness, transformation contracts, target writes, unit tests, and artifact identity.",
       "estimatedMinutes": 15,
       "displayOrder": 8,
-      "content": "## Validation is layered\n\nThe framework validates more than final data. Validation applies to metadata and configuration, governing export-envelope fields, source-read readiness, transformation contract coherence, target-write readiness, unit-test results, control-plane package compatibility, and runtime interpretation.\n\n## Hard-fail examples\n\nExecution should fail when the framework cannot interpret a transformation contract, when a step references an undeclared source or invalid alias, when the target write contract is incompatible with the write mode, or when required unit tests fail.\n\n## Unit tests are not decoration\n\nFor transformation jobs built through the JSON step builder, required unit tests are part of load acceptance. A written target is not automatically valid if required validation fails.\n\n## Studio validation\n\nStudio validation should be job-type driven. It should not treat every child metadata entity as universally required for every job. Errors and warnings must be interpreted differently.",
+      "content": "## Validation is layered\n\nThe framework validates more than final data. Validation applies to metadata and configuration, governing export-envelope fields, source-read readiness, transformation contract coherence, target-write readiness, unit-test results, control-plane compatibility, and runtime interpretation.\n\n## Hard-fail examples\n\nExecution should fail when the framework cannot interpret a transformation contract, when a step references an undeclared source or invalid alias, when the target write contract is incompatible with the write mode, or when required unit tests fail.\n\n## Unit tests are not decoration\n\nFor transformation jobs built through ordered JSON steps, required unit tests are part of load acceptance. A written target is not automatically valid if required validation fails.\n\n## Job-type validation\n\nValidation should follow the behavioral role of the job. Not every child metadata entity is required for every job type, and errors and warnings should be interpreted according to operational impact.",
       "learningObjectives": [
         "Explain the core decision points in Validation and Unit-Test Readiness.",
         "Apply Validation and Unit-Test Readiness concepts to a realistic Culina delivery or support scenario."
@@ -489,7 +339,7 @@
       ],
       "practice": {
         "prompts": [
-          "Write a three-sentence field explanation of Validation and Unit-Test Readiness for a new teammate.",
+          "Write a three-sentence field explanation of Validation and Unit-Test Readiness for another user.",
           "List one risk, one evidence source, and one safe next action related to this lesson."
         ],
         "expectedEvidence": "Short notes that show the learner can apply the concept, not only repeat definitions."
@@ -502,81 +352,68 @@
       }
     },
     {
-      "id": "is_lesson_009_studio_authoring_and_copilot_boundaries",
+      "id": "is_lesson_009_configuration_authoring_review",
       "trackIds": [
-        "track_implementation_service_level_1"
+        "track_configuration_practitioner"
       ],
-      "moduleId": "MOD-017",
-      "sourceModuleIds": [
-        "MOD-017",
-        "MOD-018",
-        "MOD-029"
-      ],
-      "title": "Studio Authoring and Copilot Boundaries",
-      "summary": "Use Studio as the authoritative authoring surface and Copilot as a read-only advisory helper rather than an automatic configuration writer.",
+      "title": "Configuration Authoring and Review",
+      "summary": "Review examples and generated drafts before they enter an authoritative configuration workflow.",
       "estimatedMinutes": 12,
       "displayOrder": 9,
-      "content": "## Studio is authoritative\n\nMetadata Studio is the authoring and management application for framework-compatible metadata and related configuration artifacts. Approved client-scoped records belong in authoritative Studio state.\n\n## Copilot is advisory\n\nCopilot can explain framework behavior, help analyze impact, draft JSON or notes in chat, and support troubleshooting reasoning. It does not directly edit the current record, promote content, or make configuration authoritative.\n\n## Manual use boundary\n\nUseful Copilot output remains advisory until a human reviews it and manually uses it in the appropriate authoritative workflow. Implementation engineers remain responsible for validation, review, and signoff discipline.\n\n## Validation before handoff\n\nBefore export, handoff, or deployment movement, the configuration set should be validated for structural issues, broken references, and completeness issues relevant to the job type.",
+      "content": "## Drafts have many sources\n\nExamples, text editors, scripts, exports, and generated suggestions can all help create configuration. Every output remains a draft until reviewed.\n\n## Human review boundary\n\nThe author remains responsible for client scope, environment values, IDs, references, source and target contracts, dependency order, transformation behavior, write safety, and validation.\n\n## Validation before use\n\nParse the JSON, apply the relevant schema, resolve cross-record references, and check completeness according to job type. Treat errors and warnings according to their operational impact.\n\n## Authoritative use\n\nVersion the reviewed artifact and move it through the environment's controlled configuration process. Preserve enough context to connect later runtime evidence to the exact configuration version.",
       "learningObjectives": [
-        "Explain the core decision points in Studio Authoring and Copilot Boundaries.",
-        "Apply Studio Authoring and Copilot Boundaries concepts to a realistic Culina delivery or support scenario."
+        "Explain the decision points in configuration authoring and review.",
+        "Apply draft, validation, and authority boundaries to a realistic Culina scenario."
       ],
       "keyTerms": [
-        "Studio",
         "Authoring",
-        "Copilot",
-        "Boundaries"
+        "Draft",
+        "Validation",
+        "Authority"
       ],
       "practice": {
         "prompts": [
-          "Write a three-sentence field explanation of Studio Authoring and Copilot Boundaries for a new teammate.",
+          "Write a three-sentence explanation of configuration authoring and review for another user.",
           "List one risk, one evidence source, and one safe next action related to this lesson."
         ],
         "expectedEvidence": "Short notes that show the learner can apply the concept, not only repeat definitions."
       },
       "remediation": {
-        "reviewIfMissed": "Re-read Studio Authoring and Copilot Boundaries, then compare your answer to the assessment feedback and glossary terms.",
+        "reviewIfMissed": "Re-read Configuration Authoring and Review, then compare your answer to the assessment feedback and glossary terms.",
         "relatedCompetencyIds": [
           "deployment_handoff"
         ]
       }
     },
     {
-      "id": "is_lesson_010_reuse_handover_and_change_boundaries",
+      "id": "is_lesson_010_reuse_and_compatibility_boundaries",
       "trackIds": [
-        "track_implementation_service_level_1"
+        "track_configuration_practitioner"
       ],
-      "moduleId": "MOD-027",
-      "sourceModuleIds": [
-        "MOD-027",
-        "MOD-025",
-        "MOD-024",
-        "MOD-034"
-      ],
-      "title": "Reuse, Handover, and Change Boundaries",
-      "summary": "Decide when to use existing framework capability, client-specific metadata, or shared framework enhancement, and understand handover and change boundaries.",
+      "title": "Reuse and Compatibility Boundaries",
+      "summary": "Distinguish standard patterns, environment-specific configuration, and behavior that needs platform support.",
       "estimatedMinutes": 13,
       "displayOrder": 10,
-      "content": "## Reuse first\n\nThe default question should be whether a client need can be solved with existing framework capability and standard patterns. If not, prefer client-specific metadata or configuration before changing shared framework behavior. Promote capability to the shared framework only when it is truly reusable.\n\n## Handover is transfer of understanding\n\nHandover is not just sending files. It should include review of the framework at a high level and the work artifacts produced, so the client and support teams understand what was created and how it connects to the solution.\n\n## Change boundary\n\nOperational recovery is not the same as release change. Changing approved metadata, shared framework behavior, control-plane packages, or environment provisioning belongs in change management and release governance.\n\n## Implementation readiness\n\nA prepared implementation user should leave behind traceable artifacts, validated metadata, visible open questions, and enough context for managed service or future configuration teams to support the client safely.",
+      "content": "## Reuse standard patterns\n\nStart by checking whether the requirement fits an existing ingestion, transformation, dependency, or validation pattern. Prefer supported configuration over custom behavior.\n\n## Environment-specific configuration\n\nEndpoints, credentials references, catalog names, schedules, and platform settings belong to the target environment. Keep them explicit and separate from reusable logical intent.\n\n## Unsupported behavior\n\nDo not hide unsupported behavior in opaque expressions or untracked custom code. Document the gap, expected outcome, affected versions, and validation evidence, then use the support model to assess the next step.\n\n## Operational readiness\n\nA supportable configuration set includes versioned metadata, validation results, assumptions, compatibility information, and enough context for another user to operate and diagnose the workflow.",
       "learningObjectives": [
-        "Explain the core decision points in Reuse, Handover, and Change Boundaries.",
-        "Apply Reuse, Handover, and Change Boundaries concepts to a realistic Culina delivery or support scenario."
+        "Explain the decision points in reuse and compatibility boundaries.",
+        "Apply reuse, environment, and support boundaries to a realistic Culina scenario."
       ],
       "keyTerms": [
         "Reuse",
-        "Handover",
-        "Change",
-        "Boundaries"
+        "Compatibility",
+        "Environment",
+        "Support"
       ],
       "practice": {
         "prompts": [
-          "Write a three-sentence field explanation of Reuse, Handover, and Change Boundaries for a new teammate.",
+          "Write a three-sentence explanation of reuse and compatibility boundaries for another user.",
           "List one risk, one evidence source, and one safe next action related to this lesson."
         ],
         "expectedEvidence": "Short notes that show the learner can apply the concept, not only repeat definitions."
       },
       "remediation": {
-        "reviewIfMissed": "Re-read Reuse, Handover, and Change Boundaries, then compare your answer to the assessment feedback and glossary terms.",
+        "reviewIfMissed": "Re-read Reuse and Compatibility Boundaries, then compare your answer to the assessment feedback and glossary terms.",
         "relatedCompetencyIds": [
           "quality_validation"
         ]
@@ -585,11 +422,11 @@
   ],
   "assessments": [
     {
-      "id": "assessment_implementation_service_level_1_v1",
-      "trackId": "track_implementation_service_level_1",
-      "title": "Implementation Service Level 1 Readiness Assessment",
+      "id": "assessment_configuration_practitioner_v1",
+      "trackId": "track_configuration_practitioner",
+      "title": "Configuration Practitioner Readiness Assessment",
       "type": "workbook_assessment",
-      "description": "Evaluates whether a learner can safely translate requirements, discovery, modeling, transformation patterns, validation rules, and operating expectations into framework-compatible implementation behavior.",
+      "description": "Evaluates whether a learner can translate source facts, requirements, modeling decisions, transformation patterns, and validation rules into framework-compatible configuration.",
       "passThreshold": 0.8,
       "estimatedMinutes": 45,
       "displayOrder": 1,
@@ -598,18 +435,18 @@
           "id": "is_q001_requirement_artifact_role",
           "type": "multiple_choice",
           "title": "Role of the requirement artifact",
-          "prompt": "Which statement best describes the role of a requirement artifact in the framework delivery model?",
-          "context": "Choose the answer that reflects the delivery-driven use of requirements.",
+          "prompt": "Which statement best describes the role of a documented requirement in framework configuration?",
+          "context": "Choose the answer that preserves traceability from intent to configuration and evidence.",
           "points": 1,
           "competency": "Requirement mapping",
           "options": [
             {
               "id": "A",
-              "text": "It is only meeting notes and does not affect later implementation."
+              "text": "It is only meeting notes and does not affect later configuration."
             },
             {
               "id": "B",
-              "text": "It defines downstream discovery, modeling, metadata, validation, deployment, and estimation implications."
+              "text": "It defines source scope, target intent, metadata relationships, validation expectations, and acceptance evidence."
             },
             {
               "id": "C",
@@ -617,12 +454,12 @@
             },
             {
               "id": "D",
-              "text": "It is used only after production deployment as handover evidence."
+              "text": "It is used only after production execution as historical evidence."
             }
           ],
           "correctAnswer": "B",
-          "correctFeedback": "Correct. Requirements drive multiple downstream workstreams and should not be treated as informal notes.",
-          "incorrectFeedback": "Review requirement-to-framework mapping. Requirements shape discovery, modeling, metadata, validation, deployment, and estimation."
+          "correctFeedback": "Correct. Requirements drive configuration and validation decisions and should not be treated as informal notes.",
+          "incorrectFeedback": "Review requirement-to-framework mapping. Requirements shape source, target, metadata, and validation contracts."
         },
         {
           "id": "is_q002_mapping_categories",
@@ -756,7 +593,7 @@
             },
             {
               "id": "C",
-              "text": "Because grain is only needed by managed service teams after failures occur."
+              "text": "Because grain is only needed by operators after failures occur."
             },
             {
               "id": "D",
@@ -1163,13 +1000,13 @@
           "incorrectFeedback": "Review validation and unit-test rules. Technical write completion is not automatically business-valid completion."
         },
         {
-          "id": "is_q018_studio_validation_applicability",
+          "id": "is_q018_validation_applicability",
           "type": "multiple_choice",
-          "title": "Studio validation applicability",
-          "prompt": "How should Studio determine whether a missing child metadata record is a validation issue?",
+          "title": "Validation applicability",
+          "prompt": "How should a validator determine whether a missing child metadata record is an issue?",
           "context": "Choose the answer aligned with job-type-driven validation.",
           "points": 1,
-          "competency": "Studio validation",
+          "competency": "Configuration validation",
           "options": [
             {
               "id": "A",
@@ -1189,25 +1026,25 @@
             }
           ],
           "correctAnswer": "B",
-          "correctFeedback": "Correct. Studio validation should be job-type driven and severity-aware.",
-          "incorrectFeedback": "Review Studio validation behavior. Child-entity requirements are not universal for every job."
+          "correctFeedback": "Correct. Validation should be job-type driven and severity-aware.",
+          "incorrectFeedback": "Review validation behavior. Child-entity requirements are not universal for every job."
         },
         {
-          "id": "is_q019_copilot_boundary",
+          "id": "is_q019_generated_draft_boundary",
           "type": "multiple_choice",
-          "title": "Copilot output boundary",
-          "prompt": "What is the correct implementation-team treatment of Copilot-generated draft JSON or notes?",
+          "title": "Generated draft boundary",
+          "prompt": "What is the correct treatment of generated draft JSON or notes?",
           "context": "Choose the answer that preserves governance boundaries.",
           "points": 1,
-          "competency": "Studio and Copilot boundary",
+          "competency": "Configuration review boundary",
           "options": [
             {
               "id": "A",
-              "text": "Treat it as authoritative configuration immediately because it came from Copilot."
+              "text": "Treat it as authoritative configuration immediately because a drafting tool produced it."
             },
             {
               "id": "B",
-              "text": "Review it manually, validate it, and only use it through the appropriate authoritative Studio or delivery workflow."
+              "text": "Review it, validate it, version it, and only use it through the environment's controlled configuration workflow."
             },
             {
               "id": "C",
@@ -1219,8 +1056,8 @@
             }
           ],
           "correctAnswer": "B",
-          "correctFeedback": "Correct. Copilot is advisory and chat-based; humans remain responsible for review and authoritative use.",
-          "incorrectFeedback": "Review Studio and Copilot boundaries. Advisory output is not automatically authoritative."
+          "correctFeedback": "Correct. Humans remain responsible for review, validation, and authoritative use.",
+          "incorrectFeedback": "Review configuration authoring boundaries. Generated output is not automatically authoritative."
         },
         {
           "id": "is_q020_reuse_decision",
@@ -1253,11 +1090,11 @@
           "incorrectFeedback": "Review the client-specific overrides and reuse guide. Avoid unnecessary client-specific divergence."
         },
         {
-          "id": "is_q021_handover_validation",
+          "id": "is_q021_output_validation",
           "type": "multiple_choice",
           "title": "Build versus validation",
-          "prompt": "Why is a successful pipeline run not enough to declare onboarding implementation complete?",
-          "context": "Choose the answer that reflects delivery validation expectations.",
+          "prompt": "Why is a successful pipeline run not enough to declare a configuration correct?",
+          "context": "Choose the answer that reflects technical and business validation expectations.",
           "points": 1,
           "competency": "Delivery validation",
           "options": [
@@ -1271,7 +1108,7 @@
             },
             {
               "id": "C",
-              "text": "Because handover is only a managed service task."
+              "text": "Because operational documentation is only needed after a failure."
             },
             {
               "id": "D",
@@ -1280,16 +1117,16 @@
           ],
           "correctAnswer": "A",
           "correctFeedback": "Correct. Build success and business-valid completion are not the same thing.",
-          "incorrectFeedback": "Review onboarding validation. Client-facing validation and artifact review are part of delivery readiness."
+          "incorrectFeedback": "Review layered validation. Successful execution does not prove business correctness."
         },
         {
           "id": "is_q022_delivery_artifacts",
           "type": "multi_select",
-          "title": "Implementation configuration artifacts",
-          "prompt": "Which artifact families should implementation teams commonly expect to produce or hand over?",
+          "title": "Configuration evidence package",
+          "prompt": "Which artifact families make a configured workflow understandable and supportable?",
           "context": "Select all that apply.",
           "points": 2,
-          "competency": "Handover readiness",
+          "competency": "Operational readiness",
           "options": [
             {
               "id": "A",
@@ -1313,7 +1150,7 @@
             },
             {
               "id": "F",
-              "text": "Unexplained hidden implementation assumptions"
+              "text": "Unexplained hidden configuration assumptions"
             }
           ],
           "correctAnswer": [
@@ -1323,8 +1160,8 @@
             "D",
             "E"
           ],
-          "correctFeedback": "Correct. Handover should transfer understanding through reviewable artifacts and validation evidence.",
-          "incorrectFeedback": "Review onboarding and handover expectations. Hidden assumptions weaken supportability and client ownership."
+          "correctFeedback": "Correct. Reviewable artifacts and validation evidence make configuration traceable and supportable.",
+          "incorrectFeedback": "Review operational readiness. Hidden assumptions weaken supportability and ownership."
         },
         {
           "id": "is_q023_free_requirement_mapping",
@@ -1422,7 +1259,7 @@
           "id": "is_q027_free_validation_plan",
           "type": "free_text",
           "title": "Design a validation plan",
-          "prompt": "A transformation is ready for testing. Explain what validation evidence you would want before treating it as delivery-ready.",
+          "prompt": "A transformation is ready for testing. Explain what validation evidence you would want before treating it as ready for use.",
           "context": "A strong answer should include structural/config validation, transformation contract validation, source readiness, target write readiness, unit tests, data-integrity checks, duplicate/null business-key checks, business validation with client examples, and open issue handling.",
           "points": 4,
           "competency": "Validation planning",
@@ -1434,8 +1271,8 @@
           },
           "rubric": {
             "referenceAnswers": [
-              "I would want layered validation evidence. First I would validate the metadata and governing artifact structure, source references, linked service or source-read readiness, and the transformation contract across sources, target, and steps. I would confirm alias continuity, write-mode compatibility, and SCD2 requirements where relevant. Then I would run required unit tests such as duplicate business keys, null business keys, and data integrity checks, and treat failed required tests as blocking. Finally I would compare outputs against client-provided expected cases or reconciliations, document any open issues, and avoid calling the build delivery-ready just because data was written.",
-              "Delivery-ready validation should include both technical and business evidence. Technically, the JSON should parse, references should be valid, source and target contracts should be coherent, table/catalog readiness should exist where needed, and required unit tests should pass. Business-wise, the results should be reconciled to expected client examples and agreed source-of-truth logic. Any warnings, assumptions, or unresolved questions should be recorded before handover or deployment movement.",
+              "I would want layered validation evidence. First I would validate the metadata and governing artifact structure, source references, source-read readiness, and the transformation contract across sources, target, and steps. I would confirm alias continuity, write-mode compatibility, and SCD2 requirements where relevant. Then I would run required tests for duplicate keys, null keys, and data integrity and treat failed required tests as blocking. Finally I would compare outputs against expected cases, document open issues, and avoid calling the configuration ready just because data was written.",
+              "Readiness requires technical and business evidence. The JSON should parse, references should resolve, source and target contracts should be coherent, target readiness should exist, and required tests should pass. Results should also reconcile to representative expected cases. Record warnings, assumptions, and unresolved questions before deployment.",
               "I would check configuration validity, source-read suitability, transformation contract integrity, target-write compatibility, unit-test results, and output quality. I would specifically look for null keys, duplicate keys, failed data integrity, unsupported steps, broken aliases, and missing SCD2 details. The client should also validate representative output cases so successful execution is not mistaken for business correctness."
             ]
           },
@@ -1462,7 +1299,7 @@
               "I would not immediately create custom code. I would compare the request against existing patterns, try to solve it with metadata, evaluate whether a small client-scoped configuration is sufficient, and escalate for shared framework evolution only if the same pattern is likely to be needed across clients. I would keep client artifacts stable, avoid avoidable divergence, and make sure the final approach remains traceable and supportable."
             ]
           },
-          "explanation": "The expected answer applies reuse-first, minimum-divergence thinking and avoids uncontrolled client-specific forks."
+          "explanation": "The expected answer applies reuse-first thinking and avoids unsupported configuration divergence."
         }
       ],
       "competencyCoverage": [
@@ -1472,19 +1309,19 @@
         "deployment_handoff",
         "quality_validation"
       ],
-      "reviewMode": "automatic_scoring_with_admin_review_for_free_text_and_labs"
+      "reviewMode": "automatic_scoring_with_reviewer_review_for_free_text_and_labs"
     }
   ],
   "badges": [
     {
-      "id": "badge_implementation_service_level_1",
-      "title": "Implementation Service Level 1 Completed",
+      "id": "badge_configuration_practitioner",
+      "title": "Configuration Practitioner Completed",
       "icon": "🧭",
-      "description": "Awarded after completing the Implementation Service Level 1 workbook path and passing the implementation readiness assessment.",
+      "description": "Awarded after completing the Configuration Practitioner workbook path and passing the readiness assessment.",
       "requirements": {
-        "trackId": "track_implementation_service_level_1",
+        "trackId": "track_configuration_practitioner",
         "requiredLessons": [
-          "is_lesson_001_implementation_mission_delivery_lifecycle",
+          "is_lesson_001_configuration_workflow_evidence",
           "is_lesson_002_requirement_to_framework_mapping",
           "is_lesson_003_source_discovery_interpretation",
           "is_lesson_004_modeling_to_metadata_decisions",
@@ -1492,17 +1329,17 @@
           "is_lesson_006_load_strategy_and_persistence_choices",
           "is_lesson_007_transformation_json_patterns",
           "is_lesson_008_validation_and_unit_test_readiness",
-          "is_lesson_009_studio_authoring_and_copilot_boundaries",
-          "is_lesson_010_reuse_handover_and_change_boundaries"
+          "is_lesson_009_configuration_authoring_review",
+          "is_lesson_010_reuse_and_compatibility_boundaries"
         ],
         "requiredAssessments": [
-          "assessment_implementation_service_level_1_v1"
+          "assessment_configuration_practitioner_v1"
         ],
         "minimumAssessmentScore": 0.8
       },
       "issuedBy": "Culina Academy",
       "displayOrder": 3,
-      "criteriaSummary": "Complete all Implementation Service Level 1 lessons and pass the implementation readiness assessment with at least 80%."
+      "criteriaSummary": "Complete all Configuration Practitioner lessons and pass the readiness assessment with at least 80%."
     }
   ],
   "scoringPolicy": {
@@ -1538,8 +1375,8 @@
     },
     {
       "id": "deployment_handoff",
-      "title": "Deployment and handoff",
-      "description": "Packages implementation outputs for controlled deployment and managed service support.",
+      "title": "Deployment and operational readiness",
+      "description": "Packages configuration, validation, compatibility, and operating evidence for controlled use.",
       "displayOrder": 4
     },
     {
@@ -1571,8 +1408,8 @@
       "displayOrder": 4
     },
     {
-      "term": "Handoff package",
-      "definition": "The implementation evidence, metadata, validation, and operating notes needed for support.",
+      "term": "Configuration evidence package",
+      "definition": "The versioned metadata, validation results, assumptions, compatibility details, and operating notes needed for support.",
       "displayOrder": 5
     },
     {
@@ -1621,14 +1458,14 @@
       "displayOrder": 2
     },
     {
-      "id": "is_capstone_client_onboarding",
-      "title": "Capstone: client onboarding design review",
+      "id": "is_capstone_configuration_review",
+      "title": "Capstone: configuration design review",
       "type": "capstone",
-      "scenario": "Prepare an implementation-readiness review for a new source onboarding.",
+      "scenario": "Prepare a configuration-readiness review for a new source.",
       "prompts": [
         "Summarize source grain, target intent, dependency assumptions, and validation plan.",
         "Identify risks and open questions.",
-        "Write the handoff note managed service will need later."
+        "Write the operating note another user will need later."
       ],
       "estimatedMinutes": 45,
       "competencyIds": [

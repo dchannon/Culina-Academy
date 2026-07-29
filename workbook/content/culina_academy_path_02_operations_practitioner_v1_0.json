@@ -1,5 +1,5 @@
 {
-  "id": "culina_academy_managed_service_level_1_path_v1_0",
+  "id": "culina_academy_operations_practitioner_path_v1_0",
   "schemaVersion": "culina-academy-content/1.3-multi-dataset-semantic",
   "appCompatibility": {
     "minimumApp": "culina_academy_semantic_app_v6",
@@ -10,86 +10,20 @@
     "notes": "This dataset contains one workbook track. It is intended to be imported alongside other track datasets in the v6 multi-dataset academy app."
   },
   "academy": {
-    "id": "culina_academy_managed_service_level_1",
-    "title": "Culina Academy — Managed Service Level 1",
+    "id": "culina_academy_operations_practitioner",
+    "title": "Culina Academy — Operations Practitioner",
     "name": "Culina Academy",
-    "subtitle": "Managed Service Level 1 Exercise",
+    "subtitle": "Operations Practitioner Exercise",
     "version": "1.0.0",
-    "status": "Pilotable",
-    "owner": "Metadata Framework Lead",
     "publisher": "Data Culina Inc.",
-    "createdAt": "2026-05-20T09:57:00Z",
-    "lastUpdated": "2026-05-20",
-    "description": "Managed Service Level 1 workbook exercise content for team members responsible for monitoring framework runtime health, triaging incidents, handling controlled reruns/recovery, and understanding operational escalation boundaries.",
-    "sourceModules": [
-      {
-        "moduleId": "MOD-006",
-        "title": "Runtime Orchestration Architecture",
-        "version": "0.7",
-        "role": "Runtime lifecycle, batch/queue model, dependency, retry, and rerun foundation"
-      },
-      {
-        "moduleId": "MOD-012",
-        "title": "Load Strategy Playbook",
-        "version": "0.2",
-        "role": "Load behavior, write modes, backfill, and unit-test success expectations"
-      },
-      {
-        "moduleId": "MOD-013",
-        "title": "Historical Data and SCD Patterns",
-        "version": "0.1",
-        "role": "Historical persistence and EDW recovery caution"
-      },
-      {
-        "moduleId": "MOD-015",
-        "title": "Dependency and Scheduling Rules",
-        "version": "0.2",
-        "role": "Scheduling versus executability and dependency-blocked behavior"
-      },
-      {
-        "moduleId": "MOD-016",
-        "title": "Data Quality and Validation Rules",
-        "version": "0.6",
-        "role": "Validation and unit-test failure interpretation"
-      },
-      {
-        "moduleId": "MOD-021",
-        "title": "Operations Runbook",
-        "version": "0.4",
-        "role": "Primary managed service operating guide"
-      },
-      {
-        "moduleId": "MOD-022",
-        "title": "Troubleshooting Knowledge Base",
-        "version": "0.4",
-        "role": "Symptom-to-cause-to-action troubleshooting guide"
-      },
-      {
-        "moduleId": "MOD-023",
-        "title": "Backfill and Recovery Procedures",
-        "version": "0.3",
-        "role": "Controlled recovery, rerun, replay, backfill, and rebuild guidance"
-      },
-      {
-        "moduleId": "MOD-024",
-        "title": "Change Management and Release Guide",
-        "version": "0.7",
-        "role": "Recovery versus release change and escalation boundary"
-      },
-      {
-        "moduleId": "MOD-033",
-        "title": "Failure Notification and External Delivery Guide",
-        "version": "0.1",
-        "role": "Notification handoff versus external channel delivery boundary"
-      }
-    ]
+    "description": "Operations Practitioner workbook exercise content for users responsible for monitoring framework runtime health, triaging incidents, handling controlled reruns/recovery, and understanding operational escalation boundaries."
   },
   "tracks": [
     {
-      "id": "track_managed_service_level_1",
-      "title": "Managed Service Level 1 Exercise",
-      "audience": "Managed Service Team, Support Team, L2 support, implementation consultants supporting production",
-      "role": "Managed Service",
+      "id": "track_operations_practitioner",
+      "title": "Operations Practitioner Exercise",
+      "audience": "Clients, operators, support users, and implementation partners",
+      "role": "Operations Practitioner",
       "level": "Level 1",
       "pathType": "exercise_path",
       "description": "Builds the operational capability required to monitor framework runtime health, triage common incidents, understand queue/dependency state, investigate ingestion/transformation/validation failures, perform controlled rerun/recovery reasoning, and separate framework failures from external notification delivery issues.",
@@ -106,7 +40,7 @@
         "Apply fix-first, rerun-second discipline and avoid resetting COMPLETED rows casually.",
         "Choose the right recovery language: rerun, replay, backfill, or rebuild.",
         "Explain the boundary between framework failure diagnosis, notification handoff, and downstream channel delivery.",
-        "Escalate safely when an issue requires source-owner action, implementation correction, shared framework change, model clarification, or release governance."
+        "Escalate safely when an issue requires source-owner action, configuration correction, model clarification, risky recovery, or platform support."
       ],
       "estimatedMinutes": 132,
       "lessonIds": [
@@ -122,25 +56,13 @@
         "ms_lesson_010_escalation_change_and_communication_boundaries"
       ],
       "assessmentIds": [
-        "assessment_managed_service_level_1_v1"
+        "assessment_operations_practitioner_v1"
       ],
       "badgeIds": [
-        "badge_managed_service_level_1"
+        "badge_operations_practitioner"
       ],
       "passingScore": 0.8,
       "displayOrder": 2,
-      "sourceModuleIds": [
-        "MOD-006",
-        "MOD-012",
-        "MOD-013",
-        "MOD-015",
-        "MOD-016",
-        "MOD-021",
-        "MOD-022",
-        "MOD-023",
-        "MOD-024",
-        "MOD-033"
-      ],
       "labIds": [
         "ms_lab_pending_queue_triage",
         "ms_lab_failed_job_recovery",
@@ -160,38 +82,32 @@
     {
       "id": "ms_lesson_001_operational_mission_and_evidence",
       "trackIds": [
-        "track_managed_service_level_1"
+        "track_operations_practitioner"
       ],
-      "moduleId": "MOD-021",
-      "sourceModuleIds": [
-        "MOD-021",
-        "MOD-006",
-        "MOD-022"
-      ],
-      "title": "Managed Service Mission and Evidence Model",
-      "summary": "Learn the operating mission of managed services and why runtime evidence is the starting point for support decisions.",
+      "title": "Operations Mission and Evidence Model",
+      "summary": "Learn why runtime evidence is the starting point for operational decisions.",
       "estimatedMinutes": 12,
       "displayOrder": 1,
-      "content": "## Why this lesson matters\n\nManaged service work is not just watching for red statuses. The role is to keep scheduled ingestion, transformation, validation, and service jobs running reliably while making failures visible, traceable, recoverable, and explainable.\n\n## Operating mindset\n\nA managed service person should start from framework evidence, not guesswork. The first question is not usually \"which report looks wrong?\" but rather \"what does the runtime control plane say?\" The framework is designed so that batch state, queue rows, run history, failure logs, dependency views, and impact views tell the support story.\n\n## Primary evidence sources\n\nThe core evidence families are:\n\n- **Batch state:** whether a scheduling cycle exists, is still active, or is blocked by unresolved work.\n- **Queue state:** the operational status of configured jobs in the batch.\n- **Run history:** the zone, step, or activity where execution succeeded or failed.\n- **Failure logs:** the direct error message and affected queue row.\n- **Dependency and impact views:** why work cannot run and which downstream jobs are affected.\n- **Quality-result entities:** validation or unit-test evidence that may fail a job even when target writing technically occurred.\n\n## Readiness expectation\n\nA prepared managed service learner should be able to explain what evidence they would inspect first, how they would identify the earliest failing point, and why operational action should be based on framework evidence rather than assumptions.",
+      "content": "## Why this lesson matters\n\nOperations is not just watching for red statuses. The goal is to keep scheduled ingestion, transformation, validation, and service jobs observable while making failures traceable, recoverable, and explainable.\n\n## Operating mindset\n\nAn operator should start from framework evidence, not guesswork. Ask what the runtime control plane reports before drawing conclusions from a downstream dashboard. Batch state, queue rows, run history, failure logs, dependency views, and impact views tell the support story.\n\n## Primary evidence sources\n\n- **Batch state:** whether a scheduling cycle exists, is active, or is blocked by unresolved work.\n- **Queue state:** the operational status of configured jobs in the batch.\n- **Run history:** the zone, step, or activity where execution succeeded or failed.\n- **Failure logs:** the direct error and affected queue row.\n- **Dependency and impact views:** why work cannot run and which downstream jobs are affected.\n- **Quality results:** validation evidence that may fail a job even when a target write occurred.\n\n## Readiness expectation\n\nA prepared operator should explain which evidence to inspect first, how to identify the earliest failing point, and why action should be based on evidence rather than assumptions.",
       "learningObjectives": [
-        "Explain the core decision points in Managed Service Mission and Evidence Model.",
-        "Apply Managed Service Mission and Evidence Model concepts to a realistic Culina delivery or support scenario."
+        "Explain the core decision points in the Operations Mission and Evidence Model.",
+        "Apply evidence-led operations concepts to a realistic Culina support scenario."
       ],
       "keyTerms": [
-        "Managed",
-        "Service",
-        "Mission",
+        "Operations",
+        "Runtime",
+        "Triage",
         "Evidence"
       ],
       "practice": {
         "prompts": [
-          "Write a three-sentence field explanation of Managed Service Mission and Evidence Model for a new teammate.",
+          "Write a three-sentence explanation of the Operations Mission and Evidence Model for another user.",
           "List one risk, one evidence source, and one safe next action related to this lesson."
         ],
         "expectedEvidence": "Short notes that show the learner can apply the concept, not only repeat definitions."
       },
       "remediation": {
-        "reviewIfMissed": "Re-read Managed Service Mission and Evidence Model, then compare your answer to the assessment feedback and glossary terms.",
+        "reviewIfMissed": "Re-read Operations Mission and Evidence Model, then compare your answer to the assessment feedback and glossary terms.",
         "relatedCompetencyIds": [
           "runtime_triage"
         ]
@@ -200,14 +116,7 @@
     {
       "id": "ms_lesson_002_batch_queue_and_statuses",
       "trackIds": [
-        "track_managed_service_level_1"
-      ],
-      "moduleId": "MOD-006",
-      "sourceModuleIds": [
-        "MOD-006",
-        "MOD-015",
-        "MOD-021",
-        "MOD-003"
+        "track_operations_practitioner"
       ],
       "title": "Batch, Queue, and Runtime Status Interpretation",
       "summary": "Understand how runtime work is represented and what each queue status means operationally.",
@@ -226,7 +135,7 @@
       ],
       "practice": {
         "prompts": [
-          "Write a three-sentence field explanation of Batch, Queue, and Runtime Status Interpretation for a new teammate.",
+          "Write a three-sentence field explanation of Batch, Queue, and Runtime Status Interpretation for another user.",
           "List one risk, one evidence source, and one safe next action related to this lesson."
         ],
         "expectedEvidence": "Short notes that show the learner can apply the concept, not only repeat definitions."
@@ -241,19 +150,13 @@
     {
       "id": "ms_lesson_003_dependency_scheduling_and_executability",
       "trackIds": [
-        "track_managed_service_level_1"
-      ],
-      "moduleId": "MOD-015",
-      "sourceModuleIds": [
-        "MOD-015",
-        "MOD-006",
-        "MOD-021"
+        "track_operations_practitioner"
       ],
       "title": "Dependency, Scheduling, and Executability",
       "summary": "Distinguish scheduled work from executable work and diagnose dependency-blocked behavior safely.",
       "estimatedMinutes": 12,
       "displayOrder": 3,
-      "content": "## Scheduling is not executability\n\nScheduling determines whether a job may be considered for queue insertion. Dependency readiness determines whether queued work can actually run. This distinction is central to managed service triage.\n\nA job can be scheduled and PENDING without being executable. It may be waiting for upstream work to complete, blocked by failed upstream work, or held because open active work still needs to resolve.\n\n## Dependency evaluation\n\nThe framework evaluates dependency readiness against open active work rather than treating each queue row in isolation. This allows the runtime to avoid unsafe execution when unresolved upstream work is still active.\n\n## SKIPPED behavior\n\nWhen an upstream dependency fails and downstream work cannot validly run, the downstream PENDING job should become SKIPPED. SKIPPED is a dependency outcome, not a partial execution failure.\n\n## Managed service behavior\n\nWhen a job appears stuck in PENDING, support should check dependency readiness and upstream state before taking action. The correct action may be to fix the upstream failure, wait for retry behavior, or escalate—not to force the downstream job to run.\n\n## Readiness expectation\n\nA prepared learner should be able to explain why PENDING does not mean runnable and why dependency-blocked work should be resolved from the earliest upstream failure first.",
+      "content": "## Scheduling is not executability\n\nScheduling determines whether a job may be considered for queue insertion. Dependency readiness determines whether queued work can actually run. This distinction is central to operations triage.\n\nA job can be scheduled and PENDING without being executable. It may be waiting for upstream work to complete, blocked by failed upstream work, or held because open active work still needs to resolve.\n\n## Dependency evaluation\n\nThe framework evaluates dependency readiness against open active work rather than treating each queue row in isolation. This allows the runtime to avoid unsafe execution when unresolved upstream work is still active.\n\n## SKIPPED behavior\n\nWhen an upstream dependency fails and downstream work cannot validly run, the downstream PENDING job should become SKIPPED. SKIPPED is a dependency outcome, not a partial execution failure.\n\n## Operations behavior\n\nWhen a job appears stuck in PENDING, support should check dependency readiness and upstream state before taking action. The correct action may be to fix the upstream failure, wait for retry behavior, or escalate—not to force the downstream job to run.\n\n## Readiness expectation\n\nA prepared learner should be able to explain why PENDING does not mean runnable and why dependency-blocked work should be resolved from the earliest upstream failure first.",
       "learningObjectives": [
         "Explain the core decision points in Dependency, Scheduling, and Executability.",
         "Apply Dependency, Scheduling, and Executability concepts to a realistic Culina delivery or support scenario."
@@ -266,7 +169,7 @@
       ],
       "practice": {
         "prompts": [
-          "Write a three-sentence field explanation of Dependency, Scheduling, and Executability for a new teammate.",
+          "Write a three-sentence field explanation of Dependency, Scheduling, and Executability for another user.",
           "List one risk, one evidence source, and one safe next action related to this lesson."
         ],
         "expectedEvidence": "Short notes that show the learner can apply the concept, not only repeat definitions."
@@ -281,13 +184,7 @@
     {
       "id": "ms_lesson_004_standard_triage_flow",
       "trackIds": [
-        "track_managed_service_level_1"
-      ],
-      "moduleId": "MOD-021",
-      "sourceModuleIds": [
-        "MOD-021",
-        "MOD-022",
-        "MOD-006"
+        "track_operations_practitioner"
       ],
       "title": "Standard Triage Flow",
       "summary": "Practice the standard flow for moving from visible symptom to likely root cause and next action.",
@@ -306,7 +203,7 @@
       ],
       "practice": {
         "prompts": [
-          "Write a three-sentence field explanation of Standard Triage Flow for a new teammate.",
+          "Write a three-sentence field explanation of Standard Triage Flow for another user.",
           "List one risk, one evidence source, and one safe next action related to this lesson."
         ],
         "expectedEvidence": "Short notes that show the learner can apply the concept, not only repeat definitions."
@@ -321,14 +218,7 @@
     {
       "id": "ms_lesson_005_ingestion_failure_investigation",
       "trackIds": [
-        "track_managed_service_level_1"
-      ],
-      "moduleId": "MOD-022",
-      "sourceModuleIds": [
-        "MOD-022",
-        "MOD-012",
-        "MOD-034",
-        "MOD-021"
+        "track_operations_practitioner"
       ],
       "title": "Investigating Ingestion Failures",
       "summary": "Identify whether ingestion failures are caused by source changes, source configuration, access, payload shape, or runtime interpretation.",
@@ -347,7 +237,7 @@
       ],
       "practice": {
         "prompts": [
-          "Write a three-sentence field explanation of Investigating Ingestion Failures for a new teammate.",
+          "Write a three-sentence field explanation of Investigating Ingestion Failures for another user.",
           "List one risk, one evidence source, and one safe next action related to this lesson."
         ],
         "expectedEvidence": "Short notes that show the learner can apply the concept, not only repeat definitions."
@@ -362,14 +252,7 @@
     {
       "id": "ms_lesson_006_transformation_and_validation_failures",
       "trackIds": [
-        "track_managed_service_level_1"
-      ],
-      "moduleId": "MOD-022",
-      "sourceModuleIds": [
-        "MOD-022",
-        "MOD-014",
-        "MOD-016",
-        "MOD-012"
+        "track_operations_practitioner"
       ],
       "title": "Transformation and Validation Failure Investigation",
       "summary": "Diagnose transformation step failures and unit-test failures without treating technical execution as automatic success.",
@@ -388,7 +271,7 @@
       ],
       "practice": {
         "prompts": [
-          "Write a three-sentence field explanation of Transformation and Validation Failure Investigation for a new teammate.",
+          "Write a three-sentence field explanation of Transformation and Validation Failure Investigation for another user.",
           "List one risk, one evidence source, and one safe next action related to this lesson."
         ],
         "expectedEvidence": "Short notes that show the learner can apply the concept, not only repeat definitions."
@@ -403,14 +286,7 @@
     {
       "id": "ms_lesson_007_controlled_rerun_handling",
       "trackIds": [
-        "track_managed_service_level_1"
-      ],
-      "moduleId": "MOD-021",
-      "sourceModuleIds": [
-        "MOD-021",
-        "MOD-023",
-        "MOD-006",
-        "MOD-002"
+        "track_operations_practitioner"
       ],
       "title": "Controlled Rerun Handling",
       "summary": "Learn when rerun is appropriate, what should usually be rerun, and what must not be reset casually.",
@@ -429,7 +305,7 @@
       ],
       "practice": {
         "prompts": [
-          "Write a three-sentence field explanation of Controlled Rerun Handling for a new teammate.",
+          "Write a three-sentence field explanation of Controlled Rerun Handling for another user.",
           "List one risk, one evidence source, and one safe next action related to this lesson."
         ],
         "expectedEvidence": "Short notes that show the learner can apply the concept, not only repeat definitions."
@@ -444,14 +320,7 @@
     {
       "id": "ms_lesson_008_backfill_replay_rebuild_and_layer_recovery",
       "trackIds": [
-        "track_managed_service_level_1"
-      ],
-      "moduleId": "MOD-023",
-      "sourceModuleIds": [
-        "MOD-023",
-        "MOD-012",
-        "MOD-013",
-        "MOD-005"
+        "track_operations_practitioner"
       ],
       "title": "Backfill, Replay, Rebuild, and Layer Recovery",
       "summary": "Distinguish the main recovery concepts and understand how layer responsibility affects recovery scope.",
@@ -470,7 +339,7 @@
       ],
       "practice": {
         "prompts": [
-          "Write a three-sentence field explanation of Backfill, Replay, Rebuild, and Layer Recovery for a new teammate.",
+          "Write a three-sentence field explanation of Backfill, Replay, Rebuild, and Layer Recovery for another user.",
           "List one risk, one evidence source, and one safe next action related to this lesson."
         ],
         "expectedEvidence": "Short notes that show the learner can apply the concept, not only repeat definitions."
@@ -485,14 +354,7 @@
     {
       "id": "ms_lesson_009_notification_handoff_and_external_delivery",
       "trackIds": [
-        "track_managed_service_level_1"
-      ],
-      "moduleId": "MOD-033",
-      "sourceModuleIds": [
-        "MOD-033",
-        "MOD-021",
-        "MOD-022",
-        "MOD-003"
+        "track_operations_practitioner"
       ],
       "title": "Failure Notification Handoff and External Delivery",
       "summary": "Separate framework failure diagnosis from downstream notification channel delivery.",
@@ -511,7 +373,7 @@
       ],
       "practice": {
         "prompts": [
-          "Write a three-sentence field explanation of Failure Notification Handoff and External Delivery for a new teammate.",
+          "Write a three-sentence field explanation of Failure Notification Handoff and External Delivery for another user.",
           "List one risk, one evidence source, and one safe next action related to this lesson."
         ],
         "expectedEvidence": "Short notes that show the learner can apply the concept, not only repeat definitions."
@@ -526,39 +388,32 @@
     {
       "id": "ms_lesson_010_escalation_change_and_communication_boundaries",
       "trackIds": [
-        "track_managed_service_level_1"
+        "track_operations_practitioner"
       ],
-      "moduleId": "MOD-024",
-      "sourceModuleIds": [
-        "MOD-024",
-        "MOD-021",
-        "MOD-022",
-        "MOD-023"
-      ],
-      "title": "Escalation, Change, and Communication Boundaries",
-      "summary": "Know when an issue is operational recovery versus a release change and how escalation should be framed.",
+      "title": "Escalation and Communication Boundaries",
+      "summary": "Know when an issue exceeds routine recovery and how to prepare an evidence-led support handoff.",
       "estimatedMinutes": 14,
       "displayOrder": 10,
-      "content": "## Escalation mindset\n\nManaged service work should resolve operationally recoverable issues, but it should not hide design gaps, source-governance problems, model questions, framework logic gaps, or release changes. Escalation is appropriate when the issue cannot be safely corrected through normal support action.\n\n## Common escalation triggers\n\nEscalate when source-side action is required, connector or framework logic must change, metadata design must be corrected, model or business-rule clarification is required, historical EDW recovery is risky, or external notification delivery requires downstream service owner action.\n\n## Recovery versus release change\n\nOperational rerun, replay, backfill, or rebuild activity restores correctness after failure, missing data, or bad output. A release change modifies approved behavior, approved artifacts, shared framework capability, control-plane package, or environment deployment posture. These should not be treated as the same thing.\n\n## Communication quality\n\nGood incident communication should identify the affected job or scope, current status, earliest known cause, downstream impact, next action, and whether escalation is needed. Avoid overpromising before the evidence supports a conclusion.\n\n## Readiness expectation\n\nA prepared learner should be able to classify whether a situation is support recovery, implementation fix, source-owner action, downstream notification issue, or governed release change.",
+      "content": "## Escalation mindset\n\nResolve issues that are safely recoverable through documented operating actions. Escalate when the evidence indicates a source-owner decision, configuration redesign, model clarification, unsupported runtime behavior, risky historical recovery, or downstream service failure.\n\n## Evidence before escalation\n\nCapture the affected workflow, environment, batch or run identifier, current status, earliest failing point, error message, dependency impact, recent changes, and actions already attempted. Remove secrets and unnecessary client data.\n\n## Recovery boundary\n\nRerun, replay, backfill, and rebuild have different scopes and risks. Do not improvise a broad recovery when ownership, data correctness, or platform behavior is uncertain.\n\n## Communication quality\n\nState the observed evidence, likely boundary, downstream impact, and requested decision. Avoid claiming a root cause before the evidence supports it.\n\n## Readiness expectation\n\nA prepared learner should distinguish routine recovery, source-owner action, configuration correction, risky data recovery, downstream notification issues, and platform support needs.",
       "learningObjectives": [
-        "Explain the core decision points in Escalation, Change, and Communication Boundaries.",
-        "Apply Escalation, Change, and Communication Boundaries concepts to a realistic Culina delivery or support scenario."
+        "Explain the core decision points in Escalation and Communication Boundaries.",
+        "Apply escalation and evidence-handoff concepts to a realistic Culina support scenario."
       ],
       "keyTerms": [
         "Escalation",
-        "Change",
+        "Evidence",
         "Communication",
         "Boundaries"
       ],
       "practice": {
         "prompts": [
-          "Write a three-sentence field explanation of Escalation, Change, and Communication Boundaries for a new teammate.",
+          "Write a three-sentence explanation of Escalation and Communication Boundaries for another user.",
           "List one risk, one evidence source, and one safe next action related to this lesson."
         ],
         "expectedEvidence": "Short notes that show the learner can apply the concept, not only repeat definitions."
       },
       "remediation": {
-        "reviewIfMissed": "Re-read Escalation, Change, and Communication Boundaries, then compare your answer to the assessment feedback and glossary terms.",
+        "reviewIfMissed": "Re-read Escalation and Communication Boundaries, then compare your answer to the assessment feedback and glossary terms.",
         "relatedCompetencyIds": [
           "communication"
         ]
@@ -567,11 +422,11 @@
   ],
   "assessments": [
     {
-      "id": "assessment_managed_service_level_1_v1",
-      "trackId": "track_managed_service_level_1",
-      "title": "Managed Service Level 1 Exercise Assessment",
+      "id": "assessment_operations_practitioner_v1",
+      "trackId": "track_operations_practitioner",
+      "title": "Operations Practitioner Exercise Assessment",
       "type": "Exercise Assessment",
-      "description": "Validates operational readiness for Level 1 managed service work: monitoring, status interpretation, dependency triage, ingestion and transformation troubleshooting, validation failure handling, controlled recovery reasoning, notification boundary awareness, and escalation classification.",
+      "description": "Validates operational readiness for Level 1 operations work: monitoring, status interpretation, dependency triage, ingestion and transformation troubleshooting, validation failure handling, controlled recovery reasoning, notification boundary awareness, and escalation classification.",
       "passThreshold": 0.8,
       "estimatedMinutes": 45,
       "displayOrder": 1,
@@ -580,7 +435,7 @@
           "id": "ms_q001_primary_operational_signal",
           "type": "multiple_choice",
           "title": "Primary operational signal",
-          "prompt": "When an issue is reported, what should managed services usually inspect first?",
+          "prompt": "When an issue is reported, what should operators usually inspect first?",
           "context": "Choose the evidence source that best aligns with the framework operating model.",
           "points": 1,
           "competency": "Operational evidence",
@@ -603,7 +458,7 @@
             }
           ],
           "correctAnswer": "B",
-          "correctFeedback": "Correct. Managed service triage should start from runtime evidence.",
+          "correctFeedback": "Correct. Operations triage should start from runtime evidence.",
           "incorrectFeedback": "Review the operational evidence model. User symptoms matter, but framework runtime evidence is the primary support signal."
         },
         {
@@ -697,7 +552,7 @@
           "id": "ms_q005_evidence_sources",
           "type": "multi_select",
           "title": "Runtime evidence sources",
-          "prompt": "Which evidence sources are important during managed service triage? Select all that apply.",
+          "prompt": "Which evidence sources are important during operations triage? Select all that apply.",
           "points": 2,
           "competency": "Operational evidence",
           "options": [
@@ -1127,7 +982,7 @@
           "id": "ms_q019_explain_unit_test_failure",
           "type": "free_text",
           "title": "Handle validation failure",
-          "prompt": "A transformation job writes its target table, but a required validation/unit test fails. Explain how managed services should treat this situation.",
+          "prompt": "A transformation job writes its target table, but a required validation/unit test fails. Explain how operators should treat this situation.",
           "context": "A strong answer should explain that technical write completion is not enough, required validation failure is a real failure, evidence should be reviewed, and rerun should wait until cause is fixed.",
           "points": 3,
           "competency": "Validation failure reasoning",
@@ -1139,7 +994,7 @@
           },
           "rubric": {
             "referenceAnswers": [
-              "Managed services should treat the job as failed because required validation did not pass. A table write alone does not prove business or operational success. I would inspect the unit-test or quality-result evidence, job run history, failure logs, and transformation configuration to determine whether the cause is data, metadata, model assumptions, or framework logic. The cause should be fixed or escalated before rerun.",
+              "Operators should treat the job as failed because required validation did not pass. A table write alone does not prove business or operational success. I would inspect the unit-test or quality-result evidence, job run history, failure logs, and transformation configuration to determine whether the cause is data, metadata, model assumptions, or framework logic. The cause should be fixed or escalated before rerun.",
               "A required unit-test failure is a real operational failure even if the target write completed. Support should review validation results and runtime evidence, determine what rule failed, avoid marking it successful, and coordinate a metadata, data, or business-rule fix before controlled rerun.",
               "I would not ignore the failed validation. The framework treats required unit tests as part of load success. I would investigate the failed check, determine whether the output is unsafe, escalate if the model or business rule needs clarification, and rerun only after the issue is corrected."
             ]
@@ -1150,7 +1005,7 @@
           "id": "ms_q020_explain_recovery_choice",
           "type": "free_text",
           "title": "Choose recovery language",
-          "prompt": "Explain the difference between rerun, replay, backfill, and rebuild in a way that would help a new managed service teammate choose the right recovery language.",
+          "prompt": "Explain the difference between rerun, replay, backfill, and rebuild in a way that would help a another operator choose the right recovery language.",
           "context": "A strong answer should define each term and connect the choice to the failure scope, available upstream data, missing historical periods, and target/layer rebuild needs.",
           "points": 4,
           "competency": "Recovery vocabulary reasoning",
@@ -1164,7 +1019,7 @@
             "referenceAnswers": [
               "Rerun means resetting unresolved runtime work so the same configured job can execute again after the cause is fixed. Replay means processing already-available upstream data through downstream logic again. Backfill means loading historical or previously missing data that did not arrive during normal execution. Rebuild means recreating a target layer or object from upstream data using intended logic. The right choice depends on whether the problem is a failed queue attempt, downstream reprocessing, missing source coverage, or a target that must be recreated.",
               "I would use rerun for controlled queue recovery from the point of failure, replay when upstream data already exists but downstream logic must run again, backfill when a historical period or missing data must be brought in, and rebuild when a layer or target needs to be recreated from safe upstream state. The choice should be minimum-scope and layer-aware, especially around INT versus EDW.",
-              "These terms are not interchangeable. Rerun is queue-oriented, replay is downstream reprocessing of available data, backfill restores missing historical source coverage, and rebuild recreates a target. Managed services should use the term that matches the actual recovery scope and avoid broad reruns when a narrower recovery is enough."
+              "These terms are not interchangeable. Rerun is queue-oriented, replay is downstream reprocessing of available data, backfill restores missing historical source coverage, and rebuild recreates a target. Operators should use the term that matches the actual recovery scope and avoid broad reruns when a narrower recovery is enough."
             ]
           },
           "explanation": "The expected answer distinguishes related recovery terms and connects them to scope selection."
@@ -1196,8 +1051,8 @@
           "id": "ms_q022_explain_escalation",
           "type": "free_text",
           "title": "Escalation decision",
-          "prompt": "A recurring production issue requires changing shared framework library behavior, not just correcting one client's metadata. Explain how managed services should classify and escalate it.",
-          "context": "A strong answer should classify this as more than routine operational recovery, explain shared framework change boundaries, and avoid hiding the fix as client-specific support work.",
+          "prompt": "A recurring production issue cannot be explained or corrected through visible configuration and documented recovery actions. Explain how operators should classify and escalate it.",
+          "context": "A strong answer should treat this as more than routine recovery and prepare an evidence-led platform support handoff.",
           "points": 3,
           "competency": "Escalation and change boundary reasoning",
           "semanticScoring": {
@@ -1208,12 +1063,12 @@
           },
           "rubric": {
             "referenceAnswers": [
-              "Managed services should not treat this as only a routine rerun or client-specific recovery. If the fix requires changing shared framework library behavior, it should be escalated as a shared framework or shared package/library change. The issue should be documented with evidence, affected scope, client impact, and reproduction details, then handled through the appropriate review, validation, and release path rather than hidden inside one client's metadata.",
-              "I would classify it as a shared framework change because the required correction affects reusable library behavior. Managed services can provide incident evidence and impact, but the fix belongs to the framework or development owner and should follow change management, validation, approval, and deployment readiness expectations.",
-              "This is not just operational recovery. A recurring issue that needs a shared library change crosses into release governance. It should be escalated with runtime evidence and impact analysis so the framework team can plan a controlled shared change and avoid client-specific forks."
+              "I would classify this as a platform support issue rather than another routine rerun. I would capture the affected workflow, versions, runtime evidence, reproduction steps, scope, impact, and actions already attempted, then use the support handoff process.",
+              "Operators should avoid hiding unexplained behavior inside client-specific workarounds. Preserve the failing configuration and evidence, sanitize sensitive values, and request platform diagnosis with a clear expected-versus-actual description.",
+              "This exceeds routine recovery because visible configuration and documented actions do not explain it. Escalate with the earliest reliable failure evidence and a narrow reproduction case."
             ]
           },
-          "explanation": "The expected answer distinguishes operational support from shared framework change and release governance."
+          "explanation": "The expected answer distinguishes routine recovery from a platform support issue and emphasizes a complete evidence handoff."
         }
       ],
       "competencyCoverage": [
@@ -1223,17 +1078,17 @@
         "support_boundaries",
         "communication"
       ],
-      "reviewMode": "automatic_scoring_with_admin_review_for_free_text_and_labs"
+      "reviewMode": "automatic_scoring_with_reviewer_review_for_free_text_and_labs"
     }
   ],
   "badges": [
     {
-      "id": "badge_managed_service_level_1",
-      "title": "Managed Service Level 1 Completed",
+      "id": "badge_operations_practitioner",
+      "title": "Operations Practitioner Completed",
       "icon": "🛡️",
-      "description": "Awarded after completing the Managed Service Level 1 workbook path and passing the operational readiness assessment.",
+      "description": "Awarded after completing the Operations Practitioner workbook path and passing the operational readiness assessment.",
       "requirements": {
-        "trackId": "track_managed_service_level_1",
+        "trackId": "track_operations_practitioner",
         "requiredLessons": [
           "ms_lesson_001_operational_mission_and_evidence",
           "ms_lesson_002_batch_queue_and_statuses",
@@ -1247,12 +1102,12 @@
           "ms_lesson_010_escalation_change_and_communication_boundaries"
         ],
         "requiredAssessments": [
-          "assessment_managed_service_level_1_v1"
+          "assessment_operations_practitioner_v1"
         ],
         "minimumAssessmentScore": 0.8
       },
       "issuer": "Culina Academy",
-      "evidenceRule": "Complete all Managed Service Level 1 lessons and pass the operational readiness assessment.",
+      "evidenceRule": "Complete all Operations Practitioner lessons and pass the operational readiness assessment.",
       "displayOrder": 2
     }
   ],
@@ -1290,7 +1145,7 @@
     {
       "id": "support_boundaries",
       "title": "Support boundaries",
-      "description": "Knows when managed service should act, escalate, or request implementation change.",
+      "description": "Knows when operators should act, escalate, or request configuration, source-owner, or platform support.",
       "displayOrder": 4
     },
     {
@@ -1328,7 +1183,7 @@
     },
     {
       "term": "Escalation boundary",
-      "definition": "The point where managed service should hand off to implementation, engineering, or client decision makers.",
+      "definition": "The point where operators should escalate to configuration owners, source owners, platform support, or business decision makers.",
       "displayOrder": 6
     }
   ],

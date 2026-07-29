@@ -159,7 +159,7 @@
         <div class="logo">ca</div>
         <div>
           <h1>Culina Review Workbook</h1>
-          <p>Admin Workbook</p>
+          <p>Review Workbook</p>
         </div>
       </div>
       <div class="panel side-card">
@@ -181,7 +181,7 @@
     <main class="main">
       <div class="eyebrow">Local Review</div>
       <h1 class="page-title">Transcript review workspace</h1>
-      <p class="page-copy">Use this workbook to review local transcript exports, inspect evidence, record review status, and produce admin reports.</p>
+      <p class="page-copy">Use this workbook to review local transcript exports, inspect evidence, record review status, and produce review reports.</p>
       <div style="height: 24px"></div>
       <section class="grid grid-3" id="statsRoot"></section>
       <div style="height: 22px"></div>
@@ -203,9 +203,9 @@
       buildRosterCsv,
       mergeReviewState,
       summarizeTranscript,
-    } from '../../scripts/admin-core.mjs';
+    } from '../scripts/review-core.mjs';
 
-    const STORAGE_REVIEW = 'culinaAcademy.adminReview.v2';
+    const STORAGE_REVIEW = 'culinaAcademy.review.v2';
     const state = {
       records: [],
       reviewState: loadReviewState(),
@@ -369,11 +369,11 @@
     function exportReport() {
       if (!state.records.length) return showToast('No transcripts to export.');
       const hydrated = state.records.map(record => mergeReviewState(record, state.reviewState));
-      downloadText('culina_academy_admin_review.json', JSON.stringify(buildReviewReport(hydrated, state.reviewState), null, 2), 'application/json');
+      downloadText('culina_academy_workbook_review.json', JSON.stringify(buildReviewReport(hydrated, state.reviewState), null, 2), 'application/json');
     }
 
     function clearReviewState() {
-      if (!confirm('Clear local admin review state? Imported transcripts remain on screen.')) return;
+      if (!confirm('Clear local optional review state? Imported transcripts remain on screen.')) return;
       state.reviewState = {};
       saveReviewState();
       render();

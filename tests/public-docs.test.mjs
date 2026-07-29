@@ -71,8 +71,6 @@ test('public docs include schema, sandbox, and recovery guides', async () => {
     'docs/getting-started/what-is-culina.md',
     'docs/getting-started/quickstart.md',
     'docs/tutorials/README.md',
-    'docs/tutorials/video-entry-template.md',
-    'docs/tutorials/transcripts/README.md',
     'docs/architecture/framework-architecture.md',
     'docs/architecture/control-plane-schema.md',
     'docs/reference/config-field-reference.md',
@@ -117,6 +115,47 @@ test('public docs include schema, sandbox, and recovery guides', async () => {
   assert.match(tutorials, /Control Plane vs Data Plane/);
   assert.match(tutorials, /Inside `culina-runtime`/);
   assert.match(tutorials, /One Job, Any Platform/);
+});
+
+test('public materials exclude repository-maintenance notes', async () => {
+  const files = await listFiles(repoRoot, file => {
+    const rel = path.relative(repoRoot, file).replaceAll('\\', '/');
+    return rel === 'README.md'
+      || rel === 'CHANGELOG.md'
+      || rel.startsWith('docs/')
+      || rel.startsWith('workbook/');
+  });
+  const combined = (await Promise.all(files.map(file => readFile(file, 'utf8')))).join('\n').toLowerCase();
+
+  for (const phrase of [
+    'video entry template',
+    'publishing workflow',
+    'transcript standard',
+    'data culina youtube channel',
+    'metadata studio',
+    'copilot',
+    'client onboarding playbook',
+    'ai knowledge pack index',
+    'team members',
+    'admin review',
+    'admin workbook',
+    'admin-core',
+    'admin_review',
+    'adminreview',
+    'implementation service',
+    'managed service',
+    'client onboarding',
+    'release governance',
+    'moduleid',
+    'mod-0',
+    'sourcemodules',
+    'sourcemoduleids',
+  ]) {
+    assert.equal(combined.includes(phrase), false, `found public-only phrase: ${phrase}`);
+  }
+
+  await assert.rejects(access(path.join(repoRoot, 'docs', 'tutorials', 'video-entry-template.md')));
+  await assert.rejects(access(path.join(repoRoot, 'docs', 'tutorials', 'transcripts', 'README.md')));
 });
 
 test('public landing page uses Data Culina brand assets', async () => {
