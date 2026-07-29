@@ -70,6 +70,9 @@ test('public docs include schema, sandbox, and recovery guides', async () => {
   const requiredFiles = [
     'docs/getting-started/what-is-culina.md',
     'docs/getting-started/quickstart.md',
+    'docs/tutorials/README.md',
+    'docs/tutorials/video-entry-template.md',
+    'docs/tutorials/transcripts/README.md',
     'docs/architecture/framework-architecture.md',
     'docs/architecture/control-plane-schema.md',
     'docs/reference/config-field-reference.md',
@@ -101,11 +104,15 @@ test('public docs include schema, sandbox, and recovery guides', async () => {
   }
 
   const docsIndex = await readFile(path.join(repoRoot, 'docs', 'README.md'), 'utf8');
+  const tutorials = await readFile(path.join(repoRoot, 'docs', 'tutorials', 'README.md'), 'utf8');
   assert.match(docsIndex, /Control Plane Schema/);
+  assert.match(docsIndex, /Video Tutorials/);
   assert.match(docsIndex, /Sandbox Client Metadata Example/);
   assert.match(docsIndex, /Config Validation/);
   assert.match(docsIndex, /Diagnostic Queries/);
   assert.match(docsIndex, /Backfill And Recovery/);
+  assert.match(tutorials, /https:\/\/youtu\.be\/zpb9Vy29kMI/);
+  assert.match(tutorials, /6:39/);
 });
 
 test('public landing page uses Data Culina brand assets', async () => {
@@ -125,7 +132,9 @@ test('public landing page uses Data Culina brand assets', async () => {
   assert.match(index, /#073f2c/);
   assert.match(index, /#f47b20/);
   assert.match(index, /https:\/\/dataculina\.com\//);
+  assert.match(index, /docs\/tutorials\/README\.md/);
   assert.match(readme, /https:\/\/dataculina\.com\//);
+  assert.match(readme, /docs\/tutorials\/README\.md/);
   assert.match(support, /https:\/\/dataculina\.com\//);
   assert.match(readme, /assets\/academy_readme_banner\.svg/);
   assert.doesNotMatch(readme, /## Document Map/);

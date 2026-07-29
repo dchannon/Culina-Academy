@@ -6,6 +6,12 @@
 
 Public documentation for understanding and operating the Culina framework.
 
+## Video Tutorials
+
+1. [Tutorial Hub And Suggested Series](tutorials/README.md)
+2. [Video Entry Template](tutorials/video-entry-template.md)
+3. [Transcript Standard](tutorials/transcripts/README.md)
+
 ## Framework Structure
 
 1. [What Is Culina?](getting-started/what-is-culina.md)

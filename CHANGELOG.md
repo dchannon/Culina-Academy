@@ -12,6 +12,7 @@
 - Replaced abbreviated license notice with full Apache-2.0 license text.
 - Tightened workbook exercise wording for public use.
 - Added Data Culina contact links for users interested in working with the team.
+- Added a YouTube tutorial hub, Episode 1, publishing template, transcript standard, and navigation.
 
 ## 2.0.0
 
