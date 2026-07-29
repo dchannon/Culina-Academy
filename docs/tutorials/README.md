@@ -24,8 +24,6 @@ This hub connects Data Culina YouTube tutorials to the public framework document
 
 Use the [Quickstart](../getting-started/quickstart.md) to trace one configured workflow through the control plane.
 
-Use the [video entry template](video-entry-template.md) for future tutorials so every entry has consistent metadata, chapters, companion docs, and a transcript.
-
 ## Planned Series
 
 | # | Episode | Main lesson | Companion docs |
