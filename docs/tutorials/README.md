@@ -6,9 +6,9 @@ This hub connects Data Culina YouTube tutorials to the public framework document
 
 ### 01. From Metadata to Evidence
 
-[![Watch From Metadata to Evidence on YouTube](https://img.youtube.com/vi/zpb9Vy29kMI/maxresdefault.jpg)](https://youtu.be/zpb9Vy29kMI)
+[![Watch From Metadata to Evidence on YouTube](https://img.youtube.com/vi/WUB48MUN_k8/maxresdefault.jpg)](https://youtu.be/WUB48MUN_k8)
 
-- **YouTube title:** [Data Culina Framework Fundamentals Episode 01](https://youtu.be/zpb9Vy29kMI)
+- **YouTube title:** [Data Culina Framework Fundamentals Episode 01](https://youtu.be/WUB48MUN_k8)
 - **Duration:** 6:39
 - **Audience:** Clients, users, operators, and implementation partners
 - **Outcome:** Understand the framework mental model: metadata defines intent, while orchestration and runtime execution produce evidence.
