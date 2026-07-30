@@ -24,6 +24,27 @@ This hub connects Data Culina YouTube tutorials to the public framework document
 
 Use the [Quickstart](../getting-started/quickstart.md) to trace one configured workflow through the control plane.
 
+### 02. Control Plane vs Data Plane
+
+[![Watch Control Plane vs Data Plane on YouTube](https://img.youtube.com/vi/u6f94nvWImg/maxresdefault.jpg)](https://youtu.be/u6f94nvWImg)
+
+- **YouTube title:** [Data Culina Framework Fundamentals Episode 02](https://youtu.be/u6f94nvWImg)
+- **Duration:** 6:29
+- **Audience:** Clients, users, operators, and implementation partners
+- **Outcome:** Understand the framework's six architecture domains, their responsibilities, and the boundaries between control-plane decisions and data-plane execution.
+- **Prerequisites:** [Episode 01: From Metadata to Evidence](https://youtu.be/WUB48MUN_k8)
+
+#### Companion Docs
+
+- [Framework Architecture](../architecture/framework-architecture.md)
+- [Control Plane](../architecture/control-plane.md)
+- [Orchestration Plane](../architecture/orchestration-plane.md)
+- [Data Layers](../architecture/data-layers.md)
+
+#### After Watching
+
+Use the [Framework Architecture](../architecture/framework-architecture.md) guide to map each domain to the components running in your environment.
+
 ## Planned Series
 
 | # | Episode | Main lesson | Companion docs |
