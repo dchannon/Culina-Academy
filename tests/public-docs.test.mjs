@@ -111,10 +111,13 @@ test('public docs include schema, sandbox, and recovery guides', async () => {
   assert.match(docsIndex, /Backfill And Recovery/);
   assert.match(tutorials, /https:\/\/youtu\.be\/WUB48MUN_k8/);
   assert.match(tutorials, /https:\/\/youtu\.be\/u6f94nvWImg/);
+  assert.match(tutorials, /https:\/\/youtu\.be\/NxJomMWgvQ4/);
   assert.match(tutorials, /6:39/);
   assert.match(tutorials, /6:29/);
+  assert.match(tutorials, /6:21/);
   assert.match(tutorials, /From Metadata to Evidence/);
   assert.match(tutorials, /Control Plane vs Data Plane/);
+  assert.match(tutorials, /The Data Journey/);
   assert.match(tutorials, /Inside `culina-runtime`/);
   assert.match(tutorials, /One Job, Any Platform/);
 });
