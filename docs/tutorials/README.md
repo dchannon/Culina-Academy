@@ -66,6 +66,27 @@ Use the [Framework Architecture](../architecture/framework-architecture.md) guid
 
 Use the [Data Layers](../architecture/data-layers.md) guide to identify the capture, refine, and serve responsibilities in your environment.
 
+### 04. How Jobs Actually Run
+
+[![Watch How Jobs Actually Run on YouTube](https://i.ytimg.com/vi/1VZ_PTN7kL0/maxresdefault.jpg)](https://youtu.be/1VZ_PTN7kL0)
+
+- **YouTube title:** [Data Culina Framework Episode 04](https://youtu.be/1VZ_PTN7kL0)
+- **Duration:** 6:23
+- **Audience:** Clients, users, operators, and implementation partners
+- **Outcome:** Trace an approved job definition through batch creation, queue states, dependency gating, controlled dispatch, retries, and official execution evidence.
+- **Prerequisites:** [Episode 03: The Data Journey](https://youtu.be/NxJomMWgvQ4)
+
+#### Companion Docs
+
+- [Orchestration Plane](../architecture/orchestration-plane.md)
+- [Dependencies And Validation](../guides/dependencies-and-validation.md)
+- [Engine Diagnostics](../troubleshooting/engine-diagnostics.md)
+- [Operating Guide](../operations/operating-guide.md)
+
+#### After Watching
+
+Use [Dependencies And Validation](../guides/dependencies-and-validation.md) to trace why one queued job is ready, waiting, retrying, or skipped.
+
 ## Planned Series
 
 | # | Episode | Main lesson | Companion docs |
@@ -73,8 +94,8 @@ Use the [Data Layers](../architecture/data-layers.md) guide to identify the capt
 | 1 | From Metadata to Evidence | Framework mental model; metadata defines intent but does not execute itself. | [What Is Culina?](../getting-started/what-is-culina.md), [Framework Overview](../getting-started/framework-overview.md) |
 | 2 | Control Plane vs Data Plane | Six architecture domains and their boundaries. | [Framework Architecture](../architecture/framework-architecture.md), [Control Plane](../architecture/control-plane.md), [Data Layers](../architecture/data-layers.md) |
 | 3 | The Data Journey | Source to Landing to Archive/Delta to Staging to INT to EDW to CONS. | [Data Layers](../architecture/data-layers.md) |
-| 4 | Anatomy of a Framework Contract | Export envelope, jobs, sources, dependencies, transformations, IDs. | [Control Plane Schema](../architecture/control-plane-schema.md), [Config Field Reference](../reference/config-field-reference.md) |
-| 5 | How Jobs Actually Run | Grandparent, Parent, Child, Grandchild; queue states and dependency gating. | [Orchestration Plane](../architecture/orchestration-plane.md), [Engine Diagnostics](../troubleshooting/engine-diagnostics.md) |
+| 4 | How Jobs Actually Run | Grandparent, Parent, Child, Grandchild; queue states and dependency gating. | [Orchestration Plane](../architecture/orchestration-plane.md), [Engine Diagnostics](../troubleshooting/engine-diagnostics.md) |
+| 5 | Anatomy of a Framework Contract | Export envelope, jobs, sources, dependencies, transformations, IDs. | [Control Plane Schema](../architecture/control-plane-schema.md), [Config Field Reference](../reference/config-field-reference.md) |
 | 6 | Inside `culina-runtime` | `payload.json` → shared execution library → `result.json` → official evidence. | [Framework Concepts](../concepts/framework-concepts.md), [Control Plane Schema](../architecture/control-plane-schema.md) |
 | 7 | Transformations You Can Trust | Ordered JSON steps, append/upsert/SCD2, validation, unit tests. | [Transformation Jobs](../patterns/transformation-jobs.md), [Add Transformation](../guides/add-transformation.md), [Dependencies And Validation](../guides/dependencies-and-validation.md) |
 | 8 | One Job, Any Platform | Same logical framework across local, A.W.S., Synapse, Fabric, and Databricks. | [Framework Architecture](../architecture/framework-architecture.md), [Version Compatibility](../reference/version-compatibility.md) |
