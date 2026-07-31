@@ -26,7 +26,7 @@ Use the [Quickstart](../getting-started/quickstart.md) to trace one configured w
 
 ### 02. Control Plane vs Data Plane
 
-[![Watch Control Plane vs Data Plane on YouTube](https://img.youtube.com/vi/u6f94nvWImg/maxresdefault.jpg)](https://youtu.be/u6f94nvWImg)
+[![Watch Control Plane vs Data Plane on YouTube](https://i.ytimg.com/vi/u6f94nvWImg/hqdefault.jpg)](https://youtu.be/u6f94nvWImg)
 
 - **YouTube title:** [Data Culina Framework Fundamentals Episode 02](https://youtu.be/u6f94nvWImg)
 - **Duration:** 6:29
