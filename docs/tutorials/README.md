@@ -9,7 +9,7 @@ This hub connects Data Culina YouTube tutorials to the public framework document
 [![Watch From Metadata to Evidence on YouTube](https://i.ytimg.com/vi/WUB48MUN_k8/maxresdefault.jpg)](https://youtu.be/WUB48MUN_k8)
 
 - **YouTube title:** [Data Culina Framework Fundamentals Episode 01](https://youtu.be/WUB48MUN_k8)
-- **Duration:** 6:39
+- **Duration:** 6:38
 - **Audience:** Clients, users, operators, and implementation partners
 - **Outcome:** Understand the framework mental model: metadata defines intent, while orchestration and runtime execution produce evidence.
 - **Prerequisites:** None
@@ -129,15 +129,15 @@ Use the [Control Plane Schema](../architecture/control-plane-schema.md) to trace
 
 Use the [Ingestion Job Pattern](../patterns/ingestion-jobs.md) to compare Full and incremental boundaries for one source before selecting its staging write behavior.
 
-## Planned Series
+## Series Roadmap
 
-| # | Episode | Main lesson | Companion docs |
+| # | Episode | Main lesson | Status |
 | ---: | --- | --- | --- |
-| 1 | From Metadata to Evidence | Framework mental model; metadata defines intent but does not execute itself. | [What Is Culina?](../getting-started/what-is-culina.md), [Framework Overview](../getting-started/framework-overview.md) |
-| 2 | Control Plane vs Data Plane | Six architecture domains and their boundaries. | [Framework Architecture](../architecture/framework-architecture.md), [Control Plane](../architecture/control-plane.md), [Data Layers](../architecture/data-layers.md) |
-| 3 | The Data Journey | Source to Landing to Archive/Delta to Staging to INT to EDW to CONS. | [Data Layers](../architecture/data-layers.md) |
-| 4 | How Jobs Actually Run | Grandparent, Parent, Child, Grandchild; queue states and dependency gating. | [Orchestration Plane](../architecture/orchestration-plane.md), [Engine Diagnostics](../troubleshooting/engine-diagnostics.md) |
-| 5 | Inside `culina-runtime` | `payload.json` → shared execution library → `result.json` → official evidence. | [Framework Concepts](../concepts/framework-concepts.md), [Control Plane Schema](../architecture/control-plane-schema.md) |
-| 6 | Incremental Ingestion Under the Hood | Full and Delta boundaries, staging history, deduplication, and target write behavior. | [Ingestion Job Pattern](../patterns/ingestion-jobs.md), [Add A REST Ingestion Job](../guides/add-rest-ingestion.md) |
-| 7 | Transformations You Can Trust | Ordered JSON steps, append/upsert/SCD2, validation, unit tests. | [Transformation Jobs](../patterns/transformation-jobs.md), [Add Transformation](../guides/add-transformation.md), [Dependencies And Validation](../guides/dependencies-and-validation.md) |
-| 8 | One Job, Any Platform | Same logical framework across local, A.W.S., Synapse, Fabric, and Databricks. | [Framework Architecture](../architecture/framework-architecture.md), [Version Compatibility](../reference/version-compatibility.md) |
+| 1 | **From Metadata to Evidence** | Approved intent becomes metadata, execution, and defensible evidence. | Published · 6:38 |
+| 2 | **Control Plane vs Data Plane** | Stable contracts, separated responsibilities, platform adapters, and portability. | Published · 6:29 |
+| 3 | **The Data Journey** | Follow data through Landing, Archive, Delta, Staging, INT, EDW, and Consumption. | Published · 6:21 |
+| 4 | **How Jobs Actually Run** | Batches, queue rows, dependencies, dispatch, retries, and finalization. | Published · 6:23 |
+| 5 | **Inside `culina-runtime`** | `payload.json` enters execution; `result.json` returns evidence; orchestration retains authority. | Published · 6:17 |
+| 6 | **Incremental Ingestion Under the Hood** | Full versus Delta, watermarks, connector filtering, Staging history, and write-mode separation. | Published · 5:03 |
+| 7 | **How SCD2 Builds Trustworthy History** | Hash comparison, effective and expiry dates, current flags, tombstones, and fact-versus-dimension history. | Next |
+| 8 | **When Pipelines Fail: Validation and Recovery** | Blocking tests, operational evidence, retries, reruns, replays, backfills, rebuilds, and minimum-scope recovery. | Planned |

@@ -115,7 +115,7 @@ test('public docs include schema, sandbox, and recovery guides', async () => {
   assert.match(tutorials, /https:\/\/youtu\.be\/1VZ_PTN7kL0/);
   assert.match(tutorials, /https:\/\/youtu\.be\/AnLU_X5ctS8/);
   assert.match(tutorials, /https:\/\/youtu\.be\/ch7ysTWlGG0/);
-  assert.match(tutorials, /6:39/);
+  assert.match(tutorials, /6:38/);
   assert.match(tutorials, /6:29/);
   assert.match(tutorials, /6:21/);
   assert.match(tutorials, /6:23/);
@@ -126,7 +126,11 @@ test('public docs include schema, sandbox, and recovery guides', async () => {
   assert.match(tutorials, /The Data Journey/);
   assert.match(tutorials, /Incremental Ingestion Under the Hood/);
   assert.match(tutorials, /Inside `culina-runtime`/);
-  assert.match(tutorials, /One Job, Any Platform/);
+  assert.match(tutorials, /How SCD2 Builds Trustworthy History/);
+  assert.match(tutorials, /When Pipelines Fail: Validation and Recovery/);
+  assert.match(tutorials, /Published · 6:38/);
+  assert.match(tutorials, /\| Next \|/);
+  assert.match(tutorials, /\| Planned \|/);
 });
 
 test('public materials exclude repository-maintenance notes', async () => {
