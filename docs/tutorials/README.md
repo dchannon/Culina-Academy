@@ -108,6 +108,27 @@ Use [Dependencies And Validation](../guides/dependencies-and-validation.md) to t
 
 Use the [Control Plane Schema](../architecture/control-plane-schema.md) to trace one queue row into its step-level `job_runhistory` evidence.
 
+### 06. Incremental Ingestion Under the Hood
+
+[![Watch Incremental Ingestion Under the Hood on YouTube](https://i.ytimg.com/vi/ch7ysTWlGG0/maxresdefault.jpg)](https://youtu.be/ch7ysTWlGG0)
+
+- **YouTube title:** [Data Culina Framework Episode 06](https://youtu.be/ch7ysTWlGG0)
+- **Duration:** 5:03
+- **Audience:** Clients, users, operators, and implementation partners
+- **Outcome:** Distinguish Full and Delta extraction promises, understand incremental boundaries and staging history, and keep ingestion mode separate from target write behavior.
+- **Prerequisites:** [Episode 05: Inside culina-runtime](https://youtu.be/AnLU_X5ctS8)
+
+#### Companion Docs
+
+- [Ingestion Job Pattern](../patterns/ingestion-jobs.md)
+- [Add A REST Ingestion Job](../guides/add-rest-ingestion.md)
+- [Data Layers](../architecture/data-layers.md)
+- [Config Field Reference](../reference/config-field-reference.md)
+
+#### After Watching
+
+Use the [Ingestion Job Pattern](../patterns/ingestion-jobs.md) to compare Full and incremental boundaries for one source before selecting its staging write behavior.
+
 ## Planned Series
 
 | # | Episode | Main lesson | Companion docs |
@@ -117,6 +138,6 @@ Use the [Control Plane Schema](../architecture/control-plane-schema.md) to trace
 | 3 | The Data Journey | Source to Landing to Archive/Delta to Staging to INT to EDW to CONS. | [Data Layers](../architecture/data-layers.md) |
 | 4 | How Jobs Actually Run | Grandparent, Parent, Child, Grandchild; queue states and dependency gating. | [Orchestration Plane](../architecture/orchestration-plane.md), [Engine Diagnostics](../troubleshooting/engine-diagnostics.md) |
 | 5 | Inside `culina-runtime` | `payload.json` → shared execution library → `result.json` → official evidence. | [Framework Concepts](../concepts/framework-concepts.md), [Control Plane Schema](../architecture/control-plane-schema.md) |
-| 6 | Anatomy of a Framework Contract | Export envelope, jobs, sources, dependencies, transformations, IDs. | [Control Plane Schema](../architecture/control-plane-schema.md), [Config Field Reference](../reference/config-field-reference.md) |
+| 6 | Incremental Ingestion Under the Hood | Full and Delta boundaries, staging history, deduplication, and target write behavior. | [Ingestion Job Pattern](../patterns/ingestion-jobs.md), [Add A REST Ingestion Job](../guides/add-rest-ingestion.md) |
 | 7 | Transformations You Can Trust | Ordered JSON steps, append/upsert/SCD2, validation, unit tests. | [Transformation Jobs](../patterns/transformation-jobs.md), [Add Transformation](../guides/add-transformation.md), [Dependencies And Validation](../guides/dependencies-and-validation.md) |
 | 8 | One Job, Any Platform | Same logical framework across local, A.W.S., Synapse, Fabric, and Databricks. | [Framework Architecture](../architecture/framework-architecture.md), [Version Compatibility](../reference/version-compatibility.md) |
