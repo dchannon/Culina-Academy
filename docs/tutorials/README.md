@@ -129,6 +129,27 @@ Use the [Control Plane Schema](../architecture/control-plane-schema.md) to trace
 
 Use the [Ingestion Job Pattern](../patterns/ingestion-jobs.md) to compare Full and incremental boundaries for one source before selecting its staging write behavior.
 
+### 07. How SCD2 Builds Trustworthy History
+
+[![Watch How SCD2 Builds Trustworthy History on YouTube](https://i.ytimg.com/vi/2SCVVz3zhc4/maxresdefault.jpg)](https://youtu.be/2SCVVz3zhc4)
+
+- **YouTube title:** [Data Culina Framework Episode 07](https://youtu.be/2SCVVz3zhc4)
+- **Duration:** 5:26
+- **Audience:** Clients, users, operators, and implementation partners
+- **Outcome:** Trace hash-based SCD2 classification into effective and expiry dates, current flags, tombstones, surrogate keys, and a safe history rebuild.
+- **Prerequisites:** [Episode 06: Incremental Ingestion Under the Hood](https://youtu.be/ch7ysTWlGG0)
+
+#### Companion Docs
+
+- [Transformation Job Pattern](../patterns/transformation-jobs.md)
+- [Add A Transformation Job](../guides/add-transformation.md)
+- [Dependencies And Validation](../guides/dependencies-and-validation.md)
+- [Backfill And Recovery](../operations/backfill-and-recovery.md)
+
+#### After Watching
+
+Use the [Transformation Job Pattern](../patterns/transformation-jobs.md) to identify the business key, hash, and complete-current-state assumptions required before SCD2 execution.
+
 ## Series Roadmap
 
 | # | Episode | Main lesson | Status |
@@ -139,5 +160,5 @@ Use the [Ingestion Job Pattern](../patterns/ingestion-jobs.md) to compare Full a
 | 4 | **How Jobs Actually Run** | Batches, queue rows, dependencies, dispatch, retries, and finalization. | Published · 6:23 |
 | 5 | **Inside `culina-runtime`** | `payload.json` enters execution; `result.json` returns evidence; orchestration retains authority. | Published · 6:17 |
 | 6 | **Incremental Ingestion Under the Hood** | Full versus Delta, watermarks, connector filtering, Staging history, and write-mode separation. | Published · 5:03 |
-| 7 | **How SCD2 Builds Trustworthy History** | Hash comparison, effective and expiry dates, current flags, tombstones, and fact-versus-dimension history. | Next |
-| 8 | **When Pipelines Fail: Validation and Recovery** | Blocking tests, operational evidence, retries, reruns, replays, backfills, rebuilds, and minimum-scope recovery. | Planned |
+| 7 | **How SCD2 Builds Trustworthy History** | Hash comparison, effective and expiry dates, current flags, tombstones, and fact-versus-dimension history. | Published · 5:26 |
+| 8 | **When Pipelines Fail: Validation and Recovery** | Blocking tests, operational evidence, retries, reruns, replays, backfills, rebuilds, and minimum-scope recovery. | Next |
