@@ -150,6 +150,27 @@ Use the [Ingestion Job Pattern](../patterns/ingestion-jobs.md) to compare Full a
 
 Use the [Transformation Job Pattern](../patterns/transformation-jobs.md) to identify the business key, hash, and complete-current-state assumptions required before SCD2 execution.
 
+### 08. When Pipelines Fail: Validation and Recovery
+
+[![Watch When Pipelines Fail on YouTube](https://i.ytimg.com/vi/sWSGUls2420/maxresdefault.jpg)](https://youtu.be/sWSGUls2420)
+
+- **YouTube title:** [Data Culina Framework Episode 08](https://youtu.be/sWSGUls2420)
+- **Duration:** 5:17
+- **Audience:** Clients, users, operators, and implementation partners
+- **Outcome:** Locate the first real failure, interpret validation and operational evidence, distinguish recovery actions, and choose the minimum safe recovery scope.
+- **Prerequisites:** [Episode 07: How SCD2 Builds Trustworthy History](https://youtu.be/2SCVVz3zhc4)
+
+#### Companion Docs
+
+- [Dependencies And Validation](../guides/dependencies-and-validation.md)
+- [Engine Diagnostics](../troubleshooting/engine-diagnostics.md)
+- [Backfill And Recovery](../operations/backfill-and-recovery.md)
+- [Incident Walkthroughs](../troubleshooting/incident-walkthroughs.md)
+
+#### After Watching
+
+Use [Incident Walkthroughs](../troubleshooting/incident-walkthroughs.md) to classify one failure, then select the minimum safe action with [Backfill And Recovery](../operations/backfill-and-recovery.md).
+
 ## Series Roadmap
 
 | # | Episode | Main lesson | Status |
@@ -161,4 +182,4 @@ Use the [Transformation Job Pattern](../patterns/transformation-jobs.md) to iden
 | 5 | **Inside `culina-runtime`** | `payload.json` enters execution; `result.json` returns evidence; orchestration retains authority. | Published · 6:17 |
 | 6 | **Incremental Ingestion Under the Hood** | Full versus Delta, watermarks, connector filtering, Staging history, and write-mode separation. | Published · 5:03 |
 | 7 | **How SCD2 Builds Trustworthy History** | Hash comparison, effective and expiry dates, current flags, tombstones, and fact-versus-dimension history. | Published · 5:26 |
-| 8 | **When Pipelines Fail: Validation and Recovery** | Blocking tests, operational evidence, retries, reruns, replays, backfills, rebuilds, and minimum-scope recovery. | Next |
+| 8 | **When Pipelines Fail: Validation and Recovery** | Blocking tests, operational evidence, retries, reruns, replays, backfills, rebuilds, and minimum-scope recovery. | Published · 5:17 |
