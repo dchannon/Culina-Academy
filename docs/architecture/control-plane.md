@@ -1,14 +1,14 @@
 # Control Plane Structure
 
-The control plane is the framework's structured operating record. It defines what work exists, how work is connected, how runtime state is tracked, and what evidence is available for support.
+The control plane is the framework's structured operating record: configuration, dependency readiness, queue state, deployment state, quality results, and monitoring evidence. The current SQL implementation uses the `jobconfig` and `rpt` schemas; business data lives in the data plane.
 
-For table-level detail, see [Control Plane Schema](control-plane-schema.md).
+For table-level detail, see [Control Plane Schema](control-plane-schema.md). See [Platforms](../platforms/README.md) for environment prerequisites and [Version Compatibility](../reference/version-compatibility.md) for current versus historical contracts.
 
 ## Main Control Areas
 
 ### 1. Workflow Catalog
 
-The workflow catalog identifies framework-managed work. It should answer:
+`jobconfig.jobs` identifies framework-managed work, using GUID `job_id`, `entity_name`, `job_type`, `frequency_group`, retry policy, active state, and audit fields. Supported SQL job types are `Ingestion`, `Integration`, `Data Warehouse`, `Consumption`, and `Service`. It should answer:
 
 - What workflow exists?
 - What business purpose does it serve?
@@ -20,7 +20,7 @@ The workflow catalog identifies framework-managed work. It should answer:
 
 ### 2. Source And Connection Definitions
 
-Source definitions describe what the framework expects to receive or read. Users should be able to identify:
+`source_detail` belongs to a job and optionally references `source_linked_service_config`. The former describes the read shape and load mode; the latter holds reusable source type and JSON connection configuration. Credentials remain secret references, and physical storage/secret roots are environment bindings. Users should be able to identify:
 
 - source system or file family
 - expected input cadence
@@ -32,7 +32,7 @@ Source definitions describe what the framework expects to receive or read. Users
 
 ### 3. Dependency Model
 
-Dependencies describe ordering and readiness relationships. A workflow may be present in the queue but still not executable if required upstream work is incomplete.
+`job_dependency.job_id` is the downstream job; `dependent_job_id` is the required upstream job. The SQL dependency hierarchy and readiness views interpret these edges. A queued workflow is not necessarily executable. Self-dependencies and duplicate pairs are rejected, but those constraints alone do not reject every cycle.
 
 Dependency evidence should help explain:
 
@@ -43,7 +43,7 @@ Dependency evidence should help explain:
 
 ### 4. Runtime State
 
-Runtime state records what happened during a run. This typically includes:
+`batch_time` owns the batch lifecycle; `job_queue` owns current queue status and retry timing; `job_runhistory` records timestamped events; `job_failure_log` records failures and notification/action flags. Runtime state includes:
 
 - run identifier
 - workflow identifier
@@ -57,11 +57,32 @@ Runtime state records what happened during a run. This typically includes:
 
 ### 5. Validation And Quality Expectations
 
-Validation expectations describe what should be checked before a run is considered acceptable. These can include input availability, record counts, completeness checks, required fields, duplicate checks, and output availability.
+`transformation_controller` stores parameters and the `test_data_integrity`, `test_duplicate_bks`, and `test_null_bks` flags. Tests run after successful transformation, not instead of it. The orchestration-side `usp_mf_transformation_unit_test_results_log` stores complete test details in `unit_test_results_lastrun` and `unit_test_results`.
+
+Last-run results are replaced for the same queue ID; history is appended. Repeating the logging call can append duplicate historical details, so a successful write must not be retried blindly.
 
 ### 6. Operational Evidence
 
-Operational evidence supports diagnosis and handoff. It connects workflow configuration, dependency state, runtime status, and visible errors into one support story.
+The `rpt.vw_pbi_*` views expose job, domain, batch, queue, event, failure, quality, lineage, deployment, and source-health evidence for Power BI. They are derived read surfaces, not configuration owners. Open durations are provisional snapshots, and a closed batch is not necessarily successful.
+
+`job_domain.domain_owner_names` provides governance visibility through the many-to-many `job_domain_mapping`; it is not a notification recipient list. Failure, batch-completion, and health-report delivery use separate environment-owned endpoints. `batch_notification_log` records successful completion handoffs, not proof that a person received a message.
+
+## Ownership And Deployment
+
+| Concern | Owner and operating boundary |
+| --- | --- |
+| Jobs, sources, transformations, services, dependencies, domains | Approved client configuration changes and deployment process. |
+| Queue seeding, claiming, retries, completion and failures | Orchestration and SQL procedures; do not manually edit runtime rows during normal operation. |
+| Large execution context | Workload-specific context procedures and workflow payload artifacts, not engine parameters. |
+| Compute result | Workload runtime writes the authoritative result artifact; orchestration finalizes official SQL status. A successful compute activity alone is insufficient. |
+| Contract staging and apply | `contract_deployment`, `contract_object_stage`, `contract_object_state`, and `contract_validation_result`, managed through deployment procedures. |
+| Secrets, identities, networking, schedules and access grants | Client environment; portable SQL schema deployment does not provision these. |
+
+Clients apply approved generated SQL DDL through their own deployment process. Deploy reporting/helper views and procedures as well as tables. Bind GUIDs and JSON as SQL parameters, never interpolated SQL text.
+
+Contract deployment supports `VALIDATE_ONLY`, `PREVIEW`, `APPLY_CHANGED`, and `FORCE_APPLY`. Review validation and preview before apply. Large contracts use manifest -> chunks -> staged apply; `APPLY_CHANGED` uses object checksums. Staging a manifest resets that deployment's staged objects and validation results, so retain evidence before restarting it.
+
+Transformation `deployment_artifacts` and automatic SCD2 `current_reporting` create data-plane objects. They are not extra SQL configuration tables, and their CONS reporting namespace is distinct from control-plane `rpt` views.
 
 ## How To Use The Control Plane
 
@@ -78,7 +99,7 @@ When diagnosing an issue, start with these questions:
 ## Configuration To Runtime Flow
 
 ```text
-job definition -> source or transformation configuration -> dependency planning -> queue row -> run history -> failure or completion evidence
+approved configuration -> jobs + workload configuration -> dependency readiness -> batch_time + job_queue -> workload payload/result -> SQL finalization -> history + failures + quality + reporting
 ```
 
 This flow is important during diagnosis. A failed queue row is not isolated; it points back to a job definition, source details, transformation parameters, dependency model, and batch context.

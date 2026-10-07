@@ -1,70 +1,67 @@
-# Orchestration Plane Layers
+# Orchestration Plane
 
-The orchestration plane coordinates configured work at runtime. It turns control plane definitions into planned, dependency-aware execution.
+Culina runs configured work through a batch-and-queue model. A definition in `job` does not execute itself, and a `PENDING` queue row may still be waiting for dependencies.
 
-This page describes the high-level layers users may see referenced in operations and support conversations.
+## Four-Level Hierarchy
 
-## 1. Trigger Intake
+| Level | Responsibility | Operating question |
+| --- | --- | --- |
+| Grandparent | Open a scheduling batch and seed eligible jobs; avoid redundant supervision | Was expected work queued, and is earlier active work still open? |
+| Parent | Supervise unresolved work, invoke dispatch, close the batch, and hand off completion notification | Why is the batch still open? |
+| Child | Reactivate due retries, select executable rows, claim them as `IN_PROGRESS`, and dispatch | Is the row dependency-ready and claimed? |
+| Grandchild | Route one queue row to ingestion, transformation, or service execution and finalization | Which handler received the approved work order? |
 
-Trigger intake starts the orchestration flow. A trigger may come from a schedule, manual action, external event, or controlled support operation.
+The framework considers open active queue state when seeding and evaluating work. Looking at one batch in isolation can hide an earlier unresolved blocker.
 
-User-facing questions:
+```mermaid
+flowchart TD
+  Seed["Grandparent: seed batch and queue"] --> Supervise["Parent: supervise open work"]
+  Supervise --> Dispatch["Child: reactivate retries and claim ready rows"]
+  Dispatch --> Route["Grandchild: route one queue row"]
+  Route --> Payload["Approved payload.json"]
+  Payload --> Execute["Ingestion, transformation, or service execution"]
+  Execute --> Result["result.json and validation evidence"]
+  Result --> Finalize["Orchestration: persist official outcome"]
+  Finalize --> Supervise
+  Supervise --> Close["Close resolved batch and hand off notification"]
+```
 
-- Did the expected trigger occur?
-- Was the trigger for the correct environment and workflow?
-- Was the trigger accepted?
+## Queue Lifecycle
 
-## 2. Run Planning
+| State | Meaning | Next step |
+| --- | --- | --- |
+| `PENDING` | Queued candidate | Dependency checks determine executability |
+| `IN_PROGRESS` | Claimed and dispatched | Execution evidence returns to finalization |
+| `ON_HOLD_RETRY` | Failed attempt with allowance and an activation time | Child reactivates it when due |
+| `COMPLETED` | Official success after applicable execution and validation | Dependents may become ready |
+| `FAILED` | Unsuccessful work without another automatic attempt currently allowed | Investigate and select controlled recovery |
+| `SKIPPED` | Resolved without successful execution under dependency rules | Inspect upstream chain and skip reason |
 
-Run planning determines which configured work belongs in the current run context.
+```mermaid
+stateDiagram-v2
+  [*] --> PENDING
+  PENDING --> IN_PROGRESS: Dependencies ready and row claimed
+  PENDING --> SKIPPED: Dependency rules prevent execution
+  IN_PROGRESS --> COMPLETED: Execution and required validation accepted
+  IN_PROGRESS --> ON_HOLD_RETRY: Retry allowance remains
+  ON_HOLD_RETRY --> PENDING: Activation time reached
+  IN_PROGRESS --> FAILED: No further automatic attempt
+```
 
-User-facing questions:
+These are normal automatic transitions. Follow the [Operating Guide](../operations/operating-guide.md) for manual recovery; changing a status does not restore a failed prerequisite.
 
-- Which workflows were included?
-- Which period, batch, or source context applies?
-- Was expected work missing from the run plan?
+## Workload And Evidence Boundaries
 
-## 3. Dependency Resolution
+Orchestration retrieves deployed metadata and supplies queue identity, environment context, and approved parameters. The workload executes that context and returns a structured result. Official queue, failure, history, and quality records are written through orchestration.
 
-Dependency resolution checks whether planned work can run. Work may exist but still be blocked by upstream requirements.
+Enabled transformation tests and required reporting publication can prevent success even after data is written. Service side effects may already exist before a failure is returned. Choose retries with both effects and evidence in view.
 
-User-facing questions:
+## Recovery Identity
 
-- Which dependency is incomplete?
-- Is the upstream workflow failed, skipped, delayed, or still running?
-- Is the downstream workflow correctly waiting?
+An automatic retry reuses a queue instance. A managed fact `append` retry replaces that queue's prior contribution rather than multiplying it. Creating a new queue is a new logical append. Neither behavior removes duplicates already present in the source input.
 
-## 4. Dispatch
+See [Backfill And Recovery](../operations/backfill-and-recovery.md) and [Dependencies And Validation](../guides/dependencies-and-validation.md).
 
-Dispatch sends dependency-ready work to the correct execution handler.
+## Notifications
 
-User-facing questions:
-
-- Was the workflow dispatched?
-- Which execution area received it?
-- Did dispatch fail before data processing began?
-
-## 5. Execution Monitoring
-
-Execution monitoring tracks active work and records status changes.
-
-User-facing questions:
-
-- Is the work running, completed, failed, skipped, or waiting?
-- When did the status change?
-- Is there an error message or warning?
-
-## 6. Finalization
-
-Finalization records the outcome of a run and makes downstream decisions possible.
-
-User-facing questions:
-
-- Did the workflow complete successfully?
-- Were downstream dependencies released?
-- Were outputs produced and made available?
-- Was failure evidence captured?
-
-## Operating Principle
-
-Do not treat a queued or waiting workflow as automatically runnable. Dependency state and dispatch state matter. A useful diagnosis separates trigger, planning, dependency, dispatch, execution, and finalization.
+Failure and batch-completion notifications are handoffs to an external delivery service. Delivery owns recipients and channels. Distinguish delivery utility failures from the workload's official outcome; a metadata-governed service job is a separate configured workload.

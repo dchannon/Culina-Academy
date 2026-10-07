@@ -1,0 +1,11 @@
+{
+  "id": "10000000-0000-4000-8000-000000000003",
+  "clientId": "00000000-0000-4000-8000-000000000001",
+  "jobType": "Integration",
+  "entityName": "INT.Orders",
+  "frequencyGroup": "${ENV.FREQUENCY_GROUP}",
+  "maxRetryCount": 0,
+  "retryDelayBackoff": 30,
+  "isActive": false,
+  "createdBy": "example-author"
+}

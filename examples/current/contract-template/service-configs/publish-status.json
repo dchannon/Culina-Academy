@@ -1,0 +1,32 @@
+{
+  "id": "50000000-0000-4000-8000-000000000001",
+  "jobId": "10000000-0000-4000-8000-000000000004",
+  "serviceType": "HttpRequest",
+  "configValue": {
+    "schema_version": "1.0",
+    "execution": {
+      "mode": "builtin",
+      "handler": "http_request",
+      "timeout_seconds": 60
+    },
+    "parameters": {
+      "request": {
+        "method": "GET",
+        "url": "${ENV.SERVICE_API_URL}",
+        "headers": {
+          "Authorization": "Bearer {{secret:api_token}}"
+        },
+        "expected_status_codes": [
+          200
+        ]
+      },
+      "secrets": {
+        "api_token": {
+          "secret_id": "secret://service-api-token"
+        }
+      }
+    }
+  },
+  "isActive": false,
+  "createdBy": "example-author"
+}

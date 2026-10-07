@@ -1,71 +1,71 @@
 # Framework Architecture
 
-This page gives clients and users a map of how Culina-managed work is configured, planned, executed, and diagnosed.
+Culina separates the definition of work, runtime coordination, data execution, and operational evidence. The same logical contract can map to different platform services; platform capability and validation status still matter.
 
-## Control Plane Entity Map
+## Six Responsibilities
 
-```mermaid
-flowchart LR
-  Client["client"] --> Job["job"]
-  Job --> SourceDetail["source_detail"]
-  SourceDetail --> LinkedService["linked_service"]
-  Job --> Transformation["transformation"]
-  Job --> Dependency["dependency"]
-  Dependency --> UpstreamJob["upstream job"]
-  Job --> Queue["job_queue"]
-  Queue --> RunHistory["job_runhistory"]
-  Queue --> FailureLog["job_failure_log"]
-  Queue --> Batch["batch_time"]
-```
-
-## Runtime Lifecycle
+| Responsibility | What it owns | What users inspect |
+| --- | --- | --- |
+| Configuration authoring and review | Approved job, source, transformation, and service definitions | Reviewed package and environment inputs |
+| Metadata control | Deployed definitions, relationships, and governance context | `jobconfig` tables and configuration records |
+| Orchestration and runtime control | Batches, queue claims, readiness, retry, and finalization | Queue rows, helper views, platform run identifiers |
+| Data processing and persistence | Ingestion, transformation, service work, and reporting outputs | Files, tables, payload and result artifacts |
+| Operations and support | Monitoring, validation interpretation, diagnosis, and recovery | Run history, failures, test results, monitoring views |
+| External notification delivery | Message formatting, channel routing, and recipients | Notification handoff and delivery response |
 
 ```mermaid
 flowchart LR
-  Trigger["Trigger intake"] --> Plan["Run planning"]
-  Plan --> Dependencies["Dependency resolution"]
-  Dependencies --> Dispatch["Dispatch"]
-  Dispatch --> Execute["Execution"]
-  Execute --> Monitor["Monitoring"]
-  Monitor --> Finalize["Finalization"]
-  Finalize --> Evidence["Runtime evidence"]
+  Author["Approved configuration"] --> Control["Metadata control"]
+  Control --> Orchestrate["Orchestration and runtime control"]
+  Orchestrate --> Execute["Data processing and persistence"]
+  Execute -->|"Result and validation evidence"| Orchestrate
+  Orchestrate --> Operations["Operations and support"]
+  Operations --> Notify["External notification delivery"]
+  Operations -->|"Scoped recovery"| Orchestrate
 ```
 
-## Data Layer Flow
+## Contract To Evidence
+
+1. A reviewed package describes jobs and their related metadata.
+2. Deployment and platform adapters supply environment values and resolve portable references.
+3. Orchestration seeds a batch and queue rows, then evaluates dependencies.
+4. A claimed queue row becomes a bounded `payload.json` for ingestion, transformation, or service execution.
+5. Execution returns `result.json`, metrics, step evidence, and validation outcomes.
+6. Orchestration persists official evidence, applies retry policy, and finalizes state.
+
+A payload is a work order. A result artifact is evidence to be interpreted. A successful target write alone does not establish a successful queue outcome.
+
+## Ownership At The Runtime Boundary
+
+| Concern | Owner |
+| --- | --- |
+| SQL control-plane access, queue claims, readiness, official status | Orchestration workers |
+| Approved context and platform settings | Orchestration and deployment adapters |
+| Source access, ordered execution, data writes, result artifacts | Workload execution |
+| Credential values and provider roots | Environment secret configuration |
+| Reporting endpoint exposure and BI permissions | Platform reporting adapter and environment owner |
+
+The data executor receives approved context rather than retrieving or changing SQL control metadata itself. SQL reporting adapters that publish data-plane views are distinct from the SQL control plane.
+
+## Data Journey
 
 ```mermaid
 flowchart LR
   Source["Source"] --> Landing["Landing"]
-  Landing --> Archive["Archive"]
-  Landing --> Delta["Delta"]
-  Delta --> Staging["Staging"]
-  Staging --> Integration["Integration"]
-  Integration --> Warehouse["EDW / Core warehouse"]
-  Warehouse --> Consumption["Consumption"]
+  Landing --> Archive["Archive: retained input"]
+  Landing --> Delta["Delta: standardized intake"]
+  Delta --> Staging["Staging: Bronze history"]
+  Staging --> INT["INT: transient modeled work"]
+  INT --> EDW["EDW: durable facts and dimensions"]
+  EDW --> CONS["CONS: reporting surfaces"]
 ```
 
-## Diagnostic Path
+`Delta` is a layer name. Delta extraction is an incremental loading choice. Delta Lake is a physical table format. Distinguish these meanings when reading configuration or diagnosing a run.
 
-```mermaid
-flowchart TD
-  Symptom["Unexpected behavior"] --> Status["Check job_queue status"]
-  Status --> Failed{"FAILED or ON_HOLD_RETRY?"}
-  Status --> Waiting{"PENDING or SKIPPED?"}
-  Status --> Output{"COMPLETED but output wrong?"}
-  Failed --> FailureLog["Read job_failure_log"]
-  FailureLog --> RunHistory["Check job_runhistory"]
-  RunHistory --> Config["Map to source_detail or transformation"]
-  Waiting --> Dependency["Trace dependency chain"]
-  Dependency --> Upstream["Find earliest upstream blocker"]
-  Output --> Boundary["Find last correct data layer"]
-  Boundary --> Evidence["Collect evidence and recovery scope"]
-  Config --> Evidence
-  Upstream --> Evidence
-```
+## Continue
 
-## How To Read The Architecture
-
-- Use the control plane to understand what should exist and how work is connected.
-- Use the orchestration plane to understand whether configured work was planned, dependency-ready, dispatched, and finalized.
-- Use the data layers to locate where the data first differed from expectation.
-- Use runtime evidence to decide whether to rerun, replay, backfill, rebuild, or escalate.
+- [Control Plane Schema](control-plane-schema.md): tables, views, and relationships.
+- [Orchestration Plane](orchestration-plane.md): hierarchy and queue lifecycle.
+- [Data Layers](data-layers.md): persistence and recovery boundaries.
+- [History And Reporting](../concepts/history-and-reporting.md): SCD2, late arrivals, and CONS perspectives.
+- [Platforms](../platforms/README.md): platform mappings and qualification status.

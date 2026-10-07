@@ -1,5 +1,15 @@
 # Changelog
 
+## 2.2.0
+
+- Aligned operating references with the 2026-10-08 framework artifacts and execution contract 0.2.34.
+- Organized documentation and local navigation around learning, configuration, platforms, operations, and references.
+- Added current portable examples alongside the original sandbox and compact learning formats.
+- Expanded source connectors, service workloads, control-plane entities, monitoring, and platform qualification guidance.
+- Documented managed fact append retries, SCD2 Unknown/inferred members, and CONS reporting perspectives.
+- Updated validation, notifications, diagnostic authority, and scoped recovery guidance.
+- Preserved the eight tutorial episodes and optional transcript-export workbook.
+
 ## 2.1.0
 
 - Added task-based quickstart, architecture diagrams, configuration reference, cookbooks, incident walkthroughs, support model, and version compatibility notes.

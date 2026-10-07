@@ -1,0 +1,84 @@
+{
+  "manifestVersion": "1.0",
+  "releaseCandidateId": "example-current-001",
+  "packageName": "academy-current-contract",
+  "valueSetPolicy": "externalVersionedValueSets",
+  "environments": [
+    "DEV",
+    "TEST",
+    "PROD"
+  ],
+  "promotionSequence": [
+    "DEV",
+    "TEST",
+    "PROD"
+  ],
+  "environmentRoles": {
+    "DEV": "technicalValidation",
+    "TEST": "internalValidation",
+    "PROD": "production"
+  },
+  "variables": [
+    {
+      "name": "FREQUENCY_GROUP",
+      "token": "${ENV.FREQUENCY_GROUP}",
+      "required": true,
+      "secret": false,
+      "scope": [
+        "jobs"
+      ],
+      "valueSetRequired": true,
+      "defaultValueAllowed": false
+    },
+    {
+      "name": "REST_BASE_URL",
+      "token": "${ENV.REST_BASE_URL}",
+      "required": true,
+      "secret": false,
+      "scope": [
+        "linked-services"
+      ],
+      "valueSetRequired": true,
+      "defaultValueAllowed": false
+    },
+    {
+      "name": "REST_ORDERS_PATH",
+      "token": "${ENV.REST_ORDERS_PATH}",
+      "required": true,
+      "secret": false,
+      "scope": [
+        "source-details"
+      ],
+      "valueSetRequired": true,
+      "defaultValueAllowed": false
+    },
+    {
+      "name": "SERVICE_API_URL",
+      "token": "${ENV.SERVICE_API_URL}",
+      "required": true,
+      "secret": false,
+      "scope": [
+        "service-configs"
+      ],
+      "valueSetRequired": true,
+      "defaultValueAllowed": false
+    },
+    {
+      "name": "CUSTOM_EXPORT_DESTINATION",
+      "token": "${ENV.CUSTOM_EXPORT_DESTINATION}",
+      "required": true,
+      "secret": false,
+      "scope": [
+        "fragments"
+      ],
+      "valueSetRequired": true,
+      "defaultValueAllowed": false
+    }
+  ],
+  "failureBehavior": "failDeploymentOnMissingRequiredValue",
+  "audit": {
+    "createdBy": "example-author",
+    "createdAtUtc": "2026-10-08T00:00:00Z",
+    "purpose": "Neutral current contract promotion fixture."
+  }
+}

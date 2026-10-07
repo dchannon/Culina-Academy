@@ -3,664 +3,295 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Data Culina Academy</title>
+  <title>Culina Academy | Framework Documentation</title>
+  <meta name="description" content="Data Culina framework documentation, configuration examples, operations, recovery, videos, and workbook exercises." />
   <meta name="theme-color" content="#073f2c" />
   <link rel="icon" href="assets/data_culina_icon_vector.svg" type="image/svg+xml" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,700;9..144,800;9..144,900&family=IBM+Plex+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
   <style>
-    :root {
-      --paper: #f7f1e6;
-      --paper-soft: #fffaf1;
-      --green: #073f2c;
-      --green-deep: #042e20;
-      --ink: #102923;
-      --muted: #6f8579;
-      --sage: #8da494;
-      --line: #d8cdbd;
-      --orange: #f47b20;
-      --orange-soft: #ffb366;
-      --white: #ffffff;
-      --shadow: 0 24px 70px rgba(16, 41, 35, 0.14);
-      --radius: 8px;
-      --shell: min(1180px, calc(100vw - 48px));
-    }
-
+    :root { --green: #073f2c; --orange: #f47b20; --ink: #182a24; --muted: #58665f; --line: #dce2de; }
     * { box-sizing: border-box; }
-
     html { scroll-behavior: smooth; }
-
-    body {
-      min-width: 320px;
-      margin: 0;
-      color: var(--ink);
-      background:
-        linear-gradient(90deg, rgba(216, 205, 189, 0.22) 1px, transparent 1px) 0 0 / 72px 72px,
-        var(--paper);
-      font-family: "IBM Plex Sans", Arial, sans-serif;
-      font-size: 16px;
-      line-height: 1.5;
-      letter-spacing: 0;
+    body { margin: 0; min-width: 320px; background: #fff; color: var(--ink); font: 16px/1.5 Arial, sans-serif; letter-spacing: 0; }
+    a { color: var(--green); text-underline-offset: 3px; }
+    a:hover { text-decoration-thickness: 2px; }
+    a:focus-visible, input:focus-visible, select:focus-visible { outline: 3px solid var(--orange); outline-offset: 4px; }
+    .shell { width: min(1120px, calc(100% - 40px)); margin-inline: auto; }
+    header { border-top: 5px solid var(--green); border-bottom: 1px solid var(--line); }
+    .header-row { display: flex; align-items: center; justify-content: space-between; gap: 24px; min-height: 96px; padding-block: 16px; }
+    .brand { display: block; flex: 0 0 175px; }
+    .brand img { display: block; width: 175px; height: auto; }
+    .header-links { display: flex; flex-wrap: wrap; gap: 12px 24px; font-size: 14px; }
+    .header-links a { padding-block: 8px; }
+    .intro { padding-block: 32px 24px; border-bottom: 1px solid var(--line); }
+    h1 { margin: 0 0 8px; font: 700 36px/1.2 Georgia, serif; color: var(--green); }
+    .intro p { margin: 0; max-width: 760px; }
+    .intro .baseline { margin-top: 12px; color: var(--muted); font-size: 13px; }
+    .workspace { display: grid; grid-template-columns: 210px minmax(0, 1fr); gap: 40px; padding-block: 28px 48px; }
+    .topics-nav { align-self: start; position: sticky; top: 24px; }
+    .topics-nav a { display: block; border-left: 2px solid var(--line); padding: 9px 14px; text-decoration: none; font-size: 14px; }
+    .topics-nav a:hover { border-color: var(--orange); background: #f4f7f5; }
+    .directory { min-width: 0; }
+    .filters { display: grid; grid-template-columns: minmax(0, 1fr) 190px; gap: 16px; margin-bottom: 24px; }
+    label { display: grid; gap: 6px; font-size: 13px; font-weight: 700; }
+    input, select { width: 100%; min-width: 0; height: 42px; border: 1px solid #a8b7ae; border-radius: 4px; padding: 8px 10px; background: white; color: var(--ink); font: 15px Arial, sans-serif; }
+    .topic { margin-bottom: 32px; scroll-margin-top: 20px; }
+    h2 { margin: 0; border-bottom: 2px solid var(--green); padding-bottom: 10px; font-size: 19px; line-height: 1.3; }
+    .guide-list { margin: 0; padding: 0; list-style: none; }
+    .guide { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center; gap: 18px; padding: 15px 0; border-bottom: 1px solid var(--line); }
+    .guide-title { font-size: 16px; font-weight: 700; overflow-wrap: anywhere; }
+    .guide p { margin: 4px 0 0; color: var(--muted); font-size: 14px; overflow-wrap: anywhere; }
+    .source-link { font-size: 12px; color: var(--muted); padding-block: 10px; }
+    .exercise { border-bottom: 1px solid var(--line); padding: 16px 0; }
+    .exercise p { margin: 6px 0 12px; color: var(--muted); font-size: 14px; }
+    .exercise-links { display: flex; flex-wrap: wrap; gap: 12px 24px; }
+    #empty { padding-block: 24px; color: var(--muted); }
+    [hidden] { display: none !important; }
+    footer { border-top: 1px solid var(--line); background: #f4f7f5; }
+    .footer-row { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 16px; padding-block: 22px; font-size: 14px; }
+    @media (max-width: 760px) {
+      .header-row { align-items: flex-start; flex-direction: column; gap: 8px; }
+      .brand { flex-basis: auto; }
+      .header-links { gap: 8px 20px; }
+      .workspace { grid-template-columns: 1fr; gap: 24px; }
+      .topics-nav { position: static; display: flex; flex-wrap: wrap; gap: 6px 12px; }
+      .topics-nav a { padding: 6px 10px; }
+      .filters { grid-template-columns: 1fr; }
+      h1 { font-size: 32px; }
     }
-
-    body::before {
-      content: "";
-      position: fixed;
-      inset: 0;
-      pointer-events: none;
-      opacity: 0.24;
-      background-image:
-        linear-gradient(rgba(7, 63, 44, 0.035) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(7, 63, 44, 0.03) 1px, transparent 1px);
-      background-size: 28px 28px;
-      mask-image: linear-gradient(to bottom, transparent, black 12%, black 84%, transparent);
-    }
-
-    a { color: inherit; }
-    img { display: block; max-width: 100%; }
-
-    .section-shell {
-      position: relative;
-      z-index: 1;
-      width: var(--shell);
-      margin: 0 auto;
-    }
-
-    .site-header {
-      position: sticky;
-      top: 0;
-      z-index: 10;
-      display: grid;
-      grid-template-columns: auto 1fr;
-      align-items: center;
-      gap: 28px;
-      min-height: 82px;
-      padding: 18px 0 14px;
-      background: rgba(247, 241, 230, 0.92);
-      border-bottom: 1px solid rgba(141, 164, 148, 0.36);
-      backdrop-filter: blur(12px);
-    }
-
-    .brand {
-      display: inline-flex;
-      align-items: center;
-      width: 218px;
-      text-decoration: none;
-    }
-
-    .brand img {
-      width: 100%;
-      height: auto;
-      filter: drop-shadow(0 8px 16px rgba(7, 63, 44, 0.08));
-    }
-
-    .nav-links {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: flex-end;
-      gap: 22px;
-      color: var(--green);
-      font-size: 0.86rem;
-      font-weight: 800;
-      text-transform: uppercase;
-    }
-
-    .nav-links a {
-      display: inline-flex;
-      min-height: 44px;
-      align-items: center;
-      border-bottom: 2px solid transparent;
-      text-decoration: none;
-    }
-
-    .nav-links a:hover,
-    .nav-links a:focus-visible {
-      border-bottom-color: var(--orange);
-    }
-
-    .hero {
-      display: grid;
-      grid-template-columns: minmax(0, 0.92fr) minmax(390px, 1.08fr);
-      gap: 54px;
-      align-items: center;
-      min-height: calc(88vh - 82px);
-      padding: 76px 0 42px;
-    }
-
-    .brand-line {
-      max-width: 440px;
-      margin: 0 0 26px;
-      color: var(--green);
-      font-size: 0.98rem;
-      font-weight: 800;
-      line-height: 1.45;
-      text-transform: uppercase;
-    }
-
-    h1,
-    h2,
-    h3 {
-      margin: 0;
-      color: var(--green);
-    }
-
-    h1,
-    h2 {
-      font-family: "Fraunces", Georgia, serif;
-      font-weight: 900;
-    }
-
-    h1 {
-      max-width: 760px;
-      font-size: 4.75rem;
-      line-height: 0.95;
-      letter-spacing: 0;
-    }
-
-    .orange-rule {
-      width: 108px;
-      height: 6px;
-      margin: 28px 0 25px;
-      background: var(--orange);
-    }
-
-    .lead {
-      max-width: 610px;
-      margin: 0;
-      color: var(--ink);
-      font-size: 1.22rem;
-      font-weight: 500;
-      line-height: 1.45;
-    }
-
-    .hero-actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 14px;
-      margin-top: 34px;
-    }
-
-    .button {
-      display: inline-flex;
-      min-height: 44px;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-      padding: 13px 18px;
-      border: 1px solid transparent;
-      border-radius: var(--radius);
-      font-size: 0.94rem;
-      font-weight: 800;
-      text-decoration: none;
-      text-transform: uppercase;
-      transition: transform 160ms ease, box-shadow 160ms ease, background 160ms ease;
-    }
-
-    .button:hover,
-    .button:focus-visible {
-      transform: translateY(-2px);
-    }
-
-    .button-primary {
-      background: var(--green);
-      color: var(--paper-soft);
-      box-shadow: 0 14px 28px rgba(7, 63, 44, 0.22);
-    }
-
-    .button-secondary {
-      border-color: var(--line);
-      background: rgba(255, 250, 241, 0.72);
-      color: var(--green);
-    }
-
-    .button svg {
-      width: 18px;
-      height: 18px;
-      fill: none;
-      stroke: currentColor;
-      stroke-linecap: round;
-      stroke-linejoin: round;
-      stroke-width: 2.4;
-    }
-
-    .guide-board {
-      position: relative;
-      display: grid;
-      gap: 18px;
-      min-height: 540px;
-      padding: 28px;
-      overflow: hidden;
-      border-radius: var(--radius);
-      background: var(--green);
-      color: var(--paper-soft);
-      box-shadow: 0 28px 54px rgba(7, 63, 44, 0.28);
-    }
-
-    .guide-board::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background:
-        linear-gradient(90deg, rgba(255, 250, 241, 0.08) 1px, transparent 1px),
-        linear-gradient(rgba(255, 250, 241, 0.08) 1px, transparent 1px);
-      background-size: 46px 46px;
-      mask-image: radial-gradient(circle at 50% 50%, black, transparent 74%);
-    }
-
-    .guide-card,
-    .engine-card {
-      position: relative;
-      z-index: 1;
-      border-radius: var(--radius);
-    }
-
-    .guide-card {
-      display: grid;
-      gap: 8px;
-      min-height: 132px;
-      align-content: center;
-      padding: 24px 28px;
-      background: var(--paper-soft);
-      color: var(--green);
-    }
-
-    .guide-card span,
-    .board-label {
-      color: var(--orange);
-      font-size: 0.78rem;
-      font-weight: 900;
-      text-transform: uppercase;
-    }
-
-    .guide-card strong {
-      font-family: "Fraunces", Georgia, serif;
-      font-size: 1.58rem;
-      line-height: 1;
-    }
-
-    .guide-card small {
-      color: var(--ink);
-      font-size: 0.92rem;
-      line-height: 1.35;
-    }
-
-    .engine-card {
-      display: grid;
-      min-height: 176px;
-      place-items: center;
-      padding: 22px;
-      border: 1px solid rgba(255, 250, 241, 0.38);
-      background: var(--green-deep);
-      text-align: center;
-    }
-
-    .engine-card::before,
-    .engine-card::after {
-      content: "";
-      position: absolute;
-      left: 50%;
-      width: 18px;
-      height: 18px;
-      border: 3px solid var(--orange);
-      border-radius: 50%;
-      background: var(--green-deep);
-      box-shadow: 0 0 0 7px rgba(244, 123, 32, 0.12), 0 0 20px rgba(244, 123, 32, 0.56);
-      transform: translateX(-50%);
-    }
-
-    .engine-card::before { top: -11px; }
-    .engine-card::after { bottom: -11px; }
-
-    .engine-card img {
-      width: 92px;
-      height: auto;
-      margin-bottom: 10px;
-      filter: brightness(0) invert(1);
-    }
-
-    .engine-card strong {
-      color: var(--paper-soft);
-      font-size: 1rem;
-      text-transform: uppercase;
-    }
-
-    .engine-card small {
-      color: rgba(255, 250, 241, 0.8);
-      font-size: 0.78rem;
-      font-weight: 700;
-    }
-
-    .section {
-      padding: 42px 0 78px;
-      border-top: 1px solid var(--line);
-    }
-
-    .section-heading {
-      display: grid;
-      grid-template-columns: minmax(0, 0.92fr) minmax(300px, 0.7fr);
-      gap: 48px;
-      align-items: end;
-      margin-bottom: 28px;
-      padding-bottom: 18px;
-      border-bottom: 1px solid rgba(7, 63, 44, 0.14);
-    }
-
-    .section-heading h2 {
-      max-width: 720px;
-      font-size: 3rem;
-      line-height: 1;
-    }
-
-    .section-heading p {
-      margin: 0;
-      color: var(--ink);
-      font-size: 1.04rem;
-    }
-
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 20px;
-      padding: 26px;
-      border: 1px solid rgba(7, 63, 44, 0.12);
-      border-radius: var(--radius);
-      background: rgba(7, 63, 44, 0.06);
-    }
-
-    .card {
-      position: relative;
-      display: grid;
-      min-height: 248px;
-      padding: 28px;
-      overflow: hidden;
-      border: 1px solid rgba(216, 205, 189, 0.9);
-      border-radius: var(--radius);
-      background: var(--paper-soft);
-      transition: transform 180ms ease, box-shadow 180ms ease, border-color 180ms ease;
-    }
-
-    .card::before {
-      content: "";
-      position: absolute;
-      inset: 0 28px auto;
-      height: 3px;
-      background: var(--orange);
-    }
-
-    .card:hover {
-      transform: translateY(-4px);
-      border-color: rgba(244, 123, 32, 0.4);
-      box-shadow: 0 18px 38px rgba(16, 41, 35, 0.1);
-    }
-
-    .card-number {
-      display: grid;
-      width: 58px;
-      height: 58px;
-      place-items: center;
-      margin-bottom: 22px;
-      border-radius: 50%;
-      background: rgba(244, 123, 32, 0.1);
-      color: var(--orange);
-      font-weight: 900;
-    }
-
-    .card h2 {
-      margin: 0 0 12px;
-      font-family: "Fraunces", Georgia, serif;
-      font-size: 1.55rem;
-      line-height: 1.06;
-    }
-
-    .card p {
-      margin: 0 0 22px;
-      color: var(--ink);
-      line-height: 1.48;
-    }
-
-    .card .button {
-      align-self: end;
-      justify-self: start;
-    }
-
-    .site-footer {
-      display: flex;
-      min-height: 82px;
-      align-items: center;
-      justify-content: center;
-      gap: 18px;
-      padding: 22px 0 34px;
-      color: var(--green);
-      font-weight: 900;
-      text-transform: uppercase;
-    }
-
-    .site-footer i {
-      display: block;
-      width: 6px;
-      height: 6px;
-      border-radius: 50%;
-      background: var(--orange);
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-      *,
-      *::before,
-      *::after {
-        scroll-behavior: auto !important;
-        transition: none !important;
-      }
-    }
-
-    @media (max-width: 1020px) {
-      .site-header,
-      .hero,
-      .section-heading {
-        grid-template-columns: 1fr;
-      }
-
-      .site-header {
-        align-items: start;
-      }
-
-      .nav-links {
-        justify-content: flex-start;
-      }
-
-      .hero {
-        min-height: auto;
-        padding-top: 38px;
-      }
-
-      .grid {
-        grid-template-columns: 1fr;
-      }
-    }
-
-    @media (max-width: 720px) {
-      :root { --shell: min(100vw - 28px, 680px); }
-
-      body { background: var(--paper); }
-
-      .site-header {
-        min-height: 66px;
-        gap: 12px;
-      }
-
-      .brand { width: 154px; }
-
-      .nav-links {
-        gap: 12px;
-        font-size: 0.76rem;
-      }
-
-      h1 { font-size: 2.65rem; }
-
-      .section-heading h2 { font-size: 2.18rem; }
-
-      .brand-line { font-size: 0.85rem; }
-
-      .lead { font-size: 1rem; }
-
-      .hero-actions,
-      .button {
-        width: 100%;
-      }
-
-      .button {
-        justify-content: space-between;
-      }
-
-      .guide-board,
-      .grid,
-      .card {
-        padding: 24px;
-      }
-
-      .guide-board {
-        min-height: auto;
-      }
-
-      .section {
-        padding-bottom: 54px;
-      }
-
-      .site-footer {
-        flex-wrap: wrap;
-        gap: 10px;
-        font-size: 0.8rem;
-      }
-    }
+    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
   </style>
 </head>
 <body>
-  <header class="site-header section-shell">
-    <a class="brand" href="index.html" aria-label="Data Culina Academy home">
-      <img src="assets/data_culina_logo_vector.svg" alt="Data Culina" />
-    </a>
-    <nav class="nav-links" aria-label="Primary navigation">
-      <a href="docs/getting-started/what-is-culina.md">Overview</a>
-      <a href="docs/tutorials/README.md">Videos</a>
-      <a href="docs/getting-started/quickstart.md">Quickstart</a>
-      <a href="docs/architecture/framework-architecture.md">Architecture</a>
-      <a href="docs/reference/config-field-reference.md">Field Reference</a>
-      <a href="docs/guides/add-rest-ingestion.md">Cookbooks</a>
-      <a href="docs/troubleshooting/incident-walkthroughs.md">Incidents</a>
-      <a href="https://dataculina.com/" target="_blank" rel="noopener noreferrer">Contact</a>
-    </nav>
+  <header>
+    <div class="shell header-row">
+      <a class="brand" href="index.html" aria-label="Culina Academy home"><img src="assets/data_culina_logo_vector.svg" alt="Data Culina" /></a>
+      <nav class="header-links" aria-label="Primary navigation">
+        <a href="https://github.com/dchannon/Culina-Academy">Repository</a>
+        <a href="https://github.com/dchannon/Culina-Academy/blob/main/docs/tutorials/README.md">Videos</a>
+        <a href="workbook/README.md">Workbook</a>
+        <a href="https://dataculina.com/">Contact Data Culina</a>
+      </nav>
+    </div>
   </header>
-
-  <main>
-    <section class="hero section-shell">
-      <div>
-        <p class="brand-line">Cooking better data. Serving better outcomes.</p>
-        <h1>Understand and operate the Culina framework.</h1>
-        <div class="orange-rule"></div>
-        <p class="lead">Culina Academy gives clients and users a practical guide to the control plane, orchestration layers, data layers, configuration examples, incident walkthroughs, and operating diagnostics.</p>
-        <div class="hero-actions">
-          <a class="button button-primary" href="docs/getting-started/quickstart.md">
-            <span>Start Quickstart</span>
-            <svg viewBox="0 0 24 24" aria-hidden="true">
-              <path d="M5 12h13m-5-5 5 5-5 5" />
-            </svg>
-          </a>
-          <a class="button button-secondary" href="docs/getting-started/what-is-culina.md">
-            <span>Read Overview</span>
-            <svg viewBox="0 0 24 24" aria-hidden="true">
-              <path d="M7 17 17 7M9 7h8v8" />
-            </svg>
-          </a>
-          <a class="button button-secondary" href="docs/tutorials/README.md">
-            <span>Video Tutorials</span>
-            <svg viewBox="0 0 24 24" aria-hidden="true">
-              <path d="m9 7 8 5-8 5Z" />
-            </svg>
-          </a>
-          <a class="button button-secondary" href="docs/configuration/sandbox-client-example.md">
-            <span>View Sandbox Metadata</span>
-            <svg viewBox="0 0 24 24" aria-hidden="true">
-              <path d="M7 17 17 7M9 7h8v8" />
-            </svg>
-          </a>
-          <a class="button button-secondary" href="https://dataculina.com/" target="_blank" rel="noopener noreferrer">
-            <span>Contact Data Culina</span>
-            <svg viewBox="0 0 24 24" aria-hidden="true">
-              <path d="M7 17 17 7M9 7h8v8" />
-            </svg>
-          </a>
-        </div>
-      </div>
-
-      <aside class="guide-board" aria-label="Framework guide map">
-        <div class="guide-card">
-          <span>Define</span>
-          <strong>Control plane</strong>
-          <small>Workflow catalog, dependencies, runtime state, and validation expectations.</small>
-        </div>
-        <div class="engine-card">
-          <img src="assets/data_culina_icon_vector.svg" alt="" aria-hidden="true" />
-          <strong>Operate</strong>
-          <small>Trigger intake, planning, readiness, dispatch, monitoring, and finalization.</small>
-        </div>
-        <div class="guide-card">
-          <span>Prove</span>
-          <strong>Data layers</strong>
-          <small>Source, landing, archive, delta, staging, integration, warehouse, and consumption.</small>
-        </div>
-      </aside>
+  <main class="shell">
+    <section class="intro" aria-labelledby="academy-title">
+      <h1 id="academy-title">Culina Academy</h1>
+      <p>Framework documentation for clients, developers, and operators.</p>
+      <p class="baseline">Reviewed 8 October 2026 · Runtime reference 0.2.34</p>
     </section>
-
-    <section class="section section-shell">
-      <div class="section-heading">
-        <h2>Start with the operating model.</h2>
-        <p>Trace one workflow, inspect the sandbox metadata, then use the troubleshooting guides to diagnose what is running in the system.</p>
+    <div class="workspace">
+      <nav class="topics-nav" aria-label="Documentation topics">
+        <a href="#start">Start Here</a>
+        <a href="#architecture">Understand the System</a>
+        <a href="#configure">Configure Work</a>
+        <a href="#operate">Operate and Recover</a>
+        <a href="#reference">Reference</a>
+        <a href="#workbook">Workbook Exercises</a>
+      </nav>
+      <div class="directory">
+        <div class="filters">
+          <label for="search">Find a guide<input type="search" id="search" /></label>
+          <label for="topic">Topic<select id="topic">
+            <option value="all">All topics</option>
+            <option value="start">Start Here</option>
+            <option value="architecture">Understand the System</option>
+            <option value="configure">Configure Work</option>
+            <option value="operate">Operate and Recover</option>
+            <option value="reference">Reference</option>
+            <option value="workbook">Workbook Exercises</option>
+          </select></label>
+        </div>
+        <p id="empty" role="status" hidden>No matching guides.</p>
+      <section class="topic" id="start" aria-labelledby="start-title">
+        <h2 id="start-title">Start Here</h2>
+        <ul class="guide-list">
+          <li class="guide" data-topic="start">
+            <div><a class="guide-title" href="https://github.com/dchannon/Culina-Academy/blob/main/docs/getting-started/README.md">Choose Your Reading Path</a><p>Prospective users, developers, and operators.</p></div>
+            <a class="source-link" href="docs/getting-started/README.md" aria-label="Local source: Choose Your Reading Path">Source</a>
+          </li>
+          <li class="guide" data-topic="start">
+            <div><a class="guide-title" href="https://github.com/dchannon/Culina-Academy/blob/main/docs/getting-started/what-is-culina.md">What Is Culina?</a><p>Purpose, scope, and the framework's operating model.</p></div>
+            <a class="source-link" href="docs/getting-started/what-is-culina.md" aria-label="Local source: What Is Culina?">Source</a>
+          </li>
+          <li class="guide" data-topic="start">
+            <div><a class="guide-title" href="https://github.com/dchannon/Culina-Academy/blob/main/docs/getting-started/quickstart.md">Quickstart</a><p>Trace configuration, execution, and evidence for one workflow.</p></div>
+            <a class="source-link" href="docs/getting-started/quickstart.md" aria-label="Local source: Quickstart">Source</a>
+          </li>
+          <li class="guide" data-topic="start">
+            <div><a class="guide-title" href="https://github.com/dchannon/Culina-Academy/blob/main/docs/tutorials/README.md">Video Tutorials</a><p>Eight episodes with companion operating references.</p></div>
+            <a class="source-link" href="docs/tutorials/README.md" aria-label="Local source: Video Tutorials">Source</a>
+          </li>
+        </ul>
+      </section>
+      <section class="topic" id="architecture" aria-labelledby="architecture-title">
+        <h2 id="architecture-title">Understand the System</h2>
+        <ul class="guide-list">
+          <li class="guide" data-topic="architecture">
+            <div><a class="guide-title" href="https://github.com/dchannon/Culina-Academy/blob/main/docs/architecture/framework-architecture.md">Framework Architecture</a><p>Six responsibilities and their boundaries.</p></div>
+            <a class="source-link" href="docs/architecture/framework-architecture.md" aria-label="Local source: Framework Architecture">Source</a>
+          </li>
+          <li class="guide" data-topic="architecture">
+            <div><a class="guide-title" href="https://github.com/dchannon/Culina-Academy/blob/main/docs/architecture/control-plane-schema.md">Control Plane Schema</a><p>Tables, views, procedures, and execution authority.</p></div>
+            <a class="source-link" href="docs/architecture/control-plane-schema.md" aria-label="Local source: Control Plane Schema">Source</a>
+          </li>
+          <li class="guide" data-topic="architecture">
+            <div><a class="guide-title" href="https://github.com/dchannon/Culina-Academy/blob/main/docs/architecture/orchestration-plane.md">Orchestration Layers</a><p>Batches, queues, dependencies, dispatch, and finalization.</p></div>
+            <a class="source-link" href="docs/architecture/orchestration-plane.md" aria-label="Local source: Orchestration Layers">Source</a>
+          </li>
+          <li class="guide" data-topic="architecture">
+            <div><a class="guide-title" href="https://github.com/dchannon/Culina-Academy/blob/main/docs/architecture/data-layers.md">Data Layers</a><p>Landing through Consumption, including durable history.</p></div>
+            <a class="source-link" href="docs/architecture/data-layers.md" aria-label="Local source: Data Layers">Source</a>
+          </li>
+          <li class="guide" data-topic="architecture">
+            <div><a class="guide-title" href="https://github.com/dchannon/Culina-Academy/blob/main/docs/concepts/history-and-reporting.md">History and Reporting</a><p>Retry-safe writes, late-arriving members, and BI perspectives.</p></div>
+            <a class="source-link" href="docs/concepts/history-and-reporting.md" aria-label="Local source: History and Reporting">Source</a>
+          </li>
+          <li class="guide" data-topic="architecture">
+            <div><a class="guide-title" href="https://github.com/dchannon/Culina-Academy/blob/main/docs/platforms/README.md">Platforms</a><p>Deployment choices, adapters, and qualification status.</p></div>
+            <a class="source-link" href="docs/platforms/README.md" aria-label="Local source: Platforms">Source</a>
+          </li>
+        </ul>
+      </section>
+      <section class="topic" id="configure" aria-labelledby="configure-title">
+        <h2 id="configure-title">Configure Work</h2>
+        <ul class="guide-list">
+          <li class="guide" data-topic="configure">
+            <div><a class="guide-title" href="https://github.com/dchannon/Culina-Academy/blob/main/docs/configuration/README.md">Configuration Guide</a><p>Contracts, source settings, transformations, and services.</p></div>
+            <a class="source-link" href="docs/configuration/README.md" aria-label="Local source: Configuration Guide">Source</a>
+          </li>
+          <li class="guide" data-topic="configure">
+            <div><a class="guide-title" href="https://github.com/dchannon/Culina-Academy/blob/main/examples/README.md">Example Catalog</a><p>Current examples and the original sandbox package.</p></div>
+            <a class="source-link" href="examples/README.md" aria-label="Local source: Example Catalog">Source</a>
+          </li>
+          <li class="guide" data-topic="configure">
+            <div><a class="guide-title" href="https://github.com/dchannon/Culina-Academy/blob/main/docs/guides/add-rest-ingestion.md">Add an Ingestion Job</a><p>Source selection, incremental boundaries, and evidence.</p></div>
+            <a class="source-link" href="docs/guides/add-rest-ingestion.md" aria-label="Local source: Add an Ingestion Job">Source</a>
+          </li>
+          <li class="guide" data-topic="configure">
+            <div><a class="guide-title" href="https://github.com/dchannon/Culina-Academy/blob/main/docs/guides/add-transformation.md">Add a Transformation</a><p>Ordered steps, targets, write modes, and validation.</p></div>
+            <a class="source-link" href="docs/guides/add-transformation.md" aria-label="Local source: Add a Transformation">Source</a>
+          </li>
+          <li class="guide" data-topic="configure">
+            <div><a class="guide-title" href="https://github.com/dchannon/Culina-Academy/blob/main/docs/guides/add-file-ingestion.md">Add File Ingestion</a><p>Portable storage, file formats, selectors, and spreadsheet sheets.</p></div>
+            <a class="source-link" href="docs/guides/add-file-ingestion.md" aria-label="Local source: Add File Ingestion">Source</a>
+          </li>
+          <li class="guide" data-topic="configure">
+            <div><a class="guide-title" href="https://github.com/dchannon/Culina-Academy/blob/main/docs/guides/add-service-job.md">Add a Service Job</a><p>HTTP, file, SQL, export, OAuth, and pinned extensions.</p></div>
+            <a class="source-link" href="docs/guides/add-service-job.md" aria-label="Local source: Add a Service Job">Source</a>
+          </li>
+          <li class="guide" data-topic="configure">
+            <div><a class="guide-title" href="https://github.com/dchannon/Culina-Academy/blob/main/docs/guides/dependencies-and-validation.md">Dependencies and Validation</a><p>Readiness, blocking tests, and downstream release.</p></div>
+            <a class="source-link" href="docs/guides/dependencies-and-validation.md" aria-label="Local source: Dependencies and Validation">Source</a>
+          </li>
+          <li class="guide" data-topic="configure">
+            <div><a class="guide-title" href="https://github.com/dchannon/Culina-Academy/blob/main/docs/reference/config-field-reference.md">Field Reference</a><p>Configuration fields, defaults, and ownership.</p></div>
+            <a class="source-link" href="docs/reference/config-field-reference.md" aria-label="Local source: Field Reference">Source</a>
+          </li>
+        </ul>
+      </section>
+      <section class="topic" id="operate" aria-labelledby="operate-title">
+        <h2 id="operate-title">Operate and Recover</h2>
+        <ul class="guide-list">
+          <li class="guide" data-topic="operate">
+            <div><a class="guide-title" href="https://github.com/dchannon/Culina-Academy/blob/main/docs/operations/README.md">Operations Guide</a><p>Run inspection, evidence, and scoped recovery.</p></div>
+            <a class="source-link" href="docs/operations/README.md" aria-label="Local source: Operations Guide">Source</a>
+          </li>
+          <li class="guide" data-topic="operate">
+            <div><a class="guide-title" href="https://github.com/dchannon/Culina-Academy/blob/main/docs/operations/operating-guide.md">Daily Operations</a><p>Checks before, during, and after execution.</p></div>
+            <a class="source-link" href="docs/operations/operating-guide.md" aria-label="Local source: Daily Operations">Source</a>
+          </li>
+          <li class="guide" data-topic="operate">
+            <div><a class="guide-title" href="https://github.com/dchannon/Culina-Academy/blob/main/docs/troubleshooting/diagnostic-queries.md">Diagnostic Queries</a><p>Read-only queries for queue, batch, and test evidence.</p></div>
+            <a class="source-link" href="docs/troubleshooting/diagnostic-queries.md" aria-label="Local source: Diagnostic Queries">Source</a>
+          </li>
+          <li class="guide" data-topic="operate">
+            <div><a class="guide-title" href="https://github.com/dchannon/Culina-Academy/blob/main/docs/troubleshooting/incident-walkthroughs.md">Incident Walkthroughs</a><p>Follow symptoms to responsible components and actions.</p></div>
+            <a class="source-link" href="docs/troubleshooting/incident-walkthroughs.md" aria-label="Local source: Incident Walkthroughs">Source</a>
+          </li>
+          <li class="guide" data-topic="operate">
+            <div><a class="guide-title" href="https://github.com/dchannon/Culina-Academy/blob/main/docs/operations/backfill-and-recovery.md">Backfill and Recovery</a><p>Retries, reruns, replay, backfill, and rebuild boundaries.</p></div>
+            <a class="source-link" href="docs/operations/backfill-and-recovery.md" aria-label="Local source: Backfill and Recovery">Source</a>
+          </li>
+          <li class="guide" data-topic="operate">
+            <div><a class="guide-title" href="https://github.com/dchannon/Culina-Academy/blob/main/docs/troubleshooting/support-handoff.md">Support Handoff</a><p>Collect the identifiers and evidence needed for support.</p></div>
+            <a class="source-link" href="docs/troubleshooting/support-handoff.md" aria-label="Local source: Support Handoff">Source</a>
+          </li>
+        </ul>
+      </section>
+      <section class="topic" id="reference" aria-labelledby="reference-title">
+        <h2 id="reference-title">Reference</h2>
+        <ul class="guide-list">
+          <li class="guide" data-topic="reference">
+            <div><a class="guide-title" href="https://github.com/dchannon/Culina-Academy/blob/main/docs/reference/version-compatibility.md">Version Compatibility</a><p>Runtime baseline, contract formats, and platform caveats.</p></div>
+            <a class="source-link" href="docs/reference/version-compatibility.md" aria-label="Local source: Version Compatibility">Source</a>
+          </li>
+          <li class="guide" data-topic="reference">
+            <div><a class="guide-title" href="https://github.com/dchannon/Culina-Academy/blob/main/docs/reference/config-validation.md">Configuration Validation</a><p>Local checks and deployment acceptance.</p></div>
+            <a class="source-link" href="docs/reference/config-validation.md" aria-label="Local source: Configuration Validation">Source</a>
+          </li>
+          <li class="guide" data-topic="reference">
+            <div><a class="guide-title" href="https://github.com/dchannon/Culina-Academy/blob/main/docs/reference/glossary.md">Glossary</a><p>Shared terms for configuration, execution, and data.</p></div>
+            <a class="source-link" href="docs/reference/glossary.md" aria-label="Local source: Glossary">Source</a>
+          </li>
+          <li class="guide" data-topic="reference">
+            <div><a class="guide-title" href="https://github.com/dchannon/Culina-Academy/blob/main/docs/README.md">All Documentation</a><p>The complete task-oriented documentation index.</p></div>
+            <a class="source-link" href="docs/README.md" aria-label="Local source: All Documentation">Source</a>
+          </li>
+        </ul>
+      </section>
+        <section class="topic" id="workbook" aria-labelledby="workbook-title">
+          <h2 id="workbook-title">Workbook Exercises</h2>
+          <div class="guide exercise" data-topic="workbook">
+            <div>
+              <a class="guide-title" href="workbook/learner.html">Reader Workbook</a>
+              <p>Optional local lessons, labs, and assessments with transcript export.</p>
+              <div class="exercise-links">
+                <a href="https://github.com/dchannon/Culina-Academy/blob/main/workbook/README.md">Exercise Instructions</a>
+                <a href="workbook/review.html">Transcript Review</a>
+              </div>
+            </div>
+            <a class="source-link" href="workbook/README.md" aria-label="Local source: Exercise Instructions">Source</a>
+          </div>
+        </section>
       </div>
-
-      <div class="grid">
-        <article class="card">
-          <span class="card-number">01</span>
-          <h2>Understand The Story</h2>
-          <p>Start with the framework purpose, operating loop, and user questions Culina answers.</p>
-          <a class="button button-secondary" href="docs/getting-started/what-is-culina.md">
-            <span>Open Overview</span>
-            <svg viewBox="0 0 24 24" aria-hidden="true">
-              <path d="M7 17 17 7M9 7h8v8" />
-            </svg>
-          </a>
-        </article>
-        <article class="card">
-          <span class="card-number">02</span>
-          <h2>Create Jobs</h2>
-          <p>Use cookbook guidance and sandbox metadata examples for ingestion and transformation jobs.</p>
-          <a class="button button-secondary" href="docs/guides/add-rest-ingestion.md">
-            <span>Open Cookbooks</span>
-            <svg viewBox="0 0 24 24" aria-hidden="true">
-              <path d="M7 17 17 7M9 7h8v8" />
-            </svg>
-          </a>
-        </article>
-        <article class="card">
-          <span class="card-number">03</span>
-          <h2>Diagnose Runs</h2>
-          <p>Identify the affected plane, layer, status, evidence, and recovery scope.</p>
-          <a class="button button-secondary" href="docs/troubleshooting/diagnostic-queries.md">
-            <span>Open Diagnostics</span>
-            <svg viewBox="0 0 24 24" aria-hidden="true">
-              <path d="M7 17 17 7M9 7h8v8" />
-            </svg>
-          </a>
-        </article>
-      </div>
-    </section>
+    </div>
   </main>
-
-  <footer class="site-footer section-shell">
-    <span>Better data</span>
-    <i></i>
-    <span>Repeatable delivery</span>
-    <i></i>
-    <a href="https://dataculina.com/" target="_blank" rel="noopener noreferrer">Work with Data Culina</a>
+  <footer>
+    <div class="shell footer-row">
+      <a href="https://dataculina.com/">Work with Data Culina</a>
+      <a href="https://github.com/dchannon/Culina-Academy/archive/refs/heads/main.zip">Download Repository ZIP</a>
+      <a href="https://github.com/dchannon/Culina-Academy/blob/main/SUPPORT.md">Support</a>
+    </div>
   </footer>
+  <script>
+    const search = document.querySelector('#search');
+    const topic = document.querySelector('#topic');
+    const sections = [...document.querySelectorAll('.topic')];
+    function filterGuides() {
+      const query = search.value.trim().toLowerCase();
+      let matches = 0;
+      for (const section of sections) {
+        let visible = 0;
+        for (const guide of section.querySelectorAll('.guide')) {
+          const show = (topic.value === 'all' || guide.dataset.topic === topic.value)
+            && guide.textContent.toLowerCase().includes(query);
+          guide.hidden = !show;
+          if (show) visible++;
+        }
+        section.hidden = visible === 0;
+        matches += visible;
+      }
+      document.querySelector('#empty').hidden = matches !== 0;
+    }
+    search.addEventListener('input', filterGuides);
+    topic.addEventListener('change', filterGuides);
+    document.querySelectorAll('.topics-nav a').forEach(link => {
+      link.addEventListener('click', () => {
+        search.value = '';
+        topic.value = link.hash.slice(1);
+        filterGuides();
+      });
+    });
+  </script>
 </body>
 </html>

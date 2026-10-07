@@ -1,34 +1,48 @@
 # Framework Overview
 
-The Culina framework is a metadata-driven operating framework for repeatable data movement, transformation, orchestration, and operational support.
+Culina describes work in metadata, coordinates it through a queue, executes it using a consistent contract, and records evidence that users can diagnose.
 
-The framework is organized around three planes:
+## The Operating Loop
 
-- **Control plane:** configuration and operational state that describe what work exists, how it is related, and what evidence is available.
-- **Orchestration plane:** runtime coordination that turns approved control information into executable work.
-- **Data plane:** storage and processing layers where source data is landed, standardized, transformed, persisted, and served.
+```mermaid
+flowchart LR
+  Intent["Approved intent"] --> Metadata["Deployed metadata"]
+  Metadata --> Queue["Batch and queue"]
+  Queue --> Payload["Approved execution context"]
+  Payload --> Output["Files, tables, and service effects"]
+  Output --> Evidence["Results and validation"]
+  Evidence --> Outcome["Official finalization"]
+  Outcome --> Operate["Monitor and recover"]
+  Operate --> Intent
+```
 
-## Why The Framework Exists
+## What Is Defined
 
-Data operations become difficult to operate when each workflow is built as a custom one-off process. Culina standardizes the shape of work so users can understand expected behavior, collect useful diagnostics, and support production runs consistently.
+Jobs specify workload type and retry policy. Source details describe extraction and standardization. Linked services describe source access. Transformations specify ordered steps and targets. Service configurations describe operational tasks. Dependencies and validation determine readiness and acceptance.
 
-## How Users Should Think About It
+Approved portable packages keep logical settings separate from physical storage roots, secret providers, and environment values. See [Configuration Guide](../configuration/README.md).
 
-A user does not need to know implementation code to understand the system. The important operating questions are:
+## What Actually Runs
 
-- What workflow is configured?
-- What source or input does it depend on?
-- What downstream output should it produce?
-- Which dependencies must be ready before it can run?
-- Which layer is currently doing work?
-- What evidence exists if the result is unexpected?
+Grandparent seeds work, Parent supervises it, Child claims dependency-ready queue rows, and Grandchild routes each workload. Orchestration supplies `payload.json`; workload execution returns `result.json`. Orchestration retains authority over official queue status and SQL evidence.
 
-## Main Areas
+A queued job may correctly wait. A written table may still fail required validation. A notification error may have a different authority from the workload outcome.
 
-- [What Is Culina?](what-is-culina.md)
-- [Quickstart](quickstart.md)
-- [Framework Architecture](../architecture/framework-architecture.md)
-- [Control Plane Structure](../architecture/control-plane.md)
-- [Orchestration Plane Layers](../architecture/orchestration-plane.md)
-- [Data Layers](../architecture/data-layers.md)
-- [Operating Guide](../operations/operating-guide.md)
+## Where Data Lives
+
+Ingestion captures Source -> Landing -> Archive/Delta -> Staging. Transformation aligns Staging -> INT -> EDW -> CONS. Staging retains standardized history, INT is transient modeled work, EDW is durable modeled history, and CONS exposes reporting outputs.
+
+Current behavior includes managed append retry identity, SCD2 Unknown/inferred members, and automatic current-only reporting publication. [History And Reporting](../concepts/history-and-reporting.md) explains the requirements and limitations.
+
+## First Questions To Ask
+
+| Question | Reference |
+| --- | --- |
+| What job and inputs are configured? | [Control Plane Schema](../architecture/control-plane-schema.md) |
+| Why is this queue row waiting or retrying? | [Orchestration Plane](../architecture/orchestration-plane.md) |
+| Which data boundary first became wrong? | [Data Layers](../architecture/data-layers.md) |
+| Which platform path is installed? | [Platforms](../platforms/README.md) |
+| Which evidence is authoritative? | [Diagnostic Queries](../troubleshooting/diagnostic-queries.md) |
+| What recovery changes only affected work? | [Backfill And Recovery](../operations/backfill-and-recovery.md) |
+
+Start with the [Quickstart](quickstart.md), or return to [Start Here](README.md).

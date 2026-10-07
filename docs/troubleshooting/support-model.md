@@ -1,45 +1,37 @@
 # Support Model
 
-Use this page to decide what evidence to collect and when to escalate.
-
-For public docs, examples, workbook, and validation questions, use the repository issue templates. For environment-specific incidents, use the assigned Data Culina client support channel.
+Use repository issue templates for public documentation, examples, workbook, and validation questions. Use the assigned Data Culina client support channel for environment-specific incidents.
 
 ## Severity Guide
 
-| Severity | Meaning | Examples | Response expectation |
-| --- | --- | --- | --- |
-| Sev 1 | Production-critical output unavailable or materially incorrect. | Executive dashboard unusable, downstream interface blocked, broad client data failure. | Collect evidence immediately and contact the assigned client support channel. |
-| Sev 2 | Important workflow failed, but workaround or partial output exists. | One domain delayed, retry exhausted, upstream source outage affecting a subset. | Diagnose with control-plane evidence and escalate if recovery is not clear. |
-| Sev 3 | Non-critical issue or question. | Configuration review, isolated validation warning, documentation question. | Track and resolve through normal support flow. |
+| Severity | Meaning | Response |
+| --- | --- | --- |
+| Sev 1 | Production-critical output unavailable or materially incorrect; broad data/consumer impact. | Preserve evidence and contact the assigned client support channel immediately. |
+| Sev 2 | Important failure with partial output/workaround, exhausted retry, or scoped source outage. | Diagnose current authorities and escalate when recovery scope or committed effects are uncertain. |
+| Sev 3 | Non-critical issue/question or documentation/configuration review. | Use normal support flow with a reproducible example. |
+
+These are triage categories, not response-time or availability commitments. A notification outage and a data-quality incident can have different severity.
 
 ## Ownership Split
 
-| Area | Client or operator | Data Culina support |
+| Area | Client/operator | Data Culina support or responsible owner |
 | --- | --- | --- |
-| Source availability | Confirm source system, file, API, credentials, and timing. | Help interpret source-detail configuration and framework evidence. |
-| Configuration review | Confirm business intent, expected input, and expected output. | Review control-plane relationships and metadata patterns. |
-| Runtime diagnosis | Collect status, queue, history, failure, and dependency evidence. | Help identify cause and recovery direction. |
-| Recovery | Approve business scope and timing. | Advise rerun, replay, backfill, or rebuild path. |
+| Source/input | Confirm availability, historical coverage, timing, and access. | Source owner corrects source behavior; support interprets ingestion evidence. |
+| Configuration/bindings | Confirm business intent, resolved environment values, selected backend, and approved scope. | Review contracts, relationships, catalog/secret/storage bindings, and deployment status. |
+| Runtime/validation | Collect official state, history/result, test details, and logging/finalization evidence. | Diagnose execution, tests, publication, and cross-open-batch dependencies. |
+| Recovery | Approve business scope/window; reconcile active workers and committed effects. | Advise targeted retry/rerun/replay/backfill/rebuild and required reconciliation. |
+| Service side effects | Confirm destination outcome without sharing credentials. | Handler/platform owner resolves ambiguous writes, concurrency, and permissions. |
+| Notification | Collect POST/mark evidence separately from data status. | Integration owner handles handoff; downstream service owns routing, templates, and channel delivery. |
+| Platform qualification | Validate actual client bindings and end-to-end journeys. | Distinguish available artifacts/local tests from live platform qualification. |
 
 ## Evidence To Include
 
-- environment or workspace
-- workflow name
-- job id, queue id, batch id, and run id where visible
-- current status and status history
-- first failing upstream job
-- failure message and failed step
-- expected output and actual output
-- source period or target table affected
-- screenshot or exported evidence where useful
-- recovery action already attempted
+Use [Support Handoff](support-handoff.md). Include UUID identities/workload run, UTC times, official retry/batch state, earliest blocker, sanitized error/failed step, required test details, last correct layer, committed effects, and actions already attempted.
+
+For append recovery, state whether the same control batch/queue was retained or new work was seeded, and whether old duplicates were reconciled. For publication/notifications, distinguish data write, required serving outcome, handoff marking, and final delivery.
 
 ## What Not To Send
 
-- passwords
-- access tokens
-- private keys
-- full personal data extracts
-- unrelated logs with sensitive values
+Do not publish passwords, tokens, private keys, signed endpoints, raw credential-bearing configuration, personal data extracts, or unrelated sensitive logs. Sanitize evidence and use approved private channels for client-specific detail.
 
-Sanitize evidence before handoff. Keep enough structure to diagnose the issue, but do not include credentials or unnecessary sensitive data.
+Escalate ambiguous external commits, hydration/key conflicts, historical reconciliation, stranded finalization, required publisher capability gaps, or repeat non-transient failures before another broad recovery. ADF + Databricks has local deterministic evidence with live cloud sandbox qualification pending; historical sandbox exercises do not certify every client platform.

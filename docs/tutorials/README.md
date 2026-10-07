@@ -2,6 +2,8 @@
 
 This hub connects Data Culina YouTube tutorials to the public framework documentation. Videos provide the guided explanation; the linked docs remain the detailed operating reference.
 
+The episodes explain the fundamentals. For current connector capabilities, history behavior, and platform qualification, use the [Configuration Guide](../configuration/README.md), [History and Reporting](../concepts/history-and-reporting.md), and [Platform Guide](../platforms/README.md). These references describe the runtime 0.2.34 baseline reviewed on 8 October 2026.
+
 ## Published Tutorials
 
 ### 01. From Metadata to Evidence

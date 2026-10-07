@@ -1,0 +1,19 @@
+{
+  "id": "20000000-0000-4000-8000-000000000002",
+  "clientId": "00000000-0000-4000-8000-000000000001",
+  "sourceName": "example_inbound_files",
+  "sourceType": "file",
+  "configJson": {
+    "Storage": {
+      "BaseUri": "storage://inbound/example-client"
+    },
+    "Options": {
+      "Read": {
+        "recursiveFileLookup": false,
+        "ignoreMissingFiles": false,
+        "ignoreCorruptFiles": false
+      }
+    }
+  },
+  "createdBy": "example-author"
+}

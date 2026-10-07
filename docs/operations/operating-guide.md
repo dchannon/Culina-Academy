@@ -1,145 +1,131 @@
 # Operating Guide
 
-This guide describes how users should operate and diagnose Culina-managed workflows.
+Operate from SQL control-plane evidence, then reconcile the execution platform and target outputs. A successful compute activity, write, or notification handoff alone does not establish job success.
 
 ## Daily Operating Checklist
 
-1. Confirm expected workflows are scheduled or triggered.
-2. Confirm expected source inputs are available.
-3. Review run status for active or recently completed workflows.
-4. Check failed, waiting, or skipped work before checking downstream outputs.
-5. Confirm consumption outputs are available for users.
-6. Record any unexpected behavior with run evidence.
+1. Confirm the expected trigger, active job, frequency group, and batch scope.
+2. Review `jobconfig.batch_time` and `jobconfig.job_queue`; locate the earliest unresolved upstream job.
+3. Compare retry timing, history events, authoritative runtime result, and platform run identity.
+4. Confirm required validation passed and its physical result rows were logged.
+5. Verify target data and required CONS publication through the actual consumer query surface.
+6. Check failure/completion handoffs separately from execution; record anomalies and narrowly scoped recovery.
 
 ## What To Monitor
 
-| Area | What to check | Why it matters |
+| Area | Current authority | Interpretation |
 | --- | --- | --- |
-| Batch state | Active, closing, completed, or stalled batches. | Shows whether the run as a whole is still moving. |
-| Queue state | `PENDING`, `IN_PROGRESS`, `ON_HOLD_RETRY`, `FAILED`, `COMPLETED`, `SKIPPED`. | The queue is the primary operational control signal. |
-| Retry state | Attempt count, retry delay, retry hold status. | Distinguishes transient failure handling from terminal failure. |
-| Failure logs | Failed step, error category, exact message, timestamp. | Gives the first concrete failure evidence. |
-| Run history | Step-level execution timestamps and outputs. | Shows how far the job reached before the symptom appeared. |
-| Dependencies | Upstream and downstream job relationships. | Prevents treating downstream skipped work as independent failure. |
-| Output availability | Target table, file, or consumption artifact. | Confirms whether a technically completed run produced usable output. |
+| Batch lifecycle | `jobconfig.batch_time`: `batch_start_time`, `batch_end_time`, `is_batch_completed` | No batch status string. Closure excludes batches containing `PENDING`, `IN_PROGRESS`, `FAILED`, or `ON_HOLD_RETRY`; `SKIPPED` does not prevent closure. |
+| Queue | `jobconfig.job_queue.status` | Official current state. `queue_id`, `batch_id`, and `job_id` are UUIDs. |
+| Retry | `current_retry_count`, `retry_datetime`; `jobconfig.jobs.max_retry_count`, `retry_delay_backoff` | Count is retries scheduled, not total attempts. Delay is seconds, not an assumed exponential backoff. |
+| History | `jobconfig.job_runhistory.zone`, `job_run_status`, `job_log_datetime`, `comments` | Event records, not dedicated step-start/end columns. Comments can contain diagnostics and ordered `step_results`. |
+| Terminal failure | `jobconfig.job_failure_log.failure_message`, `failure_datetime` | Retry-eligible failures appear in history before a terminal failure-log row is created. |
+| Validation | `jobconfig.unit_test_results`; `rpt.vw_pbi_unit_test_result` | Keep attempt evidence; `IsLatestPerTest` means latest recorded result, not proof that the latest attempted run logged successfully. |
+| Dependencies | `jobconfig.vw_job_dependency_check`, `jobconfig.vw_job_dependency_hierarchy` | Readiness includes upstream rows across open batches, not only the displayed batch. |
+| Notifications | `job_failure_log.is_notified_sent`; `jobconfig.batch_notification_log` | Successful handoff markers, not email/Teams receipt. |
+| Contract application | `jobconfig.contract_deployment`, `jobconfig.contract_validation_result` | Validation/preview is distinct from application; inspect SQL status, not compute success. |
+
+See [Diagnostic Queries](../troubleshooting/diagnostic-queries.md) for bounded SELECT examples.
 
 ## Status Interpretation
 
 | Status | Meaning | Response |
 | --- | --- | --- |
-| `PENDING` | Work is queued but has not started. It may be waiting on dependencies. | Check upstream status and readiness before declaring it stuck. |
-| `IN_PROGRESS` | Work has been dispatched and is active. | Check run history, elapsed time, and execution evidence. |
-| `ON_HOLD_RETRY` | Work failed but still has retry attempts available. | Determine whether the cause is transient or needs correction. |
-| `FAILED` | Work reached terminal failure for the current run. | Diagnose the first failing upstream point and fix the cause before rerun. |
-| `COMPLETED` | Work finished successfully. | Confirm outputs and avoid resetting it during normal rerun handling. |
-| `SKIPPED` | Work did not run because a prerequisite was not satisfied. | Start with the upstream job that failed or did not complete. |
+| `PENDING` | Queued, not necessarily executable. | Inspect `can_execute` and upstream rows across open batches. |
+| `IN_PROGRESS` | Claimed for execution. | Reconcile platform activity, result, and finalization; state alone does not prove a worker remains alive. |
+| `ON_HOLD_RETRY` | Failure with another retry scheduled. | Check `retry_datetime`; claiming promotes due rows to `PENDING`. |
+| `FAILED` | Retry budget exhausted or no retry allowed. | Correct the cause before approved recovery; this state keeps the batch open. |
+| `COMPLETED` | Official successful finalization. | Confirm validation, outputs, and publication; preserve the row during routine recovery. |
+| `SKIPPED` | Upstream terminal failure prevented valid execution. | Repair upstream, then recover only affected skipped work. |
+
+Failed finalization schedules retry while `current_retry_count < max_retry_count`, increments the count, and sets `retry_datetime`. With `max_retry_count = 0`, the first failure is terminal. History can therefore show `FAILED` while the queue is `ON_HOLD_RETRY`.
 
 ## Triage Flow
 
-1. Identify the workflow and run.
-2. Identify current status.
-3. Identify the orchestration layer involved.
-4. Identify the data layer involved.
-5. Check upstream dependencies.
-6. Check source availability.
-7. Capture visible error messages.
-8. Determine whether output is missing, delayed, or incorrect.
-9. Prepare support handoff if the issue is unresolved.
+1. Identify environment, platform/backend, job, queue, batch, and workload run.
+2. Inspect official state and retry timing before platform status.
+3. Trace prerequisites to the earliest failure, including other open batches.
+4. Read history, authoritative diagnostics, and configured validation results.
+5. Locate the last correct layer and any side effect already committed.
+6. Correct the cause and select the smallest safe recovery scope.
+7. Verify finalization, validation, outputs, and downstream correctness; escalate ambiguous outcomes.
 
 ## Evidence Sources
 
-Start with the runtime tables and views most likely to explain the symptom:
+Workflows retrieve ingestion, transformation, or service context from the control plane. Orchestration owns official queue/history/failure finalization, not the workload runtime.
 
-- `job_queue` for current status and retry state.
-- `batch_time` for batch lifecycle.
-- `job_runhistory` for step-level execution evidence.
-- `job_failure_log` for error context.
-- Dependency and impact views for upstream and downstream effects.
-- Source-detail configuration for ingestion path, parameters, flattening, and staging target.
-- Transformation configuration for source reads, filters, business keys, joins, write mode, and validation flags.
+Inspect the authoritative result, not an intermediate transformation artifact. Interface fields include `execution_status`, `run_history_status`, `detail_message`, `error_message`, `workload_run_id`, and `step_results`; finalization can persist diagnostics in history comments. Context retrieval, payload publication, compute startup, or result retrieval failures use orchestration fallback evidence. If SQL finalization fails, reconcile live execution and persisted output before recovering a stranded row.
+
+`rpt.vw_pbi_job_run` is queue-grain evidence; `rpt.vw_pbi_job_run_event` is event-grain evidence. Open durations are provisional, not cumulative retry-attempt durations.
 
 ## Incident Types
 
 ### Ingestion Failure
 
-Common causes include missing source input, source structure changes, source access failure, request parameter mismatch, parse failure, staging table issue, or schema drift.
+Inspect `jobconfig.source_detail` and its `source_linked_service_config_id` relationship to `jobconfig.source_linked_service_config`. Verify source access, relative selector, `source_select_query`, delta column, effective watermark, extensions, and `staging_table_name`. SQL identifiers are snake_case; contract JSON may use camelCase.
 
-Response:
-
-1. Confirm the source is available and accessible.
-2. Review `linked_service.configJson` and `source_detail.sourceSelectQuery`.
-3. Check landing, delta, and staging evidence.
-4. Fix the source or configuration issue.
-5. Rerun only the affected unresolved scope.
+Check landing, delta, staging registration, and source filters. Full ingestion appends staging copies and retains the latest seven load dates; it is not a direct staging overwrite. Delta staging appends recovered data. Confirm the intended window before downstream replay.
 
 ### Transformation Failure
 
-Common causes include source table missing, unexpected new source values, duplicate business keys, null business keys, join misses, invalid write mode, or validation failure.
+Inspect active `jobconfig.transformation_controller.parameters`, source filters, business keys, write mode, and failed `step_results`. Staging reads should use `stg_load_date` or an approved equivalent; all retained full-load copies can inflate output.
 
-Response:
-
-1. Review transformation `parameters`.
-2. Confirm every source table exists in the expected data layer.
-3. Confirm filters and business keys match current data.
-4. Review the step that failed in run history.
-5. Fix the configuration, source data, or transformation assumption before rerun.
+Separate transformation, test, test-result logging, and required publication failures. A dimension write may already have committed when CONS publication fails; do not delete EDW history to repair a reporting surface.
 
 ### Dependency Blockage
 
-A downstream job may remain `PENDING` or become `SKIPPED` because upstream work failed.
-
-Response:
-
-1. Identify the earliest failed upstream job.
-2. Diagnose that upstream job first.
-3. Avoid resetting downstream rows before upstream recovery.
-4. Rerun or release downstream work only after prerequisites are complete.
+Readiness considers ancestors across all open batches. Inspect view counters and underlying rows; a same-batch-only check can miss a blocker. Recover the earliest terminal failure before releasing skipped descendants. Do not start a duplicate parent loop while one is active.
 
 ### Validation Failure
 
-A job can execute technically and still fail operationally if required validation does not pass.
+Required tests block acceptance after a successful write. They run only after transformation completion; a prior transformation failure remains authoritative. Inspect `test_data_integrity`, `test_duplicate_bks`, `test_null_bks`, and physical logged results. Missing results after logging failure are not passes.
 
-Response:
+For managed fact `append`, retrying the same control `batch_id` plus `queue_id` atomically replaces that queue's `_culina_write_id` contribution, retaining other queues. A new queue means a new append. Source `Batch_ID` remains intact unless a configured system-field step assigns the current batch; preserve source lineage separately in that case. Duplicate input remains invalid; old duplicates require reconciliation.
 
-1. Treat required validation failure as a real failed outcome.
-2. Determine whether the cause is source data, transformation logic, or target expectation.
-3. Correct the cause before rerun.
-4. Capture validation evidence in the support note.
+### Service Failure
+
+`jobconfig.usp_mf_service_get_execution_context` requires an active job and exactly one active `service_config` row (`isactive = 1`). Runtime options must be a JSON object. Inspect service type, handler identity, mode, failed step, and sanitized `details`/`output`; do not publish configuration bodies or tokens.
+
+Built-ins cover HTTP requests, file operations, Spark SQL, data export, and OAuth issuance/refresh. Approved custom handlers must already be installed. A successful process exit can still carry a `FAILED` framework result; artifact-write failure requires platform/fallback evidence. Before retrying an external action or token rotation, establish whether it committed.
 
 ## Rerun Guidance
 
-Reruns should be controlled. Before requesting or performing a rerun, confirm:
+Fix first, rerun second. Preserve `COMPLETED` rows, confirm no live worker remains for stranded `IN_PROGRESS`, and use the approved recovery mechanism rather than bulk SQL resets. Managed append protection is not a general guarantee for service side effects, ingestion, historical backfill, or old untagged targets.
 
-- the original failure cause is understood
-- source input is available
-- upstream dependencies are complete
-- downstream impact is understood
-- the run identifier and target scope are clear
+See [Backfill And Recovery](backfill-and-recovery.md) for retry, rerun, replay, backfill, and rebuild boundaries.
 
-Avoid broad reruns when a targeted rerun or support review is more appropriate.
+## Notifications
 
-See [Backfill And Recovery](backfill-and-recovery.md) for rerun, replay, backfill, and rebuild guidance.
+Failure dispatch selects unnotified failure-log rows whose queue remains `FAILED`; retry holds are not terminal notifications. Successful POST is followed by marking the selected rows `is_notified_sent = 1`. Resetting a failed queue before dispatch can make its old failure ineligible for the next payload.
+
+Completion dispatch selects closed, unnotified batches, posts `MetadataFrameworkBatchCompleted`, then records `BATCH_COMPLETION` / `SENT` in `jobconfig.batch_notification_log`. A missing row means no persisted successful handoff, not proof that no POST occurred. Failure, completion, and health reports have separate endpoint configuration. Recipient routing/channel delivery belong downstream; domain owners are not alert-routing metadata.
+
+Track data failure, handoff failure, and channel failure separately. If POST succeeded but marking failed, reconcile downstream receipt before redispatch; do not assume exactly-once delivery or manually mark evidence sent.
+
+## Platform Qualification
+
+| Path | Available evidence and qualification |
+| --- | --- |
+| Azure Synapse | Sandbox-validated orchestration, bootstrap, workflow, and utility artifacts; validate client bindings and required BI publisher separately. |
+| Native Fabric | Aligned pipeline/notebook artifacts with Delta and external Azure SQL; availability is not client end-to-end qualification. |
+| Fabric + Databricks | Hybrid contracts and Unity Catalog path available; validate deployed permissions, artifacts, SQL logging, and BI access. |
+| ADF + Databricks | Local deterministic artifact/interface tests exist; live cloud sandbox qualification remains pending. |
+| AWS Glue | Engine/workflow/utility wrappers available with RDS SQL Server and Iceberg; resource deployment and live client journeys require separate validation. |
+| Local runtime | Local Delta/file/secret interfaces exist; verify installed orchestration and reporting adapter rather than assuming cloud equivalence. |
+
+Fabric `runtime_backend` accepts `FABRIC` or `DATABRICKS`; unsupported values fail before execution. Confirm the selected implementation is deployed. ADF SQL owns retries/finalization; do not add independent activity retries to Databricks workload execution.
 
 ## Sandbox-Specific Checks
 
-For the sandbox examples, also confirm:
+Academy sandbox packages are historical learning fixtures, not current deployment defaults or evidence of every platform's support. Use the installed SQL schema and resolved client contract for operations, not old numeric lesson identifiers.
 
-- Spark catalog databases such as `stg`, `int`, `edw`, and `con` exist before transformation jobs run.
-- Ingestion registered expected staging tables before transformations read them.
-- Runtime payload and result artifacts contain valid JSON objects.
-- Blob reads that use managed identity include the storage service version header expected by the environment.
+Confirm approved catalogs (`stg`, `int`, `edw`, `con`, and the runtime-owned registry namespace), staging registration, and valid JSON artifacts. Use create-only bootstrap where supported; do not run catalog resets as routine recovery.
 
 ## Evidence To Keep
 
-- workflow name
-- run identifier
-- environment or workspace
-- trigger time
-- status history
-- failing layer
-- error message
-- expected output
-- actual output
-- screenshots where useful
-- first failing upstream job
-- recovery action taken, if any
+- Platform/backend, environment, workflow, UTC time, and trigger context.
+- UUID job/queue/batch identities and workload run identity.
+- Queue/retry snapshot, history, authoritative result, and exact sanitized error.
+- Validation details and any missing logging/finalization evidence.
+- Source window/filter, write mode, committed side effects, and consumer impact.
+- Approved recovery scope, action taken, output proof, and separate notification outcome.

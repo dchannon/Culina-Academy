@@ -1,0 +1,76 @@
+{
+  "id": "40000000-0000-4000-8000-000000000001",
+  "jobId": "10000000-0000-4000-8000-000000000003",
+  "transformationType": "Notebook",
+  "transformationName": "Orders_INT",
+  "parameters": {
+    "sources": {
+      "orders": {
+        "db": "stg",
+        "table": "Orders_Rest",
+        "business_keys": [
+          "order_id"
+        ],
+        "filter": {
+          "where_clause": "CAST(stg_load_date AS DATE) > '{{LastRunDateTime}}' AND order_id IS NOT NULL"
+        }
+      }
+    },
+    "target": {
+      "db": "int",
+      "table": "Orders",
+      "business_keys": [
+        "order_id"
+      ],
+      "write_mode": "truncate_insert"
+    },
+    "transformation": {
+      "steps": [
+        {
+          "step_id": 1,
+          "name": "Read orders",
+          "type": "read_source",
+          "config": {
+            "source_name": "orders",
+            "alias": "orders_raw"
+          }
+        },
+        {
+          "step_id": 2,
+          "name": "Keep newest order",
+          "type": "deduplicate",
+          "config": {
+            "input_df": "orders_raw",
+            "alias": "orders_latest",
+            "use_source_business_keys": true,
+            "source_name": "orders",
+            "order_by": [
+              {
+                "column": "updated_at",
+                "direction": "desc"
+              },
+              {
+                "column": "stg_load_date",
+                "direction": "desc"
+              }
+            ]
+          }
+        },
+        {
+          "step_id": 3,
+          "name": "Write integration",
+          "type": "write_target",
+          "config": {
+            "input_df": "orders_latest"
+          }
+        }
+      ]
+    }
+  },
+  "testDataIntegrity": true,
+  "testDuplicateBks": true,
+  "testNullBks": true,
+  "initialLoad": false,
+  "isActive": false,
+  "createdBy": "example-author"
+}

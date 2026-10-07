@@ -1,6 +1,6 @@
 # Sandbox Client Metadata Example
 
-The `examples/metadata/data-culina-sandbox-test-client/` folder contains a complete sandbox client metadata export. It shows how Culina control records fit together across ingestion, transformation, and dependency configuration.
+The `examples/metadata/data-culina-sandbox-test-client/` folder is an unchanged 71-file historical learning fixture. It shows control-record relationships, not the current deployment template or proof that each API remains operational. Use [Current Contract Examples](../../examples/current/README.md) for new work.
 
 ## What Is Included
 
@@ -25,7 +25,9 @@ The sandbox uses public API sources so configuration can be studied without envi
 - GitHub public commit metadata.
 - StackExchange question metadata.
 
-The set includes both full-load and delta-style examples. Full-load source details use `deltaOrFull: "FULL"`. Delta-style examples use delta parameters such as `ParamName` and fallback watermarks to demonstrate incremental request construction.
+Current source details use `deltaOrFull: "FULL"` or `"DELTA"`. API delta mappings belong in `sourceSelectQuery.delta`; shared `Options.Delta` is compatibility fallback only. Syntactically configured delta requests do not prove reliable incremental behavior.
+
+DELTA uses the staging maximum `sourceDeltaColumn`, falling back to `fallbackWatermark`. Both modes append standardized rows to staging; FULL retains the latest seven copies. Extraction mode is separate from transformation `target.write_mode`. Review [Ingestion Job Pattern](../patterns/ingestion-jobs.md) before adapting historical options.
 
 ## How The Example Operates
 

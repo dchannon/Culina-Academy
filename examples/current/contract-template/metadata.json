@@ -1,0 +1,20 @@
+{
+  "version": "2.2.0",
+  "contractVersion": "2.0.0",
+  "studioName": "Example Contract Author",
+  "studioPublisher": "Example Publisher",
+  "studioVersion": "0.0.0-example",
+  "clientId": "00000000-0000-4000-8000-000000000001",
+  "clientName": "Example Client",
+  "contractId": "90000000-0000-4000-8000-000000000001",
+  "exportedAt": "2026-10-08T00:00:00Z",
+  "exportedBy": "example-author",
+  "summary": {
+    "jobs": 4,
+    "linkedServices": 2,
+    "sourceDetails": 2,
+    "transformations": 1,
+    "serviceConfigs": 1,
+    "dependencies": 2
+  }
+}

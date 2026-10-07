@@ -1,48 +1,34 @@
 # Cookbook: Add A Transformation Job
 
-Use this cookbook when adding modeled output from staging or integration data.
+Use this cookbook for modeled output from staging or integration data.
 
 ## Inputs To Decide First
 
-| Decision | Example |
-| --- | --- |
-| Source tables | `stg.customer_orders`, `stg.customers` |
-| Target layer | `int` or `edw` |
-| Target table | `int.customer_order_summary` |
-| Target grain | One row per customer per order date |
-| Business keys | `customer_id`, `order_date` |
-| Write mode | `append`, `upsert`, `overwrite`, or `scd2` |
-| Required checks | duplicate keys, null keys, row count, join coverage |
+Choose sources/filters, target layer/table/grain, business keys, write mode, quality checks, and prerequisites. Use `truncate_insert` for INT, `upsert` for cross-batch key replacement, `append` for additive facts, or `scd2` for history.
 
 ## Control Records To Create
 
-1. Create a `job` record for the transformation.
-2. Create a `transformation` record tied to that job.
-3. Add `dependency` records for every required upstream source.
-4. Add validation expectations that match the target grain.
+1. Create an `Integration`, `Data Warehouse`, or `Consumption` job.
+2. Create its transformation with the full `parameters` envelope.
+3. Add dependencies for every required upstream job.
+4. Configure `testDataIntegrity`, `testDuplicateBks`, and `testNullBks`; required failures block success.
 
 ## Transformation Parameters Checklist
 
-Confirm `parameters` defines:
-
-- `sources`: aliases, databases, tables, filters, and business keys.
-- `target`: database, table, write mode, and target keys.
-- `transformation.steps`: ordered work such as read, filter, deduplicate, aggregate, join, select, add system fields, compute hash, and write.
-- validation flags for duplicate keys, null keys, and expected row behavior.
+- `sources` is name-keyed; each source specifies `db`, `table`, `business_keys`, and `filter.where_clause`.
+- Staging reads use `stg_load_date` or an approved equivalent. Unrestricted scans need deliberate full-refresh approval; a delta slice cannot prove deletion.
+- `target` specifies `db`, `table`, `business_keys`, and `write_mode`. SCD2 also needs its hash/date/key/current-flag contract.
+- `transformation.steps` uses ordered `step_id`, `name`, `type`, and `config`. Read aliases before use, deduplicate before joins, and finish data-changing work with `write_target`.
+- Optional `deployment_artifacts` and `runtime_options` stay outside steps; query bodies must not embed multi-statement DDL.
 
 ## Example Files
 
-Use these sandbox references:
-
-- `examples/config/sandbox-v2/customer_orders_transformation_job.json`
-- `examples/metadata/data-culina-sandbox-test-client/transformations/transformation_000501_int_blog_post_engagement.json`
-- `examples/metadata/data-culina-sandbox-test-client/transformations/transformation_000502_edw_dim_blog_post.json`
+- [Current Package](../../examples/current/README.md): filtered, deduplicated INT write.
+- [Historical Compact Example](../../examples/config/sandbox-v2/customer_orders_transformation_job.json).
+- [Historical Sandbox](../configuration/sandbox-client-example.md): multi-source/dimension fixtures.
 
 ## Review Questions
 
-- Does the target grain match the business question?
-- Are joins deterministic?
-- Are duplicate records handled before aggregation or target writes?
-- Are nullable business keys rejected or explicitly handled?
-- Does the write mode match recovery expectations?
-- Can a support user map a failed run-history step back to a configured step?
+Do count checks compare the same grain? Are nullable keys handled? Does a same-queue append retry preserve queue identity? Is a new queue intentionally a new append? Does tombstone processing receive complete source state?
+
+See [Transformation Job Pattern](../patterns/transformation-jobs.md) for `_culina_write_id`, source `Batch_ID`, and extraction-versus-write behavior. Physical tuning is optional: validate partition columns and never combine `repartition` with `coalesce_to`.

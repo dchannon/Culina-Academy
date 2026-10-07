@@ -1,0 +1,22 @@
+{
+  "id": "20000000-0000-4000-8000-000000000001",
+  "clientId": "00000000-0000-4000-8000-000000000001",
+  "sourceName": "example_orders_api",
+  "sourceType": "rest_api",
+  "configJson": {
+    "Endpoint": {
+      "BaseUrl": "${ENV.REST_BASE_URL}",
+      "Method": "GET"
+    },
+    "Auth": {
+      "Method": "None"
+    },
+    "Options": {
+      "TimeoutSeconds": 30,
+      "Headers": {
+        "Accept": "application/json"
+      }
+    }
+  },
+  "createdBy": "example-author"
+}

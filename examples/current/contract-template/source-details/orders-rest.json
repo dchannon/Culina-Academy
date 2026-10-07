@@ -1,0 +1,41 @@
+{
+  "id": "30000000-0000-4000-8000-000000000001",
+  "jobId": "10000000-0000-4000-8000-000000000001",
+  "sourceEntityName": "Orders_Rest",
+  "sourceSelectQuery": {
+    "path": "${ENV.REST_ORDERS_PATH}",
+    "params": {},
+    "delta": {
+      "ParamName": "updated_since"
+    },
+    "flatten": {
+      "type": "flatten",
+      "explode": [],
+      "columns": [
+        {
+          "expr": "id",
+          "alias": "order_id",
+          "dtype": "bigint"
+        },
+        {
+          "expr": "amount",
+          "alias": "amount",
+          "dtype": "decimal(18,2)"
+        },
+        {
+          "expr": "updated_at",
+          "alias": "updated_at",
+          "dtype": "timestamp"
+        }
+      ]
+    }
+  },
+  "sourceDeltaColumn": "updated_at",
+  "deltaOrFull": "DELTA",
+  "fallbackWatermark": "1900-01-01T00:00:00Z",
+  "linkedServiceConfigId": "20000000-0000-4000-8000-000000000001",
+  "landingFileExtension": ".parquet",
+  "deltaFileExtension": ".parquet",
+  "stagingTableName": "Orders_Rest",
+  "createdBy": "example-author"
+}

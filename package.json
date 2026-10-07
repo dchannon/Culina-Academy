@@ -1,12 +1,14 @@
 {
   "name": "culina-academy",
-  "version": "2.1.0",
+  "version": "2.2.0",
   "private": false,
   "license": "Apache-2.0",
   "type": "module",
   "scripts": {
     "test": "node --test tests/*.test.mjs",
     "validate:content": "node scripts/validate-content.mjs workbook/content",
-    "validate:schemas": "node scripts/validate-schemas.mjs"
+    "validate:schemas": "node scripts/validate-schemas.mjs",
+    "validate:docs": "node scripts/validate-docs.mjs",
+    "validate:examples": "node examples/current/verify.mjs"
   }
 }

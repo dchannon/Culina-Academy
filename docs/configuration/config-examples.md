@@ -1,9 +1,11 @@
 # Configuration Examples
 
-The repository contains two example sets:
+Start new configuration work with [Current Contract Examples](../../examples/current/README.md). This small package uses current source, file, transformation, service, and promotion contracts with neutral placeholders. It is a structural learning fixture, not a configured deployment.
 
-- `examples/config/sandbox-v2/` contains compact V2 configuration examples for the main job patterns.
-- `examples/metadata/data-culina-sandbox-test-client/` contains a full sandbox client metadata export with jobs, linked services, source details, transformations, and dependencies.
+The repository also retains two historical learning sets:
+
+- `examples/config/sandbox-v2/` contains compact V2 teaching examples, not the current deployment contract.
+- `examples/metadata/data-culina-sandbox-test-client/` contains the unchanged 71-file historical sandbox export. Its record relationships remain useful, but its versions, identifiers, and connector options are not a current support guarantee.
 
 These examples are designed to show the shape and relationships users should understand:
 
@@ -65,4 +67,4 @@ Run:
 npm run validate:schemas
 ```
 
-This checks the compact V2 example files against the bundled schema documents under `schemas/sandbox-v2/`.
+This checks only the compact historical V2 files against `schemas/sandbox-v2/`. It does not validate `examples/current/`, a universal export, deployment tokens, or runtime/platform readiness. Use the structural checks and promotion review in [Config Validation](../reference/config-validation.md) for current contracts.

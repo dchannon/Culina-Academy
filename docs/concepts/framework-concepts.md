@@ -1,35 +1,37 @@
 # Framework Concepts
 
-## Metadata-Driven Operation
+## Definition, Instance, Evidence
 
-Culina uses structured control information to describe intended behavior. A workflow is not only a script or job. It has configuration, relationships, dependencies, expected inputs, output intent, and operational evidence.
+A configured job defines intended work. A queue row represents one execution instance. Run history, failures, and validation records describe that instance.
 
-## Control Plane
+Keep job, control batch, queue, source scope, and platform execution identifiers together when diagnosing. A source record's batch field can have different meaning from the control-plane batch.
 
-The control plane contains the framework's configured understanding of work. It describes workflow definitions, source definitions, dependency relationships, run state, validation expectations, and support evidence.
+## Planes And Responsibilities
 
-## Orchestration Plane
+The control plane stores deployed metadata and operational state. Orchestration selects dependency-ready work and owns finalization. Data execution consumes a bounded payload and returns evidence. [Framework Architecture](../architecture/framework-architecture.md) maps these concerns across six responsibilities.
 
-The orchestration plane coordinates runtime work. It decides what can be planned, what is dependency-ready, what can be dispatched, and what status should be recorded after execution.
+## Workloads
 
-## Data Plane
+Ingestion captures and standardizes source inputs. Transformation executes ordered modeled work and writes its target. Service jobs perform operational work such as HTTP requests, file operations, SQL tasks, exports, or token requests.
 
-The data plane contains the data layers used by the framework. Data moves from source intake through standardized intermediate layers into durable modeled structures and consumption outputs.
+A service job has metadata, queue, dependency, retry, and evidence contracts. External notification delivery is a separate handoff.
 
-## Operational Evidence
+## Portable References
 
-Operational evidence is the information used to understand what happened during a run:
+`storage://<alias>/<path>` separates logical file access from physical storage roots. `secret://<name>` identifies a credential without its value or provider root. Universal packages may retain unresolved `${ENV.*}` tokens until deployment supplies environment values.
 
-- workflow name
-- run identifier
-- schedule or trigger context
-- dependency state
-- visible status
-- failing step or layer
-- error message
-- affected input or output
-- completion or failure timestamp
+See [Configuration Examples](../configuration/config-examples.md) and [Current Examples](../../examples/current/README.md).
 
-## Support Boundary
+## Data And History
 
-Users should first identify the affected workflow, layer, status, and evidence. If the problem cannot be explained from visible configuration and run evidence, prepare a support handoff.
+Landing, Archive, and Delta preserve and standardize intake. Staging retains Bronze history. INT is transient modeled work. EDW holds durable facts and dimensions. CONS serves views and tables.
+
+Full/Delta extraction and append/upsert/SCD2 writes answer different questions. Delta extraction, the Delta layer, and Delta Lake format are distinct.
+
+[History And Reporting](history-and-reporting.md) explains complete-state SCD2, Unknown/inferred members, managed append retries, and reporting grain.
+
+## Operational Authority
+
+A successful write or result artifact does not alone prove an accepted run. Orchestration combines execution and required validation evidence before recording status. Monitoring projections help explain that state; their documented authority determines which signal to trust.
+
+Start with [Engine Diagnostics](../troubleshooting/engine-diagnostics.md) and [Diagnostic Queries](../troubleshooting/diagnostic-queries.md).

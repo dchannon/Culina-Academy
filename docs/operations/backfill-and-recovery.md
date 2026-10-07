@@ -1,89 +1,107 @@
 # Backfill And Recovery
 
-Use this guide when data is missing, incorrect, delayed, or when a failed run must be recovered after the cause is corrected.
+Use this guide after finding the earliest failure. Recovery is an approved operational action, not a reason to bulk-reset queues, delete history, or bypass required tests.
 
 ## Core Principles
 
-1. Recover from the point of failure onward.
-2. Fix the root cause before rerunning work.
-3. Avoid resetting `COMPLETED` rows during normal recovery.
-4. Use the smallest recovery scope that restores correctness.
-5. Treat INT as the main rebuild boundary for transient modeled output.
-6. Treat historized dimensions with extra care because hashes, effective dates, and tombstone behavior must remain consistent.
+1. Fix the root cause before retry or rerun.
+2. Preserve evidence and identify writes/external actions already committed.
+3. Preserve `COMPLETED` rows during routine queue recovery.
+4. Recover the smallest correct scope, including affected skipped descendants.
+5. Use INT's configured replacement boundary; preserve durable EDW history.
+6. Reconcile workers, open-batch dependencies, and the active parent loop before changing state.
 
 ## Recovery Types
 
-| Type | Meaning | Typical use |
+| Type | Meaning | Identity and scope |
 | --- | --- | --- |
-| Rerun | Re-execute unresolved queued work after a fix. | A failed queue row can run successfully with the same configured logic. |
-| Replay | Reprocess downstream logic from existing upstream data. | Source data is already available, but transformation output must be rebuilt. |
-| Backfill | Load historical or previously missing source data. | A source period, file range, or API window was missed. |
-| Rebuild | Recreate a target layer from available upstream data. | INT or modeled output must be refreshed after logic or source correction. |
+| Retry | Automatic re-attempt while SQL retry budget remains. | Same queue/batch; wait for `retry_datetime`. |
+| Rerun | Approved re-execution of unresolved queued work after correction. | Preserve original queue/batch when repairing that logical run; inspect prior side effects. |
+| Replay | Reprocess downstream logic from correct upstream data. | New queue work is not automatically duplicate-safe; confirm write mode/window. |
+| Backfill | Restore missing historical source coverage. | Explicit source period, selector, watermark, and downstream scope; new queue means new append. |
+| Rebuild | Recreate a derived target from upstream data. | Prefer configured INT replacement; historical EDW replacement needs reconciliation and approval. |
 
 ## Standard Recovery Workflow
 
-1. Identify the failed job, queue row, batch, and affected target.
-2. Confirm the first failing upstream point in the dependency chain.
-3. Read `job_failure_log` and `job_runhistory` before changing queue state.
-4. Determine whether the cause is source-side, config-side, transformation-side, validation-side, or dependency-side.
-5. Correct the cause.
-6. Choose rerun, replay, backfill, or rebuild.
-7. Recover only the required scope.
-8. Validate queue completion, target data, downstream impact, and user-visible output.
-9. Record what changed and which evidence proved recovery.
+1. Capture job/queue/batch/workload identities, UTC timestamps, state, and target.
+2. Read [Diagnostic Queries](../troubleshooting/diagnostic-queries.md), including history and validation; terminal logs alone miss retry-held errors.
+3. Find blockers across open batches and the last correct data layer.
+4. Reconcile live execution and authoritative results if finalization was lost.
+5. Correct source, metadata, access, validation, service, or publication cause.
+6. Approve the minimum window and account for committed writes/actions.
+7. Release only eligible unresolved scope through the assigned recovery mechanism; reuse an active parent loop.
+8. Verify finalization, logged tests, target grain/history, publication, and downstream outputs.
+9. Record recovery proof and notification outcome separately.
 
 ## Queue Rerun Guidance
 
-Rerun only after the same failure condition will not immediately recur.
+| State | Operating decision |
+| --- | --- |
+| `ON_HOLD_RETRY` | Allow due-time promotion and claiming after correction; do not seed a new queue to accelerate retry. |
+| `FAILED` | Correct cause, preserve evidence, approve scoped rerun, and review retry budget/timing through the assigned mechanism. |
+| `IN_PROGRESS` | Reconcile live worker, result publication, and finalization first. Do not assume automatic lease-expiry recovery. |
+| `SKIPPED` | Recover upstream first, then affected descendants when prerequisites are valid. |
+| `COMPLETED` | Not a routine reset candidate. Incorrect completed data requires separate replay/reconciliation. |
 
-Good candidates:
-
-- `FAILED` rows after a source access issue is fixed.
-- `ON_HOLD_RETRY` rows after a transient issue is confirmed.
-- Stuck `IN_PROGRESS` rows after operational review confirms the work is no longer running.
-- `SKIPPED` rows after the upstream failure has been resolved.
-
-Poor candidates:
-
-- `COMPLETED` rows with no data-correctness issue.
-- Downstream skipped rows when the upstream failure is still active.
-- Broad batch reruns when one queue row can be recovered.
-- Reruns used to bypass validation failures.
+Readiness may include another open batch. `FAILED` keeps a batch open even though job reporting calls it terminal. Do not force closure or clear failures to emit completion notifications.
 
 ## Layer-Specific Guidance
 
 | Layer | Recovery behavior |
 | --- | --- |
-| Landing/archive | Confirm the source file or API result exists for the affected window. Preserve raw evidence where available. |
-| Delta | Confirm the delta parameter or watermark covers the missing interval. New recovered data normally appends rather than overwrites existing delta output. |
-| Staging | Confirm the table exists and represents the recovered source window correctly. If the catalog was reset, bootstrap the catalog before rerunning dependent transformations. |
-| INT | Rebuild from staging when modeled transient output is wrong or incomplete. INT is usually the safest boundary for replay. |
-| EDW facts | Respect append or upsert behavior. Validate duplicate handling and target grain. |
-| EDW dimensions | Validate business keys, hash comparison, effective dating, current-row logic, and tombstone behavior. |
-| Consumption | Confirm user-visible outputs now match the corrected upstream data. |
+| Landing/archive | Preserve raw input and establish exact source window; reuse only evidence covering approved scope. |
+| Delta | Review delta column, effective watermark, fallback, and selector. Recovery is not inherently an overwrite. |
+| Staging | Full intake appends then retains seven load dates; delta intake appends. Repeated source copies require downstream filtering. |
+| INT | Rebuild using configured replacement and correctly filtered staging; do not assume every client target is `truncate_insert`. |
+| EDW facts | Distinguish same-queue managed append from new queues, upsert, and historical untagged targets. |
+| EDW dimensions | Preserve keys, dates, hashes, current flags, tombstones, and framework-owned Unknown/inferred members. |
+| Consumption | Repair required CONS publication and verify actual BI visibility; a Spark object alone may not be available there. |
+
+### Retry-Safe Fact Append
+
+A managed `append` retry using the same control `batch_id` and `queue_id` atomically replaces that queue's `_culina_write_id` contribution, preserving other queues. This includes a committed append followed by validation failure. No metadata change is required; malformed duplicate input still fails required tests.
+
+A new queue, even for the same source window or source `Batch_ID`, is a new append. Source `Batch_ID` is preserved by append and can differ from the control batch; do not use it alone to identify a queue contribution. If `add_system_fields` assigns the current batch, retain original source lineage separately.
+
+Confirm installed managed-append support and validation diagnostics before recovery. Existing untagged data or old duplicates require explicit reconciliation; retries do not remove them. Business-key replacement across independent batches belongs to an approved `upsert` design, not an unreviewed incident-time write-mode change.
+
+### Dimension And Reporting Recovery
+
+The SCD2 writer maintains Unknown at key `-1`; eligible null/blank fact lookups use it. Non-null missing lookups use inferred keys below `-1`. Hydration preserves that key when the real dimension arrives; later changes follow normal history rules. Do not manually allocate keys, replace Unknown, or rewrite facts to resolve late arrivals.
+
+Check lookup eligibility, configured key/date/hash fields, current uniqueness, and member status on failure. Duplicate physical Unknown rows or conflicting/ambiguous hydration need correction, not suppression. Use complete dimension source state where tombstone comparison requires it; partial backfill must not masquerade as full state.
+
+Required `current_reporting` failure fails the transformation after its dimension write may have succeeded. Repair access/serving capability and rerun unresolved work without truncating EDW. Fabric publishes a managed CONS Delta table; Databricks/Athena publish views. Synapse/local BI publication needs an approved publisher adapter and fails when absent. Verify endpoint synchronization/access; do not join current-only objects to historical fact keys.
 
 ## Backfill Checklist
 
-- Identify the source period or source entity that is missing.
-- Confirm whether full-load or delta-load behavior applies.
-- Confirm fallback watermark or delta parameter behavior.
-- Confirm target staging table and file extension.
-- Confirm dependencies that must rerun after source recovery.
-- Confirm downstream INT, EDW, and consumption objects affected by the recovery.
-- Validate row counts, business keys, duplicate behavior, and expected output.
+- Record missing periods/entities and actual historical source availability.
+- Prefer bounded full-ingestion recovery when it covers missing history; current snapshots cannot recreate unavailable past records.
+- Confirm effective watermark/fallback; do not move global watermarks backwards without approved scope.
+- Check relative selector, selected workbook sheet, extensions, catalog, and staging target.
+- Account for append/retention and `stg_load_date` or equivalent source filters.
+- Approve downstream replay, historical effects, and tombstone impact before loading.
+- Reconcile new-queue fact contributions and preexisting duplicates.
+- Validate comparable-grain counts, keys, history, and consumer output.
+
+Selective-period metadata changes are not a universal recovery tool. Retain original configuration and restore the normal schedule/window after approved backfill. Approval thresholds and communication timing are client-specific.
+
+## Service And Notification Recovery
+
+For HTTP actions, exports, file operations, and token issuance/rotation, establish whether the side effect committed before retry. Lost response/result artifacts do not prove nothing happened; use the handler's approved reconciliation procedure.
+
+Azure token-target PUT timeout/watchdog termination is commit-ambiguous: re-read the target version before retry. GET timeout does not imply a write and is safe to retry. Do not bypass concurrency protection or delete locks manually. Databricks writes need an explicitly configured approved writer; readable secret scopes are not implicitly writable.
+
+Reconcile notification POST receipt and SQL marking separately. Closed batch without `BATCH_COMPLETION` / `SENT`, or terminal failure with `is_notified_sent = 0`, means no persisted successful handoff. A previous accepted POST can still be delivered again on redispatch. Do not mark notified without verified handoff or equate `SENT` with channel delivery.
 
 ## Recovery Evidence
 
-Keep this evidence in the incident or support note:
+- Environment/backend, operator, approval, and recovery scope.
+- UUID identities, entity name, and original/recovery workload runs.
+- Previous state/retry timing, earliest blocker, and exact sanitized error.
+- Authoritative result, failed step, test details, and committed actions.
+- Recovery type, source window/filter, write mode, and preserved/new queue identity.
+- Target grain/history/member checks, CONS visibility, downstream proof, and final state.
+- Separate notification evidence and remaining risks.
 
-- affected client or environment
-- batch id and queue row id
-- job id and `entityName`
-- first failing upstream job
-- status before recovery
-- failure log message
-- run history step that failed
-- recovery type used
-- source period or target table affected
-- validation performed after recovery
-- final status and remaining risk
+Academy sandbox packages are historical learning fixtures, not proof of current client recovery behavior or universal live platform qualification.

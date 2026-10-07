@@ -1,80 +1,58 @@
 # Data Layers
 
-The data plane contains the storage and processing layers used by the framework. These layers help users understand where data is in the flow and what kind of issue they are seeing.
+The journey has an ingestion group and a transformation group. Physical storage, table formats, and serving endpoints vary by platform.
 
-## Source
+```mermaid
+flowchart LR
+  subgraph Capture["Ingestion"]
+    Source["Source"] --> Landing["Landing"]
+    Landing --> Archive["Archive"]
+    Landing --> Delta["Delta"]
+    Delta --> Staging["Staging"]
+  end
+  subgraph Model["Transformation"]
+    INT["INT"] --> EDW["EDW"] --> CONS["CONS"]
+  end
+  Staging --> INT
+```
 
-The external or upstream input. Source issues usually involve missing files, changed formats, unavailable systems, permission problems, or unexpected source values.
+## Layer Responsibilities
 
-## Landing
+| Layer | Role and persistence | First diagnostic question |
+| --- | --- | --- |
+| Source | Upstream API, database, or file input | Did the extract boundary return complete and permitted data? |
+| Landing | Captured source input | Did the expected file or extract arrive for this run? |
+| Archive | Retained raw or near-raw input | Which original input explains or can replay the run? |
+| Delta | Standardized, table-friendly intake | Did parsing, flattening, types, and sheet selection produce expected columns? |
+| Staging | Append-oriented Bronze history | Is the expected source scope present, with lineage and duplicates visible? |
+| Integration / INT | Transient model alignment; normally truncate-and-load | Did filtering, deduplication, joins, and derivations produce the intended model? |
+| EDW | Durable modeled facts and dimensions | Did append, upsert, or SCD2 preserve required history and keys? |
+| Consumption / CONS | Curated reporting views, tables, and downstream surfaces | Does the serving endpoint expose the required output and perspective? |
 
-The first framework-controlled intake area. Landing confirms that the framework received or captured the input.
+Archive is a retained branch from captured input, not a transformation every downstream step must pass through.
 
-Typical questions:
+## Extraction And Writing Are Separate
 
-- Did the expected source arrive?
-- Is the file or extract complete?
-- Is the timestamp or period correct?
+`deltaOrFull` describes source extraction. `target.write_mode` describes persistence. A Full extract does not imply overwriting Staging; ingestion retains standardized history.
 
-## Archive
+Incremental extraction derives a boundary and translates it into source query or connector filtering. INT can use a watermark while rebuilding its target. Deduplicate to the configured business grain before integration.
 
-The retained copy of received source input. Archive supports traceability and replay discussions.
+Dimensions with missing-member detection need complete current-state input. An ordinary incremental slice can make omitted entities look deleted.
 
-Typical questions:
+## Durable History
 
-- Was the original input retained?
-- Which input version was used?
+Facts commonly use managed append with retry protection tied to control batch and queue identity. Dimensions generally use SCD2 with business keys, aligned hashes, effective/expiry dates, and current flags. Mapping/reference targets can use approved non-historized behavior.
 
-## Delta
+INT is rebuildable modeled work. EDW is the history authority. [History And Reporting](../concepts/history-and-reporting.md) covers Unknown/inferred members, tombstones, append retries, and reporting grain.
 
-The standardized intake layer. Delta makes raw input easier for downstream processing by applying structural normalization.
+## Reporting Publication
 
-Typical questions:
+CONS may contain managed tables or catalog views. A Spark view is not automatically visible to a BI endpoint. Automatic SCD2 current-only publication uses a platform publisher; dual-perspective reporting requires a model-specific projection.
 
-- Did the source parse successfully?
-- Did the expected columns or fields appear?
-- Were malformed records detected?
+Validate object presence, endpoint synchronization, permissions, row grain, and joins. A written EDW target with a failed required CONS publication is not a successful transformation.
 
-## Staging
+## Locate The First Wrong Boundary
 
-The staging layer collects standardized records for transformation. Staging issues usually involve completeness, duplicates, unexpected volume, or source-to-target alignment.
+Compare source to Landing, captured input to standardized output, Staging to INT, INT to EDW, and EDW to CONS. Collect the same queue identity and source scope throughout. Correct the input or configuration, then recover the affected boundary and dependent work.
 
-Typical questions:
-
-- Is the expected data volume present?
-- Did the correct input period load?
-- Are duplicates or missing required values visible?
-
-## Integration
-
-The integration layer aligns data to business or domain structures before durable persistence.
-
-Typical questions:
-
-- Did transformation logic produce expected joins or relationships?
-- Are reference mappings available?
-- Did data fail validation before persistence?
-
-## EDW / Core Warehouse
-
-The durable modeled layer. This is where governed history and core analytical structures are maintained.
-
-Typical questions:
-
-- Did the durable target update?
-- Is the expected history present?
-- Did write behavior match expectations?
-
-## Consumption
-
-The serving layer for reporting, downstream interfaces, or user-facing outputs.
-
-Typical questions:
-
-- Is the expected output available?
-- Is the output complete for the requested period?
-- Are downstream consumers blocked?
-
-## Diagnostic Pattern
-
-When diagnosing, identify the last layer that looked correct and the first layer that looked wrong. That boundary usually determines the fastest support path.
+Continue with [Ingestion Jobs](../patterns/ingestion-jobs.md), [Transformation Jobs](../patterns/transformation-jobs.md), and [Engine Diagnostics](../troubleshooting/engine-diagnostics.md).

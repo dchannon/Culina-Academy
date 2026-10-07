@@ -4,6 +4,8 @@ Optional local exercises for users who want to confirm their learning after read
 
 The workbook runs locally in the browser. Progress stays in local browser storage until the user exports a transcript.
 
+The bundled tracks are practice material, not a deployment contract. Use the [current configuration examples](../examples/README.md) and [version compatibility reference](../docs/reference/version-compatibility.md) when applying a lesson to a running environment.
+
 ## Reader Exercise
 
 1. From the repo root, start a local static server:
@@ -25,7 +27,7 @@ http://localhost:8000/workbook/learner.html
 7. Complete the lessons, labs, and assessment.
 8. Use notes, bookmarks, search, and glossary as needed.
 9. Select `Export Transcript` when complete.
-10. Send the transcript JSON to the person coordinating the exercise, if requested.
+10. Send the transcript JSON with a short completion note to the person coordinating the exercise, if requested. Review your notes and responses before sharing them; do not include credentials or confidential operational data.
 
 ## Review Workbook
 

@@ -1,6 +1,6 @@
 # What Is Culina?
 
-Culina is a metadata-driven operating framework for data movement, transformation, orchestration, and support. It gives users a consistent way to describe work, run work, trace work, and diagnose work without treating every workflow as a custom one-off process.
+Culina is a metadata-driven operating framework for data movement, transformation, service jobs, orchestration, and support. It gives users a consistent way to describe work, run work, trace work, and diagnose work without treating every workflow as a custom one-off process.
 
 ## The Short Story
 
@@ -28,6 +28,8 @@ The loop matters. A workflow is not only a pipeline. It is a managed unit of wor
 | Where did data change? | Layer boundaries show whether the issue is in landing, delta, staging, integration, EDW, or consumption. |
 | Why did a run fail? | Failure logs, run history, job configuration, and source or transformation metadata connect symptoms to evidence. |
 | How should recovery happen? | Rerun, replay, backfill, and rebuild decisions follow the failed layer and affected dependency scope. |
+| How is history retained? | Staging captures ingestion history; EDW write modes govern persistent facts and SCD2 dimensions; reporting explicitly chooses a historical or current perspective. |
+| What runs on my platform? | Platform adapters bind the logical workload to deployed compute, storage, identity, and BI publishing. Qualification is environment-specific. |
 
 ## Operating Model
 
@@ -73,7 +75,9 @@ A different approach may be simpler when the work is:
 ## First Reading Path
 
 1. [Quickstart: Trace A Workflow](quickstart.md)
-2. [Framework Architecture](../architecture/framework-architecture.md)
-3. [Configuration Examples](../configuration/config-examples.md)
+2. [Architecture Reading Path](../architecture/README.md)
+3. [Configuration Guide](../configuration/README.md)
 4. [Diagnostic Queries](../troubleshooting/diagnostic-queries.md)
 5. [Incident Walkthroughs](../troubleshooting/incident-walkthroughs.md)
+
+For deployment prerequisites and the current validation boundary, read the [Platform Guide](../platforms/README.md). For guided learning, use the [Video Tutorials](../tutorials/README.md) and optional [Workbook Exercises](../../workbook/README.md).
