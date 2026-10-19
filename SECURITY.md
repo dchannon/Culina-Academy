@@ -17,4 +17,4 @@ When preparing diagnostic evidence:
 
 ## Scope
 
-This repository contains public documentation, examples, and optional workbook exercises. It does not publish the Culina runtime package.
+This repository contains public documentation and examples. It does not publish the Culina runtime package.

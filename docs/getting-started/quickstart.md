@@ -69,4 +69,4 @@ Choose a scoped action with [Backfill And Recovery](../operations/backfill-and-r
 
 ## Continue
 
-Use the [Configuration Guide](../configuration/README.md) to add work, [Operations Guide](../operations/README.md) to inspect a real environment, or [Workbook Exercises](../../workbook/README.md) to practice locally.
+Use the [Configuration Guide](../configuration/README.md) to add work or the [Operations Guide](../operations/README.md) to inspect a real environment.

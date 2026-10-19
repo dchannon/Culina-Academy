@@ -1,6 +1,6 @@
 # Support Model
 
-Use repository issue templates for public documentation, examples, workbook, and validation questions. Use the assigned Data Culina client support channel for environment-specific incidents.
+Use repository issue templates for public documentation, examples, and validation questions. Use the assigned Data Culina client support channel for environment-specific incidents.
 
 ## Severity Guide
 

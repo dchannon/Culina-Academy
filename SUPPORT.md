@@ -3,7 +3,7 @@
 Use these support paths:
 
 - Work with Data Culina: [dataculina.com](https://dataculina.com/).
-- Public documentation, example, workbook, and validation questions: [open a GitHub issue](https://github.com/dchannon/Culina-Academy/issues/new/choose).
+- Public documentation, example, and validation questions: [open a GitHub issue](https://github.com/dchannon/Culina-Academy/issues/new/choose).
 - Environment-specific incidents: use the assigned Data Culina client support channel.
 - Sensitive security concerns: use [private security reporting](https://github.com/dchannon/Culina-Academy/security/advisories/new) when available.
 

@@ -78,7 +78,7 @@ Required `current_reporting` failure fails the transformation after its dimensio
 - Record missing periods/entities and actual historical source availability.
 - Prefer bounded full-ingestion recovery when it covers missing history; current snapshots cannot recreate unavailable past records.
 - Confirm effective watermark/fallback; do not move global watermarks backwards without approved scope.
-- Check relative selector, selected workbook sheet, extensions, catalog, and staging target.
+- Check relative selector, selected Excel sheet, extensions, catalog, and staging target.
 - Account for append/retention and `stg_load_date` or equivalent source filters.
 - Approve downstream replay, historical effects, and tombstone impact before loading.
 - Reconcile new-queue fact contributions and preexisting duplicates.

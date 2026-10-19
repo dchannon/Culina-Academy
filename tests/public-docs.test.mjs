@@ -6,7 +6,7 @@ import { fileURLToPath } from 'node:url';
 
 const repoRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 
-test('public docs use generic workbook paths', async () => {
+test('public docs link to the documentation index', async () => {
   const files = await listFiles(repoRoot, file => {
     const rel = path.relative(repoRoot, file).replaceAll('\\', '/');
     return rel === 'README.md' || rel === 'index.html' || rel.startsWith('docs/');
@@ -14,7 +14,7 @@ test('public docs use generic workbook paths', async () => {
   const combined = (await Promise.all(files.map(file => readFile(file, 'utf8')))).join('\n');
 
   assert.equal(combined.includes('internal/'), false);
-  assert.equal(combined.includes('workbook/README.md'), true);
+  assert.equal(combined.includes('docs/README.md'), true);
 });
 
 test('public docs avoid withheld-content framing', async () => {
@@ -93,7 +93,6 @@ test('public docs include schema, sandbox, and recovery guides', async () => {
     'SECURITY.md',
     'CHANGELOG.md',
     'LICENSE',
-    'workbook/README.md',
   ];
 
   for (const rel of requiredFiles) {
@@ -143,8 +142,7 @@ test('public materials exclude repository-maintenance notes', async () => {
     const rel = path.relative(repoRoot, file).replaceAll('\\', '/');
     return rel === 'README.md'
       || rel === 'CHANGELOG.md'
-      || rel.startsWith('docs/')
-      || rel.startsWith('workbook/');
+      || rel.startsWith('docs/');
   });
   const combined = (await Promise.all(files.map(file => readFile(file, 'utf8')))).join('\n').toLowerCase();
 
@@ -159,7 +157,6 @@ test('public materials exclude repository-maintenance notes', async () => {
     'ai knowledge pack index',
     'team members',
     'admin review',
-    'admin workbook',
     'admin-core',
     'admin_review',
     'adminreview',

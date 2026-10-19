@@ -56,7 +56,7 @@ Database DELTA wraps plain SQL with `sourceDeltaColumn > watermark`. File DELTA 
 
 Use `Storage.BaseUri: "storage://inbound/example-client"` and a relative selector `path`. `sourceType: "file"` requires `sourceSelectQuery.format`. Spark readers cover CSV, JSON/JSONL/NDJSON, Parquet, ORC, Avro, and text; source `options` override `Options.Read`.
 
-Excel requires one `.xlsx` or `.xlsm` workbook and one scalar `sheet_name` per job/source-detail pair; no globs, sheet lists, or legacy `.xls`. Workbook parsing is driver-bound; prefer Spark-native formats for large inputs.
+Excel requires one `.xlsx` or `.xlsm` file and one scalar `sheet_name` per job/source-detail pair; no globs, sheet lists, or legacy `.xls`. Excel parsing is driver-bound; prefer Spark-native formats for large inputs.
 
 ## Diagnostics
 

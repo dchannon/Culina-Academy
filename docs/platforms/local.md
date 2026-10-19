@@ -19,6 +19,6 @@ Local Delta objects and Spark views do not establish BI publication. `current_re
 
 ## Qualification
 
-Verify the installed Spark/Delta environment, bounded file reads/writes, secret-reference resolution, transformation/test failure results and any requested BI adapter. Treat existing [sandbox metadata](../../examples/metadata/data-culina-sandbox-test-client/README.md) and [workbook exercises](../../workbook/README.md) as historical learning fixtures, not current deployment contracts.
+Verify the installed Spark/Delta environment, bounded file reads/writes, secret-reference resolution, transformation/test failure results and any requested BI adapter. Treat existing [sandbox metadata](../../examples/metadata/data-culina-sandbox-test-client/README.md) as a historical learning fixture, not a current deployment contract.
 
 [Platform hub](README.md) | [Version compatibility](../reference/version-compatibility.md)

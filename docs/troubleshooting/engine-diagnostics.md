@@ -64,7 +64,7 @@ SQL fields are `source_linked_service_config_id`, `source_select_query`, `source
 
 Contract source details may expose `linkedServiceConfigId`, `sourceSelectQuery`, `deltaOrFull`, `fallbackWatermark`, and `stagingTableName`. Inspect the effective runtime context for path/query, parameters, delta selectors, and flatten columns. Do not infer the actual watermark from fallback alone.
 
-For Excel, verify one configured sheet per source detail and the required reader dependency; a valid workbook does not imply the selected sheet exists. For API ingestion, token consumption is read-only: use separately configured service execution for approved issuance/rotation.
+For Excel, verify one configured sheet per source detail and the required reader dependency; a valid Excel file does not imply the selected sheet exists. For API ingestion, token consumption is read-only: use separately configured service execution for approved issuance/rotation.
 
 ## Transformation Diagnostics
 

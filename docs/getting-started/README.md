@@ -11,11 +11,9 @@ Culina Academy is for people evaluating the framework, configuring workloads, or
 | Add or change a workload | [Configuration Guide](../configuration/README.md) -> [Current Examples](../../examples/current/README.md) -> [Validation](../reference/config-validation.md) |
 | Diagnose a problem | [Operations Guide](../operations/README.md) -> [Diagnostics](../troubleshooting/engine-diagnostics.md) -> [Recovery](../operations/backfill-and-recovery.md) |
 
-## Watch And Practice
+## Watch The Tutorials
 
 The [eight video tutorials](../tutorials/README.md) explain definitions, architecture, data layers, execution, incremental loading, SCD2, and recovery. Written references include later capabilities.
-
-The [workbook exercises](../../workbook/README.md) are optional. Download the repository, import a learning path locally, complete it, and export a transcript for the person coordinating your exercise.
 
 ## Find A Specific Term
 

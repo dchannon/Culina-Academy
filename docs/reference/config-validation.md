@@ -27,7 +27,7 @@ The schema command validates four historical examples. The current verifier pars
 
 1. Parse JSON, including nested encoded `configJson`, `sourceSelectQuery`, and `parameters` where present. Current service `configValue` must be an object, not an encoded string.
 2. Verify envelope identity/versions, counts, unique IDs, job/linked-service references, client scope, and dependency direction/cycles.
-3. Check selectors, flatten aliases, watermark rules, file formats, relative storage paths, workbook sheet constraints, source filters, keys, target modes, and ordered step aliases.
+3. Check selectors, flatten aliases, watermark rules, file formats, relative storage paths, Excel sheet constraints, source filters, keys, target modes, and ordered step aliases.
 4. Verify all non-secret `${ENV.*}` tokens are declared in `deployment-variable-manifest.json`, scoped correctly, and provided by an external versioned environment value set.
 5. Promote into a separate resolved contract root; fail for missing required values or unresolved tokens. Do not replace `secret://` names or `storage://` aliases.
 6. Use approved contract validation/deployment against the resolved root. Review validation results, logical identity mapping/checksums, and applied records before activation.

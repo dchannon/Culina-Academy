@@ -6,7 +6,6 @@
   "type": "module",
   "scripts": {
     "test": "node --test tests/*.test.mjs",
-    "validate:content": "node scripts/validate-content.mjs workbook/content",
     "validate:schemas": "node scripts/validate-schemas.mjs",
     "validate:docs": "node scripts/validate-docs.mjs",
     "validate:examples": "node examples/current/verify.mjs"

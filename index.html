@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Culina Academy | Framework Documentation</title>
-  <meta name="description" content="Data Culina framework documentation, configuration examples, operations, recovery, videos, and workbook exercises." />
+  <meta name="description" content="Data Culina framework documentation, configuration examples, operations, recovery, and tutorial videos." />
   <meta name="theme-color" content="#073f2c" />
   <link rel="icon" href="assets/data_culina_icon_vector.svg" type="image/svg+xml" />
   <style>
@@ -41,9 +41,6 @@
     .guide-title { font-size: 16px; font-weight: 700; overflow-wrap: anywhere; }
     .guide p { margin: 4px 0 0; color: var(--muted); font-size: 14px; overflow-wrap: anywhere; }
     .source-link { font-size: 12px; color: var(--muted); padding-block: 10px; }
-    .exercise { border-bottom: 1px solid var(--line); padding: 16px 0; }
-    .exercise p { margin: 6px 0 12px; color: var(--muted); font-size: 14px; }
-    .exercise-links { display: flex; flex-wrap: wrap; gap: 12px 24px; }
     #empty { padding-block: 24px; color: var(--muted); }
     [hidden] { display: none !important; }
     footer { border-top: 1px solid var(--line); background: #f4f7f5; }
@@ -68,7 +65,6 @@
       <nav class="header-links" aria-label="Primary navigation">
         <a href="https://github.com/dchannon/Culina-Academy">Repository</a>
         <a href="https://github.com/dchannon/Culina-Academy/blob/main/docs/tutorials/README.md">Videos</a>
-        <a href="workbook/README.md">Workbook</a>
         <a href="https://dataculina.com/">Contact Data Culina</a>
       </nav>
     </div>
@@ -86,7 +82,6 @@
         <a href="#configure">Configure Work</a>
         <a href="#operate">Operate and Recover</a>
         <a href="#reference">Reference</a>
-        <a href="#workbook">Workbook Exercises</a>
       </nav>
       <div class="directory">
         <div class="filters">
@@ -98,7 +93,6 @@
             <option value="configure">Configure Work</option>
             <option value="operate">Operate and Recover</option>
             <option value="reference">Reference</option>
-            <option value="workbook">Workbook Exercises</option>
           </select></label>
         </div>
         <p id="empty" role="status" hidden>No matching guides.</p>
@@ -239,20 +233,6 @@
           </li>
         </ul>
       </section>
-        <section class="topic" id="workbook" aria-labelledby="workbook-title">
-          <h2 id="workbook-title">Workbook Exercises</h2>
-          <div class="guide exercise" data-topic="workbook">
-            <div>
-              <a class="guide-title" href="workbook/learner.html">Reader Workbook</a>
-              <p>Optional local lessons, labs, and assessments with transcript export.</p>
-              <div class="exercise-links">
-                <a href="https://github.com/dchannon/Culina-Academy/blob/main/workbook/README.md">Exercise Instructions</a>
-                <a href="workbook/review.html">Transcript Review</a>
-              </div>
-            </div>
-            <a class="source-link" href="workbook/README.md" aria-label="Local source: Exercise Instructions">Source</a>
-          </div>
-        </section>
       </div>
     </div>
   </main>

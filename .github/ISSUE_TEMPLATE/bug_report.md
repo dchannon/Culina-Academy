@@ -1,6 +1,6 @@
 ---
 name: Bug report
-about: Report a problem with public docs, examples, or workbook behavior
+about: Report a problem with public docs, examples, or validation
 title: "[Bug]: "
 labels: bug
 assignees: ""
@@ -10,7 +10,6 @@ assignees: ""
 
 - [ ] Docs
 - [ ] Examples
-- [ ] Workbook
 - [ ] Validation scripts
 
 ## What happened?

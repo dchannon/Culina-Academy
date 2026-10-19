@@ -15,7 +15,6 @@ Choose a task below. For the shortest introduction, read [What Is Culina?](getti
 | [Framework Overview](getting-started/framework-overview.md) | Definitions, execution, and evidence |
 | [Quickstart](getting-started/quickstart.md) | Trace one workflow through configuration and runtime boundaries |
 | [Video Tutorials](tutorials/README.md) | Eight published framework fundamentals episodes |
-| [Workbook Exercises](../workbook/README.md) | Optional local practice and transcript export |
 
 ## Understand The System
 

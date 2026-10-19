@@ -12,7 +12,6 @@ Current reference: source date **2026-10-08**, snapshot **`0acd952`**, runtime p
 | Sandbox metadata export | 2.2.0 | Historical learning fixture: [sandbox package](../../examples/metadata/data-culina-sandbox-test-client/README.md). Its version is not runtime compatibility evidence. |
 | V2 config examples | `culina.framework.config.v2.example` | Historical teaching format: `examples/config/sandbox-v2/`. |
 | V2 config schemas | 1.0.0 | Validate teaching examples under `schemas/sandbox-v2/`, not current runtime deployment contracts. |
-| Workbook exercises | Level 1 | Optional local practice materials. |
 
 ## Compatibility Notes
 

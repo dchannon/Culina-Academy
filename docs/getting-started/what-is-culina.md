@@ -80,4 +80,4 @@ A different approach may be simpler when the work is:
 4. [Diagnostic Queries](../troubleshooting/diagnostic-queries.md)
 5. [Incident Walkthroughs](../troubleshooting/incident-walkthroughs.md)
 
-For deployment prerequisites and the current validation boundary, read the [Platform Guide](../platforms/README.md). For guided learning, use the [Video Tutorials](../tutorials/README.md) and optional [Workbook Exercises](../../workbook/README.md).
+For deployment prerequisites and the current validation boundary, read the [Platform Guide](../platforms/README.md). For guided learning, use the [Video Tutorials](../tutorials/README.md).

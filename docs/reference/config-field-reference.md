@@ -88,7 +88,7 @@ API selection uses `path`/`resource`/`query`, `params`, optional `root`, and `fl
 
 Source-owned `delta` uses `ParamName`, optional `ValueTemplate`, NetSuite `QueryPlaceholder`, or HubSpot `SearchPropertyName`/`SearchOperator`. `Options.Delta` and inferred parameter placeholders are compatibility fallbacks.
 
-File selectors use `path`, `format`, and `options`. Generic `file` requires an explicit format. Excel adds one scalar `sheet_name`; one workbook/sheet per job/source detail, no globs or `.xls`. Shared read defaults are overridden by selector options.
+File selectors use `path`, `format`, and `options`. Generic `file` requires an explicit format. Excel adds one scalar `sheet_name`; one Excel file and sheet per job/source detail, no globs or `.xls`. Shared read defaults are overridden by selector options.
 
 Legacy `landingLocation`, `deltaLocation`, `archiveLocation`, `tempLocation`, `stagingSchemaName`, and `stagingSelectedFields` are ignored during current deployment, with warnings.
 

@@ -19,7 +19,6 @@ Interested in working with Data Culina? Visit [dataculina.com](https://dataculin
 | Monitor or diagnose a run | [Operations Guide](docs/operations/README.md) | [Diagnostic Queries](docs/troubleshooting/diagnostic-queries.md) |
 | Understand history and reporting | [History And Reporting](docs/concepts/history-and-reporting.md) | [Data Layers](docs/architecture/data-layers.md) |
 | Recover affected work | [Backfill And Recovery](docs/operations/backfill-and-recovery.md) | [Support Handoff](docs/troubleshooting/support-handoff.md) |
-| Confirm learning with exercises | [Workbook Exercises](workbook/README.md) | [Export a transcript](workbook/docs/completion-note-template.md) |
 
 [Full documentation index](docs/README.md) · [Example catalog](examples/README.md) · [Field and schema references](docs/reference/README.md)
 
@@ -31,13 +30,11 @@ Current coverage includes portable storage and secret references, source-owned i
 
 The eight videos explain the framework fundamentals. Use the written references for capabilities added after those recordings. Older sandbox examples remain useful for tracing complete relationships; the [example catalog](examples/README.md) explains which format each set demonstrates.
 
-## Download And Practice
+## Read And Download
 
 Read the Markdown documentation in GitHub, or use **Code > Download ZIP** and extract the repository. Open [index.html](index.html) for the local directory. JSON examples are reference material; they require environment-specific configuration and review before deployment.
 
-For the optional workbook, follow [Workbook Exercises](workbook/README.md). Complete the selected path, export your transcript, and send it with a completion note to the person coordinating the exercise.
-
-This repository supplies documentation, configuration examples, and exercises. Engine installation and infrastructure provisioning are separate.
+This repository supplies documentation and configuration examples. Engine installation and infrastructure provisioning are separate.
 
 ## Local Reading
 
@@ -47,7 +44,7 @@ Open `index.html` directly, or serve the extracted checkout:
 python -m http.server 8000
 ```
 
-Open `http://localhost:8000`. The directory offers GitHub-rendered reading links and local source links. The workbook runs at `http://localhost:8000/workbook/learner.html`.
+Open `http://localhost:8000`. The directory offers GitHub-rendered reading links and local source links.
 
 ## Project Files
 
@@ -57,7 +54,6 @@ Open `http://localhost:8000`. The directory offers GitHub-rendered reading links
 
 ```powershell
 npm test
-npm run validate:content
 npm run validate:schemas
 npm run validate:docs
 npm run validate:examples
